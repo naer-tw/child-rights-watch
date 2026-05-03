@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>倡議追蹤矩陣 · 內部 — 兒少人權監督平台</title>
-<meta name="description" content="AABE 內部:14 議題 × 倡議 / CO / NAP / 法規 對應追蹤矩陣">
-<meta name="robots" content="noindex">
+<title>跨週期比較 — 兒少人權監督平台</title>
+<meta name="description" content="CRC 屆別、NAP 期別、議題進展跨週期比較">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
@@ -1175,7 +1174,7 @@ body:not(.is-insider) .insider-only-section::before {
   .contact-aabe { grid-column: span 1; }
 }
 
-/* ─── Matrix page ───────────────────── */
+/* ─── Compare page ─────────────────── */
 .matrix-pagehead {
   background: var(--bg-deep);
   color: rgba(255,255,255,0.85);
@@ -1187,24 +1186,15 @@ body:not(.is-insider) .insider-only-section::before {
   display: flex; justify-content: space-between; align-items: center;
   flex-wrap: wrap; gap: var(--space-3);
 }
-.matrix-crumb {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 13px;
-  color: rgba(255,255,255,0.65);
-}
+.matrix-crumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.65); }
 .matrix-crumb a { color: rgba(255,255,255,0.85); text-decoration: none; }
 .matrix-crumb a:hover { color: var(--brand); }
 .matrix-crumb svg { color: rgba(255,255,255,0.4); }
 .matrix-crumb .active { color: #fff; font-weight: 600; }
-.matrix-pagehead-meta {
-  font-family: var(--sans-en);
-  font-size: 11.5px;
-  color: rgba(255,255,255,0.55);
-  letter-spacing: 0.04em;
-}
+.matrix-pagehead-meta { font-family: var(--sans-en); font-size: 11.5px; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; }
 
-.matrix-section { padding: var(--space-6) var(--space-4); background: var(--bg); }
-.matrix-inner { max-width: var(--max-w); margin: 0 auto; }
+.cmp-section { padding: var(--space-6) var(--space-4); background: var(--bg); }
+.cmp-inner { max-width: var(--max-w); margin: 0 auto; }
 
 .matrix-tabs {
   display: flex; gap: var(--space-2); align-items: center;
@@ -1224,21 +1214,6 @@ body:not(.is-insider) .insider-only-section::before {
 }
 .matrix-tab:hover { color: var(--text); }
 .matrix-tab.active { color: var(--brand); border-bottom-color: var(--brand); }
-.matrix-legend {
-  margin-left: auto;
-  display: flex; gap: var(--space-3); font-size: 12px; color: var(--text-muted);
-  flex-wrap: wrap;
-}
-.legend-item { display: inline-flex; align-items: center; gap: 5px; }
-.legend-item .dot {
-  width: 9px; height: 9px; border-radius: 50%;
-  display: inline-block;
-}
-.legend-item .dot.ok { background: var(--success); }
-.legend-item .dot.mid { background: #C68822; }
-.legend-item .dot.bad { background: var(--warning); }
-.legend-item .dot.pending { background: var(--institutional-light); }
-.legend-item .dot.none { background: var(--border); }
 
 .matrix-table-wrap {
   background: #fff;
@@ -1261,7 +1236,6 @@ body:not(.is-insider) .insider-only-section::before {
   font-size: 12px;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  position: sticky; top: 0;
   white-space: nowrap;
 }
 .matrix-table thead th.num { text-align: right; }
@@ -1272,55 +1246,66 @@ body:not(.is-insider) .insider-only-section::before {
 }
 .matrix-table tbody td.num { text-align: right; font-family: var(--sans-en); font-weight: 600; }
 .matrix-table tbody tr:hover { background: var(--bg-alt); }
-.matrix-table .pi-link {
-  font-family: var(--sans-en); font-weight: 700; color: var(--brand); text-decoration: none;
-}
-.matrix-table .pi-link:hover { text-decoration: underline; }
-.matrix-table .severity-tag {
-  font-size: 11px; padding: 2px 7px; border-radius: 3px;
-  font-family: var(--sans-en); font-weight: 600;
-}
-.severity-高 { background: var(--warning-soft); color: var(--warning); }
-.severity-中 { background: rgba(198,136,34,0.15); color: #8C5A0E; }
-.severity-低 { background: var(--bg-alt); color: var(--text-muted); }
 
-.status-badge {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-size: 11.5px; padding: 2px 8px; border-radius: 999px;
-  font-family: var(--sans-en); font-weight: 600;
-  white-space: nowrap;
+.cmp-subhead {
+  font-family: var(--serif);
+  font-size: 17px;
+  color: var(--bg-deep);
+  margin: var(--space-5) 0 var(--space-2);
+  font-weight: 700;
 }
-.status-adopted { background: rgba(45,95,62,0.12); color: var(--success); }
-.status-partially_adopted { background: rgba(198,136,34,0.15); color: #8C5A0E; }
-.status-not_adopted { background: rgba(160,48,50,0.12); color: var(--warning); }
-.status-pending { background: rgba(68,99,138,0.15); color: var(--institutional-light); }
-.status-unknown, .status- { background: var(--bg-alt); color: var(--text-muted); }
+.cmp-hint { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: var(--space-3); }
 
-.matrix-filter-row {
-  display: flex; gap: var(--space-3); align-items: end;
-  flex-wrap: wrap;
+.cmp-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+.cmp-stat {
   background: #fff;
   border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: var(--space-3);
-  margin-bottom: var(--space-3);
-}
-.matrix-filter-row label { display: flex; flex-direction: column; gap: 4px; font-size: 11.5px; color: var(--text-muted); font-weight: 600; }
-.matrix-filter-row select, .matrix-filter-row input {
-  font-family: var(--sans);
-  font-size: 13px;
-  padding: 6px 10px;
-  border: 1px solid var(--border);
+  border-left: 3px solid var(--brand);
   border-radius: 4px;
-  background: #fff;
-  min-width: 130px;
+  padding: var(--space-3);
 }
-.matrix-filter-row input { min-width: 220px; }
+.cmp-stat .lbl { font-size: 11px; color: var(--text-muted); font-family: var(--sans-en); letter-spacing: 0.06em; text-transform: uppercase; }
+.cmp-stat .num { font-family: var(--sans-en); font-size: 28px; font-weight: 700; color: var(--bg-deep); margin-top: 4px; line-height: 1; }
+.cmp-stat .delta { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+.cmp-stat .delta.up { color: var(--warning); }
+.cmp-stat .delta.down { color: var(--success); }
 
-@media (max-width: 768px) {
-  .matrix-table { font-size: 12px; }
-  .matrix-legend { width: 100%; margin-left: 0; }
+/* mini bar(進度分布)*/
+.mini-bars { display: flex; height: 16px; border-radius: 3px; overflow: hidden; min-width: 180px; background: var(--bg-alt); }
+.mini-bar { display: inline-block; height: 100%; }
+.mini-bar.ok { background: var(--success); }
+.mini-bar.partial { background: #C68822; }
+.mini-bar.bad { background: var(--warning); }
+.mini-bar.slow { background: var(--institutional-light); }
+.mini-bar.unassessed { background: var(--border); }
+.mini-bars-legend {
+  font-size: 11px; color: var(--text-muted);
+  display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px;
 }
+
+/* tier 分布條 */
+.tier-bars { display: flex; height: 14px; border-radius: 3px; overflow: hidden; background: var(--bg-alt); min-width: 100px; }
+.tier-bar.t3 { background: var(--warning); }
+.tier-bar.t2 { background: var(--brand); }
+.tier-bar.t1 { background: var(--text-meta); }
+
+.score-cell {
+  display: inline-block; padding: 2px 8px;
+  font-family: var(--sans-en); font-weight: 600;
+  border-radius: 3px;
+  background: var(--bg-alt);
+  font-size: 12px;
+}
+.score-cell.high { background: rgba(45,95,62,0.15); color: var(--success); }
+.score-cell.mid { background: rgba(198,136,34,0.18); color: #8C5A0E; }
+.score-cell.low { background: rgba(160,48,50,0.15); color: var(--warning); }
+
+@media (max-width: 768px) { .matrix-table { font-size: 12px; } }
 
 /* ─── Footer ────────────────────── */
 footer.site-footer {
@@ -1376,12 +1361,6 @@ footer .credit {
 </style>
 </head>
 <body>
-<script>
-// 入口閘門 — 此頁限 AABE 內部,未登入導回首頁(首頁有 modal)
-if (typeof localStorage !== 'undefined' && localStorage.getItem('aabe-insider') !== 'yes') {
-  location.replace('index.html?lock=matrix');
-}
-</script>
 
 <a href="#main" class="skip">跳到主要內容</a>
 
@@ -1535,7 +1514,7 @@ if (typeof localStorage !== 'undefined' && localStorage.getItem('aabe-insider') 
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
     影子報告(已發佈)
   </a>
-  <a href="compare.html" class="nav-item">
+  <a href="compare.html" class="nav-item active">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
     跨週期比較
   </a>
@@ -1548,7 +1527,7 @@ if (typeof localStorage !== 'undefined' && localStorage.getItem('aabe-insider') 
     <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:-1px;margin-right:3px"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
     內部工作區 · 限 AABE 自家人
   </h5>
-  <a href="matrix.html" class="nav-item featured active insider-only" data-locked="1" onclick="return checkInsider(event)">
+  <a href="matrix.html" class="nav-item featured insider-only" data-locked="1" onclick="return checkInsider(event)">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
     倡議追蹤矩陣
     <svg class="lock-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" style="margin-left:auto"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
@@ -1584,113 +1563,125 @@ if (typeof localStorage !== 'undefined' && localStorage.getItem('aabe-insider') 
 
 <main id="main">
 
-<!-- 內部頁面標頭 -->
+<!-- 頁首 -->
 <div class="matrix-pagehead">
   <div class="matrix-pagehead-inner">
     <div class="matrix-crumb">
       <a href="index.html">首頁總覽</a>
       <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg>
-      <span>內部工作區</span>
+      <span>公開內容</span>
       <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg>
-      <span class="active">倡議追蹤矩陣</span>
+      <span class="active">跨週期比較</span>
     </div>
-    <div class="matrix-pagehead-meta" id="matrix-meta">─</div>
+    <div class="matrix-pagehead-meta" id="cmp-meta">─</div>
   </div>
 </div>
 
-<section class="matrix-section">
-  <div class="matrix-inner">
+<section class="cmp-section">
+  <div class="cmp-inner">
     <div class="section-header">
-      <h2>倡議追蹤矩陣</h2>
-      <span class="meta">AABE 內部 · 14 議題 × 倡議 / CO / NAP / 法規 對應</span>
+      <h2>跨週期比較</h2>
+      <span class="meta">CRC 屆別、NAP 期別、議題進展三向度檢視</span>
     </div>
 
     <p style="font-size: 13.5px; color: var(--text-muted); max-width: 760px; margin-bottom: var(--space-4); line-height: 1.6;">
-      此頁可用兩種視角檢視:
-      (1) <strong>議題透視</strong> — 以 14 個 PI 為列,展示每議題之倡議數 / CO 提及 / NAP 對應 / 修法數;
-      (2) <strong>倡議列表</strong> — 全部 52 筆 advocacy_action,可按議題、處分狀態、類型篩選。
+      CRC 自 2017 第一次審查、2022 第二次審查,2026 已啟動第三次審查。
+      國家人權行動計畫已執行兩期(2018-22 / 2024-28)。
+      此頁將三組資料並陳,看出議題哪些是「重申未解決」、哪些是新興、哪些已達成。
     </p>
 
-    <!-- view 切換 -->
     <div class="matrix-tabs" role="tablist">
-      <button class="matrix-tab active" data-view="issue" role="tab">議題透視(14)</button>
-      <button class="matrix-tab" data-view="action" role="tab">倡議列表(52)</button>
-      <span class="matrix-legend">
-        <span class="legend-item"><span class="dot ok"></span>已採納</span>
-        <span class="legend-item"><span class="dot mid"></span>部分採納</span>
-        <span class="legend-item"><span class="dot bad"></span>未採納</span>
-        <span class="legend-item"><span class="dot pending"></span>追蹤中</span>
-        <span class="legend-item"><span class="dot none"></span>未評估</span>
-      </span>
+      <button class="matrix-tab active" data-view="co" role="tab">CO 屆別比較</button>
+      <button class="matrix-tab" data-view="nap" role="tab">NAP 期別比較</button>
+      <button class="matrix-tab" data-view="pi" role="tab">議題進展軌跡</button>
     </div>
 
-    <!-- 議題透視 view -->
-    <div id="view-issue" class="matrix-view">
+    <!-- View 1: CO 屆別比較 -->
+    <div id="cmp-view-co" class="matrix-view">
+
+      <div class="cmp-summary" id="cmp-co-summary"></div>
+
+      <h3 class="cmp-subhead">按 cluster 比對(CRC1 → CRC2)</h3>
+      <p class="cmp-hint">每 cluster 之 CO 點次。第三屆審查(2026)資料尚未產出 — 將在審查結束後加入。</p>
+      <div class="matrix-table-wrap">
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th style="width:80px">Cluster</th>
+              <th class="num">CRC1<br><small style="font-weight:400;color:var(--text-muted)">(2017)</small></th>
+              <th class="num">CRC2<br><small style="font-weight:400;color:var(--text-muted)">(2022)</small></th>
+              <th class="num">變化</th>
+              <th>CRC2 進度分布</th>
+            </tr>
+          </thead>
+          <tbody id="co-cluster-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- View 2: NAP 期別比較 -->
+    <div id="cmp-view-nap" class="matrix-view" style="display:none">
+
+      <h3 class="cmp-subhead">第一期 (2018-22) vs 第二期 (2024-28)</h3>
+      <p class="cmp-hint">兩期 NAP 各按 theme 分類。第一期已執行完畢可評估;第二期執行中,部分為延續行動。</p>
+
+      <div class="matrix-table-wrap">
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th>主題</th>
+              <th class="num">第一期</th>
+              <th class="num">第二期</th>
+              <th>第一期執行情況</th>
+              <th>第二期狀態</th>
+            </tr>
+          </thead>
+          <tbody id="nap-theme-tbody"></tbody>
+        </table>
+      </div>
+
+      <h3 class="cmp-subhead" style="margin-top:var(--space-5)">第一期未達成 → 是否在第二期延續?</h3>
+      <div class="matrix-table-wrap">
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th style="width:80px">期別</th>
+              <th>行動</th>
+              <th>政府評估</th>
+              <th>AABE 評估</th>
+              <th>對應 PI</th>
+            </tr>
+          </thead>
+          <tbody id="nap-action-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- View 3: 議題進展軌跡 -->
+    <div id="cmp-view-pi" class="matrix-view" style="display:none">
+
+      <h3 class="cmp-subhead">14 議題之三軸評分軌跡</h3>
+      <p class="cmp-hint">每 PI 之 issue_timeline 事件分布(★/★★/★★★ tier)+ 三軸平均(制度 / 結果 / 持續)。</p>
+
       <div class="matrix-table-wrap">
         <table class="matrix-table">
           <thead>
             <tr>
               <th>PI</th>
               <th>議題</th>
-              <th>嚴重度</th>
-              <th>狀態</th>
-              <th>Cluster</th>
-              <th class="num">倡議數</th>
-              <th class="num">CO 提及</th>
-              <th class="num">NAP 對應</th>
-              <th class="num">法規數</th>
-              <th>操作</th>
+              <th class="num">事件數</th>
+              <th>Tier 分布</th>
+              <th class="num">制度</th>
+              <th class="num">結果</th>
+              <th class="num">持續</th>
+              <th class="num">最近事件</th>
             </tr>
           </thead>
-          <tbody id="issue-tbody">
-            <tr><td colspan="10" style="text-align:center;color:var(--text-muted)">載入中…</td></tr>
-          </tbody>
+          <tbody id="pi-progress-tbody"></tbody>
         </table>
       </div>
     </div>
 
-    <!-- 倡議列表 view -->
-    <div id="view-action" class="matrix-view" style="display:none">
-      <div class="matrix-filter-row">
-        <label>議題
-          <select id="filter-issue">
-            <option value="">全部議題</option>
-          </select>
-        </label>
-        <label>處分狀態
-          <select id="filter-status">
-            <option value="">全部</option>
-            <option value="adopted">已採納</option>
-            <option value="partially_adopted">部分採納</option>
-            <option value="not_adopted">未採納</option>
-            <option value="pending">追蹤中</option>
-            <option value="unknown">未評估</option>
-          </select>
-        </label>
-        <label>類型
-          <select id="filter-type">
-            <option value="">全部</option>
-          </select>
-        </label>
-        <input type="search" id="filter-q" placeholder="搜尋標題 / 主張…">
-        <span id="action-count" style="margin-left:auto;font-size:13px;color:var(--text-muted)"></span>
-      </div>
-
-      <div class="matrix-table-wrap">
-        <table class="matrix-table">
-          <thead>
-            <tr>
-              <th style="width:90px">日期</th>
-              <th>標題</th>
-              <th style="width:120px">類型</th>
-              <th style="width:120px">議題</th>
-              <th style="width:100px">處分狀態</th>
-            </tr>
-          </thead>
-          <tbody id="action-tbody"></tbody>
-        </table>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1771,6 +1762,21 @@ const INSIDER_PASS = "aabe-internal-2026";  // ← 請改成你要的密碼後 c
     setInsiderUI(true);
   }
 
+  // 從內部頁被退回時自動開 modal
+  const lockParam = new URLSearchParams(location.search).get('lock');
+  if (lockParam && localStorage.getItem('aabe-insider') !== 'yes') {
+    setTimeout(() => {
+      document.getElementById('login-modal').style.display = 'grid';
+      const errEl = document.getElementById('login-err');
+      if (errEl) {
+        errEl.style.display = 'block';
+        errEl.style.color = 'var(--text-muted)';
+        errEl.textContent = `「${({matrix:'倡議追蹤矩陣', generator:'影子報告產生器', drafts:'倡議工作底稿'})[lockParam] || lockParam}」需 AABE 內部登入`;
+      }
+      setTimeout(() => document.getElementById('login-user').focus(), 50);
+    }, 200);
+  }
+
   // 點「AABE 自家人」開登入 modal
   document.getElementById('btn-insider').addEventListener('click', () => {
     if (localStorage.getItem('aabe-insider') === 'yes') {
@@ -1837,749 +1843,857 @@ function checkInsider(e) {
 }
 </script>
 
-<!-- ━━━━━━━━━━━━━ Matrix data + render ━━━━━━━━━━━━━ -->
+<!-- ━━━━━━━━━━━━━ Compare data + render ━━━━━━━━━━━━━ -->
 <script>
-<!-- MATRIX-DATA-START -->
-window.MATRIX_DATA = {
-  "issues": [
+<!-- COMPARE-DATA-START -->
+window.COMPARE_DATA = {
+  "co_clusters": [
+    {
+      "cluster": "A",
+      "cycle1": {
+        "n": 14,
+        "achieved": 0,
+        "partial": 0,
+        "not_done": 0,
+        "slow": 0,
+        "unassessed": 14
+      },
+      "cycle2": {
+        "n": 14,
+        "achieved": 0,
+        "partial": 0,
+        "not_done": 0,
+        "slow": 0,
+        "unassessed": 14
+      },
+      "cycle3": null
+    },
+    {
+      "cluster": "B",
+      "cycle1": {
+        "n": 1,
+        "achieved": 0,
+        "partial": 0,
+        "not_done": 0,
+        "slow": 0,
+        "unassessed": 1
+      },
+      "cycle2": {
+        "n": 1,
+        "achieved": 0,
+        "partial": 0,
+        "not_done": 0,
+        "slow": 0,
+        "unassessed": 1
+      },
+      "cycle3": null
+    },
+    {
+      "cluster": "C",
+      "cycle1": {
+        "n": 8,
+        "achieved": 0,
+        "partial": 0,
+        "not_done": 0,
+        "slow": 0,
+        "unassessed": 8
+      },
+      "cycle2": {
+        "n": 8,
+        "achieved": 0,
+        "partial": 0,
+        "not_done": 0,
+        "slow": 0,
+        "unassessed": 8
+      },
+      "cycle3": null
+    },
+    {
+      "cluster": "D",
+      "cycle1": {
+        "n": 5,
+        "achieved": 0,
+        "partial": 0,
+        "not_done": 0,
+        "slow": 0,
+        "unassessed": 5
+      },
+      "cycle2": {
+        "n": 5,
+        "achieved": 0,
+        "partial": 0,
+        "not_done": 0,
+        "slow": 0,
+        "unassessed": 5
+      },
+      "cycle3": null
+    },
+    {
+      "cluster": "E",
+      "cycle1": {
+        "n": 9,
+        "achieved": 0,
+        "partial": 0,
+        "not_done": 0,
+        "slow": 0,
+        "unassessed": 9
+      },
+      "cycle2": {
+        "n": 9,
+        "achieved": 0,
+        "partial": 0,
+        "not_done": 0,
+        "slow": 0,
+        "unassessed": 9
+      },
+      "cycle3": null
+    },
+    {
+      "cluster": "F",
+      "cycle1": {
+        "n": 7,
+        "achieved": 0,
+        "partial": 0,
+        "not_done": 0,
+        "slow": 0,
+        "unassessed": 7
+      },
+      "cycle2": {
+        "n": 7,
+        "achieved": 0,
+        "partial": 0,
+        "not_done": 0,
+        "slow": 0,
+        "unassessed": 7
+      },
+      "cycle3": null
+    },
+    {
+      "cluster": "G",
+      "cycle1": {
+        "n": 12,
+        "achieved": 0,
+        "partial": 0,
+        "not_done": 0,
+        "slow": 0,
+        "unassessed": 12
+      },
+      "cycle2": {
+        "n": 12,
+        "achieved": 0,
+        "partial": 0,
+        "not_done": 0,
+        "slow": 0,
+        "unassessed": 12
+      },
+      "cycle3": null
+    },
+    {
+      "cluster": "H",
+      "cycle1": {
+        "n": 7,
+        "achieved": 0,
+        "partial": 0,
+        "not_done": 0,
+        "slow": 0,
+        "unassessed": 7
+      },
+      "cycle2": {
+        "n": 7,
+        "achieved": 0,
+        "partial": 0,
+        "not_done": 0,
+        "slow": 0,
+        "unassessed": 7
+      },
+      "cycle3": null
+    },
+    {
+      "cluster": "I",
+      "cycle1": {
+        "n": 34,
+        "achieved": 0,
+        "partial": 0,
+        "not_done": 0,
+        "slow": 0,
+        "unassessed": 34
+      },
+      "cycle2": {
+        "n": 8,
+        "achieved": 0,
+        "partial": 0,
+        "not_done": 0,
+        "slow": 0,
+        "unassessed": 8
+      },
+      "cycle3": null
+    },
+    {
+      "cluster": "J",
+      "cycle1": {
+        "n": 1,
+        "achieved": 0,
+        "partial": 0,
+        "not_done": 0,
+        "slow": 0,
+        "unassessed": 1
+      },
+      "cycle2": {
+        "n": 1,
+        "achieved": 0,
+        "partial": 0,
+        "not_done": 0,
+        "slow": 0,
+        "unassessed": 1
+      },
+      "cycle3": null
+    }
+  ],
+  "co_totals": [
+    {
+      "cycle": 1,
+      "n": 98,
+      "achieved": 0,
+      "partial": 0,
+      "not_done": 0,
+      "unassessed": 98
+    },
+    {
+      "cycle": 2,
+      "n": 72,
+      "achieved": 0,
+      "partial": 0,
+      "not_done": 0,
+      "unassessed": 72
+    }
+  ],
+  "nap_themes": [
+    {
+      "period": "1",
+      "theme_no": 1,
+      "theme_name": "強化人權保障體制",
+      "n": 1,
+      "achieved": 0,
+      "partial": 1,
+      "not_done": 0,
+      "self_tracked": 0,
+      "unassessed": 0
+    },
+    {
+      "period": "1",
+      "theme_no": 2,
+      "theme_name": "人權教育",
+      "n": 2,
+      "achieved": 0,
+      "partial": 2,
+      "not_done": 0,
+      "self_tracked": 0,
+      "unassessed": 0
+    },
+    {
+      "period": "1",
+      "theme_no": 3,
+      "theme_name": "平等與不歧視",
+      "n": 2,
+      "achieved": 0,
+      "partial": 0,
+      "not_done": 1,
+      "self_tracked": 1,
+      "unassessed": 0
+    },
+    {
+      "period": "1",
+      "theme_no": 4,
+      "theme_name": "強化生命權保障",
+      "n": 2,
+      "achieved": 0,
+      "partial": 1,
+      "not_done": 1,
+      "self_tracked": 0,
+      "unassessed": 0
+    },
+    {
+      "period": "1",
+      "theme_no": 6,
+      "theme_name": "氣候變遷與人權",
+      "n": 1,
+      "achieved": 0,
+      "partial": 1,
+      "not_done": 0,
+      "self_tracked": 0,
+      "unassessed": 0
+    },
+    {
+      "period": "1",
+      "theme_no": 7,
+      "theme_name": "數位人權",
+      "n": 2,
+      "achieved": 0,
+      "partial": 1,
+      "not_done": 1,
+      "self_tracked": 0,
+      "unassessed": 0
+    },
+    {
+      "period": "1",
+      "theme_no": 8,
+      "theme_name": "難民權利保障",
+      "n": 1,
+      "achieved": 0,
+      "partial": 0,
+      "not_done": 1,
+      "self_tracked": 0,
+      "unassessed": 0
+    },
+    {
+      "period": "2",
+      "theme_no": 1,
+      "theme_name": "強化人權保障體制",
+      "n": 2,
+      "achieved": 0,
+      "partial": 0,
+      "not_done": 0,
+      "self_tracked": 0,
+      "unassessed": 0
+    },
+    {
+      "period": "2",
+      "theme_no": 3,
+      "theme_name": "平等與不歧視",
+      "n": 2,
+      "achieved": 0,
+      "partial": 0,
+      "not_done": 0,
+      "self_tracked": 0,
+      "unassessed": 0
+    },
+    {
+      "period": "2",
+      "theme_no": 4,
+      "theme_name": "強化生命權保障",
+      "n": 1,
+      "achieved": 0,
+      "partial": 0,
+      "not_done": 0,
+      "self_tracked": 0,
+      "unassessed": 0
+    },
+    {
+      "period": "2",
+      "theme_no": 8,
+      "theme_name": "難民權利保障",
+      "n": 1,
+      "achieved": 0,
+      "partial": 0,
+      "not_done": 0,
+      "self_tracked": 0,
+      "unassessed": 0
+    }
+  ],
+  "nap_actions": [
+    {
+      "action_id": "NAP1-01-CRC法規檢討",
+      "period": "1",
+      "theme_no": 1,
+      "theme_name": "強化人權保障體制",
+      "action_text": "針對 CRC 之國內法規進行檢討",
+      "govt_status": "部分達成",
+      "aabe_assessment": "部分達成",
+      "related_pi": "[\"跨議題\"]"
+    },
+    {
+      "action_id": "NAP1-02-人權教育師資",
+      "period": "1",
+      "theme_no": 2,
+      "theme_name": "人權教育",
+      "action_text": "培訓場次與人次",
+      "govt_status": "部分達成",
+      "aabe_assessment": "部分達成",
+      "related_pi": "[\"PI-04\"]"
+    },
+    {
+      "action_id": "NAP1-02-友善校園",
+      "period": "1",
+      "theme_no": 2,
+      "theme_name": "人權教育",
+      "action_text": "地方政府辦理高中以下友善校園人權環境指標自評",
+      "govt_status": "部分達成",
+      "aabe_assessment": "未達成",
+      "related_pi": "[\"PI-04\", \"PI-09\"]"
+    },
+    {
+      "action_id": "NAP1-03-反歧視法",
+      "period": "1",
+      "theme_no": 3,
+      "theme_name": "平等與不歧視",
+      "action_text": "送立法院審議",
+      "govt_status": "自行追蹤",
+      "aabe_assessment": "方向錯誤",
+      "related_pi": "[\"跨議題\"]"
+    },
+    {
+      "action_id": "NAP1-03-生活狀況調查",
+      "period": "1",
+      "theme_no": 3,
+      "theme_name": "平等與不歧視",
+      "action_text": "問卷涵蓋體罰、霸凌、歧視等題項",
+      "govt_status": "未達成",
+      "aabe_assessment": "未達成",
+      "related_pi": "[\"PI-08\", \"PI-10\", \"跨議題\"]"
+    },
+    {
+      "action_id": "NAP1-04-1925專線",
+      "period": "1",
+      "theme_no": 4,
+      "theme_name": "強化生命權保障",
+      "action_text": "服務量能擴增",
+      "govt_status": "部分達成",
+      "aabe_assessment": "部分達成",
+      "related_pi": "[\"PI-02\"]"
+    },
+    {
+      "action_id": "NAP1-04-青少年自殺研究",
+      "period": "1",
+      "theme_no": 4,
+      "theme_name": "強化生命權保障",
+      "action_text": "委託臺大研究計畫期程至 2024-12-31",
+      "govt_status": "未達成",
+      "aabe_assessment": "未達成",
+      "related_pi": "[\"PI-02\"]"
+    },
+    {
+      "action_id": "NAP1-06-氣候參與",
+      "period": "1",
+      "theme_no": 6,
+      "theme_name": "氣候變遷與人權",
+      "action_text": "透過多元管道徵詢兒少意見",
+      "govt_status": "部分達成",
+      "aabe_assessment": "部分達成",
+      "related_pi": "[\"PI-10\", \"跨議題\"]"
+    },
+    {
+      "action_id": "NAP1-07-個資會",
+      "period": "1",
+      "theme_no": 7,
+      "theme_name": "數位人權",
+      "action_text": "個資會掛牌",
+      "govt_status": "未達成",
+      "aabe_assessment": "未達成",
+      "related_pi": "[\"PI-06\"]"
+    },
+    {
+      "action_id": "NAP1-07-性影像移除",
+      "period": "1",
+      "theme_no": 7,
+      "theme_name": "數位人權",
+      "action_text": "完善不法性影像移除及被害人保護機制",
+      "govt_status": "部分達成",
+      "aabe_assessment": "部分達成",
+      "related_pi": "[\"PI-06\", \"PI-07\"]"
+    },
+    {
+      "action_id": "NAP1-08-難民法",
+      "period": "1",
+      "theme_no": 8,
+      "theme_name": "難民權利保障",
+      "action_text": "送立法院審議",
+      "govt_status": "未達成",
+      "aabe_assessment": "未達成",
+      "related_pi": "[\"PI-13\"]"
+    },
+    {
+      "action_id": "NAP2-01-NHRC-專責單位",
+      "period": "2",
+      "theme_no": 1,
+      "theme_name": "強化人權保障體制",
+      "action_text": "於國家人權委員會內設立兒少權利專責單位",
+      "govt_status": "--",
+      "aabe_assessment": "--",
+      "related_pi": "[\"跨議題\"]"
+    },
+    {
+      "action_id": "NAP2-跨議題-兒少預算",
+      "period": "2",
+      "theme_no": 1,
+      "theme_name": "強化人權保障體制",
+      "action_text": "建立跨部會跨層級兒少預算公開儀表板",
+      "govt_status": "--",
+      "aabe_assessment": "--",
+      "related_pi": "[\"跨議題\",\"PI-10\"]"
+    },
+    {
+      "action_id": "NAP2-03-反歧視法",
+      "period": "2",
+      "theme_no": 3,
+      "theme_name": "平等與不歧視",
+      "action_text": "完成《反歧視法》立法",
+      "govt_status": "--",
+      "aabe_assessment": "--",
+      "related_pi": "[\"跨議題\"]"
+    },
+    {
+      "action_id": "NAP2-03-生活狀況調查改版",
+      "period": "2",
+      "theme_no": 3,
+      "theme_name": "平等與不歧視",
+      "action_text": "改採單獨線上問卷,涵蓋體罰/霸凌/歧視題項,涵蓋 LGBTQI/身障/原民/新住民",
+      "govt_status": "--",
+      "aabe_assessment": "--",
+      "related_pi": "[\"PI-08\",\"PI-10\",\"跨議題\"]"
+    },
+    {
+      "action_id": "NAP2-04-青少年自殺研究公布",
+      "period": "2",
+      "theme_no": 4,
+      "theme_name": "強化生命權保障",
+      "action_text": "公布青少年自殺風險因子分析研究 + 規劃後續策略",
+      "govt_status": "--",
+      "aabe_assessment": "--",
+      "related_pi": "[\"PI-02\"]"
+    },
+    {
+      "action_id": "NAP2-08-難民法",
+      "period": "2",
+      "theme_no": 8,
+      "theme_name": "難民權利保障",
+      "action_text": "完成《難民法》立法",
+      "govt_status": "--",
+      "aabe_assessment": "--",
+      "related_pi": "[\"PI-13\"]"
+    }
+  ],
+  "pi_progress": [
     {
       "pi": "PI-01",
       "title": "校園霸凌",
-      "cluster": "E",
       "severity": "高",
-      "status": "持續追蹤",
-      "n_advocacy": 8,
-      "n_co": 4,
-      "n_nap": 0,
-      "n_laws": 4
+      "n_events": 3,
+      "tier3": 2,
+      "tier2": 1,
+      "tier1": 0,
+      "avg_inst": 3.0,
+      "avg_out": 2.67,
+      "avg_pers": 3.0,
+      "last_event": "2024-03-08"
     },
     {
       "pi": "PI-02",
       "title": "青少年心理健康與自殺防治",
-      "cluster": "G",
       "severity": "高",
-      "status": "惡化",
-      "n_advocacy": 3,
-      "n_co": 2,
-      "n_nap": 3,
-      "n_laws": 2
+      "n_events": 4,
+      "tier3": 0,
+      "tier2": 2,
+      "tier1": 2,
+      "avg_inst": 2.25,
+      "avg_out": 0.75,
+      "avg_pers": 2.25,
+      "last_event": "2025-12-31"
     },
     {
       "pi": "PI-03",
       "title": "體罰禁止(家庭與所有場域)",
-      "cluster": "E",
       "severity": "高",
-      "status": "持續追蹤",
-      "n_advocacy": 0,
-      "n_co": 2,
-      "n_nap": 0,
-      "n_laws": 1
+      "n_events": 3,
+      "tier3": 1,
+      "tier2": 2,
+      "tier1": 0,
+      "avg_inst": 3.0,
+      "avg_out": 2.33,
+      "avg_pers": 3.0,
+      "last_event": "2013-12-11"
     },
     {
       "pi": "PI-04",
       "title": "學生輔導體制(WISER 三級輔導 + 神經多樣性支持)",
-      "cluster": "G",
       "severity": "高",
-      "status": "持續追蹤",
-      "n_advocacy": 5,
-      "n_co": 4,
-      "n_nap": 2,
-      "n_laws": 3
+      "n_events": 7,
+      "tier3": 1,
+      "tier2": 5,
+      "tier1": 1,
+      "avg_inst": 2.71,
+      "avg_out": 1.71,
+      "avg_pers": 2.71,
+      "last_event": "2024-12-31"
     },
     {
       "pi": "PI-05",
       "title": "少年司法與行政先行",
-      "cluster": "I",
       "severity": "高",
-      "status": "持續追蹤",
-      "n_advocacy": 12,
-      "n_co": 4,
-      "n_nap": 0,
-      "n_laws": 1
+      "n_events": 5,
+      "tier3": 0,
+      "tier2": 4,
+      "tier1": 1,
+      "avg_inst": 2.8,
+      "avg_out": 1.8,
+      "avg_pers": 2.6,
+      "last_event": "2026-04-14"
     },
     {
       "pi": "PI-06",
       "title": "兒少網路安全與新興物質",
-      "cluster": "L",
       "severity": "高",
-      "status": "惡化",
-      "n_advocacy": 10,
-      "n_co": 0,
-      "n_nap": 2,
-      "n_laws": 3
+      "n_events": 11,
+      "tier3": 3,
+      "tier2": 7,
+      "tier1": 1,
+      "avg_inst": 2.82,
+      "avg_out": 2.0,
+      "avg_pers": 2.82,
+      "last_event": "2025-10-20"
     },
     {
       "pi": "PI-07",
       "title": "性剝削防制",
-      "cluster": "I",
       "severity": "高",
-      "status": "持續追蹤",
-      "n_advocacy": 0,
-      "n_co": 0,
-      "n_nap": 1,
-      "n_laws": 1
+      "n_events": 4,
+      "tier3": 2,
+      "tier2": 2,
+      "tier1": 0,
+      "avg_inst": 3.0,
+      "avg_out": 2.5,
+      "avg_pers": 3.0,
+      "last_event": "2023-02-15"
     },
     {
       "pi": "PI-08",
       "title": "性別平等教育",
-      "cluster": "H",
       "severity": "高",
-      "status": "持續追蹤",
-      "n_advocacy": 7,
-      "n_co": 3,
-      "n_nap": 2,
-      "n_laws": 2
+      "n_events": 5,
+      "tier3": 2,
+      "tier2": 1,
+      "tier1": 2,
+      "avg_inst": 2.6,
+      "avg_out": 1.6,
+      "avg_pers": 2.6,
+      "last_event": "2026-12-31"
     },
     {
       "pi": "PI-09",
       "title": "課業壓力、學習權與教育選擇權",
-      "cluster": "H",
       "severity": "高",
-      "status": "持續追蹤",
-      "n_advocacy": 13,
-      "n_co": 3,
-      "n_nap": 1,
-      "n_laws": 3
+      "n_events": 4,
+      "tier3": 1,
+      "tier2": 3,
+      "tier1": 0,
+      "avg_inst": 3.0,
+      "avg_out": 2.25,
+      "avg_pers": 3.0,
+      "last_event": "2026-04-12"
     },
     {
       "pi": "PI-10",
       "title": "兒少表意權與校園民主",
-      "cluster": "C",
       "severity": "中",
-      "status": "持續追蹤",
-      "n_advocacy": 2,
-      "n_co": 0,
-      "n_nap": 4,
-      "n_laws": 0
+      "n_events": 1,
+      "tier3": 0,
+      "tier2": 1,
+      "tier1": 0,
+      "avg_inst": 2.0,
+      "avg_out": 1.0,
+      "avg_pers": 2.0,
+      "last_event": "2024-12-31"
     },
     {
       "pi": "PI-11",
       "title": "家庭功能與依 CRC 第 5 條的父母指導角色",
-      "cluster": "F",
       "severity": "中",
-      "status": "持續追蹤",
-      "n_advocacy": 9,
-      "n_co": 0,
-      "n_nap": 0,
-      "n_laws": 1
+      "n_events": 0,
+      "tier3": 0,
+      "tier2": 0,
+      "tier1": 0,
+      "avg_inst": null,
+      "avg_out": null,
+      "avg_pers": null,
+      "last_event": null
     },
     {
       "pi": "PI-12",
       "title": "替代照顧與機構安置(剴剴案後)",
-      "cluster": "F",
       "severity": "高",
-      "status": "持續追蹤",
-      "n_advocacy": 9,
-      "n_co": 7,
-      "n_nap": 0,
-      "n_laws": 2
+      "n_events": 7,
+      "tier3": 2,
+      "tier2": 4,
+      "tier1": 1,
+      "avg_inst": 2.86,
+      "avg_out": 2.14,
+      "avg_pers": 2.71,
+      "last_event": "2026-04-21"
     },
     {
       "pi": "PI-13",
       "title": "移民、無國籍與失聯兒少",
-      "cluster": "I",
       "severity": "高",
-      "status": "持續追蹤",
-      "n_advocacy": 4,
-      "n_co": 3,
-      "n_nap": 2,
-      "n_laws": 0
+      "n_events": 2,
+      "tier3": 0,
+      "tier2": 0,
+      "tier1": 2,
+      "avg_inst": 2.0,
+      "avg_out": 0.0,
+      "avg_pers": 2.0,
+      "last_event": "2027-12-31"
     },
     {
       "pi": "PI-14",
       "title": "LGBTQI+ 兒少",
-      "cluster": "C",
       "severity": "高",
-      "status": "持續追蹤",
-      "n_advocacy": 3,
-      "n_co": 3,
-      "n_nap": 0,
-      "n_laws": 1
-    }
-  ],
-  "actions": [
-    {
-      "action_id": "A-Blueprint_Gender_Equity_Education_Reform",
-      "title": "Gender Equity Education Reform Blueprint",
-      "action_date": "待補",
-      "action_type": "政策白皮書(英文版)",
-      "disposition_status": null,
-      "main_argument": "**英文版政策白皮書**,可作為 CRC 第三次審查國際委員場次提交之**英文版材料**。",
-      "issue_ids": "PI-08"
-    },
-    {
-      "action_id": "A-2026-05-14_衛福部公聽會發言稿",
-      "title": "衛福部兒少權法修法草案公聽會發言稿(2026-05-14 預定)",
-      "action_date": "2026-05-14",
-      "action_type": "公聽會發言稿(Wave 66 定稿,日期預估)",
-      "disposition_status": null,
-      "main_argument": "",
-      "issue_ids": "PI-01,PI-05,PI-11,PI-12"
-    },
-    {
-      "action_id": "A-2026-05-04_CRC第2輪審查_場次2_候選A_剴剴案_口語版",
-      "title": "場次 2 候選 A — 剴剴案六大缺口(口語逐點版,雙軸審查框架,Wave 49 範本)",
-      "action_date": "2026-05-04",
-      "action_type": "民間審查發言(代表照念用,雙軸審查框架)",
-      "disposition_status": null,
-      "main_argument": "",
-      "issue_ids": "PI-12"
-    },
-    {
-      "action_id": "A-2026-05-04_CRC第2輪審查_場次2發言稿",
-      "title": "CRC 第三次國家報告第 2 輪民間審查場次 2 發言稿(5/4 上午,口語雙軸版)",
-      "action_date": "2026-05-04",
-      "action_type": "民間審查發言(雙軸審查框架,代表照念用)",
-      "disposition_status": null,
-      "main_argument": "",
-      "issue_ids": "PI-01,PI-04,PI-12"
-    },
-    {
-      "action_id": "A-2026-05-04_CRC第2輪審查_場次3發言稿",
-      "title": "CRC 第三次國家報告第 2 輪民間審查場次 3 發言稿(5/4 下午,口語雙軸版)",
-      "action_date": "2026-05-04",
-      "action_type": "民間審查發言(雙軸審查框架,代表照念用)",
-      "disposition_status": null,
-      "main_argument": "",
-      "issue_ids": "PI-02,PI-05,PI-06,PI-09,PI-13,PI-14"
-    },
-    {
-      "action_id": "A-2026-04-30_CRC第2輪審查_場次1發言稿",
-      "title": "CRC 第三次國家報告第 2 輪民間審查場次 1 發言稿(4/30 上午,口語雙軸版)",
-      "action_date": "2026-04-30",
-      "action_type": "民間審查發言(雙軸審查框架,代表照念用)",
-      "disposition_status": null,
-      "main_argument": "",
-      "issue_ids": "PI-10,PI-11,PI-13,PI-14"
-    },
-    {
-      "action_id": "A-2026-04-28_CRC審查會前提問書",
-      "title": "CRC 第三次國家報告第 2 輪民間審查會前提問書(雙軸口語版,Wave 49 重寫)",
-      "action_date": "2026-04-28",
-      "action_type": "民間審查會前提問(向衛福部秘書單位送)",
-      "disposition_status": null,
-      "main_argument": "",
-      "issue_ids": "PI-01,PI-02,PI-04,PI-05,PI-06,PI-09,PI-12,PI-13,PI-14"
-    },
-    {
-      "action_id": "A-2026-04-24_無菸品世代倡議",
-      "title": "推動「無菸品世代(Tobacco-Free Generation)」聲明",
-      "action_date": "2026-04-24",
-      "action_type": "聯合聲明(台灣拒菸聯盟主導,國教盟簽署)",
-      "disposition_status": null,
-      "main_argument": "",
-      "issue_ids": "PI-06"
-    },
-    {
-      "action_id": "NAAES-health_2026-04-24-健康台灣無菸品世代",
-      "title": "台灣為何應推動「無菸品世代」全面禁絕新型菸品？",
-      "action_date": "2026-04-24",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "英國通過《菸草和電子煙法案》確立2009年後出生者終身禁買紙菸，但保留電子煙，恐製造新一代「電子煙世代」。國教行動聯盟與台灣拒菸聯盟主張「健康台灣」應推動真正的「無菸品世代」，全面禁紙菸、電子煙、加熱菸、尼古丁袋。",
-      "issue_ids": "PI-06"
-    },
-    {
-      "action_id": "A-2026-04-22_兒少權法六大缺口",
-      "title": "兒少權法 15 年大修為何仍補不上剴剴案六大制度缺口?(衛福部 2026-04-21 預告草案分析)",
-      "action_date": "2026-04-22",
-      "action_type": "政策分析(新聞稿延伸)",
-      "disposition_status": "not_adopted",
-      "main_argument": "",
-      "issue_ids": "PI-01,PI-05,PI-11,PI-12"
-    },
-    {
-      "action_id": "NAAES-child-rights_2026-04-22-兒少權法修法六大缺口",
-      "title": "兒少權法15年大修為何仍補不上剴剴案六大制度缺口？",
-      "action_date": "2026-04-22",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "衛福部2026年4月21日預告兒少權法修正草案，條文由118條擴增至165條。國教盟指出，草案在社工注意義務、高風險升級、跨機關資訊共享、重大事件檢討、委外責任鏈與起訴前專業審查六大核心仍為零條款。",
-      "issue_ids": "PI-01,PI-05,PI-11,PI-12"
-    },
-    {
-      "action_id": "A-WISER_學校三級輔導手冊",
-      "title": "WISER-3.0 學校三級輔導工作手冊(第三節)",
-      "action_date": "2026-04-17(講解版日期)",
-      "action_type": "政府教材(教育部)",
-      "disposition_status": null,
-      "main_argument": "教育部國教署 WISER-3.0 模式之**第三節**手冊,2026-04-17 為講解版日期。",
-      "issue_ids": "PI-04"
-    },
-    {
-      "action_id": "A-2026-04-17_剴剴案五大修法工程",
-      "title": "從保證人地位法理到五大修法工程:台灣兒少保護體系如何重建?",
-      "action_date": "2026-04-17",
-      "action_type": "政策分析(深度長文)",
-      "disposition_status": null,
-      "main_argument": "### 2.1 法理判斷\n> 法院的三層論據在刑法學理上站得住腳。**但正因如此,立法必須跟上司法**。\n\n### 2.2 結構性問題\n> 應負保證人地位之人,為**有實質支配力卻怠於作為之個別行為人**,而非在基層克盡職守之社工群體。但結構性負荷不可作為個別社工免責的藉口,結構問題與個別過失須分別處理。\n\n### 2.3 國際對標\n> 全球主要法治國家**幾乎不以過失致死追訴第一線兒保社工**;主流回應是**立法明確化義務、強化機構責任、系統性學習**。",
-      "issue_ids": "PI-12"
-    },
-    {
-      "action_id": "NAAES-child-rights_2026-04-17-兒少保護體系改革五大修法工程",
-      "title": "從保證人地位法理到五大修法工程：台灣兒少保護體系如何重建？",
-      "action_date": "2026-04-17",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "完整解構剴剴案保證人地位三層論據：法律形式來源、制度性接管與事實承擔。分析等價性原則與四大法制漏洞，提出五大修法工程。跨國比較德國Garantenlehre、美國DeShaney案、英國Munro Review、日韓經驗，以中立法律分析建構制度改革方向。",
-      "issue_ids": "PI-12"
-    },
-    {
-      "action_id": "NAAES-child-rights_2026-04-17-剴剴案社工判刑與兒少保護修法訴求",
-      "title": "剴剴案社工一審判刑後，台灣兒少保護制度該如何修補？",
-      "action_date": "2026-04-17",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "2026年4月16日剴剴案社工陳尚潔一審遭判過失致死2年。法院從法律形式來源、制度性接管與事實承擔三層論據認定保證人地位。國教行動聯盟以中立法律分析指出：判決法理站得住腳，但正因如此，立法必須跟上司法。",
-      "issue_ids": "PI-12"
-    },
-    {
-      "action_id": "A-2026-04-15_家長立場_全長聯",
-      "title": "家長支持性平卻不滿意現行制度?全長聯指出三大教育缺口",
-      "action_date": "2026-04-15",
-      "action_type": "立法院公聽會書面報告(合作 NGO)",
-      "disposition_status": null,
-      "main_argument": "**全國家長會長聯盟(全長聯)**,以全國各縣市家長會長為主體。注意**與「全國家長團體聯盟(全家盟)」是不同組織**。",
-      "issue_ids": "PI-08"
-    },
-    {
-      "action_id": "A-2026-04-15_性平法再校準_國教盟",
-      "title": "性平法不該無限擴張!國教盟三大修法主張守住教育本位",
-      "action_date": "2026-04-15",
-      "action_type": "立法院公聽會書面報告(完整版)+ 新聞稿 + 綜合研究報告 APA7 版",
-      "disposition_status": null,
-      "main_argument": "",
-      "issue_ids": "PI-08"
-    },
-    {
-      "action_id": "NAAES-education-reform_2026-04-15-家長立場-全長聯公聽會",
-      "title": "家長支持性平卻不滿意現行制度？全長聯指出三大教育缺口",
-      "action_date": "2026-04-15",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "全國家長會長聯盟（全長聯）於 2026-04-15 立法院公聽會書面報告，從家長角度指出三大教育缺口，主張分齡性健康教育、獨立情感教育與家校合作機制。",
-      "issue_ids": "PI-08"
-    },
-    {
-      "action_id": "NAAES-education-reform_2026-04-15-性平法再校準-國教盟公聽會",
-      "title": "性平法該不該無限擴張？國教盟三大修法主張守住教育本位",
-      "action_date": "2026-04-15",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "國教行動聯盟於 2026-04-15 立法院公聽會書面報告，指出 2023 修法後性平法出現定義混淆、功能過載、程序膨脹三大副作用，主張釐清邊界、分級分流、回歸教育本位。",
-      "issue_ids": "PI-08"
-    },
-    {
-      "action_id": "A-2026-04-14_司法院少事法諮詢",
-      "title": "司法院少事法部分條文修正草案諮詢會議",
-      "action_date": "2026-04-14",
-      "action_type": "政府諮詢會議(司法院主辦)",
-      "disposition_status": null,
-      "main_argument": "",
-      "issue_ids": "PI-05"
-    },
-    {
-      "action_id": "A-2026-04-13_實驗三法修法公聽會",
-      "title": "立法院教育及文化委員會「實驗教育三法修法」公聽會",
-      "action_date": "2026-04-13",
-      "action_type": "公聽會出席(立法院)+ 書面報告 + 七分鐘發言",
-      "disposition_status": null,
-      "main_argument": "",
-      "issue_ids": "PI-09"
-    },
-    {
-      "action_id": "A-2026-04-12_偏鄉公校轉型實驗教育",
-      "title": "台灣偏鄉公校為何大量轉型實驗教育?",
-      "action_date": "2026-04-12",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "- **114 學年度 128 校學校型態實驗教育中,公立占 120 校(93.8%)**\n- 偏鄉及非山非市學校占 68 校(47.2%)\n- **「實驗化」已成裁併校的政治替代方案**,而非真正的教育創新",
-      "issue_ids": "PI-09"
-    },
-    {
-      "action_id": "A-2026-04-12_偽實驗與弱勢學生權益",
-      "title": "實驗教育如何保障弱勢學生權益?",
-      "action_date": "2026-04-12",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "- 部分學校以雙語等課程申請實驗教育名義**規避特教法**\n- 公立實驗校占 93.8%,六成家長反映學校拒收身障生\n- **「偽實驗」+ 法規排除 + 隱性篩選**形成弱勢學生的隱性門檻",
-      "issue_ids": "PI-09"
-    },
-    {
-      "action_id": "A-2026-04-12_實驗教育國際比較",
-      "title": "台灣實驗教育如何與國際模式相比?",
-      "action_date": "2026-04-12",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "- 台灣以特別法賦予學校型態實驗教育校廣泛法規排除(課程、教學、人事),**幾乎沒有退場機制**\n- 美國採契約型治理、英國採自治加強問責 — **「公共性不退、治理工具改變」**\n- 台灣是**「自治先行、問責後補」**的「制度紅利」模式 — 與國際相反",
-      "issue_ids": "PI-09"
-    },
-    {
-      "action_id": "NAAES-education-reform_2026-04-12-偏鄉公校轉型實驗教育",
-      "title": "台灣偏鄉公校為何大量轉型實驗教育？",
-      "action_date": "2026-04-12",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "台灣學校型態實驗教育128校中公立占93.8%，偏鄉及非山非市學校占47.2%。國教行動聯盟分析少子化、法規誘因、裁併校政治成本等五大結構性驅動力，揭示「偽實驗」與制度求生現象，提出十項改革建議。",
-      "issue_ids": "PI-09"
-    },
-    {
-      "action_id": "NAAES-education-reform_2026-04-12-偽實驗與弱勢學生權益",
-      "title": "實驗教育如何保障弱勢學生權益？",
-      "action_date": "2026-04-12",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "部分學校以雙語等課程申請實驗教育名義規避特教法，公立實驗校占93.8%，六成家長反映學校拒收身障生。國教盟分析法規漏洞、隱性篩選與偏鄉「被實驗」現象，提出修法建議。",
-      "issue_ids": "PI-09"
-    },
-    {
-      "action_id": "NAAES-education-reform_2026-04-12-台灣實驗教育國際比較",
-      "title": "台灣實驗教育如何與國際模式相比？",
-      "action_date": "2026-04-12",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "台灣學校型態實驗教育以大規模法規排除著稱，與美國特許學校、英國學院、德國實驗校異。美國CREDO 2023年研究(180萬名學生)證實特許校正向學習。國教盟分析核心差異：台灣無退場機制，國外多為「公共性不退、治理工具改變」。",
-      "issue_ids": "PI-09"
-    },
-    {
-      "action_id": "A-2026-04-10_拜會新北社會局神經多樣性",
-      "title": "拜會新北社會局 — 神經多樣性生活導師制度推動",
-      "action_date": "2026-04-10",
-      "action_type": "政府拜會(國教盟協辦)",
-      "disposition_status": null,
-      "main_argument": "",
-      "issue_ids": "PI-04"
-    },
-    {
-      "action_id": "A-2026-04-10_民眾黨公聽會教師荒",
-      "title": "民眾黨團「完善教師荒」公聽會",
-      "action_date": "2026-04-10",
-      "action_type": "公聽會出席(立法院政黨團)",
-      "disposition_status": null,
-      "main_argument": "",
-      "issue_ids": "PI-04,PI-09"
-    },
-    {
-      "action_id": "NAAES-school-lunch_2026-04-03-國民教育平權",
-      "title": "台灣國民教育真的免費嗎？營養午餐與教科書補助的22縣市落差",
-      "action_date": "2026-04-03",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "2026年兒童節，全台22縣市中已有20縣市實施免費營養午餐，桃園率六都之先補助教科書。國教行動聯盟分析義務教育經費落差，呼籲中央訂定全國一致最低保障標準，停止讓孩子的起點被郵遞區號決定。",
-      "issue_ids": "PI-09"
-    },
-    {
-      "action_id": "A-2026-04-02_少事法公聽會",
-      "title": "民眾黨團「完善少事法」公聽會",
-      "action_date": "2026-04-02",
-      "action_type": "公聽會出席(立法院政黨團)",
-      "disposition_status": null,
-      "main_argument": "",
-      "issue_ids": "PI-05"
-    },
-    {
-      "action_id": "NAAES-campus-safety_2026-04-02-校園唾液快篩二層檢測機制",
-      "title": "校園唾液快篩只做初篩夠嗎？為何需要二層檢測機制？",
-      "action_date": "2026-04-02",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "教育部2026年9月起將唾液快篩引進校園，國教行動聯盟肯定此舉但呼籲建立二層檢測機制。依托咪酯等新興毒品代謝快，傳統尿篩7天後即檢測不到，LC-MS/MS可同時檢測127種以上藥物，應補上確認檢驗、輔導通報與法制配套。",
-      "issue_ids": "PI-06"
-    },
-    {
-      "action_id": "NAAES-child-rights_2026-04-02-台灣未來帳戶",
-      "title": "臺灣未來帳戶4500億該怎麼花？國教盟提四大優化建議",
-      "action_date": "2026-04-02",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "國教行動聯盟出席2026年4月2日立法院「臺灣未來帳戶條例草案」公聽會，針對首年1,130億元、13年4,500億元的特別預算規模，提出財政永續、積極型公義、彈性支用、跨部會治理四大建議。",
-      "issue_ids": "PI-11"
-    },
-    {
-      "action_id": "NAAES-child-health_2026-04-01-兒童消失危機-育兒津貼翻倍",
-      "title": "兒童消失危機：為什麼200億幽靈預算救不了台灣的新生兒？",
-      "action_date": "2026-04-01",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "2025年台灣新生兒僅10.7萬人，十年腰斬一半。全國婦兒團體聯盟揭露少子女化預算四年溢編超過200億元，75%家長自行照顧幼兒卻僅獲32%預算，倡議育兒津貼應分階段翻倍至1.5萬元。",
-      "issue_ids": "PI-11"
-    },
-    {
-      "action_id": "NAAES-child-rights_2026-04-01-兒童節育兒支持政策",
-      "title": "政府少子化政策為何無效？八年4,484億元為何救不了台灣生育率？",
-      "action_date": "2026-04-01",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "全國婦兒團體聯盟與全家盟聯合分析少子化政策困境，提出四大主張。",
-      "issue_ids": "PI-11"
-    },
-    {
-      "action_id": "NAAES-child-rights_2026-04-01-少事法矯正教育假釋塗銷轉銜改革",
-      "title": "少事法矯正教育、假釋追蹤與塗銷制度如何改革？",
-      "action_date": "2026-04-01",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "國教行動聯盟針對少年事件處理法提出矯正教育法制化、假釋追蹤入法至少半年、塗銷制度分級及被害人權益保障等四大修法訴求。全國僅4所矯正學校，2023年新北割頸案凸顯制度缺口。",
-      "issue_ids": "PI-05"
-    },
-    {
-      "action_id": "A-2026-03-31_董氏基金會無菸城市",
-      "title": "如何達成無菸城市 — 戶外設置吸菸區還是吸菸室?",
-      "action_date": "2026-03-31",
-      "action_type": "政策分析(合作 NGO)",
-      "disposition_status": null,
-      "main_argument": "",
-      "issue_ids": "PI-06"
-    },
-    {
-      "action_id": "NAAES-campus-safety_2026-03-25-永和國中霸凌案",
-      "title": "面對校園霸凌頻傳，我們還可以做什麼？——國教盟青年部：應強化校園保護機制三道防線",
-      "action_date": "2026-03-25",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "國教盟青年部針對新北市永和區國中霸凌事件發表聲明，認為事件凸顯校園保護機制在預防、求助與防止二次傷害三個環節同時失守，應藉此檢討強化三道防線，引用CRC統計呼籲補強預防教育、及早接住與後續輔導。",
-      "issue_ids": "PI-01"
-    },
-    {
-      "action_id": "A-2026-03-17_國教盟少事法建議書",
-      "title": "國教盟少事法修正建議書 — 過渡性教育措施",
-      "action_date": "2026-03-17",
-      "action_type": "政策建議書(送立法院)",
-      "disposition_status": null,
-      "main_argument": "- 少事法 2019 大修建立「行政先行」框架,但**過渡性教育學位嚴重不足**\n- 訴求《國民轉介教育條例》立法,**填補曝險少年離開正規學校 → 矯正學校之間的教育空白**",
-      "issue_ids": "PI-05"
-    },
-    {
-      "action_id": "NAAES-campus-safety_2026-03-23-倡議成果追蹤",
-      "title": "campus-safety_2026-03-23-倡議成果追蹤",
-      "action_date": "2026",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "",
-      "issue_ids": "PI-01,PI-05,PI-06"
-    },
-    {
-      "action_id": "NAAES-campus-safety_2026-03-23-轉介教育條例",
-      "title": "campus-safety_2026-03-23-轉介教育條例",
-      "action_date": "2026",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "",
-      "issue_ids": "PI-05"
-    },
-    {
-      "action_id": "NAAES-child-health_2026-01-14-人工生殖法修法風險",
-      "title": "child-health_2026-01-14-人工生殖法修法風險",
-      "action_date": "2026",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "",
-      "issue_ids": "PI-13"
-    },
-    {
-      "action_id": "NAAES-health_2026-01-13-無菸城市",
-      "title": "health_2026-01-13-無菸城市",
-      "action_date": "2026",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "",
-      "issue_ids": "PI-06"
-    },
-    {
-      "action_id": "NAAES-school-lunch_2026-01-09-免費營養午餐配套",
-      "title": "school-lunch_2026-01-09-免費營養午餐配套",
-      "action_date": "2026",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "",
-      "issue_ids": "PI-09,PI-11"
-    },
-    {
-      "action_id": "NAAES-teacher-affairs_2026-01-23-校事會議修法",
-      "title": "teacher-affairs_2026-01-23-校事會議修法",
-      "action_date": "2026",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "",
-      "issue_ids": "PI-01"
-    },
-    {
-      "action_id": "NAAES-child-rights_2025-12-24-少年重大暴力案件量刑透明化",
-      "title": "少年重大暴力案件的量刑應如何建立透明基準？",
-      "action_date": "2025-12-24",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "新北國中生割頸案二審改判（一審9、8年→二審12、11年）引發社會質疑。國教盟指出，爭議不在刑期輕重，而在制度缺乏結構化、透明且可檢核的量刑基準。國教盟提出三大改革主張。",
-      "issue_ids": "PI-05"
-    },
-    {
-      "action_id": "NAAES-campus-safety_2025-12-16-校園菸毒與毒駕新興毒品檢測",
-      "title": "校園菸毒與毒駕源頭相同　新興毒品快速變形　毒駕年增8倍",
-      "action_date": "2025-12-16",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "國教盟倡議用科技反制科技：唾液快篩＋液相層析串聯質譜兩層式檢測對抗新興毒品",
-      "issue_ids": "PI-06"
-    },
-    {
-      "action_id": "A-2025-12-10_防制喪屍煙彈記者會",
-      "title": "防制校園喪屍煙彈(依托咪酯)記者會",
-      "action_date": "2025-12-10",
-      "action_type": "記者會(國教盟主辦)",
-      "disposition_status": null,
-      "main_argument": "- 喪屍煙彈(依托咪酯)在校園氾濫\n- 國教盟痛批政府怠惰不修法\n- 訴求:**全面禁止加味菸品 + 修法賦予教育人員查扣電子煙載具**之法源依據",
-      "issue_ids": "PI-06"
-    },
-    {
-      "action_id": "NAAES-child-rights_20251208-sexual-violence-prevention-education",
-      "title": "8742名青少年票選第三名：遇到性騷擾該怎麼辦？——國教盟呼籲補上保護課",
-      "action_date": "2025-12-08",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "8,742名青少年調查顯示「遇到性騷擾該怎麼辦？」高居第三名。衛福部統計未成年性影像受害者佔32.9%，但國中小每週僅1節健康教育課。",
-      "issue_ids": "PI-08"
-    },
-    {
-      "action_id": "NAAES-child-rights_2025-12-06-兒童成長需求總體檢論壇",
-      "title": "「生育·養育·教育—兒童成長需求總體檢」論壇",
-      "action_date": "2025-12-06",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "2025年12月6日論壇，四大組織聯合舉辦，探討台灣兒童成長困境與政策整合。涵蓋少子化、新生兒死亡率、青少年自殺、3C過曝、社會情緒學習等議題，提出跨部會整合建議。",
-      "issue_ids": "PI-09,PI-10,PI-11"
-    },
-    {
-      "action_id": "NAAES-youth-health_2025-12-05-青少年自殺通報",
-      "title": "青少年自殺通報九年增加3.3倍、佔比倍增",
-      "action_date": "2025-12-05",
-      "action_type": "政策分析(GEO 文章)",
-      "disposition_status": null,
-      "main_argument": "15到24歲青少年自殺通報數量自104年增至113年增加3.3倍，死亡率十年增加一倍。國教行動聯盟呼籲納入心理健康評估，建立銜接路徑降低漏接。",
-      "issue_ids": "PI-02"
-    },
-    {
-      "action_id": "A-2025-07-11_全面性教育現況調查",
-      "title": "2025 台灣兒童全面性教育現況調查報告(學會回應版)",
-      "action_date": "2025-07-11",
-      "action_type": "民間調查報告",
-      "disposition_status": null,
-      "main_argument": "台灣兒童全面性教育現況調查報告,2025-07-11 學會回應版。為 PI-08 議題之**民間實證資料來源**。",
-      "issue_ids": "PI-08"
+      "n_events": 0,
+      "tier3": 0,
+      "tier2": 0,
+      "tier1": 0,
+      "avg_inst": null,
+      "avg_out": null,
+      "avg_pers": null,
+      "last_event": null
     }
   ],
   "meta": {
-    "total_issues": 14,
-    "total_actions": 52,
-    "generated_at": "2026-05-03T23:35:41"
+    "generated_at": "2026-05-03T23:57:42"
   }
 };
-<!-- MATRIX-DATA-END -->
+<!-- COMPARE-DATA-END -->
 </script>
 
 <script>
 (function() {
-  // 進入頁面如未登入,觸發 modal(允許先看資料但不允許編輯;此頁為 read-only matrix,所以放行但顯示 banner)
-  if (localStorage.getItem('aabe-insider') !== 'yes') {
-    const meta = document.getElementById('matrix-meta');
-    if (meta) meta.innerHTML = '<span style="color:var(--brand)">⚠ 未登入訪客模式 · 部分動作受限</span>';
-  } else {
-    const meta = document.getElementById('matrix-meta');
-    if (meta) meta.innerHTML = '<span style="color:#6FCF97">✓ AABE 內部模式</span> · 最後更新 ' + (window.MATRIX_DATA.meta.generated_at || '─');
-  }
+  const D = window.COMPARE_DATA || {};
+  const meta = document.getElementById('cmp-meta');
+  if (meta && D.meta && D.meta.generated_at) meta.textContent = '最後更新 ' + D.meta.generated_at.replace('T', ' ');
 
-  const D = window.MATRIX_DATA || {issues:[], actions:[]};
-
-  function statusLabel(s) {
-    return ({adopted:'已採納', partially_adopted:'部分採納', not_adopted:'未採納', pending:'追蹤中', unknown:'未評估'})[s] || (s ? s : '未評估');
-  }
-  function statusKey(s) { return s || 'unknown'; }
-
-  // ── Issue 透視
-  const issueTbody = document.getElementById('issue-tbody');
-  if (D.issues.length === 0) {
-    issueTbody.innerHTML = '<tr><td colspan="10" style="text-align:center;color:var(--text-muted);padding:24px">尚無資料 — 請執行 python3 scripts/render_matrix.py</td></tr>';
-  } else {
-    issueTbody.innerHTML = D.issues.map(it => `
-      <tr>
-        <td><a href="issues/${it.pi}.html" class="pi-link">${it.pi}</a></td>
-        <td>${it.title}</td>
-        <td><span class="severity-tag severity-${it.severity || '低'}">${it.severity || '─'}</span></td>
-        <td>${it.status || '─'}</td>
-        <td><code style="font-size:11px;color:var(--text-muted)">${it.cluster || '─'}</code></td>
-        <td class="num">${it.n_advocacy}</td>
-        <td class="num">${it.n_co}</td>
-        <td class="num">${it.n_nap}</td>
-        <td class="num">${it.n_laws}</td>
-        <td><a href="timeline/${it.pi}.html" class="pi-link" style="font-size:12px">→ 軌跡</a></td>
-      </tr>
-    `).join('');
-  }
-
-  // ── Action 列表
-  const issueMap = {};
-  D.issues.forEach(it => issueMap[it.pi] = it.title);
-  const types = [...new Set(D.actions.map(a => a.action_type).filter(Boolean))].sort();
-
-  // 填充 filter
-  const issueSel = document.getElementById('filter-issue');
-  D.issues.forEach(it => {
-    const o = document.createElement('option');
-    o.value = it.pi;
-    o.textContent = `${it.pi} ${it.title.slice(0, 14)}`;
-    issueSel.appendChild(o);
-  });
-  const typeSel = document.getElementById('filter-type');
-  types.forEach(t => {
-    const o = document.createElement('option');
-    o.value = t; o.textContent = t;
-    typeSel.appendChild(o);
-  });
-
-  function renderActions() {
-    const fIssue = document.getElementById('filter-issue').value;
-    const fStatus = document.getElementById('filter-status').value;
-    const fType = document.getElementById('filter-type').value;
-    const fQ = document.getElementById('filter-q').value.trim().toLowerCase();
-    let rows = D.actions.filter(a => {
-      if (fIssue && (!a.issue_ids || !a.issue_ids.split(',').includes(fIssue))) return false;
-      if (fStatus && (a.disposition_status || 'unknown') !== fStatus) return false;
-      if (fType && a.action_type !== fType) return false;
-      if (fQ) {
-        const hay = (a.title + ' ' + (a.main_argument || '')).toLowerCase();
-        if (!hay.includes(fQ)) return false;
-      }
-      return true;
-    });
-    document.getElementById('action-count').textContent = `顯示 ${rows.length} / ${D.actions.length}`;
-    document.getElementById('action-tbody').innerHTML = rows.map(a => {
-      const pis = (a.issue_ids || '').split(',').filter(Boolean).slice(0, 3);
-      return `
-      <tr>
-        <td style="font-family:var(--sans-en);font-size:12px;color:var(--text-muted);white-space:nowrap">${a.action_date || '─'}</td>
-        <td><strong style="color:var(--bg-deep)">${a.title}</strong>
-            ${a.main_argument ? `<div style="font-size:12px;color:var(--text-muted);margin-top:3px;line-height:1.4">${a.main_argument.slice(0,100)}${a.main_argument.length>100?'…':''}</div>` : ''}
-        </td>
-        <td><span style="font-size:12px;color:var(--text-muted)">${a.action_type || '─'}</span></td>
-        <td>${pis.map(p => `<a href="issues/${p}.html" class="pi-link" style="font-size:11.5px">${p}</a>`).join(' ') || '<span style="color:var(--text-muted)">─</span>'}</td>
-        <td><span class="status-badge status-${statusKey(a.disposition_status)}">${statusLabel(a.disposition_status)}</span></td>
-      </tr>`;
-    }).join('') || '<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:24px">無符合條件的倡議</td></tr>';
-  }
-  renderActions();
-  ['filter-issue','filter-status','filter-type','filter-q'].forEach(id => {
-    document.getElementById(id).addEventListener('input', renderActions);
-  });
-
-  // tab 切換
+  // ── Tab 切換
   document.querySelectorAll('.matrix-tab').forEach(t => {
     t.addEventListener('click', () => {
       document.querySelectorAll('.matrix-tab').forEach(x => x.classList.remove('active'));
       t.classList.add('active');
       const v = t.dataset.view;
-      document.getElementById('view-issue').style.display = v === 'issue' ? 'block' : 'none';
-      document.getElementById('view-action').style.display = v === 'action' ? 'block' : 'none';
+      ['co','nap','pi'].forEach(k => {
+        document.getElementById('cmp-view-'+k).style.display = (k === v) ? 'block' : 'none';
+      });
     });
   });
+
+  // ── CO Summary
+  const summary = document.getElementById('cmp-co-summary');
+  if (D.co_totals && D.co_totals.length) {
+    summary.innerHTML = D.co_totals.map(t => {
+      const yr = ({1:'2017',2:'2022',3:'2026'})[t.cycle] || '';
+      return `
+        <div class="cmp-stat">
+          <span class="lbl">CRC ${t.cycle}(${yr})</span>
+          <div class="num">${t.n}</div>
+          <div class="delta">點次建議</div>
+        </div>`;
+    }).join('') +
+    (D.co_totals.length >= 2 ? `
+      <div class="cmp-stat" style="border-left-color:var(--success)">
+        <span class="lbl">差異</span>
+        <div class="num">${D.co_totals[1].n - D.co_totals[0].n > 0 ? '+' : ''}${D.co_totals[1].n - D.co_totals[0].n}</div>
+        <div class="delta ${D.co_totals[1].n < D.co_totals[0].n ? 'down' : 'up'}">CRC2 vs CRC1</div>
+      </div>` : '');
+  }
+
+  // ── CO cluster table
+  function miniBar(c) {
+    if (!c || !c.n) return '<span style="color:var(--text-muted);font-size:12px">─</span>';
+    const total = c.n;
+    const pct = (n) => total > 0 ? (n/total*100) : 0;
+    return `
+      <div class="mini-bars" title="共 ${total} 點">
+        <span class="mini-bar ok" style="width:${pct(c.achieved)}%"></span>
+        <span class="mini-bar partial" style="width:${pct(c.partial)}%"></span>
+        <span class="mini-bar bad" style="width:${pct(c.not_done)}%"></span>
+        <span class="mini-bar slow" style="width:${pct(c.slow||0)}%"></span>
+        <span class="mini-bar unassessed" style="width:${pct(c.unassessed)}%"></span>
+      </div>
+      <div class="mini-bars-legend">達成 ${c.achieved} · 部分 ${c.partial} · 未達 ${c.not_done}${c.slow?' · 緩慢 '+c.slow:''} · 未評 ${c.unassessed}</div>
+    `;
+  }
+
+  const coTbody = document.getElementById('co-cluster-tbody');
+  coTbody.innerHTML = (D.co_clusters || []).map(c => {
+    const c1 = c.cycle1 || {n:0};
+    const c2 = c.cycle2 || {n:0};
+    const diff = c2.n - c1.n;
+    return `
+      <tr>
+        <td><code style="font-size:11.5px;color:var(--text-muted)">${c.cluster}</code></td>
+        <td class="num">${c1.n || '─'}</td>
+        <td class="num">${c2.n || '─'}</td>
+        <td class="num"><span style="color:${diff > 0 ? 'var(--warning)' : (diff < 0 ? 'var(--success)' : 'var(--text-muted)')}">${diff > 0 ? '+' : ''}${diff || '─'}</span></td>
+        <td>${miniBar(c2)}</td>
+      </tr>`;
+  }).join('') || '<tr><td colspan="5" style="text-align:center;color:var(--text-muted)">尚無資料</td></tr>';
+
+  // ── NAP theme table
+  const napThemes = D.nap_themes || [];
+  // 整理:同 theme_no 之一期 / 二期並陳
+  const themeMap = {};
+  napThemes.forEach(t => {
+    const k = (t.theme_no || 0) + '_' + (t.theme_name || '');
+    if (!themeMap[k]) themeMap[k] = {theme_no: t.theme_no, theme_name: t.theme_name, p1: null, p2: null};
+    themeMap[k][`p${t.period}`] = t;
+  });
+  const napTbody = document.getElementById('nap-theme-tbody');
+  napTbody.innerHTML = Object.values(themeMap).map(row => {
+    function p1view(p) {
+      if (!p) return '<span style="color:var(--text-muted)">─</span>';
+      return `達成 ${p.achieved} · 部分 ${p.partial} · 未達 ${p.not_done}${p.self_tracked ? ' · 自追 '+p.self_tracked : ''}`;
+    }
+    return `
+      <tr>
+        <td><strong style="color:var(--bg-deep)">${row.theme_no || '─'}. ${row.theme_name || '(未命名)'}</strong></td>
+        <td class="num">${row.p1 ? row.p1.n : '─'}</td>
+        <td class="num">${row.p2 ? row.p2.n : '─'}</td>
+        <td>${p1view(row.p1)}</td>
+        <td><span style="color:var(--text-muted);font-size:12px">${row.p2 ? (row.p2.unassessed === row.p2.n ? '執行中(尚未評估)' : '進行中') : '─'}</span></td>
+      </tr>`;
+  }).join('') || '<tr><td colspan="5" style="text-align:center;color:var(--text-muted)">尚無資料</td></tr>';
+
+  // NAP action 詳情 — 只顯示 P1 未達成 + P2 全部
+  const actTbody = document.getElementById('nap-action-tbody');
+  const actions = (D.nap_actions || []).filter(a =>
+    (a.period === 1 && (a.govt_status === '未達成' || a.govt_status === '部分達成')) ||
+    a.period === 2
+  );
+  actTbody.innerHTML = actions.map(a => `
+    <tr>
+      <td><span class="pill pill-meta">第 ${a.period} 期</span></td>
+      <td>${a.action_text || '─'}</td>
+      <td><span style="font-size:12px;color:var(--text-muted)">${a.govt_status || '─'}</span></td>
+      <td><span style="font-size:12px;color:var(--text-muted)">${(a.aabe_assessment || '').slice(0, 50)}${(a.aabe_assessment || '').length > 50 ? '…' : ''}</span></td>
+      <td><code style="font-size:11px">${a.related_pi || '─'}</code></td>
+    </tr>
+  `).join('') || '<tr><td colspan="5" style="text-align:center;color:var(--text-muted)">無第一期未達成或第二期之行動</td></tr>';
+
+  // ── PI progress table
+  function tierBar(p) {
+    const tot = (p.tier3||0) + (p.tier2||0) + (p.tier1||0);
+    if (!tot) return '<span style="color:var(--text-muted);font-size:12px">無事件</span>';
+    const pct = n => (n / tot * 100);
+    return `<div class="tier-bars" title="★★★ ${p.tier3||0} / ★★ ${p.tier2||0} / ★ ${p.tier1||0}">
+      <span class="tier-bar t3" style="width:${pct(p.tier3||0)}%"></span>
+      <span class="tier-bar t2" style="width:${pct(p.tier2||0)}%"></span>
+      <span class="tier-bar t1" style="width:${pct(p.tier1||0)}%"></span>
+    </div>`;
+  }
+  function scoreCell(v) {
+    if (v == null) return '<span style="color:var(--text-muted)">─</span>';
+    const cls = v >= 2.0 ? 'high' : (v >= 1.0 ? 'mid' : 'low');
+    return `<span class="score-cell ${cls}">${v.toFixed(2)}</span>`;
+  }
+
+  const piTbody = document.getElementById('pi-progress-tbody');
+  piTbody.innerHTML = (D.pi_progress || []).map(p => `
+    <tr>
+      <td><a href="issues/${p.pi}.html" style="font-family:var(--sans-en);color:var(--brand);font-weight:700;text-decoration:none">${p.pi}</a></td>
+      <td>${p.title}</td>
+      <td class="num">${p.n_events || 0}</td>
+      <td>${tierBar(p)}</td>
+      <td class="num">${scoreCell(p.avg_inst)}</td>
+      <td class="num">${scoreCell(p.avg_out)}</td>
+      <td class="num">${scoreCell(p.avg_pers)}</td>
+      <td class="num" style="font-size:11px;color:var(--text-muted);font-family:var(--sans-en)">${p.last_event || '─'}</td>
+    </tr>
+  `).join('') || '<tr><td colspan="8" style="text-align:center;color:var(--text-muted)">尚無資料</td></tr>';
 })();
 </script>
 
