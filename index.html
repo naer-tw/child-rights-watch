@@ -1327,12 +1327,12 @@ footer .credit {
         <p>內部工作區 · 需帳號密碼</p>
       </div>
     </div>
-    <form id="login-form" onsubmit="return tryLogin(event)">
+    <form id="login-form" action="#" method="post" onsubmit="return tryLogin(event)">
       <label>帳號
-        <input type="text" id="login-user" autocomplete="username" required placeholder="例如:aabe">
+        <input type="text" id="login-user" name="username" autocomplete="username" required placeholder="例如:AABE">
       </label>
       <label>密碼
-        <input type="password" id="login-pass" autocomplete="current-password" required>
+        <input type="password" id="login-pass" name="password" autocomplete="current-password" required>
       </label>
       <p id="login-err" style="color:var(--warning);font-size:12.5px;display:none;margin-top:4px">帳號或密碼錯誤</p>
       <div class="login-actions">
@@ -2136,8 +2136,8 @@ footer .credit {
    - 真正機密資料(個人資料、未公開倡議底稿)不應放本平台
    - 密碼修改:把下面 INSIDER_PASS 改成你要的字串
    ============================================================ */
-const INSIDER_USER = "aabe";
-const INSIDER_PASS = "aabe-internal-2026";  // ← 請改成你要的密碼後 commit
+const INSIDER_USER = "AABE";
+const INSIDER_PASS = "1234";  // 部署用;真機密資料勿放此平台
 
 (function() {
   // 角色選擇器
@@ -2194,10 +2194,23 @@ function tryLogin(e) {
   const p = document.getElementById('login-pass').value;
   if (u === INSIDER_USER && p === INSIDER_PASS) {
     localStorage.setItem('aabe-insider', 'yes');
+
+    // 主動觸發瀏覽器密碼管理員儲存提示(Chrome / Safari / Firefox 皆支援)
+    if (window.PasswordCredential) {
+      try {
+        const cred = new PasswordCredential({
+          id: u,
+          password: p,
+          name: 'AABE 自家人',
+        });
+        navigator.credentials.store(cred).catch(() => {});
+      } catch (_) { /* fallback to autocomplete */ }
+    }
+
     document.getElementById('login-modal').style.display = 'none';
     document.getElementById('login-err').style.display = 'none';
-    document.getElementById('login-form').reset();
     setInsiderUI(true);
+    // 不 reset() form,讓瀏覽器看到已成功的 username/password 才會跳「儲存密碼?」提示
   } else {
     document.getElementById('login-err').style.display = 'block';
   }
