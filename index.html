@@ -1263,38 +1263,100 @@ footer .credit {
 
 <!-- ━━━━━━━━━━━━━ Newsroom ledger ribbon ━━━━━━━━━━━━━ -->
 <div class="ledger-ribbon" role="status" aria-label="平台即時數據">
-  <div class="ledger-inner">
-    <div class="ledger-item">
+  <div class="ledger-inner" id="ledger-inner">
+    <div class="ledger-item" id="ledger-event">
       <span class="ledger-pulse" aria-hidden="true"></span>
-      <span class="lk">距 5/14 公聽會</span>
-      <span class="lv warn">11 天</span>
+      <span class="lk">下個重要日</span>
+      <span class="lv warn">─</span>
     </div>
-    <div class="ledger-item">
+    <div class="ledger-item" id="ledger-cycle">
       <span class="lk">CRC 二輪審查</span>
-      <span class="lv">5/3 進行中</span>
+      <span class="lv">─</span>
     </div>
     <div class="ledger-item">
       <span class="lk">議題</span>
-      <span class="lv">14</span>
+      <span class="lv" id="ledger-issues">─</span>
     </div>
     <div class="ledger-item">
       <span class="lk">事件軌跡</span>
-      <span class="lv">288</span>
+      <span class="lv" id="ledger-events">─</span>
     </div>
     <div class="ledger-item">
       <span class="lk">修法</span>
-      <span class="lv">42</span>
+      <span class="lv" id="ledger-amend">─</span>
     </div>
     <div class="ledger-item">
       <span class="lk">索引</span>
-      <span class="lv">416 筆</span>
+      <span class="lv" id="ledger-index">─</span>
     </div>
     <div class="ledger-item">
       <span class="lk">最後更新</span>
-      <span class="lv">2026-05-03</span>
+      <span class="lv" id="ledger-updated">─</span>
     </div>
   </div>
 </div>
+<script>
+/* Ledger 動態:今日日期 vs 重要事件,動態算倒數 */
+(function() {
+  // 重要日程清單 — 過期會自動換到下一個
+  const EVENTS = [
+    {date: '2026-05-04', name: 'CRC 二輪審查 場次 4-7'},
+    {date: '2026-05-14', name: '衛福部公聽會'},
+    {date: '2026-05-31', name: '兒少權法草案研提期限'},
+    {date: '2026-06-30', name: 'NR3 二稿民間意見截止'},
+    {date: '2026-09-15', name: 'NR3 三稿預定送 OHCHR'},
+    {date: '2027-Q1', name: 'CRC 第三屆國際審查'},
+  ];
+  const today = new Date();
+  const todayISO = today.toISOString().slice(0, 10);
+  // 找下一個未過的日期
+  let next = null;
+  for (const e of EVENTS) {
+    if (e.date >= todayISO) { next = e; break; }
+  }
+  const evEl = document.querySelector('#ledger-event .lv');
+  const evLk = document.querySelector('#ledger-event .lk');
+  if (next && evEl) {
+    if (next.date.includes('Q')) {
+      evLk.textContent = '下個重要日';
+      evEl.textContent = next.date + ' ' + next.name;
+    } else {
+      const d = new Date(next.date + 'T00:00:00');
+      const days = Math.ceil((d - today) / (1000 * 60 * 60 * 24));
+      evLk.textContent = '距 ' + next.date.slice(5).replace('-', '/') + ' ' + next.name;
+      evEl.textContent = days <= 0 ? '今日' : days + ' 天';
+    }
+  } else if (evEl) {
+    evLk.textContent = '本期無排程事件';
+    evEl.textContent = '─';
+  }
+
+  // 屆別狀態
+  const cycleEl = document.querySelector('#ledger-cycle .lv');
+  if (cycleEl) {
+    if (todayISO < '2026-05-04') cycleEl.textContent = '即將開始';
+    else if (todayISO <= '2026-09-15') cycleEl.textContent = '進行中';
+    else cycleEl.textContent = '已完成';
+  }
+
+  // 計數 + 最後更新 — 等 FILTERS_DATA 載入後填回
+  function fillCounts() {
+    const F = window.FILTERS_DATA;
+    if (!F || !F.counts) return setTimeout(fillCounts, 100);
+    const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+    set('ledger-issues', F.counts.issues || '─');
+    // 事件軌跡:advocacy + nap + amendments 之和(approx 整體進展事件)
+    const ev = (F.counts.advocacy||0) + (F.counts.co||0) + (F.counts.nap||0) + (F.counts.amendments||0);
+    set('ledger-events', ev || '─');
+    set('ledger-amend', F.counts.amendments || '─');
+    // 索引:議題 + advocacy + co + nap + 修法 + cases + external
+    const idx = (F.counts.issues||0) + (F.counts.advocacy||0) + (F.counts.co||0) + (F.counts.nap||0) + (F.counts.amendments||0) + (F.counts.cases||0) + (F.counts.external_reports||0);
+    set('ledger-index', idx + ' 筆');
+    set('ledger-updated', (F.meta?.generated_at || '─').slice(0, 10));
+  }
+  fillCounts();
+})();
+</script>
 
 <!-- ━━━━━━━━━━━━━ 我是誰 ━━━━━━━━━━━━━ -->
 <section class="role-selector" aria-label="使用者類型">
@@ -1574,51 +1636,24 @@ footer .credit {
       <span class="meta">416 筆 · 5 種類型</span>
     </div>
 
-    <form class="filter-bar" onsubmit="event.preventDefault(); location.href='search.html';">
-      <label>議題
-        <select>
-          <option value="">全部 (14)</option>
-          <option>PI-01 校園霸凌</option>
-          <option>PI-02 青少年心理健康</option>
-          <option>PI-08 性別平等教育</option>
-          <option>PI-12 替代照顧(剴剴案)</option>
-          <option>...</option>
-        </select>
+    <form class="filter-bar" onsubmit="event.preventDefault(); applyFilters();">
+      <label>議題(14)
+        <select id="flt-issue"><option value="">全部</option></select>
       </label>
       <label>時間
-        <select>
-          <option>全部</option>
-          <option>2026</option>
-          <option>2025</option>
-          <option>2024</option>
-          <option>更早</option>
-        </select>
+        <select id="flt-year"><option value="">全部</option></select>
       </label>
-      <label>行動者
-        <select>
-          <option>全部</option>
-          <option>CRC 委員會</option>
-          <option>衛福部</option>
-          <option>教育部</option>
-          <option>NHRC</option>
-          <option>AABE</option>
-          <option>立法院</option>
-        </select>
+      <label>行動者(<span id="flt-actor-cnt">─</span>)
+        <select id="flt-actor"><option value="">全部</option></select>
       </label>
-      <label>類型
-        <select>
-          <option>全部</option>
-          <option>結論性意見 (170)</option>
-          <option>NAP 行動 (17)</option>
-          <option>修法 (42)</option>
-          <option>AABE 倡議 (52)</option>
-          <option>重大案件 (2)</option>
-        </select>
+      <label>類型(<span id="flt-type-cnt">─</span>)
+        <select id="flt-type"><option value="">全部</option></select>
       </label>
       <button type="submit" class="btn-primary" style="padding: 8px 18px; font-size: 13.5px;">
         套用篩選
       </button>
     </form>
+    <p id="flt-meta" style="font-size:11.5px;color:var(--text-muted);margin-top:8px;font-family:var(--sans-en);letter-spacing:0.02em">─</p>
 
   </div>
 </section>
@@ -1670,17 +1705,10 @@ footer .credit {
           <span class="filter-tag">司法保護</span>
         </div>
 
-        <h4>提出單位</h4>
-        <select class="filter-select">
+        <h4>提出單位(<span id="ngo-cnt">─</span>)</h4>
+        <select class="filter-select" id="docs-issuer-select">
           <option value="">所有單位</option>
-          <option value="aabe" selected>國教盟 (AABE) <svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" style="vertical-align:-0.15em;display:inline-block;color:var(--aabe-gold)"><polygon points="12 2 15 8.5 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 9 8.5"/></svg></option>
-          <option value="taasa">台少盟</option>
-          <option value="goh">勵馨基金會</option>
-          <option value="ccf">家扶基金會</option>
-          <option value="hef">人本教育基金會</option>
-          <option value="ccrn">兒少權利公約聯盟</option>
-          <option value="taup">人權公約施行監督聯盟</option>
-          <option value="gov">政府機關</option>
+          <optgroup label="── 載入中 ──"></optgroup>
         </select>
         <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px; line-height: 1.4;">
           可看出該團體的倡議在歷屆 CO / NAP / NR 的採納路徑
@@ -2240,6 +2268,847 @@ function checkInsider(e) {
   document.getElementById('login-modal').style.display = 'grid';
   setTimeout(() => document.getElementById('login-user').focus(), 50);
   return false;
+}
+</script>
+
+<!-- ━━━━━━━━━━━━━ Filters data + render ━━━━━━━━━━━━━ -->
+<script>
+<!-- FILTERS-DATA-START -->
+window.FILTERS_DATA = {
+  "issues": [
+    {
+      "pi": "PI-01",
+      "title": "校園霸凌",
+      "severity": "高",
+      "cluster": "E"
+    },
+    {
+      "pi": "PI-02",
+      "title": "青少年心理健康與自殺防治",
+      "severity": "高",
+      "cluster": "G"
+    },
+    {
+      "pi": "PI-03",
+      "title": "體罰禁止(家庭與所有場域)",
+      "severity": "高",
+      "cluster": "E"
+    },
+    {
+      "pi": "PI-04",
+      "title": "學生輔導體制(WISER 三級輔導 + 神經多樣性支持)",
+      "severity": "高",
+      "cluster": "G"
+    },
+    {
+      "pi": "PI-05",
+      "title": "少年司法與行政先行",
+      "severity": "高",
+      "cluster": "I"
+    },
+    {
+      "pi": "PI-06",
+      "title": "兒少網路安全與新興物質",
+      "severity": "高",
+      "cluster": "L"
+    },
+    {
+      "pi": "PI-07",
+      "title": "性剝削防制",
+      "severity": "高",
+      "cluster": "I"
+    },
+    {
+      "pi": "PI-08",
+      "title": "性別平等教育",
+      "severity": "高",
+      "cluster": "H"
+    },
+    {
+      "pi": "PI-09",
+      "title": "課業壓力、學習權與教育選擇權",
+      "severity": "高",
+      "cluster": "H"
+    },
+    {
+      "pi": "PI-10",
+      "title": "兒少表意權與校園民主",
+      "severity": "中",
+      "cluster": "C"
+    },
+    {
+      "pi": "PI-11",
+      "title": "家庭功能與依 CRC 第 5 條的父母指導角色",
+      "severity": "中",
+      "cluster": "F"
+    },
+    {
+      "pi": "PI-12",
+      "title": "替代照顧與機構安置(剴剴案後)",
+      "severity": "高",
+      "cluster": "F"
+    },
+    {
+      "pi": "PI-13",
+      "title": "移民、無國籍與失聯兒少",
+      "severity": "高",
+      "cluster": "I"
+    },
+    {
+      "pi": "PI-14",
+      "title": "LGBTQI+ 兒少",
+      "severity": "高",
+      "cluster": "C"
+    }
+  ],
+  "ngos": [
+    {
+      "code": "ngo-aabe",
+      "name": "國家教育行動聯盟",
+      "short": "AABE",
+      "role": "lead",
+      "topics": "教育權 / 校園安全 / 性平教育"
+    },
+    {
+      "code": "ngo-taasa",
+      "name": "台灣少年權益與福利促進聯盟",
+      "short": "台少盟",
+      "role": "coalition_lead",
+      "topics": "全議題 / 少年福利"
+    },
+    {
+      "code": "ngo-crrc",
+      "name": "兒少權利公約聯盟",
+      "short": "CRRC",
+      "role": "coalition_lead",
+      "topics": "全議題"
+    },
+    {
+      "code": "ngo-cwlf",
+      "name": "兒童福利聯盟文教基金會",
+      "short": "兒福聯盟",
+      "role": "theme_specialist",
+      "topics": "替代照顧 / 兒少保護"
+    },
+    {
+      "code": "ngo-ccf",
+      "name": "家扶基金會",
+      "short": "家扶",
+      "role": "theme_specialist",
+      "topics": "兒少貧窮 / 家庭支持"
+    },
+    {
+      "code": "ngo-tafp",
+      "name": "台灣家庭暨兒童福利聯盟",
+      "short": "家盟",
+      "role": "family",
+      "topics": "家庭功能"
+    },
+    {
+      "code": "ngo-hef",
+      "name": "人本教育基金會",
+      "short": "人本",
+      "role": "education",
+      "topics": "校園霸凌 / 體罰 / 教育選擇"
+    },
+    {
+      "code": "ngo-edreform",
+      "name": "教改總會(教育改革總諮詢委員會)",
+      "short": "教改總會",
+      "role": "education",
+      "topics": "教育政策"
+    },
+    {
+      "code": "ngo-aphec",
+      "name": "全國家長團體聯盟",
+      "short": "全家盟",
+      "role": "parent",
+      "topics": "家長代表"
+    },
+    {
+      "code": "ngo-naatu",
+      "name": "全國教師工會總聯合會",
+      "short": "全教總",
+      "role": "teacher",
+      "topics": "教師代表"
+    },
+    {
+      "code": "ngo-naipt",
+      "name": "全國教育產業總工會",
+      "short": "全教產",
+      "role": "teacher",
+      "topics": "教師代表"
+    },
+    {
+      "code": "ngo-zhenduo",
+      "name": "振鐸學會",
+      "short": "振鐸",
+      "role": "education",
+      "topics": "教育政策研究"
+    },
+    {
+      "code": "ngo-cefoundation",
+      "name": "公民教育基金會",
+      "short": "公教會",
+      "role": "education",
+      "topics": "公民教育"
+    },
+    {
+      "code": "ngo-twmag",
+      "name": "中華民國全國教師會",
+      "short": "全教會",
+      "role": "teacher",
+      "topics": "教師代表"
+    },
+    {
+      "code": "ngo-wvtw",
+      "name": "世界展望會台灣",
+      "short": "世展會",
+      "role": "care",
+      "topics": "兒少照顧 / 海外議題"
+    },
+    {
+      "code": "ngo-icv",
+      "name": "國際兒童村",
+      "short": "ICV",
+      "role": "care",
+      "topics": "替代照顧"
+    },
+    {
+      "code": "ngo-lily",
+      "name": "勵友中心",
+      "short": "勵友",
+      "role": "care",
+      "topics": "兒少社區照顧"
+    },
+    {
+      "code": "ngo-shanmu",
+      "name": "善牧基金會",
+      "short": "善牧",
+      "role": "care",
+      "topics": "兒少安置"
+    },
+    {
+      "code": "ngo-eden",
+      "name": "兒童伊甸社會福利基金會",
+      "short": "伊甸",
+      "role": "care",
+      "topics": "弱勢兒少 / 身障兒少"
+    },
+    {
+      "code": "ngo-kuang",
+      "name": "心路基金會",
+      "short": "心路",
+      "role": "disability",
+      "topics": "智能障礙兒少"
+    },
+    {
+      "code": "ngo-coachildren",
+      "name": "中華民國兒童權益促進協會",
+      "short": "兒權促進",
+      "role": "rights",
+      "topics": "兒少權益"
+    },
+    {
+      "code": "ngo-goh",
+      "name": "勵馨基金會",
+      "short": "勵馨",
+      "role": "gender",
+      "topics": "性別暴力 / 性剝削 / 不幸少女"
+    },
+    {
+      "code": "ngo-twrf",
+      "name": "婦女救援基金會",
+      "short": "婦援會",
+      "role": "gender",
+      "topics": "婦幼保護"
+    },
+    {
+      "code": "ngo-mwf",
+      "name": "現代婦女基金會",
+      "short": "現代婦女",
+      "role": "gender",
+      "topics": "家暴 / 性侵"
+    },
+    {
+      "code": "ngo-awakening",
+      "name": "婦女新知基金會",
+      "short": "婦女新知",
+      "role": "gender",
+      "topics": "性別政策倡議"
+    },
+    {
+      "code": "ngo-hotline",
+      "name": "台灣同志諮詢熱線協會",
+      "short": "熱線",
+      "role": "LGBTQ",
+      "topics": "LGBTQ 兒少支持"
+    },
+    {
+      "code": "ngo-tgeea",
+      "name": "台灣性別平等教育協會",
+      "short": "性平教育協會",
+      "role": "gender",
+      "topics": "性平教育"
+    },
+    {
+      "code": "ngo-ecpat",
+      "name": "ECPAT Taiwan / 台灣展翅協會",
+      "short": "展翅",
+      "role": "child_protection",
+      "topics": "兒少性剝削防制"
+    },
+    {
+      "code": "ngo-jrf",
+      "name": "民間司法改革基金會",
+      "short": "民間司改會",
+      "role": "justice",
+      "topics": "少年司法 / 行政先行"
+    },
+    {
+      "code": "ngo-tahr",
+      "name": "台灣人權促進會",
+      "short": "台權會",
+      "role": "rights",
+      "topics": "人權 / 兒少自由權"
+    },
+    {
+      "code": "ngo-taedp",
+      "name": "廢除死刑推動聯盟",
+      "short": "廢死聯盟",
+      "role": "justice",
+      "topics": "兒少死刑禁止"
+    },
+    {
+      "code": "ngo-tiwa",
+      "name": "台灣國際勞工協會",
+      "short": "TIWA",
+      "role": "migrant",
+      "topics": "移工子女"
+    },
+    {
+      "code": "ngo-mwsra",
+      "name": "移民工人團結工會",
+      "short": "移工",
+      "role": "migrant",
+      "topics": "移工 / 無國籍兒少"
+    },
+    {
+      "code": "ngo-rerite",
+      "name": "台灣外籍勞工發展協會",
+      "short": "外勞發展",
+      "role": "migrant",
+      "topics": "移工子女"
+    },
+    {
+      "code": "ngo-jtf",
+      "name": "董氏基金會",
+      "short": "董氏",
+      "role": "health",
+      "topics": "心理健康 / 反菸"
+    },
+    {
+      "code": "ngo-laoshi",
+      "name": "張老師基金會",
+      "short": "張老師",
+      "role": "mental",
+      "topics": "青少年諮商"
+    },
+    {
+      "code": "ngo-mackay",
+      "name": "馬偕兒童健康基金會",
+      "short": "馬偕",
+      "role": "health",
+      "topics": "兒童健康"
+    },
+    {
+      "code": "ngo-tap",
+      "name": "台灣心理治療學會",
+      "short": "心理治療學會",
+      "role": "mental",
+      "topics": "心理治療"
+    },
+    {
+      "code": "ngo-cw",
+      "name": "人權公約施行監督聯盟",
+      "short": "人約盟",
+      "role": "cross_treaty",
+      "topics": "兩公約 + CRC + CEDAW"
+    },
+    {
+      "code": "ngo-tango",
+      "name": "台灣 NGO 聯合會",
+      "short": "TANGO",
+      "role": "umbrella",
+      "topics": "多公約"
+    },
+    {
+      "code": "ngo-naer",
+      "name": "國家教育研究院",
+      "short": "NAER",
+      "role": "research",
+      "topics": "教育政策研究"
+    },
+    {
+      "code": "ngo-mata",
+      "name": "原住民族青年陣線",
+      "short": "原青陣",
+      "role": "indigenous",
+      "topics": "原住民兒少"
+    },
+    {
+      "code": "ngo-aatp",
+      "name": "台灣原住民兒少照顧協會",
+      "short": "原兒協",
+      "role": "indigenous",
+      "topics": "原住民兒少"
+    },
+    {
+      "code": "ngo-hwl",
+      "name": "台灣關愛基金會",
+      "short": "關愛",
+      "role": "hiv",
+      "topics": "HIV 兒少"
+    }
+  ],
+  "agencies": [
+    {
+      "code": "gov-nhrc",
+      "name": "國家人權委員會",
+      "short": "NHRC",
+      "role": "watchdog",
+      "topics": ""
+    },
+    {
+      "code": "gov-cy",
+      "name": "監察院",
+      "short": "監察院",
+      "role": "watchdog",
+      "topics": ""
+    },
+    {
+      "code": "gov-ctlc",
+      "name": "兒少國家報告民間監督聯盟",
+      "short": "民監聯盟",
+      "role": "civil_watchdog",
+      "topics": ""
+    },
+    {
+      "code": "gov-mohw",
+      "name": "衛生福利部",
+      "short": "衛福部",
+      "role": "",
+      "topics": ""
+    },
+    {
+      "code": "gov-mohw-sfaa",
+      "name": "衛福部社會及家庭署",
+      "short": "社家署",
+      "role": "",
+      "topics": ""
+    },
+    {
+      "code": "gov-mohw-mohpa",
+      "name": "衛福部心理健康司",
+      "short": "心健司",
+      "role": "",
+      "topics": ""
+    },
+    {
+      "code": "gov-mohw-hpa",
+      "name": "衛福部國民健康署",
+      "short": "國健署",
+      "role": "",
+      "topics": ""
+    },
+    {
+      "code": "gov-moe",
+      "name": "教育部",
+      "short": "教育部",
+      "role": "",
+      "topics": ""
+    },
+    {
+      "code": "gov-moe-k12",
+      "name": "教育部國民及學前教育署",
+      "short": "國教署",
+      "role": "",
+      "topics": ""
+    },
+    {
+      "code": "gov-moe-os",
+      "name": "教育部學生事務及特殊教育司",
+      "short": "學特司",
+      "role": "",
+      "topics": ""
+    },
+    {
+      "code": "gov-moe-gender",
+      "name": "教育部性別平等教育委員會",
+      "short": "教育部性平",
+      "role": "",
+      "topics": ""
+    },
+    {
+      "code": "gov-moi",
+      "name": "內政部",
+      "short": "內政部",
+      "role": "",
+      "topics": ""
+    },
+    {
+      "code": "gov-moi-npa",
+      "name": "內政部警政署",
+      "short": "警政署",
+      "role": "",
+      "topics": ""
+    },
+    {
+      "code": "gov-moj",
+      "name": "法務部",
+      "short": "法務部",
+      "role": "",
+      "topics": ""
+    },
+    {
+      "code": "gov-judicial",
+      "name": "司法院",
+      "short": "司法院",
+      "role": "",
+      "topics": ""
+    },
+    {
+      "code": "gov-mol",
+      "name": "勞動部",
+      "short": "勞動部",
+      "role": "",
+      "topics": ""
+    },
+    {
+      "code": "gov-cdc",
+      "name": "行政院人權及轉型正義處",
+      "short": "人權處",
+      "role": "",
+      "topics": ""
+    },
+    {
+      "code": "gov-ncc",
+      "name": "國家通訊傳播委員會",
+      "short": "NCC",
+      "role": "",
+      "topics": ""
+    },
+    {
+      "code": "gov-ndc",
+      "name": "國家發展委員會",
+      "short": "國發會",
+      "role": "",
+      "topics": ""
+    },
+    {
+      "code": "gov-ipc",
+      "name": "個人資料保護委員會(籌設中)",
+      "short": "個資會",
+      "role": "",
+      "topics": ""
+    },
+    {
+      "code": "gov-cdic",
+      "name": "兒童及少年福利與權益推動小組",
+      "short": "兒推小組",
+      "role": "",
+      "topics": ""
+    }
+  ],
+  "action_types": [
+    {
+      "action_type": "政策分析(GEO 文章)",
+      "n": 30
+    },
+    {
+      "action_type": "民間審查發言(雙軸審查框架,代表照念用)",
+      "n": 3
+    },
+    {
+      "action_type": "公聽會出席(立法院政黨團)",
+      "n": 2
+    },
+    {
+      "action_type": "記者會(國教盟主辦)",
+      "n": 1
+    },
+    {
+      "action_type": "聯合聲明(台灣拒菸聯盟主導,國教盟簽署)",
+      "n": 1
+    },
+    {
+      "action_type": "立法院公聽會書面報告(完整版)+ 新聞稿 + 綜合研究報告 APA7 版",
+      "n": 1
+    },
+    {
+      "action_type": "立法院公聽會書面報告(合作 NGO)",
+      "n": 1
+    },
+    {
+      "action_type": "民間調查報告",
+      "n": 1
+    },
+    {
+      "action_type": "民間審查發言(代表照念用,雙軸審查框架)",
+      "n": 1
+    },
+    {
+      "action_type": "民間審查會前提問(向衛福部秘書單位送)",
+      "n": 1
+    },
+    {
+      "action_type": "政策白皮書(英文版)",
+      "n": 1
+    },
+    {
+      "action_type": "政策建議書(送立法院)",
+      "n": 1
+    },
+    {
+      "action_type": "政策分析(深度長文)",
+      "n": 1
+    },
+    {
+      "action_type": "政策分析(新聞稿延伸)",
+      "n": 1
+    },
+    {
+      "action_type": "政策分析(合作 NGO)",
+      "n": 1
+    },
+    {
+      "action_type": "政府諮詢會議(司法院主辦)",
+      "n": 1
+    },
+    {
+      "action_type": "政府教材(教育部)",
+      "n": 1
+    },
+    {
+      "action_type": "政府拜會(國教盟協辦)",
+      "n": 1
+    },
+    {
+      "action_type": "公聽會發言稿(Wave 66 定稿,日期預估)",
+      "n": 1
+    },
+    {
+      "action_type": "公聽會出席(立法院)+ 書面報告 + 七分鐘發言",
+      "n": 1
+    }
+  ],
+  "years": [
+    "待補",
+    "2026",
+    "2025"
+  ],
+  "counts": {
+    "issues": 14,
+    "co": 170,
+    "nap": 17,
+    "laws": 15,
+    "amendments": 42,
+    "advocacy": 52,
+    "cases": 4,
+    "external_reports": 7
+  },
+  "meta": {
+    "generated_at": "2026-05-04T00:50:33",
+    "ngo_total": 44,
+    "agency_total": 21
+  }
+};
+<!-- FILTERS-DATA-END -->
+</script>
+
+<script>
+(function() {
+  const F = window.FILTERS_DATA || {};
+  const $ = (id) => document.getElementById(id);
+
+  // ── 篩選資料庫(workbench filter-bar)
+  const issueSel = $('flt-issue');
+  if (issueSel) {
+    (F.issues || []).forEach(it => {
+      const o = document.createElement('option');
+      o.value = it.pi;
+      o.textContent = `${it.pi} ${it.title}`;
+      issueSel.appendChild(o);
+    });
+  }
+
+  const yearSel = $('flt-year');
+  if (yearSel) {
+    (F.years || []).forEach(y => {
+      const o = document.createElement('option');
+      o.value = y; o.textContent = y;
+      yearSel.appendChild(o);
+    });
+    // 加「更早」聚合
+    if (F.years && F.years.length) {
+      const o = document.createElement('option');
+      o.value = '__before'; o.textContent = '更早';
+      yearSel.appendChild(o);
+    }
+  }
+
+  // 行動者(用 NGO + agency 名單合併)
+  const actorSel = $('flt-actor');
+  if (actorSel) {
+    const ngoGroup = document.createElement('optgroup');
+    ngoGroup.label = `民間團體(${(F.ngos || []).length})`;
+    (F.ngos || []).forEach(n => {
+      const o = document.createElement('option');
+      o.value = 'ngo:' + n.code;
+      o.textContent = n.short || n.name;
+      ngoGroup.appendChild(o);
+    });
+    actorSel.appendChild(ngoGroup);
+
+    const agGroup = document.createElement('optgroup');
+    agGroup.label = `政府機關(${(F.agencies || []).length})`;
+    (F.agencies || []).forEach(a => {
+      const o = document.createElement('option');
+      o.value = 'gov:' + a.code;
+      o.textContent = a.short || a.name;
+      agGroup.appendChild(o);
+    });
+    actorSel.appendChild(agGroup);
+
+    const otherGroup = document.createElement('optgroup');
+    otherGroup.label = '國際 / 監督';
+    ['CRC 委員會', 'NHRC', '監察院', '立法院'].forEach(name => {
+      const o = document.createElement('option');
+      o.value = 'other:' + name; o.textContent = name;
+      otherGroup.appendChild(o);
+    });
+    actorSel.appendChild(otherGroup);
+
+    const cnt = $('flt-actor-cnt');
+    if (cnt) cnt.textContent = ((F.ngos || []).length + (F.agencies || []).length + 4);
+  }
+
+  // 類型(用真實 DB action_type counts + 既知文件類型)
+  const typeSel = $('flt-type');
+  if (typeSel) {
+    const docTypes = [
+      {value: 'co', label: `結論性意見`, count: F.counts?.co || 0},
+      {value: 'nap', label: `NAP 行動`, count: F.counts?.nap || 0},
+      {value: 'amendment', label: `修法`, count: F.counts?.amendments || 0},
+      {value: 'advocacy', label: `民間倡議`, count: F.counts?.advocacy || 0},
+      {value: 'case', label: `重大案件`, count: F.counts?.cases || 0},
+      {value: 'external', label: `外部影子報告`, count: F.counts?.external_reports || 0},
+    ];
+    docTypes.forEach(t => {
+      const o = document.createElement('option');
+      o.value = t.value;
+      o.textContent = `${t.label}(${t.count})`;
+      typeSel.appendChild(o);
+    });
+    // 進階:細分 advocacy 類型
+    if (F.action_types && F.action_types.length) {
+      const sub = document.createElement('optgroup');
+      sub.label = '── 倡議細分';
+      F.action_types.slice(0, 12).forEach(at => {
+        const o = document.createElement('option');
+        o.value = 'subtype:' + at.action_type;
+        o.textContent = `${at.action_type}(${at.n})`;
+        sub.appendChild(o);
+      });
+      typeSel.appendChild(sub);
+    }
+    const cnt = $('flt-type-cnt');
+    if (cnt) cnt.textContent = docTypes.length + (F.action_types || []).length;
+  }
+
+  // ── 文件資料庫 sidebar 之「提出單位」(8 → 完整 NGO + 政府)
+  const docsIssuer = $('docs-issuer-select');
+  if (docsIssuer) {
+    docsIssuer.innerHTML = '';
+    const all = document.createElement('option');
+    all.value = ''; all.textContent = '所有單位';
+    docsIssuer.appendChild(all);
+
+    // AABE 釘最上(featured)
+    const aabe = (F.ngos || []).find(n => n.code === 'ngo-aabe');
+    if (aabe) {
+      const o = document.createElement('option');
+      o.value = aabe.code; o.textContent = '⭐ ' + aabe.name + ' (AABE)';
+      o.selected = true;
+      docsIssuer.appendChild(o);
+    }
+
+    // 民間團體分群
+    const groups = {};
+    (F.ngos || []).filter(n => n.code !== 'ngo-aabe').forEach(n => {
+      const g = n.role || 'other';
+      if (!groups[g]) groups[g] = [];
+      groups[g].push(n);
+    });
+    const gLabels = {
+      'lead':'兒少權主領域', 'coalition_lead':'兒少權聯盟', 'theme_specialist':'兒少專題',
+      'family':'家庭', 'education':'教育', 'parent':'家長', 'teacher':'教師',
+      'care':'兒少照顧', 'gender':'性別', 'LGBTQ':'LGBTQ', 'child_protection':'兒少保護',
+      'rights':'人權', 'justice':'司法', 'migrant':'移民/移工',
+      'health':'健康', 'mental':'心理', 'disability':'身障',
+      'cross_treaty':'跨公約', 'umbrella':'聯合會', 'research':'研究',
+      'indigenous':'原住民', 'hiv':'HIV',
+      'watchdog':'監督機構', 'civil_watchdog':'民間監督',
+      'other':'其他',
+    };
+    Object.entries(groups).forEach(([role, list]) => {
+      if (!list.length) return;
+      const og = document.createElement('optgroup');
+      og.label = gLabels[role] || role;
+      list.forEach(n => {
+        const o = document.createElement('option');
+        o.value = n.code;
+        o.textContent = n.short || n.name;
+        og.appendChild(o);
+      });
+      docsIssuer.appendChild(og);
+    });
+
+    // 政府機關
+    if (F.agencies && F.agencies.length) {
+      const og = document.createElement('optgroup');
+      og.label = `政府機關(${F.agencies.length})`;
+      F.agencies.forEach(a => {
+        const o = document.createElement('option');
+        o.value = a.code;
+        o.textContent = a.short || a.name;
+        og.appendChild(o);
+      });
+      docsIssuer.appendChild(og);
+    }
+
+    const ngoCnt = $('ngo-cnt');
+    if (ngoCnt) ngoCnt.textContent = (F.ngos || []).length;
+  }
+
+  // Meta
+  const meta = $('flt-meta');
+  if (meta && F.meta) {
+    meta.textContent = `資料庫:${F.counts?.advocacy || 0} 倡議 / ${F.counts?.co || 0} CO / ${F.counts?.nap || 0} NAP / ${F.counts?.amendments || 0} 修法 / ${F.counts?.external_reports || 0} 外部報告 · 最後更新 ${F.meta.generated_at || '─'}`;
+  }
+})();
+
+function applyFilters() {
+  const issue = document.getElementById('flt-issue').value;
+  const year = document.getElementById('flt-year').value;
+  const actor = document.getElementById('flt-actor').value;
+  const type = document.getElementById('flt-type').value;
+  const params = new URLSearchParams();
+  if (issue) params.set('issue', issue);
+  if (year) params.set('year', year);
+  if (actor) params.set('actor', actor);
+  if (type) params.set('type', type);
+  location.href = 'search.html' + (params.toString() ? '?' + params : '');
 }
 </script>
 
