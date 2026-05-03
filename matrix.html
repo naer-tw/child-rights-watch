@@ -526,7 +526,7 @@ body:not(.is-insider) .insider-only-section {
   user-select: none;
 }
 body:not(.is-insider) .insider-only-section::before {
-  content: '🔒 限 AABE 自家人 · 點上方「自家人」登入解鎖';
+  content: '<svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> 限 AABE 自家人 · 點上方「自家人」登入解鎖';
   position: absolute;
   inset: 0;
   display: grid;
@@ -1535,6 +1535,10 @@ if (typeof localStorage !== 'undefined' && localStorage.getItem('aabe-insider') 
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
     影子報告(已發佈)
   </a>
+  <a href="external-reports.html" class="nav-item">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+    民間影子報告(7)
+  </a>
   <a href="compare.html" class="nav-item">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
     跨週期比較
@@ -1616,7 +1620,7 @@ if (typeof localStorage !== 'undefined' && localStorage.getItem('aabe-insider') 
     </p>
 
     <div id="action-disclaimer" style="background:var(--warning-soft);border:1px solid #E8C998;border-left:3px solid #C68822;border-radius:4px;padding:10px 14px;font-size:12.5px;color:#6B3416;line-height:1.55;margin-bottom:var(--space-4)">
-      <strong>📋 資料揭露</strong>:advocacy_action 的處分狀態(disposition_status)目前
+      <strong><svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><line x1="9" y1="14" x2="15" y2="14"/></svg> 資料揭露</strong>:advocacy_action 的處分狀態(disposition_status)目前
       <span id="action-assess-stat">─</span> 筆已標記。
       AABE 內部需逐筆比對「該倡議是否被政府文件回應 → 採納 / 部分採納 / 未採納」。
       未評估的倡議顯示為「未評估」,不代表「沒有效果」。
@@ -2489,14 +2493,9 @@ window.MATRIX_DATA = {
 
 <script>
 (function() {
-  // 進入頁面如未登入,觸發 modal(允許先看資料但不允許編輯;此頁為 read-only matrix,所以放行但顯示 banner)
-  if (localStorage.getItem('aabe-insider') !== 'yes') {
-    const meta = document.getElementById('matrix-meta');
-    if (meta) meta.innerHTML = '<span style="color:var(--brand)">⚠ 未登入訪客模式 · 部分動作受限</span>';
-  } else {
-    const meta = document.getElementById('matrix-meta');
-    if (meta) meta.innerHTML = '<span style="color:#6FCF97">✓ AABE 內部模式</span> · 最後更新 ' + (window.MATRIX_DATA.meta.generated_at || '─');
-  }
+  // 入口閘門已 redirect 訪客至 index.html,此處僅內部成員會執行
+  const meta = document.getElementById('matrix-meta');
+  if (meta) meta.innerHTML = 'AABE 內部 · 最後更新 ' + (window.MATRIX_DATA.meta.generated_at || '─');
 
   const D = window.MATRIX_DATA || {issues:[], actions:[]};
 
