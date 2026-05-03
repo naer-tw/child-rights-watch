@@ -1,0 +1,2822 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>影子報告產生器 · 內部 — 兒少人權監督平台</title>
+<meta name="description" content="AABE 內部:5 步驟 wizard 從議題選擇到草稿匯出">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NGO",
+  "name": "Child Rights Watch Taiwan",
+  "alternateName": ["兒少人權監督平台", "AABE"],
+  "url": "https://naer-tw.github.io/child-rights-watch/",
+  "description": "整合 CRC 三屆國家報告、結論性意見、國家人權行動計畫、民間影子報告之兒少人權監督平台。",
+  "areaServed": {"@type": "Country", "name": "Taiwan"},
+  "license": "https://creativecommons.org/licenses/by/4.0/"
+}
+</script>
+<style>
+:root {
+  /* ============================================================
+     FINAL 配色定案 — 報導者 × NYT × ProPublica 報刊政策派
+     ============================================================
+     設計原則:
+     1. 紙感背景偏中性微暖(避免太黃顯老派)
+     2. brand 朱紅 = 警示/CTA(政策監督性質)
+     3. AABE 沉金 = 機構識別(與 brand 語意分離)
+     4. 文字略軟於純黑(NYT 長閱讀標準)
+     5. 飽和度全面降一階,密度由排版而非顏色承擔
+     ============================================================ */
+
+  /* 紙感背景 */
+  --bg: #FAFAF7;             /* 微暖中性紙白 */
+  --bg-alt: #F1EFEA;         /* 段落分區灰白 */
+  --bg-deep: #0E2238;        /* 機構深藍 */
+  --bg-deeper: #081728;      /* 最深層(sidebar/footer 漸層) */
+
+  /* 文字 */
+  --text: #1F1F1F;           /* 略軟於純黑(NYT 標準) */
+  --text-muted: #5C5C5C;
+  --text-meta: #8A8A8A;
+
+  /* 機構藍 */
+  --institutional: #0E2238;
+  --institutional-light: #44638A;
+
+  /* Brand:政策警示朱紅 */
+  --brand: #B5371F;          /* 燒磚紅(ProPublica/Economist 級) */
+  --brand-dark: #8C2A18;
+  --brand-soft: #F4E1DC;
+
+  /* 狀態色 */
+  --warning: #A03032;
+  --success: #2D5F3E;
+
+  /* AABE 識別專用色(與 brand 警示紅明確分離) */
+  --aabe-gold: #8B6F50;      /* 深沉金 — AABE 機構標識用 */
+
+  /* 輔助 */
+  --warning-soft: #F5EAD7;
+  --border: #DDD8CD;
+  --hairline: #E8E3D6;
+
+  --serif: "Noto Serif TC", "Source Han Serif TC", Georgia, serif;
+  --sans: "Noto Sans TC", "PingFang TC", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  --sans-en: "Inter", "Noto Sans TC", -apple-system, sans-serif;
+  --mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-8: 96px;
+
+  --max-w: 1200px;
+  --content-w: 760px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--brand); color: #fff; }
+
+a { color: var(--institutional); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; transition: color .15s; }
+a:hover { color: var(--brand); }
+
+button { font-family: inherit; cursor: pointer; }
+
+/* ─── Skip link ────────────────────────────── */
+.skip {
+  position: absolute; left: -999px; top: -999px;
+  background: var(--bg-deep); color: #fff; padding: 8px 16px;
+  border-radius: 4px; z-index: 1000; text-decoration: none;
+}
+.skip:focus { left: 12px; top: 12px; }
+
+/* ─── Masthead(機構級頂部)──────────────────── */
+.masthead {
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  position: sticky; top: 0; z-index: 50;
+  backdrop-filter: blur(8px);
+  background: rgba(250,250,247,0.94);
+}
+.masthead-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: var(--space-3) var(--space-4);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-4);
+}
+.logo {
+  display: flex; align-items: center; gap: var(--space-3);
+  text-decoration: none; color: var(--text);
+}
+.logo .icon {
+  width: 36px; height: 36px;
+  background: var(--bg-deep); color: #fff;
+  display: grid; place-items: center; border-radius: 6px;
+}
+.logo h1 {
+  font-family: var(--serif);
+  font-size: 17px; font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.logo p {
+  font-size: 11px; color: var(--text-muted);
+  font-family: var(--sans-en); font-weight: 500;
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+.produced-by {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-left: var(--space-3);
+  padding-left: var(--space-3);
+  border-left: 1px solid var(--border);
+}
+.aabe-mark {
+  font-family: var(--sans-en);
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  background: var(--aabe-gold);
+  color: #fff;
+  padding: 5px 9px;
+  border-radius: 4px;
+  line-height: 1;
+}
+.produced-text {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.3;
+  font-weight: 500;
+}
+.produced-text small {
+  font-family: var(--sans-en);
+  font-size: 9.5px;
+  color: var(--text-meta);
+  letter-spacing: 0.02em;
+}
+@media (max-width: 768px) {
+  .produced-by { display: none; }
+}
+.search-bar {
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+}
+.search-bar input {
+  width: 100%;
+  padding: 8px 14px 8px 36px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-size: 14px;
+  background: var(--bg-alt);
+  transition: border-color .15s, background .15s;
+}
+.search-bar input:focus {
+  outline: 2px solid var(--brand);
+  outline-offset: -1px;
+  background: #fff;
+}
+.search-bar svg {
+  position: absolute; left: 12px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted); pointer-events: none;
+}
+.lang-switch {
+  display: flex; gap: var(--space-2); font-size: 13px;
+  font-family: var(--sans-en); font-weight: 500;
+}
+.lang-switch a { padding: 4px 8px; text-decoration: none; color: var(--text-muted); border-radius: 3px; }
+.lang-switch a.active { background: var(--text); color: #fff; }
+
+/* ─── Role selector(我是誰)─────────────────── */
+.role-selector {
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--hairline);
+  padding: var(--space-3) var(--space-4);
+}
+.role-selector-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex; align-items: center; gap: var(--space-3);
+  flex-wrap: wrap;
+}
+.role-label {
+  font-size: 13px; color: var(--text-muted);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.role-buttons {
+  display: flex; gap: var(--space-2);
+  flex-wrap: wrap;
+}
+.role-btn {
+  background: #fff;
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--text);
+  transition: all .15s;
+  font-family: inherit;
+}
+.role-btn:hover { background: var(--bg-deep); color: #fff; border-color: var(--bg-deep); }
+.role-btn.active { background: var(--brand); color: #fff; border-color: var(--brand); }
+.role-dismiss {
+  margin-left: auto;
+  font-size: 12px; color: var(--text-muted);
+  background: transparent; border: 0;
+  padding: 4px 8px;
+  text-decoration: underline;
+}
+
+/* ─── Hero(NYT 報導風)────────────────────── */
+.hero {
+  padding: var(--space-7) var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--hairline);
+}
+.hero-inner {
+  max-width: var(--content-w);
+  margin: 0 auto;
+}
+.kicker {
+  font-family: var(--sans-en);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: var(--space-3);
+}
+.kicker::before {
+  content: ''; display: inline-block;
+  width: 32px; height: 2px; background: var(--brand);
+  vertical-align: middle; margin-right: var(--space-2);
+}
+.hero h2 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-4);
+  color: var(--bg-deep);
+}
+.hero .lead {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: var(--space-5);
+}
+.hero .lead strong { color: var(--bg-deep); }
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  margin: var(--space-5) 0;
+  padding: var(--space-4);
+  background: var(--bg-alt);
+  border-left: 3px solid var(--brand);
+}
+.hero-stat .num {
+  font-family: var(--sans-en);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--warning);
+  display: block;
+  line-height: 1;
+}
+.hero-stat .lab {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: var(--space-2);
+}
+.hero-cta {
+  display: flex; gap: var(--space-3); flex-wrap: wrap;
+  margin-top: var(--space-5);
+}
+.btn-primary {
+  background: var(--bg-deep);
+  color: #fff;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 15px;
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  transition: background .15s;
+}
+.btn-primary:hover { background: var(--brand); color: #fff; }
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  padding: 12px 16px;
+  text-decoration: none;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+.btn-ghost:hover { border-color: var(--text); color: var(--text); }
+
+/* ─── Workbench(g0v 工作台)────────────────── */
+.workbench {
+  background: var(--bg-alt);
+  padding: var(--space-7) var(--space-4);
+  border-bottom: 1px solid var(--hairline);
+}
+.workbench-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.section-header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+.section-header h2 {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--bg-deep);
+}
+.section-header .meta {
+  font-size: 13px; color: var(--text-muted);
+  font-family: var(--sans-en);
+}
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+.quick-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  padding: var(--space-4);
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  transition: all .15s;
+  position: relative;
+}
+.quick-card:hover {
+  border-color: var(--brand);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(14,34,56,0.06);
+}
+.quick-card .q-tag {
+  font-family: var(--sans-en);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+.quick-card h3 {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--bg-deep);
+}
+.quick-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.quick-card .arrow {
+  margin-top: auto;
+  font-size: 13px;
+  color: var(--brand);
+  font-weight: 500;
+}
+
+/* 篩選列 */
+.filter-bar {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: var(--space-4);
+  display: flex; gap: var(--space-3); align-items: center; flex-wrap: wrap;
+}
+.filter-bar label {
+  font-size: 12px;
+  color: var(--text-muted);
+  display: flex; flex-direction: column; gap: 4px;
+}
+.filter-bar select {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--text);
+  min-width: 120px;
+}
+
+/* ─── Topic index ─────────────────────── */
+.topic-index {
+  padding: var(--space-7) var(--space-4);
+  background: var(--bg);
+}
+.topic-index-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+.topic-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  padding: var(--space-5);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  transition: all .2s;
+}
+.topic-card:hover {
+  border-color: var(--bg-deep);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+.topic-card .t-icon {
+  width: 40px; height: 40px;
+  background: var(--bg-alt);
+  border-radius: 8px;
+  display: grid; place-items: center;
+  color: var(--bg-deep);
+  margin-bottom: var(--space-2);
+}
+.topic-card h3 {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--bg-deep);
+}
+.topic-card p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.topic-card .stats {
+  font-family: var(--sans-en);
+  font-size: 12px;
+  color: var(--brand);
+  font-weight: 500;
+  margin-top: var(--space-2);
+}
+
+/* ─── Insider lock + login modal ───────── */
+.insider-header { color: var(--brand) !important; }
+.nav-item.insider-only .lock-icon { opacity: 0.85; color: rgba(255,255,255,0.6); transition: all .15s; }
+body.is-insider .nav-item.insider-only .lock-icon { display: none; }
+body.is-insider .nav-item.insider-only::after {
+  content: '✓';
+  margin-left: auto;
+  color: #6FCF97;
+  font-weight: 700;
+  font-size: 13px;
+}
+.insider-only-section { position: relative; }
+body:not(.is-insider) .insider-only-section {
+  filter: blur(2px) grayscale(0.5);
+  opacity: 0.6;
+  pointer-events: none;
+  user-select: none;
+}
+body:not(.is-insider) .insider-only-section::before {
+  content: '🔒 限 AABE 自家人 · 點上方「自家人」登入解鎖';
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0,48,73,0.85);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  filter: none;
+  pointer-events: auto;
+  z-index: 5;
+}
+
+.insider-banner {
+  background: linear-gradient(90deg, var(--bg-deep) 0%, #00253a 100%);
+  color: #fff;
+  padding: var(--space-3) var(--space-4);
+  border-radius: 6px;
+  display: flex; align-items: center; gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  font-size: 13.5px;
+}
+.insider-banner svg { color: var(--brand); flex-shrink: 0; }
+.insider-banner strong { color: #fff; }
+.insider-banner .b-tag {
+  font-family: var(--sans-en);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  background: var(--brand);
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 3px;
+  margin-right: 6px;
+}
+
+/* Login modal */
+.login-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: var(--space-3);
+}
+.login-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(0,48,73,0.65);
+  backdrop-filter: blur(6px);
+}
+.login-box {
+  position: relative;
+  background: #fff;
+  border-radius: 10px;
+  padding: var(--space-5);
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.login-head {
+  display: flex; gap: var(--space-3); align-items: center;
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--hairline);
+}
+.login-head svg { color: var(--brand); }
+.login-head h3 {
+  font-family: var(--serif);
+  font-size: 19px;
+  color: var(--bg-deep);
+  font-weight: 700;
+}
+.login-head p {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+#login-form label {
+  display: flex; flex-direction: column;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: var(--space-3);
+  gap: 4px;
+  font-weight: 500;
+}
+#login-form input {
+  font-family: var(--sans);
+  font-size: 14px;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg-alt);
+}
+#login-form input:focus {
+  outline: 2px solid var(--brand);
+  outline-offset: -1px;
+  background: #fff;
+}
+.login-actions {
+  display: flex; gap: var(--space-2); justify-content: flex-end;
+  margin-top: var(--space-4);
+}
+.login-note {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--hairline);
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.6;
+}
+.login-note strong { color: var(--bg-deep); }
+
+/* ─── App shell + Side nav ─────────────── */
+.app-shell {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  align-items: start;
+  gap: 0;
+}
+.side-nav {
+  position: sticky;
+  top: 110px;
+  background: var(--bg-deep);
+  color: rgba(255,255,255,0.92);
+  padding: var(--space-4) var(--space-3);
+  align-self: start;
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.side-nav h5 {
+  font-family: var(--sans-en);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin: var(--space-4) var(--space-2) var(--space-2);
+}
+.side-nav h5:first-child { margin-top: 0; }
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  margin-bottom: 2px;
+  transition: all .15s;
+}
+.nav-item:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.nav-item.active { background: rgba(255,255,255,0.10); color: #fff; }
+.nav-item.featured {
+  background: linear-gradient(90deg, var(--brand) 0%, var(--brand-dark) 100%);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(181,55,31,0.32);
+}
+.nav-item.featured:hover { background: linear-gradient(90deg, var(--brand-dark) 0%, var(--brand) 100%); }
+.nav-item svg { flex-shrink: 0; opacity: 0.8; }
+.nav-item.featured svg, .nav-item.active svg { opacity: 1; }
+
+.nav-cycle {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+}
+.nav-cycle.current { color: #fff; font-weight: 600; }
+.cycle-pill {
+  font-size: 10.5px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-family: var(--sans-en);
+  letter-spacing: 0.04em;
+}
+.cycle-pill.done { background: rgba(255,255,255,0.95); color: var(--bg-deep); }
+.cycle-pill.tracking { background: rgba(102,155,188,0.4); color: #fff; }
+.cycle-pill.prep { background: var(--brand); color: #fff; }
+
+.month-stats {
+  margin-top: var(--space-4);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 6px;
+  padding: var(--space-3);
+}
+.month-stats .lbl {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  font-family: var(--sans-en);
+}
+.month-stats .num {
+  font-family: var(--sans-en);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--brand);
+  margin-top: 4px;
+  line-height: 1;
+}
+.month-stats .num small {
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+  font-weight: 400;
+  margin-left: 6px;
+}
+.month-stats .src {
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.65);
+  margin-top: 6px;
+}
+
+@media (max-width: 1100px) {
+  .app-shell { grid-template-columns: 1fr; }
+  .side-nav {
+    position: static;
+    max-height: none;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .side-nav h5:first-child { margin-top: 0; }
+}
+
+/* ─── Newsroom ledger ribbon ────────── */
+.ledger-ribbon {
+  background: var(--bg-deep);
+  color: rgba(255,255,255,0.92);
+  font-family: var(--sans-en);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 8px var(--space-4);
+  overflow: hidden;
+}
+.ledger-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex; gap: var(--space-5); align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.ledger-item { display: flex; gap: var(--space-2); align-items: baseline; }
+.ledger-item .lk { color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.08em; font-size: 10.5px; }
+.ledger-item .lv { color: #fff; font-weight: 600; font-size: 13.5px; }
+.ledger-item .lv.warn { color: var(--brand); }
+.ledger-pulse {
+  display: inline-block; width: 6px; height: 6px;
+  background: var(--brand); border-radius: 50%;
+  margin-right: 6px; vertical-align: middle;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ─── Query chain demo ────────────────── */
+.chain-demo {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--bg-deep);
+  border-radius: 6px;
+  padding: var(--space-5);
+  margin-bottom: var(--space-6);
+}
+.chain-demo-header {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap; gap: var(--space-2);
+}
+.chain-demo h3 {
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--bg-deep);
+  font-weight: 700;
+}
+.chain-demo .demo-tag {
+  font-family: var(--sans-en);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brand);
+  background: var(--warning-soft);
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+.chain-flow {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr) auto;
+  gap: 4px;
+  align-items: stretch;
+  margin-top: var(--space-3);
+}
+.chain-step {
+  position: relative;
+  background: var(--bg-alt);
+  padding: 12px 14px 12px 18px;
+  text-decoration: none;
+  color: var(--text);
+  border-radius: 4px;
+  display: flex; flex-direction: column; gap: 4px;
+  transition: all .15s;
+  font-size: 12px;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%, 10px 50%);
+}
+.chain-step:first-child { clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%); }
+.chain-step:hover { background: var(--bg-deep); color: #fff; }
+.chain-step .cs-num {
+  font-family: var(--sans-en);
+  font-size: 10px; font-weight: 700;
+  color: var(--brand); letter-spacing: 0.1em;
+}
+.chain-step:hover .cs-num { color: #fff; }
+.chain-step .cs-title { font-weight: 600; font-size: 12.5px; line-height: 1.3; }
+.chain-step .cs-meta { font-size: 11px; color: var(--text-muted); font-family: var(--sans-en); }
+.chain-step:hover .cs-meta { color: rgba(255,255,255,0.7); }
+.chain-result {
+  background: var(--brand);
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 4px;
+  display: flex; flex-direction: column; gap: 4px;
+  font-size: 12px;
+  text-decoration: none;
+  align-self: stretch;
+  justify-content: center;
+}
+.chain-result:hover { background: var(--brand-dark); color: #fff; }
+.chain-result .cr-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.8; }
+.chain-result .cr-title { font-family: var(--serif); font-weight: 700; font-size: 14px; }
+
+@media (max-width: 768px) {
+  .chain-flow { grid-template-columns: 1fr; }
+  .chain-step { clip-path: none !important; }
+}
+
+/* ─── Topic featured ─────────────────── */
+.topic-card.featured {
+  grid-column: span 2;
+  background: linear-gradient(135deg, var(--bg-deep) 0%, var(--bg-deeper) 100%);
+  color: #fff;
+  border-color: var(--bg-deep);
+}
+.topic-card.featured h3 { color: #fff; font-size: 22px; }
+.topic-card.featured p { color: rgba(255,255,255,0.78); font-size: 14.5px; }
+.topic-card.featured .stats { color: var(--brand); font-weight: 600; }
+.topic-card.featured .t-icon { background: rgba(255,255,255,0.1); color: var(--brand); }
+.topic-card.featured:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,48,73,0.25); }
+@media (max-width: 768px) {
+  .topic-card.featured { grid-column: span 1; }
+  .topic-card.featured h3 { font-size: 18px; }
+}
+
+/* ─── Documents library(可按提出單位篩選)─── */
+.docs-section {
+  padding: var(--space-7) var(--space-4);
+  background: var(--bg);
+  border-top: 1px solid var(--hairline);
+}
+.docs-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.docs-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: var(--space-5);
+  margin-top: var(--space-4);
+}
+.docs-sidebar {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: var(--space-4);
+  align-self: start;
+  position: sticky;
+  top: 84px;
+  font-size: 13px;
+}
+.docs-sidebar h4 {
+  font-family: var(--sans-en);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: var(--space-3) 0 var(--space-2);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--hairline);
+}
+.docs-sidebar h4:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
+.docs-sidebar-header {
+  display: flex; justify-content: space-between; align-items: center;
+  font-weight: 600; color: var(--bg-deep);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--hairline);
+}
+.docs-sidebar-header .clear {
+  font-size: 11px; color: var(--text-muted);
+  background: transparent; border: 0; cursor: pointer;
+  text-decoration: underline;
+}
+.filter-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 4px 0;
+  cursor: pointer;
+  font-size: 13px;
+}
+.filter-row input[type=checkbox] { accent-color: var(--brand); }
+.filter-row .count { margin-left: auto; color: var(--text-muted); font-size: 11px; font-family: var(--sans-en); }
+.filter-row .swatch { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.filter-tag-row { display: flex; flex-wrap: wrap; gap: 4px; }
+.filter-tag {
+  padding: 3px 8px;
+  font-size: 11.5px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all .15s;
+}
+.filter-tag:hover { background: var(--bg-deep); color: #fff; border-color: var(--bg-deep); }
+.filter-tag.active { background: var(--brand); color: #fff; border-color: var(--brand); }
+.filter-select, .filter-input {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-size: 12.5px;
+  font-family: var(--sans);
+  background: #fff;
+  color: var(--text);
+}
+
+.docs-toolbar {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: var(--space-2);
+  margin-bottom: var(--space-3);
+  font-size: 13px;
+}
+.docs-toolbar .count-info b { color: var(--bg-deep); font-family: var(--sans-en); }
+.view-tabs { display: flex; background: var(--bg-alt); border-radius: 4px; padding: 2px; }
+.view-tab {
+  background: transparent; border: 0;
+  font-size: 12px; padding: 5px 10px;
+  border-radius: 3px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.view-tab.active { background: #fff; color: var(--text); box-shadow: 0 1px 2px rgba(0,0,0,0.08); }
+
+.doc-list { display: flex; flex-direction: column; gap: var(--space-3); }
+.doc-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: var(--space-4);
+  display: flex; gap: var(--space-3);
+  text-decoration: none;
+  color: var(--text);
+  transition: all .15s;
+}
+.doc-card:hover {
+  border-color: var(--brand);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.doc-card.featured-doc { box-shadow: 0 0 0 2px rgba(232,115,74,0.25); }
+.doc-stripe {
+  width: 4px;
+  flex-shrink: 0;
+  border-radius: 2px;
+  background: var(--bg-deep);
+}
+.doc-body { flex: 1; min-width: 0; }
+.doc-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 6px; }
+.pill {
+  font-family: var(--sans-en);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+/* 文件類型 pill — 國際機構克制配色 */
+.pill-cycle { background: #1F3D6B; color: #fff; }       /* 國家報告:深藍 */
+.pill-co { background: #2D7059; color: #fff; }          /* 結論性意見:深森林綠 */
+.pill-nap { background: #C68822; color: #fff; }         /* NAP:深芥黃 */
+.pill-shadow { background: #4B2480; color: #fff; }      /* 影子報告:深紫 */
+.pill-aabe { background: var(--aabe-gold); color: #fff; }   /* AABE:深沉金 */
+.pill-meta { background: var(--bg-alt); color: var(--text-muted); }
+.pill-warn { background: var(--warning-soft); color: #6B3416; }
+
+.doc-card h3 {
+  font-family: var(--serif);
+  font-size: 16.5px;
+  font-weight: 700;
+  color: var(--bg-deep);
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+.doc-issuer {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.doc-issuer .ngo-tag {
+  color: var(--brand);
+  font-weight: 600;
+}
+.doc-excerpt {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.55;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.doc-stats {
+  display: flex; gap: var(--space-3);
+  flex-wrap: wrap;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  font-family: var(--sans-en);
+}
+.doc-stats .adoption-good { color: var(--success); font-weight: 600; }
+.doc-stats .adoption-mid { color: #F59E0B; font-weight: 600; }
+.doc-stats .adoption-bad { color: var(--warning); font-weight: 600; }
+
+@media (max-width: 900px) {
+  .docs-grid { grid-template-columns: 1fr; }
+  .docs-sidebar { position: static; }
+}
+
+/* ─── Recent timeline ────────────────── */
+.recent {
+  padding: var(--space-7) var(--space-4);
+  background: var(--bg-alt);
+  border-top: 1px solid var(--hairline);
+}
+.recent-inner {
+  max-width: var(--content-w);
+  margin: 0 auto;
+}
+.timeline-list {
+  list-style: none;
+  display: flex; flex-direction: column;
+  border-left: 2px solid var(--border);
+  padding-left: var(--space-4);
+}
+.timeline-list li {
+  position: relative;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.timeline-list li::before {
+  content: '';
+  position: absolute;
+  left: calc(-1 * var(--space-4) - 7px);
+  top: 22px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--brand);
+  border: 3px solid var(--bg-alt);
+}
+.timeline-list .tier-3::before { background: var(--warning); width: 16px; height: 16px; left: calc(-1 * var(--space-4) - 9px); }
+.timeline-list .tier-2::before { background: var(--brand); }
+.timeline-list .tier-1::before { background: var(--text-meta); width: 8px; height: 8px; left: calc(-1 * var(--space-4) - 5px); top: 24px; }
+.timeline-list .date {
+  font-family: var(--sans-en);
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.timeline-list .title {
+  font-size: 15px;
+  margin-top: 2px;
+  color: var(--text);
+}
+.timeline-list a {
+  text-decoration: none; color: var(--text);
+}
+.timeline-list a:hover .title { color: var(--brand); }
+
+/* ─── Contact section ──────────────────── */
+.contact-section {
+  padding: var(--space-7) var(--space-4);
+  background: var(--bg);
+  border-top: 1px solid var(--hairline);
+}
+.contact-inner { max-width: var(--max-w); margin: 0 auto; }
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+.contact-block {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: var(--space-4);
+}
+.contact-block h3 {
+  font-family: var(--serif);
+  font-size: 16px;
+  color: var(--bg-deep);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.contact-block p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: var(--space-3);
+}
+.contact-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13.5px;
+  color: var(--bg-deep);
+  font-weight: 600;
+  text-decoration: none;
+}
+.contact-link:hover { color: var(--brand); }
+.contact-aabe {
+  background: linear-gradient(135deg, var(--bg-deep) 0%, var(--bg-deeper) 100%);
+  border-color: var(--bg-deep);
+  color: #fff;
+  grid-column: span 2;
+}
+.contact-aabe h3 { color: #fff; }
+.contact-aabe p { color: rgba(255,255,255,0.78); }
+.contact-aabe .contact-link { color: var(--brand); }
+.contact-aabe .contact-link:hover { color: #fff; }
+@media (max-width: 600px) {
+  .contact-aabe { grid-column: span 1; }
+}
+
+/* ─── Generator wizard ──────────────── */
+.matrix-pagehead {
+  background: var(--bg-deep);
+  color: rgba(255,255,255,0.85);
+  padding: var(--space-3) var(--space-4);
+}
+.matrix-pagehead-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: var(--space-3);
+}
+.matrix-crumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.65); }
+.matrix-crumb a { color: rgba(255,255,255,0.85); text-decoration: none; }
+.matrix-crumb a:hover { color: var(--brand); }
+.matrix-crumb svg { color: rgba(255,255,255,0.4); }
+.matrix-crumb .active { color: #fff; font-weight: 600; }
+.matrix-pagehead-meta { font-family: var(--sans-en); font-size: 11.5px; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; }
+
+.gen-section { padding: var(--space-6) var(--space-4); background: var(--bg); }
+.gen-inner { max-width: var(--max-w); margin: 0 auto; }
+
+.gen-stepper {
+  display: flex; align-items: center; gap: 4px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap;
+}
+.gen-step {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.gen-step .num {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--bg-alt);
+  color: var(--text-muted);
+  display: grid; place-items: center;
+  font-family: var(--sans-en);
+  font-weight: 700;
+  font-size: 12.5px;
+  border: 1px solid var(--border);
+}
+.gen-step.active { color: var(--brand); font-weight: 600; }
+.gen-step.active .num { background: var(--brand); color: #fff; border-color: var(--brand); }
+.gen-step.done .num { background: var(--success); color: #fff; border-color: var(--success); }
+.gen-bar {
+  flex: 1; height: 2px;
+  background: var(--border);
+  min-width: 16px;
+  max-width: 80px;
+}
+
+.gen-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: var(--space-4);
+}
+.gen-stepbox {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: var(--space-5);
+}
+.gen-pane { display: none; }
+.gen-pane.active { display: block; }
+.gen-pane h3 {
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--bg-deep);
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+.gen-hint {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: var(--space-3);
+}
+
+.gen-issue-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 8px;
+}
+.gen-issue-card {
+  background: var(--bg-alt);
+  border: 1.5px solid var(--border);
+  border-radius: 5px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all .15s;
+  font-size: 13px;
+}
+.gen-issue-card:hover { border-color: var(--institutional-light); background: #fff; }
+.gen-issue-card.checked {
+  border-color: var(--brand);
+  background: var(--brand-soft);
+}
+.gen-issue-card .pi-id {
+  font-family: var(--sans-en);
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--brand);
+  letter-spacing: 0.06em;
+}
+.gen-issue-card .ti {
+  font-weight: 600;
+  color: var(--bg-deep);
+  margin-top: 3px;
+}
+.gen-issue-card .sev { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+.gen-actions {
+  display: flex; gap: 8px; justify-content: flex-end;
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--hairline);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.gen-evidence {
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: var(--space-3);
+  margin-bottom: var(--space-3);
+  background: var(--bg-alt);
+}
+.gen-evidence label { font-size: 12px; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 4px; margin-top: 10px; }
+.gen-evidence input, .gen-evidence textarea, .gen-evidence select {
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #fff;
+}
+.gen-evidence textarea { resize: vertical; min-height: 70px; line-height: 1.6; }
+
+.gen-fmt-row { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-3); }
+.gen-fmt-row label { font-size: 12px; color: var(--text-muted); display: flex; flex-direction: column; gap: 4px; }
+.gen-fmt-row select { padding: 7px 10px; border: 1px solid var(--border); border-radius: 4px; min-width: 200px; font-family: var(--sans); font-size: 13px; }
+
+.gen-draft-box {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: var(--space-4);
+  min-height: 280px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  font-family: var(--mono);
+}
+
+.gen-textarea {
+  width: 100%;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.6;
+  padding: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: #fff;
+  resize: vertical;
+}
+
+.gen-aside {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: var(--space-4);
+  align-self: start;
+  position: sticky; top: 110px;
+  font-size: 13px;
+}
+.gen-aside h4 {
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--bg-deep);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.gen-stance { list-style: none; padding: 0; margin: 0; }
+.gen-stance li {
+  padding: 5px 0 5px 16px;
+  position: relative;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text);
+}
+.gen-stance li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--aabe-gold);
+}
+
+@media (max-width: 1024px) {
+  .gen-grid { grid-template-columns: 1fr; }
+  .gen-aside { position: static; }
+}
+
+/* ─── Footer ────────────────────── */
+footer.site-footer {
+  background: var(--bg-deep);
+  color: rgba(255,255,255,0.85);
+  padding: var(--space-7) var(--space-4) var(--space-5);
+  font-size: 13.5px;
+}
+.footer-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--space-5);
+}
+footer h4 {
+  font-family: var(--serif);
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: var(--space-3);
+  font-weight: 600;
+}
+footer a { color: rgba(255,255,255,0.75); text-decoration: none; display: block; padding: 3px 0; font-size: 13px; }
+footer a:hover { color: #fff; text-decoration: underline; }
+footer .credit {
+  margin-top: var(--space-5); padding-top: var(--space-4);
+  border-top: 1px solid rgba(255,255,255,0.15);
+  font-size: 12px; color: rgba(255,255,255,0.55);
+  font-family: var(--sans-en);
+  max-width: var(--max-w); margin-left: auto; margin-right: auto;
+}
+
+/* ─── Responsive ──────────────────── */
+@media (max-width: 768px) {
+  .masthead-inner {
+    grid-template-columns: 1fr auto;
+    gap: var(--space-3);
+  }
+  .search-bar { display: none; }
+  .role-selector-inner { flex-direction: column; align-items: flex-start; }
+  .hero { padding: var(--space-5) var(--space-3) var(--space-4); }
+  .hero h2 { font-size: 26px; }
+  .hero-stats { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+<script>
+// 入口閘門 — 此頁限 AABE 內部
+if (typeof localStorage !== 'undefined' && localStorage.getItem('aabe-insider') !== 'yes') {
+  location.replace('index.html?lock=generator');
+}
+</script>
+
+<a href="#main" class="skip">跳到主要內容</a>
+
+<!-- ━━━━━━━━━━━━━ Masthead ━━━━━━━━━━━━━ -->
+<header class="masthead" role="banner">
+  <div class="masthead-inner">
+    <a href="/" class="logo">
+      <span class="icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </span>
+      <div>
+        <h1>兒少人權監督平台</h1>
+        <p>Child Rights Watch Taiwan</p>
+      </div>
+      <span class="produced-by" aria-label="由國教行動聯盟製作">
+        <span class="aabe-mark">AABE</span>
+        <span class="produced-text">國教行動聯盟<br><small>National Alliance of Action for Basic Education</small></span>
+      </span>
+    </a>
+
+    <div class="search-bar">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" placeholder="搜尋議題、CRC 條文、修法、案件..." aria-label="搜尋"
+             onkeydown="if(event.key==='Enter') location.href='search.html?q='+encodeURIComponent(this.value);">
+    </div>
+
+    <div class="lang-switch" aria-label="語言切換">
+      <a href="#" class="active">ZH</a>
+      <a href="reports/Alternative_Report_v0.4_professional_en.html">EN</a>
+    </div>
+  </div>
+</header>
+
+<!-- ━━━━━━━━━━━━━ Newsroom ledger ribbon ━━━━━━━━━━━━━ -->
+<div class="ledger-ribbon" role="status" aria-label="平台即時數據">
+  <div class="ledger-inner">
+    <div class="ledger-item">
+      <span class="ledger-pulse" aria-hidden="true"></span>
+      <span class="lk">距 5/14 公聽會</span>
+      <span class="lv warn">11 天</span>
+    </div>
+    <div class="ledger-item">
+      <span class="lk">CRC 二輪審查</span>
+      <span class="lv">5/3 進行中</span>
+    </div>
+    <div class="ledger-item">
+      <span class="lk">議題</span>
+      <span class="lv">14</span>
+    </div>
+    <div class="ledger-item">
+      <span class="lk">事件軌跡</span>
+      <span class="lv">288</span>
+    </div>
+    <div class="ledger-item">
+      <span class="lk">修法</span>
+      <span class="lv">42</span>
+    </div>
+    <div class="ledger-item">
+      <span class="lk">索引</span>
+      <span class="lv">416 筆</span>
+    </div>
+    <div class="ledger-item">
+      <span class="lk">最後更新</span>
+      <span class="lv">2026-05-03</span>
+    </div>
+  </div>
+</div>
+
+<!-- ━━━━━━━━━━━━━ 我是誰 ━━━━━━━━━━━━━ -->
+<section class="role-selector" aria-label="使用者類型">
+  <div class="role-selector-inner">
+    <span class="role-label">身分:</span>
+    <div class="role-buttons">
+      <button class="role-btn" data-role="aabe" id="btn-insider">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;vertical-align:-2px"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        AABE 自家人
+        <span style="font-size:10.5px;opacity:0.7;margin-left:4px;font-family:var(--sans-en)">需登入</span>
+      </button>
+      <button class="role-btn active" data-role="public" id="btn-public">一般訪客</button>
+    </div>
+    <span id="insider-status" style="display:none;font-size:12px;color:var(--success);margin-left:auto;display:none;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><polyline points="20 6 9 17 4 12"/></svg>
+      已登入 AABE 內部 · <a href="#" id="logout-link" style="color:var(--text-muted);font-size:11.5px">登出</a>
+    </span>
+    <button class="role-dismiss" onclick="document.querySelector('.role-selector').style.display='none'; localStorage.setItem('role-dismissed', '1');">不再顯示</button>
+  </div>
+</section>
+
+<!-- 自家人登入 modal -->
+<div id="login-modal" class="login-modal" role="dialog" aria-modal="true" aria-labelledby="login-title" style="display:none">
+  <div class="login-backdrop" onclick="document.getElementById('login-modal').style.display='none'"></div>
+  <div class="login-box">
+    <div class="login-head">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <div>
+        <h3 id="login-title">AABE 自家人登入</h3>
+        <p>內部工作區 · 需帳號密碼</p>
+      </div>
+    </div>
+    <form id="login-form" onsubmit="return tryLogin(event)">
+      <label>帳號
+        <input type="text" id="login-user" autocomplete="username" required placeholder="例如:aabe">
+      </label>
+      <label>密碼
+        <input type="password" id="login-pass" autocomplete="current-password" required>
+      </label>
+      <p id="login-err" style="color:var(--warning);font-size:12.5px;display:none;margin-top:4px">帳號或密碼錯誤</p>
+      <div class="login-actions">
+        <button type="button" class="btn-ghost" onclick="document.getElementById('login-modal').style.display='none'">取消</button>
+        <button type="submit" class="btn-primary">登入</button>
+      </div>
+    </form>
+    <p class="login-note">
+      <strong>說明</strong>:本平台公開內容(議題地圖 / 政策軌跡 / 影子報告 / 法規索引等)無須登入即可瀏覽。<br>
+      <strong>內部工作區</strong>(倡議追蹤矩陣 / 影子報告產生器 / 內部工作底稿)限 AABE 內部成員。<br>
+      <span style="color:var(--text-muted);font-size:11px">此為前端軟性閘門,真機密資料請勿放此平台。</span>
+    </p>
+  </div>
+</div>
+
+<div class="app-shell">
+
+<!-- ━━━━━━━━━━━━━ Side navigation ━━━━━━━━━━━━━ -->
+<aside class="side-nav" aria-label="主要導航">
+
+  <h5>
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:-1px;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+    公開內容 · 任何人皆可瀏覽
+  </h5>
+  <a href="index.html" class="nav-item">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    首頁總覽
+  </a>
+  <a href="#documents" class="nav-item">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    文件資料庫
+  </a>
+  <a href="map.html" class="nav-item">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+    議題地圖(14)
+  </a>
+  <a href="timeline/" class="nav-item">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+    政策軌跡時間軸
+  </a>
+  <a href="laws/" class="nav-item">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21V9l-7 12h7zm6 0V9l7 12h-7zm-3-3V3"/></svg>
+    法規索引(15 / 42)
+  </a>
+  <a href="reports/Alternative_Report_v0.4_professional.html" class="nav-item">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+    影子報告(已發佈)
+  </a>
+  <a href="#contact" class="nav-item">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    聯絡我們
+  </a>
+
+  <h5 class="insider-header">
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:-1px;margin-right:3px"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    內部工作區 · 限 AABE 自家人
+  </h5>
+  <a href="matrix.html" class="nav-item featured insider-only" data-locked="1" onclick="return checkInsider(event)">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+    倡議追蹤矩陣
+    <svg class="lock-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" style="margin-left:auto"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+  </a>
+  <a href="generator.html" class="nav-item active insider-only" data-locked="1" onclick="return checkInsider(event)">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 8.5 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 9 8.5 12 2"/></svg>
+    影子報告產生器
+    <svg class="lock-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" style="margin-left:auto"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+  </a>
+  <a href="drafts/" class="nav-item insider-only" data-locked="1" onclick="return checkInsider(event)">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+    倡議工作底稿
+    <svg class="lock-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" style="margin-left:auto"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+  </a>
+  <a href="self-audit.html?internal=1" class="nav-item insider-only" data-locked="1" onclick="return checkInsider(event)">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    自我問責(內部底稿)
+    <svg class="lock-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" style="margin-left:auto"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+  </a>
+
+  <h5>資料屆別</h5>
+  <div class="nav-cycle"><span>第一屆 (2017)</span><span class="cycle-pill done">已結案</span></div>
+  <div class="nav-cycle"><span>第二屆 (2022)</span><span class="cycle-pill tracking">追蹤中</span></div>
+  <div class="nav-cycle current"><span>第三屆 (2025-26)</span><span class="cycle-pill prep">準備中</span></div>
+
+  <div class="month-stats">
+    <div class="lbl">本月新增</div>
+    <div class="num">37<small>筆倡議</small></div>
+    <div class="src">來自 12 個民間單位</div>
+  </div>
+</aside>
+
+
+<main id="main">
+
+<!-- 內部頁面標頭 -->
+<div class="matrix-pagehead">
+  <div class="matrix-pagehead-inner">
+    <div class="matrix-crumb">
+      <a href="index.html">首頁總覽</a>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg>
+      <span>內部工作區</span>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg>
+      <span class="active">影子報告產生器</span>
+    </div>
+    <div class="matrix-pagehead-meta" id="gen-meta">v0.1 Beta · 草稿儲存於本機 localStorage</div>
+  </div>
+</div>
+
+<section class="gen-section">
+  <div class="gen-inner">
+    <div class="section-header">
+      <h2>影子報告產生器
+        <span style="font-size:11px;background:var(--warning-soft);color:#6B3416;padding:3px 8px;border-radius:3px;font-family:var(--sans-en);font-weight:600;letter-spacing:0.06em;margin-left:8px;vertical-align:3px">BETA</span>
+      </h2>
+      <span class="meta">5 步驟 wizard · 從議題選擇到匯出 docx/md</span>
+    </div>
+
+    <p style="font-size: 13.5px; color: var(--text-muted); max-width: 760px; margin-bottom: var(--space-4); line-height: 1.6;">
+      此工具協助 AABE 內部快速組裝影子報告(或公聽會發言素材、新聞稿、立法質詢題)。
+      所有步驟資料儲存於瀏覽器 localStorage(離開頁面不會遺失,但僅限本裝置)。
+      <strong style="color:var(--brand)">機密案例敘事請依 governance/child_safeguarding §三點五 去識別化處理</strong>。
+    </p>
+
+    <!-- Stepper -->
+    <div class="gen-stepper">
+      <div class="gen-step active" data-step="1"><span class="num">1</span>選議題</div>
+      <div class="gen-bar"></div>
+      <div class="gen-step" data-step="2"><span class="num">2</span>輸入證據</div>
+      <div class="gen-bar"></div>
+      <div class="gen-step" data-step="3"><span class="num">3</span>對應條文</div>
+      <div class="gen-bar"></div>
+      <div class="gen-step" data-step="4"><span class="num">4</span>產草稿</div>
+      <div class="gen-bar"></div>
+      <div class="gen-step" data-step="5"><span class="num">5</span>編輯匯出</div>
+    </div>
+
+    <div class="gen-grid">
+      <!-- Step 內容區 -->
+      <div class="gen-stepbox">
+
+        <!-- Step 1 -->
+        <div class="gen-pane active" data-pane="1">
+          <h3>步驟 1 · 選擇您要關注的議題(最多 5 項)</h3>
+          <p class="gen-hint">系統會根據已選議題,自動帶入該議題之 CRC 條文、CO 點次、AABE 既有倡議,作為下一步證據輸入的參考。</p>
+          <div class="gen-issue-grid" id="gen-issue-grid">
+            <p style="color:var(--text-muted);font-size:13px">載入議題清單中…</p>
+          </div>
+          <div class="gen-actions">
+            <span style="margin-right:auto;font-size:12.5px;color:var(--text-muted)" id="gen-issue-count">已選 0 / 5</span>
+            <button class="btn-primary gen-next" data-go="2">下一步:輸入證據 →</button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="gen-pane" data-pane="2">
+          <h3>步驟 2 · 輸入您發現的問題與證據</h3>
+          <p class="gen-hint">針對選定議題,描述具體問題、提供證據(統計、案例、官方文件)。每議題可新增多個問題;系統會在下一步自動對應 CRC 條文。</p>
+          <div id="gen-evidence-list"></div>
+          <button class="btn-ghost" id="gen-add-evidence" style="margin-top:8px">+ 新增問題</button>
+          <div class="gen-actions">
+            <button class="btn-ghost gen-prev" data-go="1">← 上一步</button>
+            <button class="btn-primary gen-next" data-go="3">下一步:對應條文 →</button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="gen-pane" data-pane="3">
+          <h3>步驟 3 · CRC 條文對應(自動建議,可手動調整)</h3>
+          <p class="gen-hint">基於議題 → CRC 條文映射表,系統自動建議對應條文。可手動勾選或補充。</p>
+          <div id="gen-articles">
+            <p style="color:var(--text-muted);font-size:13px">將在前一步確認後自動帶入</p>
+          </div>
+          <div class="gen-actions">
+            <button class="btn-ghost gen-prev" data-go="2">← 上一步</button>
+            <button class="btn-primary gen-next" data-go="4">下一步:產草稿 →</button>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="gen-pane" data-pane="4">
+          <h3>步驟 4 · 產出影子報告草稿</h3>
+          <p class="gen-hint">從步驟 1-3 組裝出 CRC 標準格式草稿。可選 5 audience 變體(專業 / 媒體 / 兒少 / 立法院 / 社群)+ EN skeleton。</p>
+          <div class="gen-fmt-row">
+            <label>Audience
+              <select id="gen-audience">
+                <option value="professional">專業版(影子報告主文)</option>
+                <option value="legislative">立法院版(質詢題 + 修法建議)</option>
+                <option value="media">媒體版(記者會懶人包)</option>
+                <option value="kid">兒少版(8-18 歲可讀)</option>
+                <option value="social">社群版(IG / FB 短文)</option>
+                <option value="en">英文骨幹(送 OHCHR)</option>
+              </select>
+            </label>
+            <label>長度
+              <select id="gen-length">
+                <option value="short">簡短(~1500 字)</option>
+                <option value="medium" selected>標準(~3000 字)</option>
+                <option value="long">完整(~6000 字)</option>
+              </select>
+            </label>
+          </div>
+          <div id="gen-draft-preview" class="gen-draft-box">
+            <div style="text-align:center;padding:40px 20px;color:var(--text-muted)">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="margin-bottom:8px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <p style="font-size:14px;font-weight:600;color:var(--bg-deep)">尚未產出草稿</p>
+              <p style="font-size:12.5px">完成步驟 1-3 後,點下方「產生草稿」</p>
+              <button class="btn-primary" style="margin-top:14px" id="gen-make-draft">產生草稿(離線版)</button>
+            </div>
+          </div>
+          <div class="gen-actions">
+            <button class="btn-ghost gen-prev" data-go="3">← 上一步</button>
+            <button class="btn-primary gen-next" data-go="5">下一步:編輯匯出 →</button>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="gen-pane" data-pane="5">
+          <h3>步驟 5 · 編輯與匯出</h3>
+          <p class="gen-hint">編輯草稿、選擇匯出格式。匯出 .md / .txt / 列印 PDF;.docx 需在 Office/WPS/LibreOffice 開啟 .md 後另存。</p>
+          <textarea id="gen-final-text" class="gen-textarea" rows="20" placeholder="草稿將顯示於此,可直接編輯…"></textarea>
+          <div class="gen-actions">
+            <button class="btn-ghost gen-prev" data-go="4">← 上一步</button>
+            <button class="btn-ghost" id="gen-copy">複製到剪貼簿</button>
+            <button class="btn-ghost" id="gen-download-md">下載 .md</button>
+            <button class="btn-primary" id="gen-print">列印 / PDF</button>
+            <button class="btn-ghost" id="gen-clear" style="color:var(--warning);margin-left:auto">清除草稿</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right side: AABE 立場提醒 -->
+      <aside class="gen-aside">
+        <h4>AABE 立場錨點</h4>
+        <ul class="gen-stance">
+          <li>性教育主軸為健康教育(依 UNESCO 架構「可依國情採行」)</li>
+          <li>性平議題「融入而非侵入」</li>
+          <li>本土化非照搬國外模板</li>
+          <li>重啟青少年性健康計畫(對應淋病 +7×、梅毒 +53×)</li>
+          <li>AABE 為民間組織(非社團法人)</li>
+        </ul>
+        <h4 style="margin-top:var(--space-4)">案例敘事規則</h4>
+        <p style="font-size:12px;color:var(--text-muted);line-height:1.6">
+          引用案例須去識別化(governance/child_safeguarding §三點五)。
+          年齡用區段(8-11 / 12-14 / 15-18)、地區用「北部 / 南部」、學校類型用「公立國中 / 高職」等。
+        </p>
+        <h4 style="margin-top:var(--space-4)">三軸評分提醒</h4>
+        <p style="font-size:12px;color:var(--text-muted);line-height:1.6">
+          每段論述應對應:制度層面(★/★★/★★★)、結果層面、持續層面。
+          預告草案 = 2/1/1、草案 = 2/2/1、已通過 = 3/3/3 或 3/2/3。
+        </p>
+      </aside>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+
+</div><!-- /app-shell -->
+
+<!-- ━━━━━━━━━━━━━ Footer ━━━━━━━━━━━━━ -->
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-inner">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:var(--space-3)">
+        <span class="aabe-mark" style="background:var(--aabe-gold);font-size:14px;padding:6px 10px">AABE</span>
+        <div>
+          <h4 style="margin-bottom:0;font-size:14.5px">國教行動聯盟</h4>
+          <span style="font-size:10.5px;color:rgba(255,255,255,0.6);font-family:var(--sans-en);letter-spacing:0.04em">National Alliance of Action for Basic Education</span>
+        </div>
+      </div>
+      <p style="font-size: 12.5px; color: rgba(255,255,255,0.7); line-height: 1.6;">
+        本平台由國教行動聯盟製作維護。整合 CRC 三屆國家報告、結論性意見、國家人權行動計畫、民間影子報告與民間倡議資產之知識圖譜。
+      </p>
+      <p style="font-size: 12px; color: rgba(255,255,255,0.55); margin-top: var(--space-2)">
+        AABE 為民間組織(非社團法人)
+      </p>
+    </div>
+
+    <div>
+      <h4>核心資料</h4>
+      <a href="issues/">議題卡片</a>
+      <a href="reports/Alternative_Report_v0.4_professional.html">影子報告</a>
+      <a href="laws/">法規索引</a>
+      <a href="nap.html">NAP 追蹤</a>
+      <a href="timeline/">政策軌跡</a>
+    </div>
+
+    <div>
+      <h4>透明度</h4>
+      <a href="unheard.html">未被聽見的聲音</a>
+      <a href="self-audit.html">AABE 自我問責</a>
+      <a href="search.html">全平台搜尋</a>
+      <a href="kids/">兒少入口</a>
+    </div>
+
+    <div>
+      <h4>關於</h4>
+      <a href="https://github.com/naer-tw/child-rights-watch" target="_blank" rel="noopener">GitHub Repo</a>
+      <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>
+      <a href="llms.txt">LLM Crawler 政策</a>
+      <a href="mailto:weall888@gmail.com">聯絡 AABE</a>
+    </div>
+  </div>
+
+  <div class="credit">
+    最後更新:2026-05-03 · 平台版本:v2.0 · self_qa 55/55 通過 · 9 輪獨立 cold read 完成
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   AABE 自家人軟性閘門
+   - 此為前端 client-side 軟閘門,僅用於:
+     (a) 區別公開 vs 內部介面
+     (b) 防止無關人士誤觸內部工作頁
+   - 真正機密資料(個人資料、未公開倡議底稿)不應放本平台
+   - 密碼修改:把下面 INSIDER_PASS 改成你要的字串
+   ============================================================ */
+const INSIDER_USER = "aabe";
+const INSIDER_PASS = "aabe-internal-2026";  // ← 請改成你要的密碼後 commit
+
+(function() {
+  // 角色選擇器
+  const dismissed = localStorage.getItem('role-dismissed');
+  if (dismissed) document.querySelector('.role-selector').style.display = 'none';
+
+  // 自家人狀態回填
+  if (localStorage.getItem('aabe-insider') === 'yes') {
+    setInsiderUI(true);
+  }
+
+  // 點「AABE 自家人」開登入 modal
+  document.getElementById('btn-insider').addEventListener('click', () => {
+    if (localStorage.getItem('aabe-insider') === 'yes') {
+      // 已登入則不重開 modal
+      return;
+    }
+    document.getElementById('login-modal').style.display = 'grid';
+    setTimeout(() => document.getElementById('login-user').focus(), 50);
+  });
+
+  // 點「一般訪客」切回公開模式
+  document.getElementById('btn-public').addEventListener('click', () => {
+    document.getElementById('btn-public').classList.add('active');
+    document.getElementById('btn-insider').classList.remove('active');
+  });
+
+  // 登出
+  document.getElementById('logout-link').addEventListener('click', (e) => {
+    e.preventDefault();
+    localStorage.removeItem('aabe-insider');
+    setInsiderUI(false);
+  });
+})();
+
+function tryLogin(e) {
+  e.preventDefault();
+  const u = document.getElementById('login-user').value.trim();
+  const p = document.getElementById('login-pass').value;
+  if (u === INSIDER_USER && p === INSIDER_PASS) {
+    localStorage.setItem('aabe-insider', 'yes');
+    document.getElementById('login-modal').style.display = 'none';
+    document.getElementById('login-err').style.display = 'none';
+    document.getElementById('login-form').reset();
+    setInsiderUI(true);
+  } else {
+    document.getElementById('login-err').style.display = 'block';
+  }
+  return false;
+}
+
+function setInsiderUI(isInsider) {
+  if (isInsider) {
+    document.body.classList.add('is-insider');
+    document.getElementById('btn-insider').classList.add('active');
+    document.getElementById('btn-public').classList.remove('active');
+    const status = document.getElementById('insider-status');
+    if (status) status.style.display = 'inline-flex';
+  } else {
+    document.body.classList.remove('is-insider');
+    document.getElementById('btn-insider').classList.remove('active');
+    document.getElementById('btn-public').classList.add('active');
+    const status = document.getElementById('insider-status');
+    if (status) status.style.display = 'none';
+  }
+}
+
+// 點內部連結時的閘門檢查
+function checkInsider(e) {
+  if (localStorage.getItem('aabe-insider') === 'yes') return true;
+  e.preventDefault();
+  document.getElementById('login-modal').style.display = 'grid';
+  setTimeout(() => document.getElementById('login-user').focus(), 50);
+  return false;
+}
+</script>
+
+<!-- Matrix data(generator 也用同一份議題清單)-->
+<script>
+<!-- MATRIX-DATA-START -->
+window.MATRIX_DATA = {
+  "issues": [
+    {
+      "pi": "PI-01",
+      "title": "校園霸凌",
+      "cluster": "E",
+      "severity": "高",
+      "status": "持續追蹤",
+      "n_advocacy": 8,
+      "n_co": 4,
+      "n_nap": 0,
+      "n_laws": 4
+    },
+    {
+      "pi": "PI-02",
+      "title": "青少年心理健康與自殺防治",
+      "cluster": "G",
+      "severity": "高",
+      "status": "惡化",
+      "n_advocacy": 3,
+      "n_co": 2,
+      "n_nap": 3,
+      "n_laws": 2
+    },
+    {
+      "pi": "PI-03",
+      "title": "體罰禁止(家庭與所有場域)",
+      "cluster": "E",
+      "severity": "高",
+      "status": "持續追蹤",
+      "n_advocacy": 0,
+      "n_co": 2,
+      "n_nap": 0,
+      "n_laws": 1
+    },
+    {
+      "pi": "PI-04",
+      "title": "學生輔導體制(WISER 三級輔導 + 神經多樣性支持)",
+      "cluster": "G",
+      "severity": "高",
+      "status": "持續追蹤",
+      "n_advocacy": 5,
+      "n_co": 4,
+      "n_nap": 2,
+      "n_laws": 3
+    },
+    {
+      "pi": "PI-05",
+      "title": "少年司法與行政先行",
+      "cluster": "I",
+      "severity": "高",
+      "status": "持續追蹤",
+      "n_advocacy": 12,
+      "n_co": 4,
+      "n_nap": 0,
+      "n_laws": 1
+    },
+    {
+      "pi": "PI-06",
+      "title": "兒少網路安全與新興物質",
+      "cluster": "L",
+      "severity": "高",
+      "status": "惡化",
+      "n_advocacy": 10,
+      "n_co": 0,
+      "n_nap": 2,
+      "n_laws": 3
+    },
+    {
+      "pi": "PI-07",
+      "title": "性剝削防制",
+      "cluster": "I",
+      "severity": "高",
+      "status": "持續追蹤",
+      "n_advocacy": 0,
+      "n_co": 0,
+      "n_nap": 1,
+      "n_laws": 1
+    },
+    {
+      "pi": "PI-08",
+      "title": "性別平等教育",
+      "cluster": "H",
+      "severity": "高",
+      "status": "持續追蹤",
+      "n_advocacy": 7,
+      "n_co": 3,
+      "n_nap": 2,
+      "n_laws": 2
+    },
+    {
+      "pi": "PI-09",
+      "title": "課業壓力、學習權與教育選擇權",
+      "cluster": "H",
+      "severity": "高",
+      "status": "持續追蹤",
+      "n_advocacy": 13,
+      "n_co": 3,
+      "n_nap": 1,
+      "n_laws": 3
+    },
+    {
+      "pi": "PI-10",
+      "title": "兒少表意權與校園民主",
+      "cluster": "C",
+      "severity": "中",
+      "status": "持續追蹤",
+      "n_advocacy": 2,
+      "n_co": 0,
+      "n_nap": 4,
+      "n_laws": 0
+    },
+    {
+      "pi": "PI-11",
+      "title": "家庭功能與依 CRC 第 5 條的父母指導角色",
+      "cluster": "F",
+      "severity": "中",
+      "status": "持續追蹤",
+      "n_advocacy": 9,
+      "n_co": 0,
+      "n_nap": 0,
+      "n_laws": 1
+    },
+    {
+      "pi": "PI-12",
+      "title": "替代照顧與機構安置(剴剴案後)",
+      "cluster": "F",
+      "severity": "高",
+      "status": "持續追蹤",
+      "n_advocacy": 9,
+      "n_co": 7,
+      "n_nap": 0,
+      "n_laws": 2
+    },
+    {
+      "pi": "PI-13",
+      "title": "移民、無國籍與失聯兒少",
+      "cluster": "I",
+      "severity": "高",
+      "status": "持續追蹤",
+      "n_advocacy": 4,
+      "n_co": 3,
+      "n_nap": 2,
+      "n_laws": 0
+    },
+    {
+      "pi": "PI-14",
+      "title": "LGBTQI+ 兒少",
+      "cluster": "C",
+      "severity": "高",
+      "status": "持續追蹤",
+      "n_advocacy": 3,
+      "n_co": 3,
+      "n_nap": 0,
+      "n_laws": 1
+    }
+  ],
+  "actions": [
+    {
+      "action_id": "A-Blueprint_Gender_Equity_Education_Reform",
+      "title": "Gender Equity Education Reform Blueprint",
+      "action_date": "待補",
+      "action_type": "政策白皮書(英文版)",
+      "disposition_status": null,
+      "main_argument": "**英文版政策白皮書**,可作為 CRC 第三次審查國際委員場次提交之**英文版材料**。",
+      "issue_ids": "PI-08"
+    },
+    {
+      "action_id": "A-2026-05-14_衛福部公聽會發言稿",
+      "title": "衛福部兒少權法修法草案公聽會發言稿(2026-05-14 預定)",
+      "action_date": "2026-05-14",
+      "action_type": "公聽會發言稿(Wave 66 定稿,日期預估)",
+      "disposition_status": null,
+      "main_argument": "",
+      "issue_ids": "PI-01,PI-05,PI-11,PI-12"
+    },
+    {
+      "action_id": "A-2026-05-04_CRC第2輪審查_場次2_候選A_剴剴案_口語版",
+      "title": "場次 2 候選 A — 剴剴案六大缺口(口語逐點版,雙軸審查框架,Wave 49 範本)",
+      "action_date": "2026-05-04",
+      "action_type": "民間審查發言(代表照念用,雙軸審查框架)",
+      "disposition_status": null,
+      "main_argument": "",
+      "issue_ids": "PI-12"
+    },
+    {
+      "action_id": "A-2026-05-04_CRC第2輪審查_場次2發言稿",
+      "title": "CRC 第三次國家報告第 2 輪民間審查場次 2 發言稿(5/4 上午,口語雙軸版)",
+      "action_date": "2026-05-04",
+      "action_type": "民間審查發言(雙軸審查框架,代表照念用)",
+      "disposition_status": null,
+      "main_argument": "",
+      "issue_ids": "PI-01,PI-04,PI-12"
+    },
+    {
+      "action_id": "A-2026-05-04_CRC第2輪審查_場次3發言稿",
+      "title": "CRC 第三次國家報告第 2 輪民間審查場次 3 發言稿(5/4 下午,口語雙軸版)",
+      "action_date": "2026-05-04",
+      "action_type": "民間審查發言(雙軸審查框架,代表照念用)",
+      "disposition_status": null,
+      "main_argument": "",
+      "issue_ids": "PI-02,PI-05,PI-06,PI-09,PI-13,PI-14"
+    },
+    {
+      "action_id": "A-2026-04-30_CRC第2輪審查_場次1發言稿",
+      "title": "CRC 第三次國家報告第 2 輪民間審查場次 1 發言稿(4/30 上午,口語雙軸版)",
+      "action_date": "2026-04-30",
+      "action_type": "民間審查發言(雙軸審查框架,代表照念用)",
+      "disposition_status": null,
+      "main_argument": "",
+      "issue_ids": "PI-10,PI-11,PI-13,PI-14"
+    },
+    {
+      "action_id": "A-2026-04-28_CRC審查會前提問書",
+      "title": "CRC 第三次國家報告第 2 輪民間審查會前提問書(雙軸口語版,Wave 49 重寫)",
+      "action_date": "2026-04-28",
+      "action_type": "民間審查會前提問(向衛福部秘書單位送)",
+      "disposition_status": null,
+      "main_argument": "",
+      "issue_ids": "PI-01,PI-02,PI-04,PI-05,PI-06,PI-09,PI-12,PI-13,PI-14"
+    },
+    {
+      "action_id": "A-2026-04-24_無菸品世代倡議",
+      "title": "推動「無菸品世代(Tobacco-Free Generation)」聲明",
+      "action_date": "2026-04-24",
+      "action_type": "聯合聲明(台灣拒菸聯盟主導,國教盟簽署)",
+      "disposition_status": null,
+      "main_argument": "",
+      "issue_ids": "PI-06"
+    },
+    {
+      "action_id": "NAAES-health_2026-04-24-健康台灣無菸品世代",
+      "title": "台灣為何應推動「無菸品世代」全面禁絕新型菸品？",
+      "action_date": "2026-04-24",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "英國通過《菸草和電子煙法案》確立2009年後出生者終身禁買紙菸，但保留電子煙，恐製造新一代「電子煙世代」。國教行動聯盟與台灣拒菸聯盟主張「健康台灣」應推動真正的「無菸品世代」，全面禁紙菸、電子煙、加熱菸、尼古丁袋。",
+      "issue_ids": "PI-06"
+    },
+    {
+      "action_id": "A-2026-04-22_兒少權法六大缺口",
+      "title": "兒少權法 15 年大修為何仍補不上剴剴案六大制度缺口?(衛福部 2026-04-21 預告草案分析)",
+      "action_date": "2026-04-22",
+      "action_type": "政策分析(新聞稿延伸)",
+      "disposition_status": "not_adopted",
+      "main_argument": "",
+      "issue_ids": "PI-01,PI-05,PI-11,PI-12"
+    },
+    {
+      "action_id": "NAAES-child-rights_2026-04-22-兒少權法修法六大缺口",
+      "title": "兒少權法15年大修為何仍補不上剴剴案六大制度缺口？",
+      "action_date": "2026-04-22",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "衛福部2026年4月21日預告兒少權法修正草案，條文由118條擴增至165條。國教盟指出，草案在社工注意義務、高風險升級、跨機關資訊共享、重大事件檢討、委外責任鏈與起訴前專業審查六大核心仍為零條款。",
+      "issue_ids": "PI-01,PI-05,PI-11,PI-12"
+    },
+    {
+      "action_id": "A-WISER_學校三級輔導手冊",
+      "title": "WISER-3.0 學校三級輔導工作手冊(第三節)",
+      "action_date": "2026-04-17(講解版日期)",
+      "action_type": "政府教材(教育部)",
+      "disposition_status": null,
+      "main_argument": "教育部國教署 WISER-3.0 模式之**第三節**手冊,2026-04-17 為講解版日期。",
+      "issue_ids": "PI-04"
+    },
+    {
+      "action_id": "A-2026-04-17_剴剴案五大修法工程",
+      "title": "從保證人地位法理到五大修法工程:台灣兒少保護體系如何重建?",
+      "action_date": "2026-04-17",
+      "action_type": "政策分析(深度長文)",
+      "disposition_status": null,
+      "main_argument": "### 2.1 法理判斷\n> 法院的三層論據在刑法學理上站得住腳。**但正因如此,立法必須跟上司法**。\n\n### 2.2 結構性問題\n> 應負保證人地位之人,為**有實質支配力卻怠於作為之個別行為人**,而非在基層克盡職守之社工群體。但結構性負荷不可作為個別社工免責的藉口,結構問題與個別過失須分別處理。\n\n### 2.3 國際對標\n> 全球主要法治國家**幾乎不以過失致死追訴第一線兒保社工**;主流回應是**立法明確化義務、強化機構責任、系統性學習**。",
+      "issue_ids": "PI-12"
+    },
+    {
+      "action_id": "NAAES-child-rights_2026-04-17-兒少保護體系改革五大修法工程",
+      "title": "從保證人地位法理到五大修法工程：台灣兒少保護體系如何重建？",
+      "action_date": "2026-04-17",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "完整解構剴剴案保證人地位三層論據：法律形式來源、制度性接管與事實承擔。分析等價性原則與四大法制漏洞，提出五大修法工程。跨國比較德國Garantenlehre、美國DeShaney案、英國Munro Review、日韓經驗，以中立法律分析建構制度改革方向。",
+      "issue_ids": "PI-12"
+    },
+    {
+      "action_id": "NAAES-child-rights_2026-04-17-剴剴案社工判刑與兒少保護修法訴求",
+      "title": "剴剴案社工一審判刑後，台灣兒少保護制度該如何修補？",
+      "action_date": "2026-04-17",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "2026年4月16日剴剴案社工陳尚潔一審遭判過失致死2年。法院從法律形式來源、制度性接管與事實承擔三層論據認定保證人地位。國教行動聯盟以中立法律分析指出：判決法理站得住腳，但正因如此，立法必須跟上司法。",
+      "issue_ids": "PI-12"
+    },
+    {
+      "action_id": "A-2026-04-15_家長立場_全長聯",
+      "title": "家長支持性平卻不滿意現行制度?全長聯指出三大教育缺口",
+      "action_date": "2026-04-15",
+      "action_type": "立法院公聽會書面報告(合作 NGO)",
+      "disposition_status": null,
+      "main_argument": "**全國家長會長聯盟(全長聯)**,以全國各縣市家長會長為主體。注意**與「全國家長團體聯盟(全家盟)」是不同組織**。",
+      "issue_ids": "PI-08"
+    },
+    {
+      "action_id": "A-2026-04-15_性平法再校準_國教盟",
+      "title": "性平法不該無限擴張!國教盟三大修法主張守住教育本位",
+      "action_date": "2026-04-15",
+      "action_type": "立法院公聽會書面報告(完整版)+ 新聞稿 + 綜合研究報告 APA7 版",
+      "disposition_status": null,
+      "main_argument": "",
+      "issue_ids": "PI-08"
+    },
+    {
+      "action_id": "NAAES-education-reform_2026-04-15-家長立場-全長聯公聽會",
+      "title": "家長支持性平卻不滿意現行制度？全長聯指出三大教育缺口",
+      "action_date": "2026-04-15",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "全國家長會長聯盟（全長聯）於 2026-04-15 立法院公聽會書面報告，從家長角度指出三大教育缺口，主張分齡性健康教育、獨立情感教育與家校合作機制。",
+      "issue_ids": "PI-08"
+    },
+    {
+      "action_id": "NAAES-education-reform_2026-04-15-性平法再校準-國教盟公聽會",
+      "title": "性平法該不該無限擴張？國教盟三大修法主張守住教育本位",
+      "action_date": "2026-04-15",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "國教行動聯盟於 2026-04-15 立法院公聽會書面報告，指出 2023 修法後性平法出現定義混淆、功能過載、程序膨脹三大副作用，主張釐清邊界、分級分流、回歸教育本位。",
+      "issue_ids": "PI-08"
+    },
+    {
+      "action_id": "A-2026-04-14_司法院少事法諮詢",
+      "title": "司法院少事法部分條文修正草案諮詢會議",
+      "action_date": "2026-04-14",
+      "action_type": "政府諮詢會議(司法院主辦)",
+      "disposition_status": null,
+      "main_argument": "",
+      "issue_ids": "PI-05"
+    },
+    {
+      "action_id": "A-2026-04-13_實驗三法修法公聽會",
+      "title": "立法院教育及文化委員會「實驗教育三法修法」公聽會",
+      "action_date": "2026-04-13",
+      "action_type": "公聽會出席(立法院)+ 書面報告 + 七分鐘發言",
+      "disposition_status": null,
+      "main_argument": "",
+      "issue_ids": "PI-09"
+    },
+    {
+      "action_id": "A-2026-04-12_偏鄉公校轉型實驗教育",
+      "title": "台灣偏鄉公校為何大量轉型實驗教育?",
+      "action_date": "2026-04-12",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "- **114 學年度 128 校學校型態實驗教育中,公立占 120 校(93.8%)**\n- 偏鄉及非山非市學校占 68 校(47.2%)\n- **「實驗化」已成裁併校的政治替代方案**,而非真正的教育創新",
+      "issue_ids": "PI-09"
+    },
+    {
+      "action_id": "A-2026-04-12_偽實驗與弱勢學生權益",
+      "title": "實驗教育如何保障弱勢學生權益?",
+      "action_date": "2026-04-12",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "- 部分學校以雙語等課程申請實驗教育名義**規避特教法**\n- 公立實驗校占 93.8%,六成家長反映學校拒收身障生\n- **「偽實驗」+ 法規排除 + 隱性篩選**形成弱勢學生的隱性門檻",
+      "issue_ids": "PI-09"
+    },
+    {
+      "action_id": "A-2026-04-12_實驗教育國際比較",
+      "title": "台灣實驗教育如何與國際模式相比?",
+      "action_date": "2026-04-12",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "- 台灣以特別法賦予學校型態實驗教育校廣泛法規排除(課程、教學、人事),**幾乎沒有退場機制**\n- 美國採契約型治理、英國採自治加強問責 — **「公共性不退、治理工具改變」**\n- 台灣是**「自治先行、問責後補」**的「制度紅利」模式 — 與國際相反",
+      "issue_ids": "PI-09"
+    },
+    {
+      "action_id": "NAAES-education-reform_2026-04-12-偏鄉公校轉型實驗教育",
+      "title": "台灣偏鄉公校為何大量轉型實驗教育？",
+      "action_date": "2026-04-12",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "台灣學校型態實驗教育128校中公立占93.8%，偏鄉及非山非市學校占47.2%。國教行動聯盟分析少子化、法規誘因、裁併校政治成本等五大結構性驅動力，揭示「偽實驗」與制度求生現象，提出十項改革建議。",
+      "issue_ids": "PI-09"
+    },
+    {
+      "action_id": "NAAES-education-reform_2026-04-12-偽實驗與弱勢學生權益",
+      "title": "實驗教育如何保障弱勢學生權益？",
+      "action_date": "2026-04-12",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "部分學校以雙語等課程申請實驗教育名義規避特教法，公立實驗校占93.8%，六成家長反映學校拒收身障生。國教盟分析法規漏洞、隱性篩選與偏鄉「被實驗」現象，提出修法建議。",
+      "issue_ids": "PI-09"
+    },
+    {
+      "action_id": "NAAES-education-reform_2026-04-12-台灣實驗教育國際比較",
+      "title": "台灣實驗教育如何與國際模式相比？",
+      "action_date": "2026-04-12",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "台灣學校型態實驗教育以大規模法規排除著稱，與美國特許學校、英國學院、德國實驗校異。美國CREDO 2023年研究(180萬名學生)證實特許校正向學習。國教盟分析核心差異：台灣無退場機制，國外多為「公共性不退、治理工具改變」。",
+      "issue_ids": "PI-09"
+    },
+    {
+      "action_id": "A-2026-04-10_拜會新北社會局神經多樣性",
+      "title": "拜會新北社會局 — 神經多樣性生活導師制度推動",
+      "action_date": "2026-04-10",
+      "action_type": "政府拜會(國教盟協辦)",
+      "disposition_status": null,
+      "main_argument": "",
+      "issue_ids": "PI-04"
+    },
+    {
+      "action_id": "A-2026-04-10_民眾黨公聽會教師荒",
+      "title": "民眾黨團「完善教師荒」公聽會",
+      "action_date": "2026-04-10",
+      "action_type": "公聽會出席(立法院政黨團)",
+      "disposition_status": null,
+      "main_argument": "",
+      "issue_ids": "PI-04,PI-09"
+    },
+    {
+      "action_id": "NAAES-school-lunch_2026-04-03-國民教育平權",
+      "title": "台灣國民教育真的免費嗎？營養午餐與教科書補助的22縣市落差",
+      "action_date": "2026-04-03",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "2026年兒童節，全台22縣市中已有20縣市實施免費營養午餐，桃園率六都之先補助教科書。國教行動聯盟分析義務教育經費落差，呼籲中央訂定全國一致最低保障標準，停止讓孩子的起點被郵遞區號決定。",
+      "issue_ids": "PI-09"
+    },
+    {
+      "action_id": "A-2026-04-02_少事法公聽會",
+      "title": "民眾黨團「完善少事法」公聽會",
+      "action_date": "2026-04-02",
+      "action_type": "公聽會出席(立法院政黨團)",
+      "disposition_status": null,
+      "main_argument": "",
+      "issue_ids": "PI-05"
+    },
+    {
+      "action_id": "NAAES-campus-safety_2026-04-02-校園唾液快篩二層檢測機制",
+      "title": "校園唾液快篩只做初篩夠嗎？為何需要二層檢測機制？",
+      "action_date": "2026-04-02",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "教育部2026年9月起將唾液快篩引進校園，國教行動聯盟肯定此舉但呼籲建立二層檢測機制。依托咪酯等新興毒品代謝快，傳統尿篩7天後即檢測不到，LC-MS/MS可同時檢測127種以上藥物，應補上確認檢驗、輔導通報與法制配套。",
+      "issue_ids": "PI-06"
+    },
+    {
+      "action_id": "NAAES-child-rights_2026-04-02-台灣未來帳戶",
+      "title": "臺灣未來帳戶4500億該怎麼花？國教盟提四大優化建議",
+      "action_date": "2026-04-02",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "國教行動聯盟出席2026年4月2日立法院「臺灣未來帳戶條例草案」公聽會，針對首年1,130億元、13年4,500億元的特別預算規模，提出財政永續、積極型公義、彈性支用、跨部會治理四大建議。",
+      "issue_ids": "PI-11"
+    },
+    {
+      "action_id": "NAAES-child-health_2026-04-01-兒童消失危機-育兒津貼翻倍",
+      "title": "兒童消失危機：為什麼200億幽靈預算救不了台灣的新生兒？",
+      "action_date": "2026-04-01",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "2025年台灣新生兒僅10.7萬人，十年腰斬一半。全國婦兒團體聯盟揭露少子女化預算四年溢編超過200億元，75%家長自行照顧幼兒卻僅獲32%預算，倡議育兒津貼應分階段翻倍至1.5萬元。",
+      "issue_ids": "PI-11"
+    },
+    {
+      "action_id": "NAAES-child-rights_2026-04-01-兒童節育兒支持政策",
+      "title": "政府少子化政策為何無效？八年4,484億元為何救不了台灣生育率？",
+      "action_date": "2026-04-01",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "全國婦兒團體聯盟與全家盟聯合分析少子化政策困境，提出四大主張。",
+      "issue_ids": "PI-11"
+    },
+    {
+      "action_id": "NAAES-child-rights_2026-04-01-少事法矯正教育假釋塗銷轉銜改革",
+      "title": "少事法矯正教育、假釋追蹤與塗銷制度如何改革？",
+      "action_date": "2026-04-01",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "國教行動聯盟針對少年事件處理法提出矯正教育法制化、假釋追蹤入法至少半年、塗銷制度分級及被害人權益保障等四大修法訴求。全國僅4所矯正學校，2023年新北割頸案凸顯制度缺口。",
+      "issue_ids": "PI-05"
+    },
+    {
+      "action_id": "A-2026-03-31_董氏基金會無菸城市",
+      "title": "如何達成無菸城市 — 戶外設置吸菸區還是吸菸室?",
+      "action_date": "2026-03-31",
+      "action_type": "政策分析(合作 NGO)",
+      "disposition_status": null,
+      "main_argument": "",
+      "issue_ids": "PI-06"
+    },
+    {
+      "action_id": "NAAES-campus-safety_2026-03-25-永和國中霸凌案",
+      "title": "面對校園霸凌頻傳，我們還可以做什麼？——國教盟青年部：應強化校園保護機制三道防線",
+      "action_date": "2026-03-25",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "國教盟青年部針對新北市永和區國中霸凌事件發表聲明，認為事件凸顯校園保護機制在預防、求助與防止二次傷害三個環節同時失守，應藉此檢討強化三道防線，引用CRC統計呼籲補強預防教育、及早接住與後續輔導。",
+      "issue_ids": "PI-01"
+    },
+    {
+      "action_id": "A-2026-03-17_國教盟少事法建議書",
+      "title": "國教盟少事法修正建議書 — 過渡性教育措施",
+      "action_date": "2026-03-17",
+      "action_type": "政策建議書(送立法院)",
+      "disposition_status": null,
+      "main_argument": "- 少事法 2019 大修建立「行政先行」框架,但**過渡性教育學位嚴重不足**\n- 訴求《國民轉介教育條例》立法,**填補曝險少年離開正規學校 → 矯正學校之間的教育空白**",
+      "issue_ids": "PI-05"
+    },
+    {
+      "action_id": "NAAES-campus-safety_2026-03-23-倡議成果追蹤",
+      "title": "campus-safety_2026-03-23-倡議成果追蹤",
+      "action_date": "2026",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "",
+      "issue_ids": "PI-01,PI-05,PI-06"
+    },
+    {
+      "action_id": "NAAES-campus-safety_2026-03-23-轉介教育條例",
+      "title": "campus-safety_2026-03-23-轉介教育條例",
+      "action_date": "2026",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "",
+      "issue_ids": "PI-05"
+    },
+    {
+      "action_id": "NAAES-child-health_2026-01-14-人工生殖法修法風險",
+      "title": "child-health_2026-01-14-人工生殖法修法風險",
+      "action_date": "2026",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "",
+      "issue_ids": "PI-13"
+    },
+    {
+      "action_id": "NAAES-health_2026-01-13-無菸城市",
+      "title": "health_2026-01-13-無菸城市",
+      "action_date": "2026",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "",
+      "issue_ids": "PI-06"
+    },
+    {
+      "action_id": "NAAES-school-lunch_2026-01-09-免費營養午餐配套",
+      "title": "school-lunch_2026-01-09-免費營養午餐配套",
+      "action_date": "2026",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "",
+      "issue_ids": "PI-09,PI-11"
+    },
+    {
+      "action_id": "NAAES-teacher-affairs_2026-01-23-校事會議修法",
+      "title": "teacher-affairs_2026-01-23-校事會議修法",
+      "action_date": "2026",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "",
+      "issue_ids": "PI-01"
+    },
+    {
+      "action_id": "NAAES-child-rights_2025-12-24-少年重大暴力案件量刑透明化",
+      "title": "少年重大暴力案件的量刑應如何建立透明基準？",
+      "action_date": "2025-12-24",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "新北國中生割頸案二審改判（一審9、8年→二審12、11年）引發社會質疑。國教盟指出，爭議不在刑期輕重，而在制度缺乏結構化、透明且可檢核的量刑基準。國教盟提出三大改革主張。",
+      "issue_ids": "PI-05"
+    },
+    {
+      "action_id": "NAAES-campus-safety_2025-12-16-校園菸毒與毒駕新興毒品檢測",
+      "title": "校園菸毒與毒駕源頭相同　新興毒品快速變形　毒駕年增8倍",
+      "action_date": "2025-12-16",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "國教盟倡議用科技反制科技：唾液快篩＋液相層析串聯質譜兩層式檢測對抗新興毒品",
+      "issue_ids": "PI-06"
+    },
+    {
+      "action_id": "A-2025-12-10_防制喪屍煙彈記者會",
+      "title": "防制校園喪屍煙彈(依托咪酯)記者會",
+      "action_date": "2025-12-10",
+      "action_type": "記者會(國教盟主辦)",
+      "disposition_status": null,
+      "main_argument": "- 喪屍煙彈(依托咪酯)在校園氾濫\n- 國教盟痛批政府怠惰不修法\n- 訴求:**全面禁止加味菸品 + 修法賦予教育人員查扣電子煙載具**之法源依據",
+      "issue_ids": "PI-06"
+    },
+    {
+      "action_id": "NAAES-child-rights_20251208-sexual-violence-prevention-education",
+      "title": "8742名青少年票選第三名：遇到性騷擾該怎麼辦？——國教盟呼籲補上保護課",
+      "action_date": "2025-12-08",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "8,742名青少年調查顯示「遇到性騷擾該怎麼辦？」高居第三名。衛福部統計未成年性影像受害者佔32.9%，但國中小每週僅1節健康教育課。",
+      "issue_ids": "PI-08"
+    },
+    {
+      "action_id": "NAAES-child-rights_2025-12-06-兒童成長需求總體檢論壇",
+      "title": "「生育·養育·教育—兒童成長需求總體檢」論壇",
+      "action_date": "2025-12-06",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "2025年12月6日論壇，四大組織聯合舉辦，探討台灣兒童成長困境與政策整合。涵蓋少子化、新生兒死亡率、青少年自殺、3C過曝、社會情緒學習等議題，提出跨部會整合建議。",
+      "issue_ids": "PI-09,PI-10,PI-11"
+    },
+    {
+      "action_id": "NAAES-youth-health_2025-12-05-青少年自殺通報",
+      "title": "青少年自殺通報九年增加3.3倍、佔比倍增",
+      "action_date": "2025-12-05",
+      "action_type": "政策分析(GEO 文章)",
+      "disposition_status": null,
+      "main_argument": "15到24歲青少年自殺通報數量自104年增至113年增加3.3倍，死亡率十年增加一倍。國教行動聯盟呼籲納入心理健康評估，建立銜接路徑降低漏接。",
+      "issue_ids": "PI-02"
+    },
+    {
+      "action_id": "A-2025-07-11_全面性教育現況調查",
+      "title": "2025 台灣兒童全面性教育現況調查報告(學會回應版)",
+      "action_date": "2025-07-11",
+      "action_type": "民間調查報告",
+      "disposition_status": null,
+      "main_argument": "台灣兒童全面性教育現況調查報告,2025-07-11 學會回應版。為 PI-08 議題之**民間實證資料來源**。",
+      "issue_ids": "PI-08"
+    }
+  ],
+  "meta": {
+    "total_issues": 14,
+    "total_actions": 52,
+    "generated_at": "2026-05-03T23:35:41"
+  }
+};
+<!-- MATRIX-DATA-END -->
+</script>
+
+<script>
+/* ============================================================
+   Generator wizard — 5 步驟,localStorage 持久化
+   ============================================================ */
+(function() {
+  const LS_KEY = 'aabe-generator-draft';
+  const D = window.MATRIX_DATA || {issues:[]};
+
+  // ── Restore state
+  const state = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+  state.selectedIssues = state.selectedIssues || [];
+  state.evidences = state.evidences || [];
+  state.audience = state.audience || 'professional';
+  state.length = state.length || 'medium';
+  state.draft = state.draft || '';
+  state.step = state.step || 1;
+
+  function save() { localStorage.setItem(LS_KEY, JSON.stringify(state)); }
+
+  // ── Step navigation
+  function gotoStep(n) {
+    state.step = n; save();
+    document.querySelectorAll('.gen-pane').forEach(p => p.classList.toggle('active', +p.dataset.pane === n));
+    document.querySelectorAll('.gen-step').forEach(s => {
+      const i = +s.dataset.step;
+      s.classList.toggle('active', i === n);
+      s.classList.toggle('done', i < n);
+    });
+    if (n === 3) renderArticles();
+  }
+  document.querySelectorAll('.gen-next, .gen-prev').forEach(b => {
+    b.addEventListener('click', () => gotoStep(+b.dataset.go));
+  });
+
+  // ── Step 1: Issue picker
+  function renderIssues() {
+    const grid = document.getElementById('gen-issue-grid');
+    if (D.issues.length === 0) {
+      grid.innerHTML = '<p style="color:var(--text-muted);font-size:13px">尚無議題資料 — 請執行 python3 scripts/render_matrix.py</p>';
+      return;
+    }
+    grid.innerHTML = D.issues.map(it => `
+      <div class="gen-issue-card ${state.selectedIssues.includes(it.pi)?'checked':''}" data-pi="${it.pi}">
+        <span class="pi-id">${it.pi}</span>
+        <div class="ti">${it.title}</div>
+        <div class="sev">嚴重度 ${it.severity || '─'} · ${it.n_advocacy} 倡議 / ${it.n_co} CO</div>
+      </div>
+    `).join('');
+    document.querySelectorAll('.gen-issue-card').forEach(c => {
+      c.addEventListener('click', () => {
+        const pi = c.dataset.pi;
+        const idx = state.selectedIssues.indexOf(pi);
+        if (idx >= 0) {
+          state.selectedIssues.splice(idx, 1);
+          c.classList.remove('checked');
+        } else if (state.selectedIssues.length < 5) {
+          state.selectedIssues.push(pi);
+          c.classList.add('checked');
+        }
+        document.getElementById('gen-issue-count').textContent = `已選 ${state.selectedIssues.length} / 5`;
+        save();
+      });
+    });
+    document.getElementById('gen-issue-count').textContent = `已選 ${state.selectedIssues.length} / 5`;
+  }
+
+  // ── Step 2: Evidence inputs
+  function renderEvidences() {
+    const c = document.getElementById('gen-evidence-list');
+    if (state.evidences.length === 0 && state.selectedIssues.length > 0) {
+      // 為每個已選議題預填一筆空白
+      state.evidences = state.selectedIssues.map(pi => ({issue:pi, problem:'', evidence:'', recommendation:''}));
+      save();
+    }
+    c.innerHTML = state.evidences.map((e, i) => `
+      <div class="gen-evidence">
+        <label>對應議題</label>
+        <select data-i="${i}" data-k="issue">
+          ${state.selectedIssues.map(pi => `<option value="${pi}" ${pi===e.issue?'selected':''}>${pi} ${(D.issues.find(it=>it.pi===pi)||{title:''}).title}</option>`).join('')}
+        </select>
+        <label>問題標題</label>
+        <input type="text" data-i="${i}" data-k="problem" value="${(e.problem||'').replace(/"/g,'&quot;')}" placeholder="例:特教師生比實際惡化">
+        <label>證據與現況</label>
+        <textarea data-i="${i}" data-k="evidence" placeholder="統計、案例、官方文件…">${e.evidence || ''}</textarea>
+        <label>具體建議</label>
+        <textarea data-i="${i}" data-k="recommendation" placeholder="法律修訂、預算編列、第三方監督…">${e.recommendation || ''}</textarea>
+        <div style="text-align:right;margin-top:8px"><button class="btn-ghost" data-rm="${i}" style="font-size:12px;padding:5px 10px">刪除</button></div>
+      </div>
+    `).join('');
+    c.querySelectorAll('input,textarea,select').forEach(el => {
+      el.addEventListener('input', () => {
+        state.evidences[+el.dataset.i][el.dataset.k] = el.value;
+        save();
+      });
+    });
+    c.querySelectorAll('[data-rm]').forEach(b => {
+      b.addEventListener('click', () => {
+        state.evidences.splice(+b.dataset.rm, 1);
+        save(); renderEvidences();
+      });
+    });
+  }
+  document.getElementById('gen-add-evidence').addEventListener('click', () => {
+    state.evidences.push({issue: state.selectedIssues[0]||'', problem:'', evidence:'', recommendation:''});
+    save(); renderEvidences();
+  });
+
+  // ── Step 3: Article mapping(基於議題的 CRC 條文映射)
+  const PI_ARTICLES = {
+    'PI-01': ['第 19 條 免於暴力', '第 28 條 教育權'],
+    'PI-02': ['第 24 條 健康權', '第 6 條 生命權'],
+    'PI-03': ['第 19 條 免於暴力', '第 37 條 不受殘忍對待'],
+    'PI-04': ['第 23 條 身心障礙', '第 28 條 教育權', '第 24 條 健康權'],
+    'PI-05': ['第 37 條 司法處遇', '第 40 條 少年司法'],
+    'PI-06': ['第 17 條 媒體', '第 19 條 免於暴力', '第 34 條 性剝削'],
+    'PI-07': ['第 34 條 性剝削', '第 35 條 防止販運'],
+    'PI-08': ['第 2 條 不歧視', '第 28-29 條 教育權'],
+    'PI-09': ['第 28 條 教育權', '第 31 條 休閒權'],
+    'PI-10': ['第 12 條 表意權', '第 13 條 表達自由'],
+    'PI-11': ['第 5 條 父母指導', '第 18 條 共同責任'],
+    'PI-12': ['第 20 條 替代照顧', '第 25 條 安置定期審查'],
+    'PI-13': ['第 22 條 難民兒童', '第 7 條 國籍'],
+    'PI-14': ['第 2 條 不歧視', '第 8 條 身分認同']
+  };
+  function renderArticles() {
+    const c = document.getElementById('gen-articles');
+    if (state.evidences.length === 0) {
+      c.innerHTML = '<p style="color:var(--text-muted);font-size:13px">請先在步驟 2 填寫至少 1 筆證據</p>';
+      return;
+    }
+    c.innerHTML = state.evidences.map((e, i) => {
+      const arts = PI_ARTICLES[e.issue] || [];
+      return `
+        <div class="gen-evidence" style="background:#fff">
+          <div style="font-weight:600;color:var(--bg-deep);font-size:13.5px;margin-bottom:6px">
+            問題 ${i+1}:${e.problem || '(未命名)'} <span style="font-family:var(--sans-en);font-size:11px;color:var(--brand);margin-left:6px">${e.issue}</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">
+            ${arts.map(a => `<span class="pill pill-meta" style="background:var(--brand-soft);color:var(--brand-dark);font-size:11.5px">${a}</span>`).join('') || '<span style="color:var(--text-muted);font-size:12px">無對應條文映射</span>'}
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // ── Step 4: Generate draft (offline template)
+  document.getElementById('gen-make-draft').addEventListener('click', () => {
+    state.audience = document.getElementById('gen-audience').value;
+    state.length = document.getElementById('gen-length').value;
+
+    const today = new Date().toISOString().slice(0, 10);
+    const audienceLabel = ({professional:'專業版',legislative:'立法院版',media:'媒體版',kid:'兒少版',social:'社群版',en:'EN skeleton'})[state.audience];
+    const issueRefs = state.selectedIssues.map(pi => {
+      const it = D.issues.find(x => x.pi === pi);
+      return it ? `${pi} ${it.title}` : pi;
+    }).join('、');
+
+    let draft = `# 影子報告草稿 — ${audienceLabel}\n\n`;
+    draft += `**草擬日期**:${today}\n`;
+    draft += `**提出單位**:國家教育行動聯盟(AABE)\n`;
+    draft += `**涵蓋議題**:${issueRefs}\n`;
+    draft += `**版本**:v0.1 草稿(產生器自動產出,需人工審稿)\n\n`;
+    draft += `---\n\n## 一、概述\n\n本報告依據兒童權利公約第 44 條第 6 項由國家教育行動聯盟(以下簡稱 AABE)提出,針對中華民國(臺灣)第三次國家報告所未充分檢討之以下議題提供補充與質疑:${issueRefs},供國際審查委員會審查參考。\n\n`;
+
+    state.evidences.forEach((e, i) => {
+      const arts = (PI_ARTICLES[e.issue] || []).join('、');
+      draft += `## 二之${i+1}、${e.problem || '(未命名問題)'}\n\n`;
+      draft += `**對應議題**:${e.issue}\n`;
+      draft += `**對應公約條文**:${arts || '(待補)'}\n\n`;
+      draft += `### 現況與證據\n\n${e.evidence || '(待補充證據)'}\n\n`;
+      draft += `### 建議\n\n${e.recommendation || '(待補充建議)'}\n\n`;
+    });
+
+    draft += `## 三、AABE 立場錨點\n\n`;
+    draft += `- 性教育主軸為健康教育(依 UNESCO 架構「可依國情採行」)\n`;
+    draft += `- 性平議題「融入而非侵入」\n`;
+    draft += `- 本土化非照搬國外模板\n`;
+    draft += `- 重啟青少年性健康計畫(對應淋病 +7×、梅毒 +53×)\n\n`;
+    draft += `---\n\n_草稿由 AABE 兒少權監督平台 · 影子報告產生器 v0.1 產出 · ${today}_\n`;
+    draft += `_提出單位:AABE 為民間組織(非社團法人)_\n`;
+
+    state.draft = draft;
+    save();
+
+    const box = document.getElementById('gen-draft-preview');
+    box.textContent = draft;
+    document.getElementById('gen-final-text').value = draft;
+  });
+
+  // ── Step 5: Export
+  document.getElementById('gen-copy').addEventListener('click', () => {
+    const t = document.getElementById('gen-final-text').value;
+    navigator.clipboard.writeText(t).then(() => alert('已複製到剪貼簿'));
+  });
+  document.getElementById('gen-download-md').addEventListener('click', () => {
+    const t = document.getElementById('gen-final-text').value;
+    const blob = new Blob([t], {type: 'text/markdown'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'shadow_report_draft_' + new Date().toISOString().slice(0,10) + '.md';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+  document.getElementById('gen-print').addEventListener('click', () => {
+    const w = window.open('', '_blank');
+    const t = document.getElementById('gen-final-text').value;
+    w.document.write('<pre style="font-family:Noto Serif TC,Georgia,serif;white-space:pre-wrap;font-size:14px;line-height:1.7;padding:48px">' + t.replace(/&/g,'&amp;').replace(/</g,'&lt;') + '</pre>');
+    w.document.close();
+    w.print();
+  });
+  document.getElementById('gen-clear').addEventListener('click', () => {
+    if (!confirm('確定清除所有草稿?')) return;
+    localStorage.removeItem(LS_KEY);
+    location.reload();
+  });
+  document.getElementById('gen-final-text').addEventListener('input', (e) => {
+    state.draft = e.target.value;
+    save();
+  });
+  document.getElementById('gen-audience').value = state.audience;
+  document.getElementById('gen-length').value = state.length;
+  document.getElementById('gen-final-text').value = state.draft;
+
+  // Initial render
+  renderIssues();
+  renderEvidences();
+  gotoStep(state.step);
+})();
+</script>
+
+</body>
+</html>
