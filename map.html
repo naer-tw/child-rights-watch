@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>議題地圖 — 兒少人權監督平台</title>
+<meta name="description" content="14 議題卡片 × 12 cluster × 30 CRC 條文之關聯地圖">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "議題地圖導覽",
+  "description": "互動式視覺化:從 cluster → 議題 → CRC 條文 → 政府機關之四維關聯",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "inLanguage": "zh-TW"
+}
+</script>
+<style>
+* { box-sizing: border-box; }
+body { font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+       font-size: 16px; line-height: 1.6; color: #1a1a2e; margin: 0;
+       background: linear-gradient(180deg, #fff8f5 0%, #fffaf3 100%); }
+header { background: #2C323C; color: #fff; padding: 20px 24px; text-align: center; }
+header h1 { margin: 0; font-size: 24px; }
+header p { margin: 4px 0 0; font-size: 14px; color: #ccc; }
+.controls { background: #fff; padding: 16px 24px; box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+            display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.controls label { font-size: 14px; color: #555; }
+.controls select, .controls input { padding: 6px 12px; border: 1px solid #ccc;
+                                       border-radius: 6px; font-size: 14px; }
+.legend { display: inline-flex; gap: 12px; font-size: 12px; color: #555; margin-left: auto; }
+.legend span { display: inline-flex; align-items: center; gap: 4px; }
+.legend .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+main { max-width: 1280px; margin: 0 auto; padding: 24px 16px; }
+.cluster-row { margin: 16px 0; background: #fff; padding: 16px 20px; border-radius: 12px;
+               box-shadow: 0 2px 4px rgba(0,0,0,0.06); }
+.cluster-row h2 { margin: 0 0 8px; font-size: 18px; color: #2C323C;
+                  display: flex; align-items: center; gap: 10px; }
+.cluster-row h2 .label { font-size: 22px; padding: 4px 10px; border-radius: 6px;
+                          font-weight: 700; color: #fff; min-width: 36px; text-align: center; }
+.issues { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+          gap: 10px; margin-top: 8px; }
+.issue { padding: 12px 14px; border-radius: 8px; background: #f5f5f7;
+         text-decoration: none; color: #2C323C; transition: all 0.15s;
+         border-left: 4px solid #E8734A; }
+.issue:hover { background: #fff8f5; transform: translateX(3px); border-left-color: #d32f2f; }
+.issue h3 { margin: 0 0 4px; font-size: 14.5px; }
+.issue .meta { font-size: 12px; color: #555; }
+.issue .crc-tags { font-size: 11px; color: #888; margin-top: 4px; }
+.empty { color: #aaa; font-style: italic; font-size: 13px; }
+.search-result { background: #fff3cd; padding: 12px 16px; border-radius: 8px; margin: 16px 0;
+                 border-left: 4px solid #f0ad4e; }
+.hidden { display: none; }
+footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
+@media (max-width: 600px) {
+  .issues { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;background:#2C323C;color:#fff;padding:8px 16px;border-radius:4px;z-index:1000;" onfocus="this.style.left='12px';this.style.top='12px';this.style.width='auto';this.style.height='auto';" onblur="this.style.left='-999px';">跳到主要內容</a>
+
+<header>
+  <h1><svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg> 議題地圖</h1>
+  <p>14 議題卡片 × 12 cluster × 30 CRC 條文 ‧ 點擊任一卡片進入議題</p>
+</header>
+
+<nav class="controls" aria-label="篩選列">
+  <label>領域:
+    <select id="filterCluster" aria-label="按 cluster 篩選">
+      <option value="">全部</option>
+      <option value="C">C 一般原則</option>
+      <option value="D">D 公民權與自由</option>
+      <option value="E">E 暴力侵害</option>
+      <option value="F">F 家庭/替代照顧</option>
+      <option value="G">G 健康/身障</option>
+      <option value="H">H 教育/休閒</option>
+      <option value="I">I 特別保護</option>
+      <option value="L">L 數位環境</option>
+    </select>
+  </label>
+  <label>關鍵字:
+    <input id="filterText" type="search" placeholder="例:剴剴、自殺、實驗" aria-label="關鍵字搜尋"></input>
+  </label>
+  <span class="legend" aria-hidden="true">
+    <span><span class="dot" style="background:#d32f2f;"></span>嚴重</span>
+    <span><span class="dot" style="background:#ef6c00;"></span>追蹤</span>
+    <span><span class="dot" style="background:#1976d2;"></span>監督</span>
+  </span>
+</nav>
+
+<main id="main">
+
+<div class="cluster-row" data-cluster="C">
+  <h2><span class="label" style="background:#1976d2;">C</span> 一般性原則(General Principles)</h2>
+  <div class="issues">
+    <a href="issues/PI-10.html" class="issue" data-keywords="兒少表意 8743 GC12 校園民主">
+      <h3>PI-10 兒少表意與校園民主</h3>
+      <div class="meta">行政院兒少代表 / 8,743 問卷 / GC12</div>
+      <div class="crc-tags">CRC-12 ‧ CRC-13</div>
+    </a>
+  </div>
+</div>
+
+<div class="cluster-row" data-cluster="D">
+  <h2><span class="label" style="background:#1976d2;">D</span> 公民權利與自由</h2>
+  <div class="issues">
+    <a href="issues/PI-14.html" class="issue" data-keywords="LGBTQI 跨性別 採用範圍">
+      <h3>PI-14 LGBTQI+ 兒少</h3>
+      <div class="meta">採用範圍聲明 / AABE 不支持運動</div>
+      <div class="crc-tags">CRC-2 ‧ CRC-8</div>
+    </a>
+  </div>
+</div>
+
+<div class="cluster-row" data-cluster="E">
+  <h2><span class="label" style="background:#d32f2f;">E</span> 暴力侵害兒童</h2>
+  <div class="issues">
+    <a href="issues/PI-01.html" class="issue" data-keywords="校園霸凌 NHRC 4641 師對生">
+      <h3>PI-01 校園霸凌</h3>
+      <div class="meta">NHRC 4,641 件分析 / 65% 未通報</div>
+      <div class="crc-tags">CRC-19 ‧ CRC-28 ‧ CRC-39</div>
+    </a>
+    <a href="issues/PI-03.html" class="issue" data-keywords="體罰 corporal punishment">
+      <h3>PI-03 體罰禁止</h3>
+      <div class="meta">CRC1-CO78 + CRC2-CO29</div>
+      <div class="crc-tags">CRC-19 ‧ CRC-28</div>
+    </a>
+    <a href="issues/PI-07.html" class="issue" data-keywords="性剝削 NCII 深偽 私密影像">
+      <h3>PI-07 性剝削防制</h3>
+      <div class="meta">NCII / 深偽 / 私 ME 平台</div>
+      <div class="crc-tags">CRC-34 ‧ CRC-35 ‧ CRC-36</div>
+    </a>
+  </div>
+</div>
+
+<div class="cluster-row" data-cluster="F">
+  <h2><span class="label" style="background:#d32f2f;">F</span> 家庭環境與替代照顧</h2>
+  <div class="issues">
+    <a href="issues/PI-11.html" class="issue" data-keywords="家庭功能 親職 家暴">
+      <h3>PI-11 家庭功能政策</h3>
+      <div class="meta">家暴 / 親職 / 高風險家庭</div>
+      <div class="crc-tags">CRC-9 ‧ CRC-18 ‧ CRC-19</div>
+    </a>
+    <a href="issues/PI-12.html" class="issue" data-keywords="剴剴 兒福聯盟 替代照顧 機構安置 保證人">
+      <h3>PI-12 替代照顧與機構安置</h3>
+      <div class="meta">剴剴案六大缺口 / 兒少權法草案</div>
+      <div class="crc-tags">CRC-20 ‧ CRC-25 ‧ CRC-39</div>
+    </a>
+  </div>
+</div>
+
+<div class="cluster-row" data-cluster="G">
+  <h2><span class="label" style="background:#d32f2f;">G</span> 身心障礙、健康與福利</h2>
+  <div class="issues">
+    <a href="issues/PI-02.html" class="issue" data-keywords="自殺 心理健康 142% 死因回溯">
+      <h3>PI-02 青少年心理健康</h3>
+      <div class="meta">15-24 歲女性自殺通報 +142%</div>
+      <div class="crc-tags">CRC-6 ‧ CRC-24</div>
+    </a>
+    <a href="issues/PI-04.html" class="issue" data-keywords="WISER 學生輔導 三級輔導 神經多樣性">
+      <h3>PI-04 學生輔導體制</h3>
+      <div class="meta">WISER-3.0 / 神經多樣性 / 早期辨識</div>
+      <div class="crc-tags">CRC-23 ‧ CRC-24 ‧ CRC-29</div>
+    </a>
+  </div>
+</div>
+
+<div class="cluster-row" data-cluster="H">
+  <h2><span class="label" style="background:#ef6c00;">H</span> 教育、休閒與文化</h2>
+  <div class="issues">
+    <a href="issues/PI-08.html" class="issue" data-keywords="性別平等教育 性教育 全面性教育 淋病 梅毒">
+      <h3>PI-08 性別平等教育</h3>
+      <div class="meta">全面性教育十大破口 / 健康教育主軸</div>
+      <div class="crc-tags">CRC-29 ‧ CRC-24</div>
+    </a>
+    <a href="issues/PI-09.html" class="issue" data-keywords="課業壓力 補習班 上學時間 實驗教育">
+      <h3>PI-09 課業壓力與學習權</h3>
+      <div class="meta">補習班規範 / 上學時間 / 實驗教育偽實驗</div>
+      <div class="crc-tags">CRC-28 ‧ CRC-29 ‧ CRC-31</div>
+    </a>
+  </div>
+</div>
+
+<div class="cluster-row" data-cluster="I">
+  <h2><span class="label" style="background:#ef6c00;">I</span> 特別保護措施</h2>
+  <div class="issues">
+    <a href="issues/PI-05.html" class="issue" data-keywords="少年司法 中介教育 國民轉介 行政先行">
+      <h3>PI-05 少年司法行政先行</h3>
+      <div class="meta">中介教育 / 國民轉介教育條例</div>
+      <div class="crc-tags">CRC-37 ‧ CRC-40</div>
+    </a>
+    <a href="issues/PI-13.html" class="issue" data-keywords="移民 失聯 無國籍 難民法">
+      <h3>PI-13 移民無國籍與失聯兒少</h3>
+      <div class="meta">難民法 21 年 / 失聯移工子女</div>
+      <div class="crc-tags">CRC-7 ‧ CRC-22</div>
+    </a>
+  </div>
+</div>
+
+<div class="cluster-row" data-cluster="L">
+  <h2><span class="label" style="background:#ef6c00;">L</span> 數位環境(GC25)</h2>
+  <div class="issues">
+    <a href="issues/PI-06.html" class="issue" data-keywords="網路安全 詐騙 依托咪酯 喪屍煙彈 8743">
+      <h3>PI-06 兒少網路安全</h3>
+      <div class="meta">8,743 問卷第 1 名 / 詐騙防制</div>
+      <div class="crc-tags">CRC-17 ‧ CRC-19 ‧ CRC-34</div>
+    </a>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <a href="./">← 回平台首頁</a> ‧ <a href="kids/">→ 兒少入口</a> ‧ 14 議題覆蓋 12 cluster
+</footer>
+
+<script>
+const filterCluster = document.getElementById('filterCluster');
+const filterText = document.getElementById('filterText');
+const allRows = document.querySelectorAll('.cluster-row');
+const allIssues = document.querySelectorAll('.issue');
+
+function applyFilter() {
+  const cl = filterCluster.value;
+  const q = filterText.value.toLowerCase().trim();
+  allRows.forEach(row => {
+    const rowCluster = row.getAttribute('data-cluster');
+    let rowVisible = !cl || cl === rowCluster;
+    if (rowVisible && q) {
+      // 看本 row 是否有任何 issue 符合
+      const issues = row.querySelectorAll('.issue');
+      let anyMatch = false;
+      issues.forEach(iss => {
+        const kw = (iss.getAttribute('data-keywords') || '').toLowerCase();
+        const text = iss.innerText.toLowerCase();
+        const match = kw.includes(q) || text.includes(q);
+        iss.classList.toggle('hidden', !match);
+        if (match) anyMatch = true;
+      });
+      rowVisible = anyMatch;
+    } else if (rowVisible) {
+      row.querySelectorAll('.issue').forEach(iss => iss.classList.remove('hidden'));
+    }
+    row.classList.toggle('hidden', !rowVisible);
+  });
+}
+
+filterCluster.addEventListener('change', applyFilter);
+filterText.addEventListener('input', applyFilter);
+</script>
+
+</body>
+</html>

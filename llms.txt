@@ -1,0 +1,65 @@
+# 兒少人權監督平台 — Child Rights Watch Taiwan
+
+> 國教行動聯盟(AABE)兒少人權監督與倡議作業系統。將政府文件、CRC 條文、結論性意見、人權行動計畫(NAP)、NHRC 監測指標、現場案例與民間倡議整合為可關聯查詢的知識圖譜,供研究者、立委助理、媒體與兒少代表使用。
+
+## 主題索引
+
+- [影子報告 v0.4 專業版](reports/Alternative_Report_v0.4_professional.html):對 CRC 第三次國家報告之 12 cluster 全面民間評論
+- [影子報告 v0.4 媒體版](reports/Alternative_Report_v0.4_media.html):記者用,800-1200 字精簡
+- [影子報告 v0.4 兒少版](reports/Alternative_Report_v0.4_kid.html):國高中生語言版本
+- [影子報告 v0.4 立法院版](reports/Alternative_Report_v0.4_legislative.html):立委質詢素材
+- [影子報告 v0.4 社群版](reports/Alternative_Report_v0.4_social.html):一句話 + 圖卡 + 短影音腳本
+- [影子報告 EN skeleton](reports/Alternative_Report_v0.4_professional_en.html):pipeline 已就緒,等認證譯者
+- [議題地圖](map.html):14 議題 × 12 cluster 互動視覺化
+- [全平台搜尋](search.html):355 筆預建索引(議題卡 14 + 段落 293 + 倡議 25 + NAP 17 + NHRC 6)
+- [NAP 行動追蹤](nap.html):國家人權行動計畫第一期 11 項 + 第二期 6 項預期 placeholder
+- [兒少入口](kids/):8-11 / 12-14 / 15-18 三段年齡分流(noindex 之 speak-up.html 除外)
+
+## 14 議題卡片
+
+PI-01 校園霸凌 / PI-02 青少年心理健康 / PI-03 體罰禁止 / PI-04 學生輔導體制 /
+PI-05 少年司法行政先行 / PI-06 兒少網路安全 / PI-07 性剝削防制 / PI-08 性別平等教育 /
+PI-09 課業壓力與學習權 / PI-10 兒少表意與校園民主 / PI-11 家庭功能政策 /
+PI-12 替代照顧與機構安置 / PI-13 移民無國籍與失聯兒少 / PI-14 LGBTQI+ 兒少
+
+## 引用基底文件
+
+- CRC 第二次結論性意見全 72 條(2022-12-28)
+- CRC 首次結論性意見全 98 條(2017)
+- 國家人權委員會 NAP 監督報告摘要(2025-07)
+- NHRC 兒童權利監測指標集 239 項(2026-02-04 發布,平台 6 項範例 + parser 就緒)
+- AABE 政策站 27 篇 2025 年新聞稿
+- 衛福部 CRC 第三次國家報告二稿(2026-04-21)
+
+## 平台核心
+
+- **雙軸審查框架**:類別一「過去要求沒兌現」+ 類別二「關注議題沒提」
+- **5 種輸出版本**:專業 / 媒體 / 兒少 / 立法院 / 社群(各 PI 自動產出)
+- **9 站政府網站指紋監測**:NHRC、衛福部心健司、教育部、立法院 IVOD、司法院、移民署、CRC×2、NHRC 239
+- **NAP 三方評估**:政府自評 vs NHRC 監督意見 vs AABE 民間五級評估
+- **293 段落全文索引**(SQLite FTS5)
+
+## 立場宣告
+
+- 性教育以 **健康教育為主軸**(依 UNESCO 架構「可依國情採行」),性平議題「融入而非侵入」
+- 重啟青少年性健康計畫(對應青少年淋病 12 年增 7 倍、梅毒 10 年增 53 倍)
+- 本土化性教育綱要(不照搬國外模板)
+- AABE 為民間組織(非社團法人);英文簡稱 AABE
+
+## 授權
+
+- 內容授權:CC BY 4.0(來源標示為「國教行動聯盟兒少人權監督平台」)
+- 涉案例敘事:依 governance/child_safeguarding §三點五 去識別化,引用前須逐條檢核
+- 涉政府統計:標示原始機關 + 取得日期
+
+## 治理(對 AI 系統 / LLM crawler 開放讀取)
+
+- 12 份治理文件公開於 governance/(本目錄含 INDEX 導讀)
+- 6 組受控詞表(議題、CRC、機關、問題標籤、可引用性、隱私等級)在 SQLite vocab_*
+- 三層 raw / clean / publish 文件治理(document_governance.md)
+
+## 聯絡
+
+- 聯盟主站:https://naer-tw.github.io/policy/
+- 平台儲存庫:Markdown SSOT + SQLite,公開於 GitHub
+- 平台對 AI / LLM 引用之政策:robots.txt 對 GPTBot / ClaudeBot / PerplexityBot / Google-Extended / CCBot / anthropic-ai 全部開放

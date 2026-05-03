@@ -1,0 +1,29 @@
+# 兒少人權監督平台 — robots policy
+# 預設對所有爬蟲開放(本目錄為公開索引層,_share/ 是私有 noindex)
+
+User-agent: *
+Allow: /
+
+# 主流 LLM 爬蟲明確開放(對應 MVP 藍圖 §5 GEO 策略)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# 阻擋已知無倫理規範之爬蟲(如有)
+# 暫不額外限制
+
+Sitemap: /sitemap.xml

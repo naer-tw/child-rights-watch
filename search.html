@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全平台搜尋 — 兒少人權監督平台</title>
+<meta name="description" content="跨議題卡片、政策段落、倡議檔案、CRC 條文之全文搜尋">
+<style>
+* { box-sizing: border-box; }
+body { font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+       font-size: 16px; line-height: 1.6; color: #1a1a2e; margin: 0; background: #fff8f5; }
+header { background: #2C323C; color: #fff; padding: 20px 24px; text-align: center; }
+header h1 { margin: 0; font-size: 22px; }
+.search-bar { background: #fff; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+              position: sticky; top: 0; z-index: 10; }
+.search-bar input { width: 100%; max-width: 880px; margin: 0 auto; display: block;
+                    padding: 14px 18px; font-size: 18px; border: 2px solid #2C323C;
+                    border-radius: 8px; }
+.search-bar input:focus { outline: 3px solid #E8734A; }
+.filter { max-width: 880px; margin: 12px auto 0; display: flex; gap: 8px; flex-wrap: wrap; }
+.filter button { padding: 6px 14px; border: 1px solid #ccc; background: #fff;
+                  border-radius: 20px; cursor: pointer; font-size: 14px; color: #555; }
+.filter button.active { background: #2C323C; color: #fff; border-color: #2C323C; }
+main { max-width: 880px; margin: 0 auto; padding: 24px 16px; }
+.stats { color: #555; font-size: 14px; margin-bottom: 16px; }
+.result { background: #fff; padding: 14px 18px; margin: 10px 0; border-radius: 8px;
+          border-left: 4px solid #E8734A; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+.result.type-issue { border-left-color: #d32f2f; }
+.result.type-passage { border-left-color: #1976d2; }
+.result.type-advocacy { border-left-color: #2e7d32; }
+.result.type-nap { border-left-color: #b71c1c; }
+.result.type-nhrc_indicator { border-left-color: #6a1b9a; }
+.result h3 { margin: 0 0 4px; font-size: 16px; }
+.result h3 a { color: #2C323C; text-decoration: none; }
+.result h3 a:hover { color: #E8734A; }
+.result .type-badge { display: inline-block; font-size: 11px; padding: 2px 8px;
+                       border-radius: 10px; background: #f5f5f7; color: #555;
+                       margin-right: 6px; vertical-align: middle; }
+.result .snippet { font-size: 14px; color: #555; line-height: 1.5; margin: 4px 0; }
+.result .snippet mark { background: #fff3cd; padding: 0 2px; }
+.result .tags { font-size: 11px; color: #888; margin-top: 6px; }
+.empty { text-align: center; color: #888; padding: 40px; font-style: italic; }
+footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
+</style>
+</head>
+<body>
+
+<a href="#main" style="position:absolute;left:-999px;" onfocus="this.style.left='12px';this.style.top='12px';">跳到主要內容</a>
+
+<header>
+  <h1><svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> 全平台搜尋</h1>
+  <p style="margin: 4px 0 0; font-size: 13px; color: #ccc;">14 議題 + 293 段落 + 25 倡議 + 17 NAP + 6 NHRC 指標 = 355 筆</p>
+</header>
+
+<div class="search-bar">
+  <input id="q" type="search" placeholder="關鍵字(如:剴剴、自殺、實驗教育、CRC2-CO31)" autofocus aria-label="搜尋關鍵字">
+  <div class="filter" role="group" aria-label="類型篩選">
+    <button data-type="all" class="active">全部</button>
+    <button data-type="issue">議題卡片</button>
+    <button data-type="passage">政策段落</button>
+    <button data-type="advocacy">倡議檔案</button>
+    <button data-type="nap">NAP 行動</button>
+    <button data-type="nhrc_indicator">NHRC 指標</button>
+  </div>
+</div>
+
+<main id="main">
+  <div id="stats" class="stats">輸入關鍵字開始搜尋</div>
+  <div id="results"></div>
+</main>
+
+<footer>
+  <a href="./">← 回首頁</a> ‧ <a href="map.html">議題地圖</a> ‧ 索引版本:2026-04-27
+</footer>
+
+<script>
+let INDEX = null;
+let activeType = 'all';
+const qInput = document.getElementById('q');
+const statsEl = document.getElementById('stats');
+const resultsEl = document.getElementById('results');
+
+fetch('search-index.json')
+  .then(r => r.json())
+  .then(data => {
+    INDEX = data;
+    statsEl.textContent = `已載入 ${data.items.length} 筆,版本 ${data.version}`;
+  })
+  .catch(err => {
+    statsEl.textContent = '索引載入失敗,請稍後再試:' + err.message;
+  });
+
+function escapeRegex(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function highlight(text, q) {
+  if (!q) return text;
+  const re = new RegExp('(' + escapeRegex(q) + ')', 'gi');
+  return text.replace(re, '<mark>$1</mark>');
+}
+
+function search() {
+  const q = qInput.value.trim().toLowerCase();
+  if (!INDEX || !q) {
+    resultsEl.innerHTML = '';
+    statsEl.textContent = q ? '索引尚未載入...' : '輸入關鍵字開始搜尋';
+    return;
+  }
+  const matches = INDEX.items.filter(it => {
+    if (activeType !== 'all' && it.type !== activeType) return false;
+    return it.search_text && it.search_text.includes(q);
+  });
+  statsEl.textContent = `找到 ${matches.length} 筆(共 ${INDEX.items.length} 筆 / 類型:${activeType})`;
+  if (matches.length === 0) {
+    resultsEl.innerHTML = '<div class="empty">沒有找到符合的結果。試試別的關鍵字?</div>';
+    return;
+  }
+  resultsEl.innerHTML = matches.slice(0, 100).map(it => {
+    const typeLabel = {issue: '<svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><line x1="12" y1="17" x2="12" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24z"/></svg> 議題', passage: '<svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> 段落', advocacy: '<svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg> 倡議', case: '<svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> 案例', nap: '<svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg> NAP', nhrc_indicator: '<svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><path d="M3 3v18h18"/><path d="M7 14l3-3 4 4 5-5"/></svg> NHRC 指標'}[it.type] || it.type;
+    const snippet = highlight(it.snippet || '', qInput.value.trim());
+    const url = it.url || '#';
+    return `<div class="result type-${it.type}">
+      <h3><span class="type-badge">${typeLabel}</span><a href="${url}">${highlight(it.title, qInput.value.trim())}</a></h3>
+      <p class="snippet">${snippet}</p>
+      ${it.tags && it.tags.length ? `<p class="tags">${it.tags.join(' ‧ ')}</p>` : ''}
+    </div>`;
+  }).join('');
+  if (matches.length > 100) {
+    resultsEl.innerHTML += `<div class="empty">尚有 ${matches.length - 100} 筆結果未顯示,請使用更精確的關鍵字</div>`;
+  }
+}
+
+qInput.addEventListener('input', search);
+document.querySelectorAll('.filter button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeType = btn.getAttribute('data-type');
+    search();
+  });
+});
+</script>
+
+</body>
+</html>

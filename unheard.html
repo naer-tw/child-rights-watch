@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>未被聽見的聲音 — 兒少人權監督平台</title>
+<meta name="description" content="民間倡議 vs 政府文件 自動 diff,標出未被採納之主張">
+<style>
+* { box-sizing: border-box; }
+body { font-family: "PingFang TC", "Noto Sans TC", sans-serif; max-width: 980px;
+        margin: 0 auto; padding: 24px 16px; background: #fff8f5; color: #1a1a2e;
+        font-size: 15px; line-height: 1.6; }
+h1 { font-size: 26px; color: #2C323C; }
+h2 { font-size: 18px; color: #2C323C; margin-top: 28px; padding-bottom: 6px; border-bottom: 1px solid #ddd; }
+.intro { background: #fff; padding: 16px 20px; border-radius: 8px; border-left: 4px solid #b71c1c;
+         margin-bottom: 20px; font-size: 14px; }
+.intro h2 { margin-top: 0; padding-bottom: 0; border: 0; color: #b71c1c; }
+table { width: 100%; border-collapse: collapse; background: #fff; margin: 12px 0;
+         border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+th, td { padding: 10px; text-align: left; vertical-align: top; border-bottom: 1px solid #eee;
+         font-size: 13.5px; }
+th { background: #2C323C; color: #fff; }
+.score-bar { display: inline-block; width: 80px; height: 6px; background: #eee;
+              border-radius: 3px; overflow: hidden; }
+.score-bar > span { display: block; height: 100%; background: linear-gradient(90deg, #ef6c00, #d32f2f); }
+.placeholder { background: #f5f5f7; padding: 24px; border-radius: 8px; text-align: center;
+               color: #666; border: 2px dashed #ccc; margin: 16px 0; }
+.note { background: #fff3cd; padding: 12px 16px; border-radius: 6px; font-size: 13.5px;
+        border-left: 4px solid #f0ad4e; margin: 14px 0; }
+footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
+</style>
+</head>
+<body>
+<a href="#main" style="position:absolute;left:-999px;" onfocus="this.style.left='12px';this.style.top='12px';">跳到主要內容</a>
+<main id="main">
+<h1>🔴 未被聽見的聲音</h1>
+<div class="intro">
+  <h2>為什麼有這個頁面?</h2>
+  <p>政府常說「我們有聽民間意見」。但實際上,<strong>哪些主張被採納?哪些被忽略?</strong></p>
+  <p>本頁面用 <code>scripts/find_unheard_voices.py</code> 自動比對:</p>
+  <ul>
+    <li>倡議文件之關鍵詞(主張、訴求、具體建議)</li>
+    <li>政府最終文件之關鍵詞(法案、報告、公告)</li>
+    <li>計算「未被聽見分數」:0(全採納)↔ 1(完全忽略)</li>
+  </ul>
+  <p style="margin: 8px 0 0; font-size: 13px;">
+    <strong>📌 注意</strong>:自動 diff 屬輔助工具,不能單獨作為「政府未採納」之證據。最終判斷需人工複核。
+  </p>
+</div>
+
+<h2>已分析之倡議檔(unheard_score 越高越被忽略)</h2>
+<table><thead><tr><th>狀態</th><th>倡議</th><th>未被聽見分數</th><th>對照</th></tr></thead><tbody><tr>
+                <td>🔴 未被採納</td>
+                <td><strong>A-2026-04-22_兒少權法六大缺口</strong><br><small style="color:#666;">兒少權法 15 年大修為何仍補不上剴剴案六大制度缺口?(衛福部 2026-04-21 預告草案分析)</small></td>
+                <td><span class="score-bar"><span style="width: 82%;"></span></span> 0.82</td>
+                <td style="font-size:12px;color:#666;">diff vs data/sources/CRC3_國家報告二稿_part1.txt (AABE 4/22 提出六大缺口,衛福部 4/21 國家報告二稿是否涵蓋?)</td>
+            </tr></tbody></table>
+
+<div class="note">
+  <strong>未來規劃</strong>:
+  <ul style="margin: 6px 0 0;">
+    <li>立法院公聽會 IVOD 自動轉錄 → 對比最終法案文字</li>
+    <li>CRC 民間審查發言稿 → 對比 CO 結論性意見(等 2027 國際審查後)</li>
+    <li>結構性沒被聽見之群體(偏鄉 / 特教 / 性少數兒少)— 由兒少顧問小組主動探訪</li>
+  </ul>
+</div>
+
+<h2>方法論限制</h2>
+<p>本工具有 3 個已知限制:</p>
+<ol>
+  <li><strong>關鍵詞萃取偏誤</strong>:「未被聽見」可能是用詞不同(例:NGO 用「獨立調查機制」,政府用「第三方審查」),導致誤判</li>
+  <li><strong>因果歸因簡化</strong>:政府未採納可能因預算 / 跨機關 / 政治阻力,本工具不分析原因</li>
+  <li><strong>時間滯後</strong>:倡議 → 政策落地常需 5-10 年,3 個月後比對之 diff 可能誤判為未採納</li>
+</ol>
+<p>因此本頁面之 unheard_score <strong>不是</strong>「政府忽略 NGO」之最終結論,僅作為<strong>初步篩選工具</strong>。</p>
+
+</main>
+<footer>
+<a href="./" style="color:#555;">← 回平台首頁</a> ·
+<a href="timeline/" style="color:#555;">政策軌跡</a> ·
+<a href="search.html" style="color:#555;">搜尋</a> ·
+<a href="map.html" style="color:#555;">議題地圖</a>
+</footer>
+</body>
+</html>
