@@ -5,42 +5,64 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>全平台搜尋 — 兒少人權監督平台</title>
 <meta name="description" content="跨議題卡片、政策段落、倡議檔案、CRC 條文之全文搜尋">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
 <style>
-* { box-sizing: border-box; }
-body { font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
-       font-size: 16px; line-height: 1.6; color: #1a1a2e; margin: 0; background: #fff8f5; }
-header { background: #2C323C; color: #fff; padding: 20px 24px; text-align: center; }
-header h1 { margin: 0; font-size: 22px; }
-.search-bar { background: #fff; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.06);
-              position: sticky; top: 0; z-index: 10; }
+:root {
+  --bg:#FAFAF7; --bg-alt:#F1EFEA; --bg-deep:#0E2238; --bg-deeper:#081728;
+  --text:#1F1F1F; --text-muted:#5C5C5C;
+  --brand:#B5371F; --brand-dark:#8C2A18; --brand-soft:#F4E1DC;
+  --warning:#A03032; --success:#2D5F3E; --aabe-gold:#8B6F50;
+  --border:#DDD8CD; --hairline:#E8E3D6;
+  --serif:"Noto Serif TC",Georgia,serif; --sans:"Noto Sans TC",-apple-system,sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--sans); font-size: 16px; line-height: 1.6; color: var(--text); background: var(--bg); }
+a { color: var(--bg-deep); }
+a:hover { color: var(--brand); }
+header { background: var(--bg-deep); color: #fff; padding: 18px 24px; }
+.header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.header-inner svg.logo { color: var(--aabe-gold); }
+header h1 { font-family: var(--serif); font-size: 20px; flex: 1; }
+header .aabe-mark { background: var(--aabe-gold); color: #fff; padding: 4px 8px; border-radius: 4px; font-family: Inter,sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 0.06em; }
+header a.back { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; }
+header a.back:hover { color: #fff; }
+.search-bar { background: #fff; padding: 18px 20px; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
 .search-bar input { width: 100%; max-width: 880px; margin: 0 auto; display: block;
-                    padding: 14px 18px; font-size: 18px; border: 2px solid #2C323C;
-                    border-radius: 8px; }
-.search-bar input:focus { outline: 3px solid #E8734A; }
-.filter { max-width: 880px; margin: 12px auto 0; display: flex; gap: 8px; flex-wrap: wrap; }
-.filter button { padding: 6px 14px; border: 1px solid #ccc; background: #fff;
-                  border-radius: 20px; cursor: pointer; font-size: 14px; color: #555; }
-.filter button.active { background: #2C323C; color: #fff; border-color: #2C323C; }
-main { max-width: 880px; margin: 0 auto; padding: 24px 16px; }
-.stats { color: #555; font-size: 14px; margin-bottom: 16px; }
-.result { background: #fff; padding: 14px 18px; margin: 10px 0; border-radius: 8px;
-          border-left: 4px solid #E8734A; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
-.result.type-issue { border-left-color: #d32f2f; }
-.result.type-passage { border-left-color: #1976d2; }
-.result.type-advocacy { border-left-color: #2e7d32; }
-.result.type-nap { border-left-color: #b71c1c; }
-.result.type-nhrc_indicator { border-left-color: #6a1b9a; }
-.result h3 { margin: 0 0 4px; font-size: 16px; }
-.result h3 a { color: #2C323C; text-decoration: none; }
-.result h3 a:hover { color: #E8734A; }
-.result .type-badge { display: inline-block; font-size: 11px; padding: 2px 8px;
-                       border-radius: 10px; background: #f5f5f7; color: #555;
-                       margin-right: 6px; vertical-align: middle; }
-.result .snippet { font-size: 14px; color: #555; line-height: 1.5; margin: 4px 0; }
-.result .snippet mark { background: #fff3cd; padding: 0 2px; }
-.result .tags { font-size: 11px; color: #888; margin-top: 6px; }
-.empty { text-align: center; color: #888; padding: 40px; font-style: italic; }
-footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
+                    padding: 14px 18px; font-size: 17px; border: 1px solid var(--border);
+                    border-radius: 8px; font-family: var(--sans); background: var(--bg-alt); }
+.search-bar input:focus { outline: 2px solid var(--brand); outline-offset: 2px; background: #fff; }
+.filter { max-width: 880px; margin: 12px auto 0; display: flex; gap: 6px; flex-wrap: wrap; }
+.filter button { padding: 6px 13px; border: 1px solid var(--border); background: #fff;
+                  border-radius: 999px; cursor: pointer; font-size: 13px; color: var(--text-muted); font-family: inherit; transition: all .15s; }
+.filter button:hover { border-color: var(--bg-deep); color: var(--text); }
+.filter button.active { background: var(--brand); color: #fff; border-color: var(--brand); }
+main { max-width: 880px; margin: 0 auto; padding: 24px 16px 80px; }
+.stats { color: var(--text-muted); font-size: 13px; margin-bottom: 16px; font-family: Inter,sans-serif; }
+.result { background: #fff; padding: 16px 20px; margin: 10px 0; border-radius: 6px;
+          border: 1px solid var(--border); border-left: 4px solid var(--brand); transition: all .15s; }
+.result:hover { border-color: var(--brand); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(14,34,56,0.06); }
+.result.type-issue { border-left-color: var(--warning); }
+.result.type-passage { border-left-color: #1F3D6B; }
+.result.type-advocacy { border-left-color: var(--bg-deep); }
+.result.type-external_shadow { border-left-color: #4B2480; }
+.result.type-crc_official { border-left-color: var(--aabe-gold); }
+.result.type-nap { border-left-color: #C68822; }
+.result.type-nhrc_indicator { border-left-color: var(--success); }
+.result.type-law { border-left-color: #2D7059; }
+.result.type-law_amendment { border-left-color: var(--text-muted); }
+.result h3 { font-family: var(--serif); font-size: 16px; font-weight: 700; margin-bottom: 6px; line-height: 1.4; }
+.result h3 a { color: var(--bg-deep); text-decoration: none; }
+.result h3 a:hover { color: var(--brand); }
+.result .type-badge { display: inline-block; font-size: 10.5px; padding: 2px 8px;
+                       border-radius: 3px; background: var(--bg-alt); color: var(--text-muted);
+                       margin-right: 6px; vertical-align: middle; font-family: Inter,sans-serif;
+                       font-weight: 600; letter-spacing: 0.04em; }
+.result .snippet { font-size: 13.5px; color: var(--text); line-height: 1.65; margin: 6px 0; }
+.result .snippet mark { background: #FCE2A8; padding: 0 3px; border-radius: 2px; color: var(--text); }
+.result .tags { font-size: 11px; color: var(--text-muted); margin-top: 6px; font-family: Inter,sans-serif; }
+.empty { text-align: center; color: var(--text-muted); padding: 40px; }
+footer { text-align: center; padding: 24px; font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--hairline); margin-top: 48px; background: var(--bg-alt); }
 </style>
 </head>
 <body>
@@ -48,7 +70,12 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
 <a href="#main" style="position:absolute;left:-999px;" onfocus="this.style.left='12px';this.style.top='12px';">跳到主要內容</a>
 
 <header>
-  <h1><svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> 全平台搜尋</h1>
+  <div class="header-inner">
+    <svg class="logo" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <h1>全平台搜尋</h1>
+    <span class="aabe-mark">AABE</span>
+    <a href="index.html" class="back">← 回首頁</a>
+  </div>
   <p style="margin: 4px 0 0; font-size: 13px; color: #ccc;" id="hdr-stats">載入中…</p>
 </header>
 
