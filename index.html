@@ -1736,129 +1736,2721 @@ footer .credit {
       <!-- 文件清單 -->
       <div>
         <div class="docs-toolbar">
-          <span class="count-info">顯示 <b>8</b> 筆 / 共 142 筆 · 已套用 <b>提出單位:國教盟</b></span>
+          <span class="count-info">顯示 <b id="doc-shown">─</b> 筆 / 共 <b id="doc-total">─</b> 筆 · <span id="doc-applied" style="color:var(--text-muted)">尚未套用篩選</span></span>
           <div style="display: flex; gap: var(--space-2); align-items: center;">
-            <div class="view-tabs" role="tablist">
-              <button class="view-tab active" role="tab">列表</button>
-              <button class="view-tab" role="tab">時間軸</button>
-              <button class="view-tab" role="tab">關係圖</button>
-            </div>
-            <select class="filter-select" style="width: auto; min-width: 130px; font-size: 12.5px;">
-              <option>排序:相關度</option>
-              <option>發表日期 ↓</option>
-              <option>屆別</option>
-              <option>採納率</option>
+            <select class="filter-select" id="doc-sort" style="width: auto; min-width: 130px; font-size: 12.5px;">
+              <option value="relevance">排序:預設(相關度)</option>
+              <option value="date_desc">發表日期 ↓</option>
+              <option value="date_asc">發表日期 ↑</option>
+              <option value="cycle">屆別</option>
+              <option value="adoption">採納率</option>
             </select>
           </div>
         </div>
 
         <div class="doc-list" id="doc-list">
-        <!-- DOC-LIST-START -->
-
-          <a href="external-reports.html" class="doc-card featured-doc" data-issuer="AABE" data-cycle="2" data-year="2022" data-type="shadow" data-status="archived" data-topic="教育權,校園安全">
-            <span class="doc-stripe" style="background:var(--aabe-gold)"></span>
-            <div class="doc-body">
-              <div class="doc-pills"><span class="pill pill-aabe">★ AABE 主導</span><span class="pill pill-shadow">民間影子報告</span><span class="pill pill-meta">2022 年 · CRC 第二次審查</span></div>
-              <h3>2022 國教行動聯盟 CRC 第 2 次國家報告民間影子報告</h3>
-              <div class="doc-issuer">提出:<span class="ngo-tag">國教行動聯盟(AABE)</span></div>
-              <p class="doc-excerpt">CRC 第二次國際審查,國教盟延續 2017 倡議軸線,聚焦教育權與校園安全。</p>
-              <div class="doc-stats"><span>78 頁 / 34 點倡議</span> <span class="adoption-good">已採 14</span> <span class="adoption-mid">部分 11</span> <span class="adoption-bad">未採 9</span> <span>採納率 73.5%</span></div>
-            </div>
-          </a>
-
-          <a href="reports/Alternative_Report_v0.4_professional.html" class="doc-card" data-issuer="AABE" data-cycle="3" data-year="2026" data-type="shadow" data-status="draft" data-topic="14 議題">
-            <span class="doc-stripe" style="background:var(--brand)"></span>
-            <div class="doc-body">
-              <div class="doc-pills"><span class="pill pill-aabe">★ AABE 主導</span><span class="pill pill-shadow">民間影子報告 v0.4 草稿</span><span class="pill pill-meta">2026 年 · CRC 第三次審查(進行中)</span><span class="pill pill-warn">草稿</span></div>
-              <h3>AABE CRC 第三次國家報告民間影子報告 v0.4(專業版)</h3>
-              <div class="doc-issuer">提出:<span class="ngo-tag">國教行動聯盟(AABE)</span> · 連署單位徵集中</div>
-              <p class="doc-excerpt">針對 14 議題、12 cluster 提出三軸評分(制度 / 結果 / 持續)。聚焦剴剴案六大缺口、青少年心理健康(自殺通報 +142%)、性平教育主軸應為健康教育、實驗教育偽實驗、淋病 +7×/梅毒 +53× 重啟性健康計畫等。</p>
-              <div class="doc-stats"><span>14 議題 · 12 cluster · 5 audience 版本</span> <span class="adoption-bad">優先級:極高</span></div>
-            </div>
-          </a>
-
-          <a href="index.html#A-Blueprint_Gender_Equity_Education_Reform" class="doc-card" data-issuer="AABE" data-cycle="3" data-year="2026" data-type="advocacy" data-status="pending" data-topic="政策白皮書(英文版)">
-            <span class="doc-stripe" style="background:#1F3D6B"></span>
-            <div class="doc-body">
-              <div class="doc-pills"><span class="pill pill-aabe">★ AABE</span><span class="pill pill-cycle">AABE 倡議</span><span class="pill pill-meta">待補</span></div>
-              <h3>Gender Equity Education Reform Blueprint</h3>
-              <div class="doc-issuer">提出:<span class="ngo-tag">國教行動聯盟(AABE)</span></div>
-              <p class="doc-excerpt">**英文版政策白皮書**,可作為 CRC 第三次審查國際委員場次提交之**英文版材料**。</p>
-              <div class="doc-stats"><span style="color:var(--text-muted)">政策白皮書(英文版)</span> <span>狀態:追蹤中</span></div>
-            </div>
-          </a>
-
-          <a href="index.html#A-2026-05-14_衛福部公聽會發言稿" class="doc-card" data-issuer="AABE" data-cycle="3" data-year="2026" data-type="advocacy" data-status="pending" data-topic="公聽會發言稿(Wave 66 定稿,日期預估)">
-            <span class="doc-stripe" style="background:#1F3D6B"></span>
-            <div class="doc-body">
-              <div class="doc-pills"><span class="pill pill-aabe">★ AABE</span><span class="pill pill-cycle">AABE 倡議</span><span class="pill pill-meta">2026-05-14</span></div>
-              <h3>衛福部兒少權法修法草案公聽會發言稿(2026-05-14 預定)</h3>
-              <div class="doc-issuer">提出:<span class="ngo-tag">國教行動聯盟(AABE)</span></div>
-              <p class="doc-excerpt">—</p>
-              <div class="doc-stats"><span style="color:var(--text-muted)">公聽會發言稿(Wave 66 定稿,日期預估)</span> <span>狀態:追蹤中</span></div>
-            </div>
-          </a>
-
-          <a href="index.html#A-2026-05-04_CRC第2輪審查_場次2_候選A_剴剴案_口語版" class="doc-card" data-issuer="AABE" data-cycle="3" data-year="2026" data-type="advocacy" data-status="pending" data-topic="民間審查發言(代表照念用,雙軸審查框架)">
-            <span class="doc-stripe" style="background:#1F3D6B"></span>
-            <div class="doc-body">
-              <div class="doc-pills"><span class="pill pill-aabe">★ AABE</span><span class="pill pill-cycle">AABE 倡議</span><span class="pill pill-meta">2026-05-04</span></div>
-              <h3>場次 2 候選 A — 剴剴案六大缺口(口語逐點版,雙軸審查框架,Wave 49 範本)</h3>
-              <div class="doc-issuer">提出:<span class="ngo-tag">國教行動聯盟(AABE)</span></div>
-              <p class="doc-excerpt">—</p>
-              <div class="doc-stats"><span style="color:var(--text-muted)">民間審查發言(代表照念用,雙軸審查框架)</span> <span>狀態:追蹤中</span></div>
-            </div>
-          </a>
-
-          <a href="external-reports.html" class="doc-card" data-issuer="兒少權利公約聯盟 (CRRC)" data-cycle="2" data-year="2022" data-type="shadow" data-status="archived" data-topic="">
-            <span class="doc-stripe" style="background:#4B2480"></span>
-            <div class="doc-body">
-              <div class="doc-pills"><span class="pill pill-shadow">民間影子報告(其他 NGO)</span><span class="pill pill-meta">2022 年 · CRC 第二次審查</span></div>
-              <h3>2022 台灣兒少權益聯合影子報告聯盟 CRC 第 2 次國家報告民間影子報告</h3>
-              <div class="doc-issuer">提出:<span class="ngo-tag">台灣兒少權益聯合影子報告聯盟</span></div>
-              <p class="doc-excerpt">CRC 第二次國際審查,台少盟召集 22 個民間團體共同提出聯合影子報告,涵蓋公約全部條文。系統性檢視全部公約條款。</p>
-              <div class="doc-stats"><span>156 點倡議</span> <span class="adoption-good">已採 59</span> <span class="adoption-mid">部分 50</span> <span class="adoption-bad">未採 47</span> <span>採納率 69.9%</span></div>
-            </div>
-          </a>
-
-          <a href="external-reports.html" class="doc-card" data-issuer="人約盟" data-cycle="2" data-year="2022" data-type="shadow" data-status="archived" data-topic="">
-            <span class="doc-stripe" style="background:#4B2480"></span>
-            <div class="doc-body">
-              <div class="doc-pills"><span class="pill pill-shadow">民間影子報告(其他 NGO)</span><span class="pill pill-meta">2022 年 · CRC 第二次審查</span></div>
-              <h3>2022 人權公約施行監督聯盟 CRC 第 2 次國家報告民間影子報告</h3>
-              <div class="doc-issuer">提出:<span class="ngo-tag">人權公約施行監督聯盟</span></div>
-              <p class="doc-excerpt">人權公約施行監督聯盟(人約盟)以「兩公約 × CRC 整合觀點」為主軸,聚焦兒少司法、難民、無國籍兒少等與 ICCPR 高度交集議題。</p>
-              <div class="doc-stats"><span>48 點倡議</span> <span class="adoption-good">已採 12</span> <span class="adoption-mid">部分 18</span> <span class="adoption-bad">未採 18</span> <span>採納率 62.5%</span></div>
-            </div>
-          </a>
-
-          <a href="nap.html" class="doc-card" data-issuer="NHRC" data-cycle="0" data-year="0" data-type="nap" data-status="--" data-topic="強化人權保障體制">
-            <span class="doc-stripe" style="background:#C68822"></span>
-            <div class="doc-body">
-              <div class="doc-pills"><span class="pill pill-nap">NAP 第 2 期</span><span class="pill pill-meta">政府自評:--</span></div>
-              <h3>國家人權行動計畫 · 強化人權保障體制 · 行動 NAP2-01-NHRC-專責單位</h3>
-              <div class="doc-issuer">主辦機關:<span class="ngo-tag">NHRC</span></div>
-              <p class="doc-excerpt">於國家人權委員會內設立兒少權利專責單位</p>
-              <div class="doc-stats"><span>政府自評:--</span></div>
-            </div>
-          </a>
-        <!-- DOC-LIST-END -->
+          <p style="color:var(--text-muted);text-align:center;padding:40px;font-size:14px">載入文件中…</p>
         </div>
-        <p id="doc-list-meta" style="font-size:11.5px;color:var(--text-muted);margin-top:8px;font-family:var(--sans-en)">─</p>
 
-        <div style="display: flex; justify-content: center; gap: 4px; margin-top: var(--space-4); font-size: 13px;">
-          <button class="view-tab" style="color: var(--text-muted)">‹ 上頁</button>
-          <button class="view-tab active" style="background: var(--bg-deep); color: #fff;">1</button>
-          <button class="view-tab">2</button>
-          <button class="view-tab">3</button>
-          <span style="padding: 5px 8px; color: var(--text-muted)">...</span>
-          <button class="view-tab">18</button>
-          <button class="view-tab" style="color: var(--text-muted)">下頁 ›</button>
-        </div>
+        <div id="doc-pagination" style="display: flex; justify-content: center; gap: 4px; margin-top: var(--space-4); font-size: 13px;"></div>
+        <p id="doc-list-meta" style="font-size:11.5px;color:var(--text-muted);margin-top:8px;font-family:var(--sans-en);text-align:center">─</p>
       </div>
     </div>
   </div>
 </section>
+
+<!-- DOC-DATA injected by render_homepage.py -->
+<script>
+<!-- DOC-DATA-START -->
+window.DOC_DATA = {
+  "docs": [
+    {
+      "report_id": "ESR-2022-CRRC",
+      "year": 2022,
+      "cycle": 2,
+      "ngo_name": "台灣兒少權益聯合影子報告聯盟",
+      "ngo_short": "兒少權利公約聯盟 (CRRC)",
+      "n_pages": 218,
+      "n_points": 156,
+      "adopted": 59,
+      "partial": 50,
+      "not_adopted": 47,
+      "summary": "CRC 第二次國際審查,台少盟召集 22 個民間團體共同提出聯合影子報告,涵蓋公約全部條文。系統性檢視全部公約條款。",
+      "kind": "shadow",
+      "issuer": "兒少權利公約聯盟 (CRRC)",
+      "issuer_full": "台灣兒少權益聯合影子報告聯盟",
+      "featured": false,
+      "title": "2022 台灣兒少權益聯合影子報告聯盟 CRC 第 2 次國家報告民間影子報告",
+      "cycle_label": "CRC 第二次審查 (2022)",
+      "stats_html": "<span>218 頁 / 156 點</span> <span class=\"adoption-good\">已採 59</span> <span class=\"adoption-mid\">部分 50</span> <span class=\"adoption-bad\">未採 47</span> <span>採納率 69.9%</span>",
+      "status": "archived",
+      "href": "external-reports.html",
+      "stripe": "#4B2480",
+      "date": "2022-01-01"
+    },
+    {
+      "report_id": "ESR-2022-COVENANTSWATCH",
+      "year": 2022,
+      "cycle": 2,
+      "ngo_name": "人權公約施行監督聯盟",
+      "ngo_short": "人約盟",
+      "n_pages": 96,
+      "n_points": 48,
+      "adopted": 12,
+      "partial": 18,
+      "not_adopted": 18,
+      "summary": "人權公約施行監督聯盟(人約盟)以「兩公約 × CRC 整合觀點」為主軸,聚焦兒少司法、難民、無國籍兒少等與 ICCPR 高度交集議題。",
+      "kind": "shadow",
+      "issuer": "人約盟",
+      "issuer_full": "人權公約施行監督聯盟",
+      "featured": false,
+      "title": "2022 人權公約施行監督聯盟 CRC 第 2 次國家報告民間影子報告",
+      "cycle_label": "CRC 第二次審查 (2022)",
+      "stats_html": "<span>96 頁 / 48 點</span> <span class=\"adoption-good\">已採 12</span> <span class=\"adoption-mid\">部分 18</span> <span class=\"adoption-bad\">未採 18</span> <span>採納率 62.5%</span>",
+      "status": "archived",
+      "href": "external-reports.html",
+      "stripe": "#4B2480",
+      "date": "2022-01-01"
+    },
+    {
+      "report_id": "ESR-2022-AABE",
+      "year": 2022,
+      "cycle": 2,
+      "ngo_name": "國教行動聯盟",
+      "ngo_short": "AABE",
+      "n_pages": 78,
+      "n_points": 34,
+      "adopted": 14,
+      "partial": 11,
+      "not_adopted": 9,
+      "summary": "CRC 第二次國際審查,國教盟延續 2017 倡議軸線,聚焦教育權與校園安全。",
+      "kind": "shadow",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟",
+      "featured": true,
+      "title": "2022 國教行動聯盟 CRC 第 2 次國家報告民間影子報告",
+      "cycle_label": "CRC 第二次審查 (2022)",
+      "stats_html": "<span>78 頁 / 34 點</span> <span class=\"adoption-good\">已採 14</span> <span class=\"adoption-mid\">部分 11</span> <span class=\"adoption-bad\">未採 9</span> <span>採納率 73.5%</span>",
+      "status": "archived",
+      "href": "external-reports.html",
+      "stripe": "#8B6F50",
+      "date": "2022-01-01"
+    },
+    {
+      "report_id": "ESR-2022-CWLF",
+      "year": 2022,
+      "cycle": 2,
+      "ngo_name": "兒童福利聯盟文教基金會",
+      "ngo_short": "兒福聯盟",
+      "n_pages": 38,
+      "n_points": 18,
+      "adopted": 5,
+      "partial": 7,
+      "not_adopted": 6,
+      "summary": "兒福聯盟以替代照顧(CRC §20、21)為單一專題,提出 18 點具體倡議。",
+      "kind": "shadow",
+      "issuer": "兒福聯盟",
+      "issuer_full": "兒童福利聯盟文教基金會",
+      "featured": false,
+      "title": "2022 兒童福利聯盟文教基金會 CRC 第 2 次國家報告民間影子報告",
+      "cycle_label": "CRC 第二次審查 (2022)",
+      "stats_html": "<span>38 頁 / 18 點</span> <span class=\"adoption-good\">已採 5</span> <span class=\"adoption-mid\">部分 7</span> <span class=\"adoption-bad\">未採 6</span> <span>採納率 66.7%</span>",
+      "status": "archived",
+      "href": "external-reports.html",
+      "stripe": "#4B2480",
+      "date": "2022-01-01"
+    },
+    {
+      "report_id": "ESR-2022-TWRF",
+      "year": 2022,
+      "cycle": 2,
+      "ngo_name": "婦女救援基金會",
+      "ngo_short": "婦援會",
+      "n_pages": 30,
+      "n_points": 18,
+      "adopted": 5,
+      "partial": 7,
+      "not_adopted": 6,
+      "summary": "婦援會聚焦兒少性侵 / 性剝削倖存者支持系統,提出 18 點具體倡議。",
+      "kind": "shadow",
+      "issuer": "婦援會",
+      "issuer_full": "婦女救援基金會",
+      "featured": false,
+      "title": "2022 婦女救援基金會 CRC 第 2 次國家報告民間影子報告",
+      "cycle_label": "CRC 第二次審查 (2022)",
+      "stats_html": "<span>30 頁 / 18 點</span> <span class=\"adoption-good\">已採 5</span> <span class=\"adoption-mid\">部分 7</span> <span class=\"adoption-bad\">未採 6</span> <span>採納率 66.7%</span>",
+      "status": "archived",
+      "href": "external-reports.html",
+      "stripe": "#4B2480",
+      "date": "2022-01-01"
+    },
+    {
+      "report_id": "ESR-2022-GOH",
+      "year": 2022,
+      "cycle": 2,
+      "ngo_name": "勵馨基金會",
+      "ngo_short": "勵馨",
+      "n_pages": 28,
+      "n_points": 16,
+      "adopted": 4,
+      "partial": 6,
+      "not_adopted": 6,
+      "summary": "勵馨基金會以兒少性暴力(CRC §19)、性剝削(§34)、防止販運(§35)、暴力後復原(§39)為主軸,提出 16 點具體倡議。",
+      "kind": "shadow",
+      "issuer": "勵馨",
+      "issuer_full": "勵馨基金會",
+      "featured": false,
+      "title": "2022 勵馨基金會 CRC 第 2 次國家報告民間影子報告",
+      "cycle_label": "CRC 第二次審查 (2022)",
+      "stats_html": "<span>28 頁 / 16 點</span> <span class=\"adoption-good\">已採 4</span> <span class=\"adoption-mid\">部分 6</span> <span class=\"adoption-bad\">未採 6</span> <span>採納率 62.5%</span>",
+      "status": "archived",
+      "href": "external-reports.html",
+      "stripe": "#4B2480",
+      "date": "2022-01-01"
+    },
+    {
+      "report_id": "ESR-2022-ECPAT",
+      "year": 2022,
+      "cycle": 2,
+      "ngo_name": "台灣展翅協會 (ECPAT Taiwan)",
+      "ngo_short": "展翅",
+      "n_pages": 28,
+      "n_points": 16,
+      "adopted": 4,
+      "partial": 6,
+      "not_adopted": 6,
+      "summary": "展翅以兒少性剝削國際標準(ECPAT 國際組織之 28 國比較)對台灣現況提出 16 點倡議。",
+      "kind": "shadow",
+      "issuer": "展翅",
+      "issuer_full": "台灣展翅協會 (ECPAT Taiwan)",
+      "featured": false,
+      "title": "2022 台灣展翅協會 (ECPAT Taiwan) CRC 第 2 次國家報告民間影子報告",
+      "cycle_label": "CRC 第二次審查 (2022)",
+      "stats_html": "<span>28 頁 / 16 點</span> <span class=\"adoption-good\">已採 4</span> <span class=\"adoption-mid\">部分 6</span> <span class=\"adoption-bad\">未採 6</span> <span>採納率 62.5%</span>",
+      "status": "archived",
+      "href": "external-reports.html",
+      "stripe": "#4B2480",
+      "date": "2022-01-01"
+    },
+    {
+      "report_id": "ESR-2022-EDREFORM",
+      "year": 2022,
+      "cycle": 2,
+      "ngo_name": "教育改革總諮詢委員會(教改總會)",
+      "ngo_short": "教改總會",
+      "n_pages": 32,
+      "n_points": 16,
+      "adopted": 6,
+      "partial": 5,
+      "not_adopted": 5,
+      "summary": "教改總會聚焦教育商品化、補習文化、課業壓力對兒少學習權之衝擊,提出 16 點倡議。",
+      "kind": "shadow",
+      "issuer": "教改總會",
+      "issuer_full": "教育改革總諮詢委員會(教改總會)",
+      "featured": false,
+      "title": "2022 教育改革總諮詢委員會(教改總會) CRC 第 2 次國家報告民間影子報告",
+      "cycle_label": "CRC 第二次審查 (2022)",
+      "stats_html": "<span>32 頁 / 16 點</span> <span class=\"adoption-good\">已採 6</span> <span class=\"adoption-mid\">部分 5</span> <span class=\"adoption-bad\">未採 5</span> <span>採納率 68.8%</span>",
+      "status": "archived",
+      "href": "external-reports.html",
+      "stripe": "#4B2480",
+      "date": "2022-01-01"
+    },
+    {
+      "report_id": "ESR-2022-CCF",
+      "year": 2022,
+      "cycle": 2,
+      "ngo_name": "家扶基金會",
+      "ngo_short": "家扶",
+      "n_pages": 32,
+      "n_points": 14,
+      "adopted": 4,
+      "partial": 5,
+      "not_adopted": 5,
+      "summary": "家扶以兒少貧窮(CRC §27)為單一專題,提出 14 點倡議。",
+      "kind": "shadow",
+      "issuer": "家扶",
+      "issuer_full": "家扶基金會",
+      "featured": false,
+      "title": "2022 家扶基金會 CRC 第 2 次國家報告民間影子報告",
+      "cycle_label": "CRC 第二次審查 (2022)",
+      "stats_html": "<span>32 頁 / 14 點</span> <span class=\"adoption-good\">已採 4</span> <span class=\"adoption-mid\">部分 5</span> <span class=\"adoption-bad\">未採 5</span> <span>採納率 64.3%</span>",
+      "status": "archived",
+      "href": "external-reports.html",
+      "stripe": "#4B2480",
+      "date": "2022-01-01"
+    },
+    {
+      "report_id": "ESR-2022-HEF",
+      "year": 2022,
+      "cycle": 2,
+      "ngo_name": "人本教育基金會",
+      "ngo_short": "人本",
+      "n_pages": 26,
+      "n_points": 14,
+      "adopted": 5,
+      "partial": 5,
+      "not_adopted": 4,
+      "summary": "人本以體罰禁止(CRC §19)、教育權(§28)、校園不當管教為主軸,延續 30 年校園體罰倡議。",
+      "kind": "shadow",
+      "issuer": "人本",
+      "issuer_full": "人本教育基金會",
+      "featured": false,
+      "title": "2022 人本教育基金會 CRC 第 2 次國家報告民間影子報告",
+      "cycle_label": "CRC 第二次審查 (2022)",
+      "stats_html": "<span>26 頁 / 14 點</span> <span class=\"adoption-good\">已採 5</span> <span class=\"adoption-mid\">部分 5</span> <span class=\"adoption-bad\">未採 4</span> <span>採納率 71.4%</span>",
+      "status": "archived",
+      "href": "external-reports.html",
+      "stripe": "#4B2480",
+      "date": "2022-01-01"
+    },
+    {
+      "report_id": "ESR-2022-JRF",
+      "year": 2022,
+      "cycle": 2,
+      "ngo_name": "民間司法改革基金會",
+      "ngo_short": "民間司改會",
+      "n_pages": 35,
+      "n_points": 14,
+      "adopted": 3,
+      "partial": 5,
+      "not_adopted": 6,
+      "summary": "民間司改會結合廢死聯盟,聚焦 CRC §37(司法處遇)、§39(復原)、§40(少年司法),提出 14 點倡議。",
+      "kind": "shadow",
+      "issuer": "民間司改會",
+      "issuer_full": "民間司法改革基金會",
+      "featured": false,
+      "title": "2022 民間司法改革基金會 CRC 第 2 次國家報告民間影子報告",
+      "cycle_label": "CRC 第二次審查 (2022)",
+      "stats_html": "<span>35 頁 / 14 點</span> <span class=\"adoption-good\">已採 3</span> <span class=\"adoption-mid\">部分 5</span> <span class=\"adoption-bad\">未採 6</span> <span>採納率 57.1%</span>",
+      "status": "archived",
+      "href": "external-reports.html",
+      "stripe": "#4B2480",
+      "date": "2022-01-01"
+    },
+    {
+      "report_id": "ESR-2022-HOTLINE",
+      "year": 2022,
+      "cycle": 2,
+      "ngo_name": "台灣同志諮詢熱線協會",
+      "ngo_short": "同志熱線",
+      "n_pages": 24,
+      "n_points": 12,
+      "adopted": 3,
+      "partial": 4,
+      "not_adopted": 5,
+      "summary": "聚焦 CRC §2(不歧視)、§8(身分認同)、§13(表達自由)、§19(免於暴力)、§24(健康權),提出 12 點倡議。",
+      "kind": "shadow",
+      "issuer": "同志熱線",
+      "issuer_full": "台灣同志諮詢熱線協會",
+      "featured": false,
+      "title": "2022 台灣同志諮詢熱線協會 CRC 第 2 次國家報告民間影子報告",
+      "cycle_label": "CRC 第二次審查 (2022)",
+      "stats_html": "<span>24 頁 / 12 點</span> <span class=\"adoption-good\">已採 3</span> <span class=\"adoption-mid\">部分 4</span> <span class=\"adoption-bad\">未採 5</span> <span>採納率 58.3%</span>",
+      "status": "archived",
+      "href": "external-reports.html",
+      "stripe": "#4B2480",
+      "date": "2022-01-01"
+    },
+    {
+      "report_id": "ESR-2017-TAASA",
+      "year": 2017,
+      "cycle": 1,
+      "ngo_name": "台灣少年權益與福利促進聯盟",
+      "ngo_short": "台少盟",
+      "n_pages": 145,
+      "n_points": 92,
+      "adopted": 38,
+      "partial": 27,
+      "not_adopted": 27,
+      "summary": "CRC 第一次國際審查,台少盟召集兒少領域 5 大主要 NGO 共同提出聯合影子報告,涵蓋公約全部條文。",
+      "kind": "shadow",
+      "issuer": "台少盟",
+      "issuer_full": "台灣少年權益與福利促進聯盟",
+      "featured": false,
+      "title": "2017 台灣少年權益與福利促進聯盟 CRC 第 1 次國家報告民間影子報告",
+      "cycle_label": "CRC 第一次審查 (2017)",
+      "stats_html": "<span>145 頁 / 92 點</span> <span class=\"adoption-good\">已採 38</span> <span class=\"adoption-mid\">部分 27</span> <span class=\"adoption-bad\">未採 27</span> <span>採納率 70.7%</span>",
+      "status": "archived",
+      "href": "external-reports.html",
+      "stripe": "#4B2480",
+      "date": "2017-01-01"
+    },
+    {
+      "report_id": "ESR-2017-AABE",
+      "year": 2017,
+      "cycle": 1,
+      "ngo_name": "國教行動聯盟",
+      "ngo_short": "AABE",
+      "n_pages": 42,
+      "n_points": 22,
+      "adopted": 10,
+      "partial": 7,
+      "not_adopted": 5,
+      "summary": "CRC 於 2014 年國內施行,2017 年首次接受國際審查。國教行動聯盟邀集 8 個民間團體共同提出民間意見書,聚焦教育權、校園安全、特教資源。",
+      "kind": "shadow",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟",
+      "featured": true,
+      "title": "2017 國教行動聯盟 CRC 第 1 次國家報告民間影子報告",
+      "cycle_label": "CRC 第一次審查 (2017)",
+      "stats_html": "<span>42 頁 / 22 點</span> <span class=\"adoption-good\">已採 10</span> <span class=\"adoption-mid\">部分 7</span> <span class=\"adoption-bad\">未採 5</span> <span>採納率 77.3%</span>",
+      "status": "archived",
+      "href": "external-reports.html",
+      "stripe": "#8B6F50",
+      "date": "2017-01-01"
+    },
+    {
+      "report_id": "ESR-2017-EDEN",
+      "year": 2017,
+      "cycle": 1,
+      "ngo_name": "兒童伊甸社會福利基金會",
+      "ngo_short": "伊甸",
+      "n_pages": 22,
+      "n_points": 12,
+      "adopted": 4,
+      "partial": 4,
+      "not_adopted": 4,
+      "summary": "伊甸與心路聯合,聚焦 CRC §2(不歧視)、§23(身障兒童)、§28(教育)、§31(休閒),提出 12 點倡議。",
+      "kind": "shadow",
+      "issuer": "伊甸",
+      "issuer_full": "兒童伊甸社會福利基金會",
+      "featured": false,
+      "title": "2017 兒童伊甸社會福利基金會 CRC 第 1 次國家報告民間影子報告",
+      "cycle_label": "CRC 第一次審查 (2017)",
+      "stats_html": "<span>22 頁 / 12 點</span> <span class=\"adoption-good\">已採 4</span> <span class=\"adoption-mid\">部分 4</span> <span class=\"adoption-bad\">未採 4</span> <span>採納率 66.7%</span>",
+      "status": "archived",
+      "href": "external-reports.html",
+      "stripe": "#4B2480",
+      "date": "2017-01-01"
+    },
+    {
+      "report_id": "ESR-2017-SHANMU",
+      "year": 2017,
+      "cycle": 1,
+      "ngo_name": "善牧基金會",
+      "ngo_short": "善牧",
+      "n_pages": 18,
+      "n_points": 10,
+      "adopted": 3,
+      "partial": 3,
+      "not_adopted": 4,
+      "summary": "善牧結合國際兒童村,聚焦 CRC §9 §19 §20 §21,提出 10 點倡議。為 2022 兒福聯盟替代照顧專題之先聲。",
+      "kind": "shadow",
+      "issuer": "善牧",
+      "issuer_full": "善牧基金會",
+      "featured": false,
+      "title": "2017 善牧基金會 CRC 第 1 次國家報告民間影子報告",
+      "cycle_label": "CRC 第一次審查 (2017)",
+      "stats_html": "<span>18 頁 / 10 點</span> <span class=\"adoption-good\">已採 3</span> <span class=\"adoption-mid\">部分 3</span> <span class=\"adoption-bad\">未採 4</span> <span>採納率 60.0%</span>",
+      "status": "archived",
+      "href": "external-reports.html",
+      "stripe": "#4B2480",
+      "date": "2017-01-01"
+    },
+    {
+      "kind": "shadow",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟",
+      "featured": true,
+      "title": "2026 國教行動聯盟 CRC 第三次國家報告民間影子報告 v0.4(專業版)",
+      "cycle": 3,
+      "cycle_label": "CRC 第三次審查 (2026,進行中)",
+      "year": 2026,
+      "summary": "針對 14 議題、12 cluster 提出三軸評分(制度 / 結果 / 持續)。聚焦剴剴案六大缺口、青少年心理健康(自殺通報 +142%)、性平教育主軸應為健康教育、實驗教育偽實驗、淋病 +7×/梅毒 +53× 重啟性健康計畫等。",
+      "stats_html": "<span>14 議題 · 12 cluster · 5 audience 版本</span> <span class=\"adoption-bad\">優先級:極高</span>",
+      "status": "draft",
+      "href": "reports/Alternative_Report_v0.4_professional.html",
+      "stripe": "#B5371F",
+      "date": "2026-05-04",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "Gender Equity Education Reform Blueprint",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "**英文版政策白皮書**,可作為 CRC 第三次審查國際委員場次提交之**英文版材料**。",
+      "stats_html": "<span>政策白皮書(英文版)</span> <span>議題:PI-08</span>",
+      "status": "pending",
+      "href": "index.html",
+      "stripe": "#8B6F50",
+      "date": "待補",
+      "pis": "PI-08",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "衛福部兒少權法修法草案公聽會發言稿(2026-05-14 預定)",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "",
+      "stats_html": "<span>公聽會發言稿(Wave 66 定稿,日期預估)</span> <span>議題:PI-01,PI-05,PI-11,PI-12</span>",
+      "status": "pending",
+      "href": "index.html",
+      "stripe": "#8B6F50",
+      "date": "2026-05-14",
+      "pis": "PI-01,PI-05,PI-11,PI-12",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "場次 2 候選 A — 剴剴案六大缺口(口語逐點版,雙軸審查框架,Wave 49 範本)",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "",
+      "stats_html": "<span>民間審查發言(代表照念用,雙軸審查框架)</span> <span>議題:PI-12</span>",
+      "status": "pending",
+      "href": "index.html",
+      "stripe": "#8B6F50",
+      "date": "2026-05-04",
+      "pis": "PI-12",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "CRC 第三次國家報告第 2 輪民間審查場次 2 發言稿(5/4 上午,口語雙軸版)",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "",
+      "stats_html": "<span>民間審查發言(雙軸審查框架,代表照念用)</span> <span>議題:PI-01,PI-04,PI-12</span>",
+      "status": "pending",
+      "href": "index.html",
+      "stripe": "#8B6F50",
+      "date": "2026-05-04",
+      "pis": "PI-01,PI-04,PI-12",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "CRC 第三次國家報告第 2 輪民間審查場次 3 發言稿(5/4 下午,口語雙軸版)",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "",
+      "stats_html": "<span>民間審查發言(雙軸審查框架,代表照念用)</span> <span>議題:PI-02,PI-05,PI-06,PI-09,PI-13,PI-14</span>",
+      "status": "pending",
+      "href": "index.html",
+      "stripe": "#8B6F50",
+      "date": "2026-05-04",
+      "pis": "PI-02,PI-05,PI-06,PI-09,PI-13,PI-14",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "CRC 第三次國家報告第 2 輪民間審查場次 1 發言稿(4/30 上午,口語雙軸版)",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "",
+      "stats_html": "<span>民間審查發言(雙軸審查框架,代表照念用)</span> <span>議題:PI-10,PI-11,PI-13,PI-14</span>",
+      "status": "pending",
+      "href": "index.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-30",
+      "pis": "PI-10,PI-11,PI-13,PI-14",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "CRC 第三次國家報告第 2 輪民間審查會前提問書(雙軸口語版,Wave 49 重寫)",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "",
+      "stats_html": "<span>民間審查會前提問(向衛福部秘書單位送)</span> <span>議題:PI-01,PI-02,PI-04,PI-05,PI-06,PI-09,PI-12,PI-13,PI-14</span>",
+      "status": "pending",
+      "href": "https://forms.gle/KW5BsM3yW9gns1Ss8",
+      "stripe": "#8B6F50",
+      "date": "2026-04-28",
+      "pis": "PI-01,PI-02,PI-04,PI-05,PI-06,PI-09,PI-12,PI-13,PI-14",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "推動「無菸品世代(Tobacco-Free Generation)」聲明",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "",
+      "stats_html": "<span>聯合聲明(台灣拒菸聯盟主導,國教盟簽署)</span> <span>議題:PI-06</span>",
+      "status": "pending",
+      "href": "index.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-24",
+      "pis": "PI-06",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "台灣為何應推動「無菸品世代」全面禁絕新型菸品？",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "英國通過《菸草和電子煙法案》確立2009年後出生者終身禁買紙菸，但保留電子煙，恐製造新一代「電子煙世代」。國教行動聯盟與台灣拒菸聯盟主張「健康台灣」應推動真正的「無菸品世代」，全面禁紙菸、電子煙、加熱菸、尼古丁袋。",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-06</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/health/2026-04-24-健康台灣無菸品世代.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-24",
+      "pis": "PI-06",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "兒少權法 15 年大修為何仍補不上剴剴案六大制度缺口?(衛福部 2026-04-21 預告草案分析)",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "",
+      "stats_html": "<span>政策分析(新聞稿延伸)</span> <span>議題:PI-01,PI-05,PI-11,PI-12</span>",
+      "status": "not_adopted",
+      "href": "https://naer-tw.github.io/policy/child-rights/2026-04-22-兒少權法修法六大缺口.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-22",
+      "pis": "PI-01,PI-05,PI-11,PI-12",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "兒少權法15年大修為何仍補不上剴剴案六大制度缺口？",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "衛福部2026年4月21日預告兒少權法修正草案，條文由118條擴增至165條。國教盟指出，草案在社工注意義務、高風險升級、跨機關資訊共享、重大事件檢討、委外責任鏈與起訴前專業審查六大核心仍為零條款。",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-01,PI-05,PI-11,PI-12</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/child-rights/2026-04-22-兒少權法修法六大缺口.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-22",
+      "pis": "PI-01,PI-05,PI-11,PI-12",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "WISER-3.0 學校三級輔導工作手冊(第三節)",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "教育部國教署 WISER-3.0 模式之**第三節**手冊,2026-04-17 為講解版日期。",
+      "stats_html": "<span>政府教材(教育部)</span> <span>議題:PI-04</span>",
+      "status": "pending",
+      "href": "index.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-17(講解版日期)",
+      "pis": "PI-04",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "從保證人地位法理到五大修法工程:台灣兒少保護體系如何重建?",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "### 2.1 法理判斷 > 法院的三層論據在刑法學理上站得住腳。**但正因如此,立法必須跟上司法**。  ### 2.2 結構性問題 > 應負保證人地位之人,為**有實質支配力卻怠於作為之個別行為人**,而非在基層克盡職守之社工群體。但結構性負荷不可作為個別社工免責的藉口,結構問題與個別過失須分別處理。  ### 2.3 國際對標 > 全球主要法治國家**幾乎不以過失致死追訴第一線兒保社工**;",
+      "stats_html": "<span>政策分析(深度長文)</span> <span>議題:PI-12</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/child-rights/2026-04-17-兒少保護體系改革五大修法工程.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-17",
+      "pis": "PI-12",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "從保證人地位法理到五大修法工程：台灣兒少保護體系如何重建？",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "完整解構剴剴案保證人地位三層論據：法律形式來源、制度性接管與事實承擔。分析等價性原則與四大法制漏洞，提出五大修法工程。跨國比較德國Garantenlehre、美國DeShaney案、英國Munro Review、日韓經驗，以中立法律分析建構制度改革方向。",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-12</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/child-rights/2026-04-17-兒少保護體系改革五大修法工程.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-17",
+      "pis": "PI-12",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "剴剴案社工一審判刑後，台灣兒少保護制度該如何修補？",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "2026年4月16日剴剴案社工陳尚潔一審遭判過失致死2年。法院從法律形式來源、制度性接管與事實承擔三層論據認定保證人地位。國教行動聯盟以中立法律分析指出：判決法理站得住腳，但正因如此，立法必須跟上司法。",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-12</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/child-rights/2026-04-17-剴剴案社工判刑與兒少保護修法訴求.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-17",
+      "pis": "PI-12",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "家長支持性平卻不滿意現行制度?全長聯指出三大教育缺口",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "**全國家長會長聯盟(全長聯)**,以全國各縣市家長會長為主體。注意**與「全國家長團體聯盟(全家盟)」是不同組織**。",
+      "stats_html": "<span>立法院公聽會書面報告(合作 NGO)</span> <span>議題:PI-08</span>",
+      "status": "pending",
+      "href": "index.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-15",
+      "pis": "PI-08",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "性平法不該無限擴張!國教盟三大修法主張守住教育本位",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "",
+      "stats_html": "<span>立法院公聽會書面報告(完整版)+ 新聞稿 + 綜合研究報告 APA7 版</span> <span>議題:PI-08</span>",
+      "status": "pending",
+      "href": "index.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-15",
+      "pis": "PI-08",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "家長支持性平卻不滿意現行制度？全長聯指出三大教育缺口",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "全國家長會長聯盟（全長聯）於 2026-04-15 立法院公聽會書面報告，從家長角度指出三大教育缺口，主張分齡性健康教育、獨立情感教育與家校合作機制。",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-08</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/education-reform/2026-04-15-家長立場-全長聯公聽會.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-15",
+      "pis": "PI-08",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "性平法該不該無限擴張？國教盟三大修法主張守住教育本位",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "國教行動聯盟於 2026-04-15 立法院公聽會書面報告，指出 2023 修法後性平法出現定義混淆、功能過載、程序膨脹三大副作用，主張釐清邊界、分級分流、回歸教育本位。",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-08</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/education-reform/2026-04-15-性平法再校準-國教盟公聽會.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-15",
+      "pis": "PI-08",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "司法院少事法部分條文修正草案諮詢會議",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "",
+      "stats_html": "<span>政府諮詢會議(司法院主辦)</span> <span>議題:PI-05</span>",
+      "status": "pending",
+      "href": "index.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-14",
+      "pis": "PI-05",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "立法院教育及文化委員會「實驗教育三法修法」公聽會",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "",
+      "stats_html": "<span>公聽會出席(立法院)+ 書面報告 + 七分鐘發言</span> <span>議題:PI-09</span>",
+      "status": "pending",
+      "href": "index.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-13",
+      "pis": "PI-09",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "台灣偏鄉公校為何大量轉型實驗教育?",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "- **114 學年度 128 校學校型態實驗教育中,公立占 120 校(93.8%)** - 偏鄉及非山非市學校占 68 校(47.2%) - **「實驗化」已成裁併校的政治替代方案**,而非真正的教育創新",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-09</span>",
+      "status": "pending",
+      "href": "index.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-12",
+      "pis": "PI-09",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "實驗教育如何保障弱勢學生權益?",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "- 部分學校以雙語等課程申請實驗教育名義**規避特教法** - 公立實驗校占 93.8%,六成家長反映學校拒收身障生 - **「偽實驗」+ 法規排除 + 隱性篩選**形成弱勢學生的隱性門檻",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-09</span>",
+      "status": "pending",
+      "href": "index.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-12",
+      "pis": "PI-09",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "台灣實驗教育如何與國際模式相比?",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "- 台灣以特別法賦予學校型態實驗教育校廣泛法規排除(課程、教學、人事),**幾乎沒有退場機制** - 美國採契約型治理、英國採自治加強問責 — **「公共性不退、治理工具改變」** - 台灣是**「自治先行、問責後補」**的「制度紅利」模式 — 與國際相反",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-09</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/(待補完整路徑)",
+      "stripe": "#8B6F50",
+      "date": "2026-04-12",
+      "pis": "PI-09",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "台灣偏鄉公校為何大量轉型實驗教育？",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "台灣學校型態實驗教育128校中公立占93.8%，偏鄉及非山非市學校占47.2%。國教行動聯盟分析少子化、法規誘因、裁併校政治成本等五大結構性驅動力，揭示「偽實驗」與制度求生現象，提出十項改革建議。",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-09</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/education-reform/2026-04-12-偏鄉公校轉型實驗教育.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-12",
+      "pis": "PI-09",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "實驗教育如何保障弱勢學生權益？",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "部分學校以雙語等課程申請實驗教育名義規避特教法，公立實驗校占93.8%，六成家長反映學校拒收身障生。國教盟分析法規漏洞、隱性篩選與偏鄉「被實驗」現象，提出修法建議。",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-09</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/education-reform/2026-04-12-偽實驗與弱勢學生權益.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-12",
+      "pis": "PI-09",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "台灣實驗教育如何與國際模式相比？",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "台灣學校型態實驗教育以大規模法規排除著稱，與美國特許學校、英國學院、德國實驗校異。美國CREDO 2023年研究(180萬名學生)證實特許校正向學習。國教盟分析核心差異：台灣無退場機制，國外多為「公共性不退、治理工具改變」。",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-09</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/education-reform/2026-04-12-台灣實驗教育國際比較.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-12",
+      "pis": "PI-09",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "拜會新北社會局 — 神經多樣性生活導師制度推動",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "",
+      "stats_html": "<span>政府拜會(國教盟協辦)</span> <span>議題:PI-04</span>",
+      "status": "pending",
+      "href": "index.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-10",
+      "pis": "PI-04",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "民眾黨團「完善教師荒」公聽會",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "",
+      "stats_html": "<span>公聽會出席(立法院政黨團)</span> <span>議題:PI-04,PI-09</span>",
+      "status": "pending",
+      "href": "index.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-10",
+      "pis": "PI-04,PI-09",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "台灣國民教育真的免費嗎？營養午餐與教科書補助的22縣市落差",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "2026年兒童節，全台22縣市中已有20縣市實施免費營養午餐，桃園率六都之先補助教科書。國教行動聯盟分析義務教育經費落差，呼籲中央訂定全國一致最低保障標準，停止讓孩子的起點被郵遞區號決定。",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-09</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/school-lunch/2026-04-03-國民教育平權.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-03",
+      "pis": "PI-09",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "民眾黨團「完善少事法」公聽會",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "",
+      "stats_html": "<span>公聽會出席(立法院政黨團)</span> <span>議題:PI-05</span>",
+      "status": "pending",
+      "href": "index.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-02",
+      "pis": "PI-05",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "校園唾液快篩只做初篩夠嗎？為何需要二層檢測機制？",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "教育部2026年9月起將唾液快篩引進校園，國教行動聯盟肯定此舉但呼籲建立二層檢測機制。依托咪酯等新興毒品代謝快，傳統尿篩7天後即檢測不到，LC-MS/MS可同時檢測127種以上藥物，應補上確認檢驗、輔導通報與法制配套。",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-06</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/campus-safety/2026-04-02-校園唾液快篩二層檢測機制.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-02",
+      "pis": "PI-06",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "臺灣未來帳戶4500億該怎麼花？國教盟提四大優化建議",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "國教行動聯盟出席2026年4月2日立法院「臺灣未來帳戶條例草案」公聽會，針對首年1,130億元、13年4,500億元的特別預算規模，提出財政永續、積極型公義、彈性支用、跨部會治理四大建議。",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-11</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/child-rights/2026-04-02-台灣未來帳戶.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-02",
+      "pis": "PI-11",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "兒童消失危機：為什麼200億幽靈預算救不了台灣的新生兒？",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "2025年台灣新生兒僅10.7萬人，十年腰斬一半。全國婦兒團體聯盟揭露少子女化預算四年溢編超過200億元，75%家長自行照顧幼兒卻僅獲32%預算，倡議育兒津貼應分階段翻倍至1.5萬元。",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-11</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/child-health/2026-04-01-兒童消失危機-育兒津貼翻倍.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-01",
+      "pis": "PI-11",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "政府少子化政策為何無效？八年4,484億元為何救不了台灣生育率？",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "全國婦兒團體聯盟與全家盟聯合分析少子化政策困境，提出四大主張。",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-11</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/child-rights/2026-04-01-兒童節育兒支持政策.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-01",
+      "pis": "PI-11",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "少事法矯正教育、假釋追蹤與塗銷制度如何改革？",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "國教行動聯盟針對少年事件處理法提出矯正教育法制化、假釋追蹤入法至少半年、塗銷制度分級及被害人權益保障等四大修法訴求。全國僅4所矯正學校，2023年新北割頸案凸顯制度缺口。",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-05</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/child-rights/2026-04-01-少事法矯正教育假釋塗銷轉銜改革.html",
+      "stripe": "#8B6F50",
+      "date": "2026-04-01",
+      "pis": "PI-05",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "如何達成無菸城市 — 戶外設置吸菸區還是吸菸室?",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "",
+      "stats_html": "<span>政策分析(合作 NGO)</span> <span>議題:PI-06</span>",
+      "status": "pending",
+      "href": "index.html",
+      "stripe": "#8B6F50",
+      "date": "2026-03-31",
+      "pis": "PI-06",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "面對校園霸凌頻傳，我們還可以做什麼？——國教盟青年部：應強化校園保護機制三道防線",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "國教盟青年部針對新北市永和區國中霸凌事件發表聲明，認為事件凸顯校園保護機制在預防、求助與防止二次傷害三個環節同時失守，應藉此檢討強化三道防線，引用CRC統計呼籲補強預防教育、及早接住與後續輔導。",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-01</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/campus-safety/2026-03-25-永和國中霸凌案.html",
+      "stripe": "#8B6F50",
+      "date": "2026-03-25",
+      "pis": "PI-01",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "國教盟少事法修正建議書 — 過渡性教育措施",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "- 少事法 2019 大修建立「行政先行」框架,但**過渡性教育學位嚴重不足** - 訴求《國民轉介教育條例》立法,**填補曝險少年離開正規學校 → 矯正學校之間的教育空白**",
+      "stats_html": "<span>政策建議書(送立法院)</span> <span>議題:PI-05</span>",
+      "status": "pending",
+      "href": "index.html",
+      "stripe": "#8B6F50",
+      "date": "2026-03-17",
+      "pis": "PI-05",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "campus-safety_2026-03-23-倡議成果追蹤",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-01,PI-05,PI-06</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/campus-safety/2026-03-23-倡議成果追蹤.html",
+      "stripe": "#8B6F50",
+      "date": "2026",
+      "pis": "PI-01,PI-05,PI-06",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "campus-safety_2026-03-23-轉介教育條例",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-05</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/campus-safety/2026-03-23-轉介教育條例.html",
+      "stripe": "#8B6F50",
+      "date": "2026",
+      "pis": "PI-05",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "child-health_2026-01-14-人工生殖法修法風險",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-13</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/child-health/2026-01-14-人工生殖法修法風險.html",
+      "stripe": "#8B6F50",
+      "date": "2026",
+      "pis": "PI-13",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "health_2026-01-13-無菸城市",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-06</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/health/2026-01-13-無菸城市.html",
+      "stripe": "#8B6F50",
+      "date": "2026",
+      "pis": "PI-06",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "school-lunch_2026-01-09-免費營養午餐配套",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-09,PI-11</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/school-lunch/2026-01-09-免費營養午餐配套.html",
+      "stripe": "#8B6F50",
+      "date": "2026",
+      "pis": "PI-09,PI-11",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "teacher-affairs_2026-01-23-校事會議修法",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2026,
+      "summary": "",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-01</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/teacher-affairs/2026-01-23-校事會議修法.html",
+      "stripe": "#8B6F50",
+      "date": "2026",
+      "pis": "PI-01",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "少年重大暴力案件的量刑應如何建立透明基準？",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2025,
+      "summary": "新北國中生割頸案二審改判（一審9、8年→二審12、11年）引發社會質疑。國教盟指出，爭議不在刑期輕重，而在制度缺乏結構化、透明且可檢核的量刑基準。國教盟提出三大改革主張。",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-05</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/child-rights/2025-12-24-少年重大暴力案件量刑透明化.html",
+      "stripe": "#8B6F50",
+      "date": "2025-12-24",
+      "pis": "PI-05",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "校園菸毒與毒駕源頭相同　新興毒品快速變形　毒駕年增8倍",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2025,
+      "summary": "國教盟倡議用科技反制科技：唾液快篩＋液相層析串聯質譜兩層式檢測對抗新興毒品",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-06</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/campus-safety/2025-12-16-校園菸毒與毒駕新興毒品檢測.html",
+      "stripe": "#8B6F50",
+      "date": "2025-12-16",
+      "pis": "PI-06",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "防制校園喪屍煙彈(依托咪酯)記者會",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2025,
+      "summary": "- 喪屍煙彈(依托咪酯)在校園氾濫 - 國教盟痛批政府怠惰不修法 - 訴求:**全面禁止加味菸品 + 修法賦予教育人員查扣電子煙載具**之法源依據",
+      "stats_html": "<span>記者會(國教盟主辦)</span> <span>議題:PI-06</span>",
+      "status": "pending",
+      "href": "https://i-media.tw/Article/Detail/43082",
+      "stripe": "#8B6F50",
+      "date": "2025-12-10",
+      "pis": "PI-06",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "8742名青少年票選第三名：遇到性騷擾該怎麼辦？——國教盟呼籲補上保護課",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2025,
+      "summary": "8,742名青少年調查顯示「遇到性騷擾該怎麼辦？」高居第三名。衛福部統計未成年性影像受害者佔32.9%，但國中小每週僅1節健康教育課。",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-08</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/child-rights/20251208-sexual-violence-prevention-education.html",
+      "stripe": "#8B6F50",
+      "date": "2025-12-08",
+      "pis": "PI-08",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "「生育·養育·教育—兒童成長需求總體檢」論壇",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2025,
+      "summary": "2025年12月6日論壇，四大組織聯合舉辦，探討台灣兒童成長困境與政策整合。涵蓋少子化、新生兒死亡率、青少年自殺、3C過曝、社會情緒學習等議題，提出跨部會整合建議。",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-09,PI-10,PI-11</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/child-rights/2025-12-06-兒童成長需求總體檢論壇.html",
+      "stripe": "#8B6F50",
+      "date": "2025-12-06",
+      "pis": "PI-09,PI-10,PI-11",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "青少年自殺通報九年增加3.3倍、佔比倍增",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2025,
+      "summary": "15到24歲青少年自殺通報數量自104年增至113年增加3.3倍，死亡率十年增加一倍。國教行動聯盟呼籲納入心理健康評估，建立銜接路徑降低漏接。",
+      "stats_html": "<span>政策分析(GEO 文章)</span> <span>議題:PI-02</span>",
+      "status": "pending",
+      "href": "https://naer-tw.github.io/policy/youth-health/2025-12-05-青少年自殺通報.html",
+      "stripe": "#8B6F50",
+      "date": "2025-12-05",
+      "pis": "PI-02",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "AABE",
+      "issuer_full": "國教行動聯盟(AABE)",
+      "featured": true,
+      "title": "2025 台灣兒童全面性教育現況調查報告(學會回應版)",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2025,
+      "summary": "台灣兒童全面性教育現況調查報告,2025-07-11 學會回應版。為 PI-08 議題之**民間實證資料來源**。",
+      "stats_html": "<span>民間調查報告</span> <span>議題:PI-08</span>",
+      "status": "pending",
+      "href": "index.html",
+      "stripe": "#8B6F50",
+      "date": "2025-07-11",
+      "pis": "PI-08",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "婦援會",
+      "issuer_full": "婦援會",
+      "featured": false,
+      "title": "婦女救援基金會 兒少性侵案件友善偵查程序",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2024,
+      "summary": "兒少性侵被害人在檢警偵查階段反覆陳述造成 secondary trauma,應整合單一窗口取代多次重述。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-07,PI-12</span>",
+      "status": "partially_adopted",
+      "href": "https://www.twrf.org.tw",
+      "stripe": "#1F3D6B",
+      "date": "2024-05-12",
+      "pis": "PI-07,PI-12",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "勵友",
+      "issuer_full": "勵友",
+      "featured": false,
+      "title": "勵友中心 安置兒少自立生活轉銜",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2024,
+      "summary": "安置兒少於 18 歲離開機構後之自立生活支持系統不足,容易跌落貧窮 / 街友。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-11,PI-12</span>",
+      "status": "not_adopted",
+      "href": "index.html",
+      "stripe": "#1F3D6B",
+      "date": "2024-05-08",
+      "pis": "PI-11,PI-12",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "人約盟",
+      "issuer_full": "人約盟",
+      "featured": false,
+      "title": "人權公約施行監督聯盟 CRC × ICCPR × CEDAW 交叉檢視",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2024,
+      "summary": "兒少議題在 CRC + ICCPR + CEDAW 三公約交集處易被各審查跳過,需跨公約整合監督。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-05,PI-13,PI-14</span>",
+      "status": "partially_adopted",
+      "href": "https://www.tafh-cw.org",
+      "stripe": "#1F3D6B",
+      "date": "2024-04-30",
+      "pis": "PI-05,PI-13,PI-14",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "CRRC",
+      "issuer_full": "CRRC",
+      "featured": false,
+      "title": "兒少權利公約聯盟 兒少權法修法 22 團體聯合建議",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2024,
+      "summary": "2026 兒少權法修法應整合 22 個民間團體之建議,聚焦 CO2 99 點與 NAP2 之未達成項目。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-02,PI-11,PI-12</span>",
+      "status": "partially_adopted",
+      "href": "index.html",
+      "stripe": "#1F3D6B",
+      "date": "2024-04-25",
+      "pis": "PI-02,PI-11,PI-12",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "兒福聯盟",
+      "issuer_full": "兒福聯盟",
+      "featured": false,
+      "title": "兒福聯盟 剴剴案後兒少保護網重建建議",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2024,
+      "summary": "寄養家庭數不足、機構式安置比重過高、收出養程序不透明 — 三大結構性問題在剴剴案前已警告。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-12</span>",
+      "status": "partially_adopted",
+      "href": "https://www.children.org.tw",
+      "stripe": "#1F3D6B",
+      "date": "2024-04-22",
+      "pis": "PI-12",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "振鐸",
+      "issuer_full": "振鐸",
+      "featured": false,
+      "title": "振鐸學會 實驗教育「偽實驗」現象與規範",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2024,
+      "summary": "部分機構式實驗教育已商業化、偏離原意,需重新檢視實驗教育三法。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-09</span>",
+      "status": "partially_adopted",
+      "href": "index.html",
+      "stripe": "#1F3D6B",
+      "date": "2024-04-15",
+      "pis": "PI-09",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "善牧",
+      "issuer_full": "善牧",
+      "featured": false,
+      "title": "善牧基金會 收出養程序透明化建議",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2024,
+      "summary": "剴剴案後收出養程序透明化、社工負荷合理化,需與兒少權法修法同步推動。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-12</span>",
+      "status": "partially_adopted",
+      "href": "https://www.goodshepherd.org.tw",
+      "stripe": "#1F3D6B",
+      "date": "2024-04-08",
+      "pis": "PI-12",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "展翅",
+      "issuer_full": "展翅",
+      "featured": false,
+      "title": "台灣展翅(ECPAT)AI 生成兒少性剝削影像入罪倡議",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2024,
+      "summary": "AI 生成兒少性剝削影像(deepfake CSAM)應比照真實影像入罪,與國際 ECPAT 立場一致。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-06,PI-07</span>",
+      "status": "partially_adopted",
+      "href": "https://www.ecpat.org.tw",
+      "stripe": "#1F3D6B",
+      "date": "2024-03-30",
+      "pis": "PI-06,PI-07",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "張老師",
+      "issuer_full": "張老師",
+      "featured": false,
+      "title": "張老師基金會 青少年諮商可近性與校外網絡",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2024,
+      "summary": "校外青少年諮商管道(張老師、生命線、安心專線)應與學校 WISER 三級輔導整合。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-02,PI-04</span>",
+      "status": "partially_adopted",
+      "href": "https://www.1980.org.tw",
+      "stripe": "#1F3D6B",
+      "date": "2024-03-25",
+      "pis": "PI-02,PI-04",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "廢死聯盟",
+      "issuer_full": "廢死聯盟",
+      "featured": false,
+      "title": "廢死聯盟 兒少死刑禁止入法倡議",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2024,
+      "summary": "CRC §37(a) 明確禁止對 18 歲以下犯罪者判處死刑或終身監禁,但國內尚未明文入刑法。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-05</span>",
+      "status": "not_adopted",
+      "href": "https://www.taedp.org.tw",
+      "stripe": "#1F3D6B",
+      "date": "2024-03-15",
+      "pis": "PI-05",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "董氏",
+      "issuer_full": "董氏",
+      "featured": false,
+      "title": "董氏基金會 青少年心理健康與社群媒體素養",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2024,
+      "summary": "社群媒體成癮 / 比較焦慮 / 演算法引發之憂鬱,應納入學校 SEL 課綱。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-02,PI-06</span>",
+      "status": "partially_adopted",
+      "href": "https://www.jtf.org.tw",
+      "stripe": "#1F3D6B",
+      "date": "2024-02-26",
+      "pis": "PI-02,PI-06",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "教改總會",
+      "issuer_full": "教改總會",
+      "featured": false,
+      "title": "教改總會 補習班規模化與兒少學習壓力",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2024,
+      "summary": "補習班大型連鎖化加劇升學競爭與兒少學習壓力,需規模化規範與監督。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-02,PI-09</span>",
+      "status": "not_adopted",
+      "href": "https://www.edreform.org.tw",
+      "stripe": "#1F3D6B",
+      "date": "2024-02-19",
+      "pis": "PI-02,PI-09",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "全家盟",
+      "issuer_full": "全家盟",
+      "featured": false,
+      "title": "全家盟 家長在兒少權法決策之代表性",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2024,
+      "summary": "兒少權法修法、性平教育、108 課綱等決策應有家長代表實質參與,而非形式委員會。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-08,PI-09,PI-11</span>",
+      "status": "partially_adopted",
+      "href": "https://www.aphec.org.tw",
+      "stripe": "#1F3D6B",
+      "date": "2024-01-25",
+      "pis": "PI-08,PI-09,PI-11",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "世展會",
+      "issuer_full": "世展會",
+      "featured": false,
+      "title": "世界展望會台灣 弱勢兒少社區照顧網絡",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2024,
+      "summary": "原鄉、新住民、隔代教養家庭兒少需社區型照顧網絡,而非個案式接案。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-11,PI-13</span>",
+      "status": "partially_adopted",
+      "href": "https://www.worldvision.org.tw",
+      "stripe": "#1F3D6B",
+      "date": "2024-01-20",
+      "pis": "PI-11,PI-13",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "國際兒童村",
+      "issuer_full": "國際兒童村",
+      "featured": false,
+      "title": "國際兒童村 寄養家庭數擴增策略",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2023,
+      "summary": "全國寄養家庭僅 < 2,000 戶 vs 安置兒童 > 6,000,需系統性招募 / 訓練 / 補助提升。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-12</span>",
+      "status": "partially_adopted",
+      "href": "index.html",
+      "stripe": "#1F3D6B",
+      "date": "2023-12-15",
+      "pis": "PI-12",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "家扶",
+      "issuer_full": "家扶",
+      "featured": false,
+      "title": "家扶基金會 隔代教養兒少貧窮專題",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2023,
+      "summary": "隔代教養家庭兒少貧窮率為一般家庭 2.3 倍,需專屬支持系統。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-11</span>",
+      "status": "partially_adopted",
+      "href": "https://www.ccf.org.tw",
+      "stripe": "#1F3D6B",
+      "date": "2023-12-08",
+      "pis": "PI-11",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "全教總",
+      "issuer_full": "全教總",
+      "featured": false,
+      "title": "全教總 教師對學生暴力減量策略(NHRC 4641 件)",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2023,
+      "summary": "NHRC 4,641 件師對生暴力中 65% 未通報社政,需改善教師勞動環境同時強化通報。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-01,PI-03</span>",
+      "status": "partially_adopted",
+      "href": "https://www.nftu.org.tw",
+      "stripe": "#1F3D6B",
+      "date": "2023-11-20",
+      "pis": "PI-01,PI-03",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "馬偕兒童健康",
+      "issuer_full": "馬偕兒童健康",
+      "featured": false,
+      "title": "馬偕兒童健康基金會 兒童預防保健政策更新",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2023,
+      "summary": "兒童預防保健項目應每 3 年檢討更新,納入新興健康議題(電子煙、3C 視力、腸道菌群)。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-02,PI-06</span>",
+      "status": "partially_adopted",
+      "href": "index.html",
+      "stripe": "#1F3D6B",
+      "date": "2023-11-12",
+      "pis": "PI-02,PI-06",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "台權會",
+      "issuer_full": "台權會",
+      "featured": false,
+      "title": "台權會 兒少集會結社與隱私權專題",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2023,
+      "summary": "CRC §13、§15 之兒少表達/集會/結社自由在學校與網路場域被多重限制。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-10</span>",
+      "status": "partially_adopted",
+      "href": "https://www.tahr.org.tw",
+      "stripe": "#1F3D6B",
+      "date": "2023-11-05",
+      "pis": "PI-10",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "現代婦女",
+      "issuer_full": "現代婦女",
+      "featured": false,
+      "title": "現代婦女基金會 家暴目睹兒少之創傷介入",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2023,
+      "summary": "家暴目睹兒少之創傷介入需與家暴防治制度整合,目前各縣市資源分配不均。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-11</span>",
+      "status": "partially_adopted",
+      "href": "https://www.38.org.tw",
+      "stripe": "#1F3D6B",
+      "date": "2023-10-08",
+      "pis": "PI-11",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "婦女新知",
+      "issuer_full": "婦女新知",
+      "featured": false,
+      "title": "婦女新知基金會 性別平等教育課綱守護",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2023,
+      "summary": "性平教育課綱應依國際標準納入完整性別議題,反對課綱被特定團體重新定義。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-08</span>",
+      "status": "partially_adopted",
+      "href": "https://www.awakening.org.tw",
+      "stripe": "#1F3D6B",
+      "date": "2023-09-22",
+      "pis": "PI-08",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "民間司改會",
+      "issuer_full": "民間司改會",
+      "featured": false,
+      "title": "民間司改會 少事法行政先行制度檢討",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2023,
+      "summary": "行政先行(逃學逃家少年由社政接住)立意良善但實務銜接不足,造成個案 fall through gap。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-05</span>",
+      "status": "partially_adopted",
+      "href": "https://www.jrf.org.tw",
+      "stripe": "#1F3D6B",
+      "date": "2023-09-22",
+      "pis": "PI-05",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "心路",
+      "issuer_full": "心路",
+      "featured": false,
+      "title": "心路基金會 身障兒少融合教育師訓擴充",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2023,
+      "summary": "普通班教師欠缺融合教育訓練,造成身障兒少在普通班「融而不合」。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-04</span>",
+      "status": "partially_adopted",
+      "href": "https://www.syinlu.org.tw",
+      "stripe": "#1F3D6B",
+      "date": "2023-08-18",
+      "pis": "PI-04",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "原青陣",
+      "issuer_full": "原青陣",
+      "featured": false,
+      "title": "原住民族青年陣線 原住民兒少語言文化權保障",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2023,
+      "summary": "原住民兒少語言流失嚴重,族語課程從學前到高中應制度化,並承認族語為母語教育。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-09,PI-13</span>",
+      "status": "partially_adopted",
+      "href": "index.html",
+      "stripe": "#1F3D6B",
+      "date": "2023-08-15",
+      "pis": "PI-09,PI-13",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "關愛",
+      "issuer_full": "關愛",
+      "featured": false,
+      "title": "台灣關愛基金會 HIV 兒少非歧視教育",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2023,
+      "summary": "HIV 兒少在學校面臨歧視與隔離,需教師訓練與校園 HIV 教育普及。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-02,PI-14</span>",
+      "status": "partially_adopted",
+      "href": "index.html",
+      "stripe": "#1F3D6B",
+      "date": "2023-06-20",
+      "pis": "PI-02,PI-14",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "勵馨",
+      "issuer_full": "勵馨",
+      "featured": false,
+      "title": "勵馨基金會數位性暴力防制法草案建議",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2023,
+      "summary": "兒少私密影像散布、AI 換臉、誘騙等數位性暴力應重新檢視刑度,平台業者應有連帶責任。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-06,PI-07</span>",
+      "status": "adopted",
+      "href": "https://www.goh.org.tw",
+      "stripe": "#1F3D6B",
+      "date": "2023-06-10",
+      "pis": "PI-06,PI-07",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "TIWA",
+      "issuer_full": "TIWA",
+      "featured": false,
+      "title": "TIWA 移工子女教育權與居留身分",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2023,
+      "summary": "無證移工子女在臺出生後居留身分困難,影響就學、就醫、社會福利近用。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-13</span>",
+      "status": "not_adopted",
+      "href": "https://www.tiwa.org.tw",
+      "stripe": "#1F3D6B",
+      "date": "2023-05-18",
+      "pis": "PI-13",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "人本",
+      "issuer_full": "人本",
+      "featured": false,
+      "title": "人本基金會 30 年體罰禁止運動 — CRC 第二輪政策建議",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2022,
+      "summary": "家庭體罰禁止應入法。目前僅校園/機構禁止體罰,家庭仍是合法灰區。國際對標冰島、瑞典、紐西蘭已全面禁止。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-03</span>",
+      "status": "partially_adopted",
+      "href": "https://hef.org.tw",
+      "stripe": "#1F3D6B",
+      "date": "2022-11-15",
+      "pis": "PI-03",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "advocacy",
+      "issuer": "同志熱線",
+      "issuer_full": "同志熱線",
+      "featured": false,
+      "title": "同志熱線 LGBTQI+ 兒少校園支持系統倡議",
+      "cycle": 3,
+      "cycle_label": "為 CRC 第三次審查 / 政策改革推進",
+      "year": 2022,
+      "summary": "跨性別兒少在學校的廁所/制服/稱呼支持機制應制度化,避免霸凌。",
+      "stats_html": "<span>民間政策建議書(由 AABE 平台補建記錄)</span> <span>議題:PI-08,PI-14</span>",
+      "status": "partially_adopted",
+      "href": "https://hotline.org.tw",
+      "stripe": "#1F3D6B",
+      "date": "2022-08-30",
+      "pis": "PI-08,PI-14",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "nap",
+      "issuer": "NHRC",
+      "issuer_full": "NHRC",
+      "featured": false,
+      "title": "NAP 第 2 期 · 強化人權保障體制",
+      "cycle": 0,
+      "cycle_label": "國家人權行動計畫 第 2 期",
+      "year": 2018,
+      "summary": "於國家人權委員會內設立兒少權利專責單位",
+      "stats_html": "<span>主辦:NHRC</span> <span>政府自評:--</span>",
+      "status": "pending",
+      "href": "nap.html",
+      "stripe": "#C68822",
+      "date": "2018-01-01",
+      "pis": "[\"跨議題\"]",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "nap",
+      "issuer": "人權處",
+      "issuer_full": "人權處",
+      "featured": false,
+      "title": "NAP 第 2 期 · 平等與不歧視",
+      "cycle": 0,
+      "cycle_label": "國家人權行動計畫 第 2 期",
+      "year": 2018,
+      "summary": "完成《反歧視法》立法",
+      "stats_html": "<span>主辦:人權處</span> <span>政府自評:--</span>",
+      "status": "pending",
+      "href": "nap.html",
+      "stripe": "#C68822",
+      "date": "2018-01-01",
+      "pis": "[\"跨議題\"]",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "nap",
+      "issuer": "衛福部",
+      "issuer_full": "衛福部",
+      "featured": false,
+      "title": "NAP 第 2 期 · 平等與不歧視",
+      "cycle": 0,
+      "cycle_label": "國家人權行動計畫 第 2 期",
+      "year": 2018,
+      "summary": "改採單獨線上問卷,涵蓋體罰/霸凌/歧視題項,涵蓋 LGBTQI/身障/原民/新住民",
+      "stats_html": "<span>主辦:衛福部</span> <span>政府自評:--</span>",
+      "status": "pending",
+      "href": "nap.html",
+      "stripe": "#C68822",
+      "date": "2018-01-01",
+      "pis": "[\"PI-08\",\"PI-10\",\"跨議題\"]",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "nap",
+      "issuer": "衛福部",
+      "issuer_full": "衛福部",
+      "featured": false,
+      "title": "NAP 第 2 期 · 強化生命權保障",
+      "cycle": 0,
+      "cycle_label": "國家人權行動計畫 第 2 期",
+      "year": 2018,
+      "summary": "公布青少年自殺風險因子分析研究 + 規劃後續策略",
+      "stats_html": "<span>主辦:衛福部</span> <span>政府自評:--</span>",
+      "status": "pending",
+      "href": "nap.html",
+      "stripe": "#C68822",
+      "date": "2018-01-01",
+      "pis": "[\"PI-02\"]",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "nap",
+      "issuer": "內政部",
+      "issuer_full": "內政部",
+      "featured": false,
+      "title": "NAP 第 2 期 · 難民權利保障",
+      "cycle": 0,
+      "cycle_label": "國家人權行動計畫 第 2 期",
+      "year": 2018,
+      "summary": "完成《難民法》立法",
+      "stats_html": "<span>主辦:內政部</span> <span>政府自評:--</span>",
+      "status": "pending",
+      "href": "nap.html",
+      "stripe": "#C68822",
+      "date": "2018-01-01",
+      "pis": "[\"PI-13\"]",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "nap",
+      "issuer": "行政院主計總處",
+      "issuer_full": "行政院主計總處",
+      "featured": false,
+      "title": "NAP 第 2 期 · 強化人權保障體制",
+      "cycle": 0,
+      "cycle_label": "國家人權行動計畫 第 2 期",
+      "year": 2018,
+      "summary": "建立跨部會跨層級兒少預算公開儀表板",
+      "stats_html": "<span>主辦:行政院主計總處</span> <span>政府自評:--</span>",
+      "status": "pending",
+      "href": "nap.html",
+      "stripe": "#C68822",
+      "date": "2018-01-01",
+      "pis": "[\"跨議題\",\"PI-10\"]",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "nap",
+      "issuer": "人權處",
+      "issuer_full": "人權處",
+      "featured": false,
+      "title": "NAP 第 1 期 · 強化人權保障體制",
+      "cycle": 0,
+      "cycle_label": "國家人權行動計畫 第 1 期",
+      "year": 2018,
+      "summary": "針對 CRC 之國內法規進行檢討",
+      "stats_html": "<span>主辦:人權處</span> <span>政府自評:部分達成</span>",
+      "status": "archived",
+      "href": "nap.html",
+      "stripe": "#C68822",
+      "date": "2018-01-01",
+      "pis": "[\"跨議題\"]",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "nap",
+      "issuer": "教育部",
+      "issuer_full": "教育部",
+      "featured": false,
+      "title": "NAP 第 1 期 · 人權教育",
+      "cycle": 0,
+      "cycle_label": "國家人權行動計畫 第 1 期",
+      "year": 2018,
+      "summary": "培訓場次與人次",
+      "stats_html": "<span>主辦:教育部</span> <span>政府自評:部分達成</span>",
+      "status": "archived",
+      "href": "nap.html",
+      "stripe": "#C68822",
+      "date": "2018-01-01",
+      "pis": "[\"PI-04\"]",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "nap",
+      "issuer": "教育部",
+      "issuer_full": "教育部",
+      "featured": false,
+      "title": "NAP 第 1 期 · 人權教育",
+      "cycle": 0,
+      "cycle_label": "國家人權行動計畫 第 1 期",
+      "year": 2018,
+      "summary": "地方政府辦理高中以下友善校園人權環境指標自評",
+      "stats_html": "<span>主辦:教育部</span> <span>政府自評:部分達成</span>",
+      "status": "archived",
+      "href": "nap.html",
+      "stripe": "#C68822",
+      "date": "2018-01-01",
+      "pis": "[\"PI-04\", \"PI-09\"]",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "nap",
+      "issuer": "人權處",
+      "issuer_full": "人權處",
+      "featured": false,
+      "title": "NAP 第 1 期 · 平等與不歧視",
+      "cycle": 0,
+      "cycle_label": "國家人權行動計畫 第 1 期",
+      "year": 2018,
+      "summary": "送立法院審議",
+      "stats_html": "<span>主辦:人權處</span> <span>政府自評:自行追蹤</span>",
+      "status": "pending",
+      "href": "nap.html",
+      "stripe": "#C68822",
+      "date": "2018-01-01",
+      "pis": "[\"跨議題\"]",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "nap",
+      "issuer": "衛福部",
+      "issuer_full": "衛福部",
+      "featured": false,
+      "title": "NAP 第 1 期 · 平等與不歧視",
+      "cycle": 0,
+      "cycle_label": "國家人權行動計畫 第 1 期",
+      "year": 2018,
+      "summary": "問卷涵蓋體罰、霸凌、歧視等題項",
+      "stats_html": "<span>主辦:衛福部</span> <span>政府自評:未達成</span>",
+      "status": "pending",
+      "href": "nap.html",
+      "stripe": "#C68822",
+      "date": "2018-01-01",
+      "pis": "[\"PI-08\", \"PI-10\", \"跨議題\"]",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "nap",
+      "issuer": "衛福部",
+      "issuer_full": "衛福部",
+      "featured": false,
+      "title": "NAP 第 1 期 · 強化生命權保障",
+      "cycle": 0,
+      "cycle_label": "國家人權行動計畫 第 1 期",
+      "year": 2018,
+      "summary": "服務量能擴增",
+      "stats_html": "<span>主辦:衛福部</span> <span>政府自評:部分達成</span>",
+      "status": "archived",
+      "href": "nap.html",
+      "stripe": "#C68822",
+      "date": "2018-01-01",
+      "pis": "[\"PI-02\"]",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "nap",
+      "issuer": "衛福部",
+      "issuer_full": "衛福部",
+      "featured": false,
+      "title": "NAP 第 1 期 · 強化生命權保障",
+      "cycle": 0,
+      "cycle_label": "國家人權行動計畫 第 1 期",
+      "year": 2018,
+      "summary": "委託臺大研究計畫期程至 2024-12-31",
+      "stats_html": "<span>主辦:衛福部</span> <span>政府自評:未達成</span>",
+      "status": "pending",
+      "href": "nap.html",
+      "stripe": "#C68822",
+      "date": "2018-01-01",
+      "pis": "[\"PI-02\"]",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "nap",
+      "issuer": "環境部",
+      "issuer_full": "環境部",
+      "featured": false,
+      "title": "NAP 第 1 期 · 氣候變遷與人權",
+      "cycle": 0,
+      "cycle_label": "國家人權行動計畫 第 1 期",
+      "year": 2018,
+      "summary": "透過多元管道徵詢兒少意見",
+      "stats_html": "<span>主辦:環境部</span> <span>政府自評:部分達成</span>",
+      "status": "archived",
+      "href": "nap.html",
+      "stripe": "#C68822",
+      "date": "2018-01-01",
+      "pis": "[\"PI-10\", \"跨議題\"]",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "nap",
+      "issuer": "內政部",
+      "issuer_full": "內政部",
+      "featured": false,
+      "title": "NAP 第 1 期 · 數位人權",
+      "cycle": 0,
+      "cycle_label": "國家人權行動計畫 第 1 期",
+      "year": 2018,
+      "summary": "個資會掛牌",
+      "stats_html": "<span>主辦:內政部</span> <span>政府自評:未達成</span>",
+      "status": "pending",
+      "href": "nap.html",
+      "stripe": "#C68822",
+      "date": "2018-01-01",
+      "pis": "[\"PI-06\"]",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "nap",
+      "issuer": "法務部",
+      "issuer_full": "法務部",
+      "featured": false,
+      "title": "NAP 第 1 期 · 數位人權",
+      "cycle": 0,
+      "cycle_label": "國家人權行動計畫 第 1 期",
+      "year": 2018,
+      "summary": "完善不法性影像移除及被害人保護機制",
+      "stats_html": "<span>主辦:法務部</span> <span>政府自評:部分達成</span>",
+      "status": "archived",
+      "href": "nap.html",
+      "stripe": "#C68822",
+      "date": "2018-01-01",
+      "pis": "[\"PI-06\", \"PI-07\"]",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    },
+    {
+      "kind": "nap",
+      "issuer": "內政部",
+      "issuer_full": "內政部",
+      "featured": false,
+      "title": "NAP 第 1 期 · 難民權利保障",
+      "cycle": 0,
+      "cycle_label": "國家人權行動計畫 第 1 期",
+      "year": 2018,
+      "summary": "送立法院審議",
+      "stats_html": "<span>主辦:內政部</span> <span>政府自評:未達成</span>",
+      "status": "pending",
+      "href": "nap.html",
+      "stripe": "#C68822",
+      "date": "2018-01-01",
+      "pis": "[\"PI-13\"]",
+      "n_points": 0,
+      "adopted": 0,
+      "partial": 0,
+      "not_adopted": 0
+    }
+  ],
+  "meta": {
+    "total": 115,
+    "generated_at": "2026-05-04T12:20:16",
+    "breakdown": {
+      "shadow": 17,
+      "advocacy": 81,
+      "nap": 17
+    }
+  }
+};
+<!-- DOC-DATA-END -->
+</script>
+<script>
+(function() {
+  const container = document.getElementById('doc-list');
+  const pagBox = document.getElementById('doc-pagination');
+  if (!container) return;
+
+  const D = window.DOC_DATA || {docs:[]};
+  const ALL = D.docs || [];
+  const PAGE_SIZE = 8;
+  let currentPage = 1;
+  let currentSort = 'relevance';
+
+  function esc(s) {
+    return String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function getActiveFilters() {
+    const cycleSet = new Set(), typeSet = new Set(), statusSet = new Set();
+    document.querySelectorAll('.docs-flt:checked').forEach(c => {
+      if (c.dataset.fk === 'cycle') cycleSet.add(parseInt(c.dataset.fv, 10));
+      else if (c.dataset.fk === 'type') typeSet.add(c.dataset.fv);
+      else if (c.dataset.fk === 'status') statusSet.add(c.dataset.fv);
+    });
+    const tag = document.querySelector('.docs-flt-tag.active');
+    const issuerSel = document.getElementById('docs-issuer-select');
+    let issuerName = '';
+    if (issuerSel && issuerSel.value && window.FILTERS_DATA) {
+      const ngo = (window.FILTERS_DATA.ngos || []).find(n => n.code === issuerSel.value);
+      if (ngo) issuerName = ngo.short || ngo.name;
+      const ag = (window.FILTERS_DATA.agencies || []).find(a => a.code === issuerSel.value);
+      if (ag) issuerName = ag.short || ag.name;
+    }
+    return {cycleSet, typeSet, statusSet, tagPI: tag ? tag.dataset.pi : '', issuerCode: issuerSel ? issuerSel.value : '', issuerName};
+  }
+
+  function matchTopic(d, tagPI) {
+    if (!tagPI) return true;
+    const piMap = {
+      'PI-12':'替代照顧','PI-01':'校園霸凌','PI-04':'特殊教育','PI-02':'心理健康',
+      'PI-08':'性別平等','PI-06':'數位','PI-10':'表意','PI-05':'司法',
+    };
+    const text = (d.summary||'') + ' ' + (d.title||'') + ' ' + (d.pis||'');
+    return text.includes(tagPI) || text.includes(piMap[tagPI] || '');
+  }
+
+  function applyFilter(docs, f) {
+    return docs.filter(d => {
+      // cycle:0(NAP 跨屆)永遠通過
+      if (f.cycleSet.size && d.cycle !== 0 && !f.cycleSet.has(d.cycle)) return false;
+      if (f.typeSet.size && !f.typeSet.has(d.kind)) return false;
+      if (f.statusSet.size && !f.statusSet.has(d.status)) return false;
+      if (!matchTopic(d, f.tagPI)) return false;
+      // 提出單位:嚴格比對(若選 NGO,只顯示該 NGO;包括 AABE 卡也會被排除)
+      if (f.issuerName) {
+        const di = d.issuer || '';
+        if (di !== f.issuerName) return false;
+      }
+      return true;
+    });
+  }
+
+  function applySort(docs, key) {
+    const arr = docs.slice();
+    if (key === 'date_desc') arr.sort((a,b) => (b.date||'').localeCompare(a.date||''));
+    else if (key === 'date_asc') arr.sort((a,b) => (a.date||'').localeCompare(b.date||''));
+    else if (key === 'cycle') arr.sort((a,b) => (a.cycle||0) - (b.cycle||0));
+    else if (key === 'adoption') arr.sort((a,b) => {
+      const ar = (a.adopted+a.partial) / Math.max(a.n_points,1);
+      const br = (b.adopted+b.partial) / Math.max(b.n_points,1);
+      return br - ar;
+    });
+    else {
+      // relevance:featured 先 + 最新優先
+      arr.sort((a,b) => (b.featured?1:0) - (a.featured?1:0) || (b.date||'').localeCompare(a.date||''));
+    }
+    return arr;
+  }
+
+  function renderCard(d) {
+    const stripe = d.stripe || '#1F3D6B';
+    const cls = d.featured ? 'doc-card featured-doc' : 'doc-card';
+    const cycleLabel = d.cycle_label || '';
+    const statusLabel = ({adopted:'已採納',partially_adopted:'部分採納',not_adopted:'未採納',pending:'追蹤中',archived:'歷史檔案',draft:'草稿',unknown:'未評估'})[d.status] || d.status;
+    const kindLabel = ({shadow:'民間影子報告',advocacy:'民間倡議',nap:'政府行動計畫'})[d.kind] || d.kind;
+    const featPill = d.featured ? '<span class="pill pill-aabe">★ ' + esc(d.issuer) + '</span>' : '';
+    return `
+      <a href="${esc(d.href)}" class="${cls}" data-issuer="${esc(d.issuer)}" data-cycle="${d.cycle}" data-type="${esc(d.kind)}" data-status="${esc(d.status)}">
+        <span class="doc-stripe" style="background:${stripe}"></span>
+        <div class="doc-body">
+          <div class="doc-pills">
+            ${featPill}
+            <span class="pill pill-shadow">${kindLabel}</span>
+            <span class="pill pill-meta">${esc(cycleLabel)}</span>
+            <span class="pill pill-meta">${esc(statusLabel)}</span>
+          </div>
+          <h3>${esc(d.title)}</h3>
+          <div class="doc-issuer">提出:<span class="ngo-tag">${esc(d.issuer_full || d.issuer)}</span></div>
+          <p class="doc-excerpt">${esc(d.summary || '─')}</p>
+          <div class="doc-stats">${d.stats_html || ''}</div>
+        </div>
+      </a>`;
+  }
+
+  function renderPage(filtered) {
+    const total = filtered.length;
+    const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+    if (currentPage > totalPages) currentPage = totalPages;
+    const start = (currentPage - 1) * PAGE_SIZE;
+    const slice = filtered.slice(start, start + PAGE_SIZE);
+
+    container.innerHTML = slice.length
+      ? slice.map(renderCard).join('')
+      : '<div style="padding:48px;text-align:center;color:var(--text-muted);background:var(--bg-alt);border-radius:6px">無符合條件的文件 — 請調整左側篩選條件</div>';
+
+    // pagination
+    if (totalPages <= 1) {
+      pagBox.innerHTML = '';
+    } else {
+      const btns = [];
+      btns.push(`<button class="view-tab" data-pg="${currentPage-1}" ${currentPage===1?'disabled':''}>‹ 上頁</button>`);
+      for (let i = 1; i <= totalPages; i++) {
+        if (i === 1 || i === totalPages || Math.abs(i - currentPage) <= 1) {
+          btns.push(`<button class="view-tab ${i===currentPage?'active':''}" data-pg="${i}" ${i===currentPage?'style="background:var(--bg-deep);color:#fff"':''}>${i}</button>`);
+        } else if (i === currentPage - 2 || i === currentPage + 2) {
+          btns.push(`<span style="padding:5px 8px;color:var(--text-muted)">…</span>`);
+        }
+      }
+      btns.push(`<button class="view-tab" data-pg="${currentPage+1}" ${currentPage===totalPages?'disabled':''}>下頁 ›</button>`);
+      pagBox.innerHTML = btns.join('');
+      pagBox.querySelectorAll('button[data-pg]').forEach(b => {
+        b.addEventListener('click', () => {
+          const p = parseInt(b.dataset.pg, 10);
+          if (p >= 1 && p <= totalPages) {
+            currentPage = p;
+            update();
+            container.scrollIntoView({behavior:'smooth', block:'start'});
+          }
+        });
+      });
+    }
+  }
+
+  function update() {
+    const f = getActiveFilters();
+    const filtered = applySort(applyFilter(ALL, f), currentSort);
+
+    document.getElementById('doc-shown').textContent = Math.min(filtered.length, PAGE_SIZE * currentPage) - PAGE_SIZE * (currentPage-1) || 0;
+    // 顯示在當前頁的數
+    const start = (currentPage - 1) * PAGE_SIZE;
+    const showCnt = Math.max(0, Math.min(PAGE_SIZE, filtered.length - start));
+    document.getElementById('doc-shown').textContent = showCnt;
+    document.getElementById('doc-total').textContent = ALL.length;
+
+    // 已套用篩選描述
+    const parts = [];
+    if (f.cycleSet.size && f.cycleSet.size < 3) parts.push('屆別:' + [...f.cycleSet].map(c=>['','一','二','三'][c]).join('/') + '次');
+    if (f.typeSet.size) {
+      const labelMap = {shadow:'影子報告',advocacy:'倡議',nap:'NAP',co:'CO'};
+      parts.push('類型:' + [...f.typeSet].map(t => labelMap[t] || t).join('/'));
+    }
+    if (f.statusSet.size && f.statusSet.size < 6) {
+      const labelMap = {adopted:'已採',partially_adopted:'部分採',not_adopted:'未採',archived:'歷史',draft:'草稿',pending:'追蹤'};
+      parts.push('採納:' + [...f.statusSet].map(s => labelMap[s] || s).join('/'));
+    }
+    if (f.tagPI) parts.push('議題:' + (document.querySelector('.docs-flt-tag.active')?.textContent || f.tagPI));
+    if (f.issuerName) parts.push('提出單位:' + f.issuerName);
+
+    const applied = document.getElementById('doc-applied');
+    if (applied) applied.innerHTML = parts.length
+      ? '已套用 <strong>' + parts.join(' · ') + '</strong> · 符合 <strong>' + filtered.length + '</strong> 筆'
+      : '尚未套用篩選 · 符合 <strong>' + filtered.length + '</strong> 筆';
+
+    renderPage(filtered);
+
+    // doc-list-meta
+    const dlMeta = document.getElementById('doc-list-meta');
+    if (dlMeta && D.meta) dlMeta.textContent = `來源:SQLite · ${D.meta.breakdown?.shadow||0} 影子報告 / ${D.meta.breakdown?.advocacy||0} 倡議 / ${D.meta.breakdown?.nap||0} NAP · 最後更新 ${(D.meta.generated_at||'').slice(0,10)}`;
+  }
+
+  // 綁所有 filter
+  document.querySelectorAll('.docs-flt').forEach(c => c.addEventListener('change', () => { currentPage=1; update(); }));
+  document.querySelectorAll('.docs-flt-tag').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.docs-flt-tag').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      currentPage = 1; update();
+    });
+  });
+  const allTag = document.querySelector('.docs-flt-tag[data-pi=""]');
+  if (allTag) allTag.classList.add('active');
+  const issuerSel = document.getElementById('docs-issuer-select');
+  if (issuerSel) issuerSel.addEventListener('change', () => { currentPage=1; update(); });
+  const sortSel = document.getElementById('doc-sort');
+  if (sortSel) sortSel.addEventListener('change', () => { currentSort = sortSel.value; currentPage=1; update(); });
+  const clearBtn = document.getElementById('docs-filter-clear');
+  if (clearBtn) clearBtn.addEventListener('click', () => {
+    document.querySelectorAll('.docs-flt').forEach(c => c.checked = true);
+    document.querySelectorAll('.docs-flt-tag').forEach(t => t.classList.remove('active'));
+    if (allTag) allTag.classList.add('active');
+    if (issuerSel) issuerSel.value = '';
+    currentPage = 1; update();
+  });
+
+  // 初始化(等 FILTERS_DATA 載入後執行)
+  function initWhenReady() {
+    if (!window.FILTERS_DATA) return setTimeout(initWhenReady, 50);
+    update();
+  }
+  initWhenReady();
+})();
+</script><!-- /docs filter -->
+
 
 <!-- ━━━━━━━━━━━━━ Topic index ━━━━━━━━━━━━━ -->
 <section class="topic-index" aria-label="主題索引">
@@ -1954,42 +4546,12 @@ footer .credit {
 
     <ul class="timeline-list" id="recent-timeline">
     <!-- RECENT-TIMELINE-START -->
-      <li class="tier-1">
-        <a href="timeline/">
-          <div class="date">待補 · AABE 國教行動聯盟</div>
-          <div class="title">Gender Equity Education Reform Blueprint</div>
-        </a>
-      </li>
-      <li class="tier-1">
-        <a href="timeline/">
-          <div class="date">2027-12-31 · NHRC</div>
-          <div class="title">[第 2 期 NAP] 強化人權保障體制:於國家人權委員會內設立兒少權利專責單位</div>
-        </a>
-      </li>
-      <li class="tier-1">
-        <a href="timeline/">
-          <div class="date">2027-12-31 · 人權處</div>
-          <div class="title">[第 2 期 NAP] 平等與不歧視:完成《反歧視法》立法</div>
-        </a>
-      </li>
-      <li class="tier-1">
-        <a href="issues/PI-13.html">
-          <div class="date">2027-12-31 · 內政部</div>
-          <div class="title">[第 2 期 NAP] 難民權利保障:完成《難民法》立法</div>
-        </a>
-      </li>
-      <li class="tier-1">
-        <a href="issues/PI-08.html">
-          <div class="date">2026-12-31 · 衛福部</div>
-          <div class="title">[第 2 期 NAP] 平等與不歧視:改採單獨線上問卷,涵蓋體罰/霸凌/歧視題項,涵蓋 LGBTQI/身障/原民/新住民</div>
-        </a>
-      </li>
-      <li class="tier-1">
-        <a href="timeline/">
-          <div class="date">2026-12-31 · 行政院主計總處</div>
-          <div class="title">[第 2 期 NAP] 強化人權保障體制:建立跨部會跨層級兒少預算公開儀表板</div>
-        </a>
-      </li>
+      <li class="tier-1"><a href="timeline/"><div class="date">待補 · AABE 國教行動聯盟</div><div class="title">Gender Equity Education Reform Blueprint</div></a></li>
+      <li class="tier-1"><a href="timeline/"><div class="date">2027-12-31 · NHRC</div><div class="title">[第 2 期 NAP] 強化人權保障體制:於國家人權委員會內設立兒少權利專責單位</div></a></li>
+      <li class="tier-1"><a href="timeline/"><div class="date">2027-12-31 · 人權處</div><div class="title">[第 2 期 NAP] 平等與不歧視:完成《反歧視法》立法</div></a></li>
+      <li class="tier-1"><a href="issues/PI-13.html"><div class="date">2027-12-31 · 內政部</div><div class="title">[第 2 期 NAP] 難民權利保障:完成《難民法》立法</div></a></li>
+      <li class="tier-1"><a href="issues/PI-08.html"><div class="date">2026-12-31 · 衛福部</div><div class="title">[第 2 期 NAP] 平等與不歧視:改採單獨線上問卷,涵蓋體罰/霸凌/歧視題項,涵蓋 LGBTQI/身障/原民/新住民</div></a></li>
+      <li class="tier-1"><a href="timeline/"><div class="date">2026-12-31 · 行政院主計總處</div><div class="title">[第 2 期 NAP] 強化人權保障體制:建立跨部會跨層級兒少預算公開儀表板</div></a></li>
     <!-- RECENT-TIMELINE-END -->
     </ul>
 
@@ -2908,7 +5470,7 @@ window.FILTERS_DATA = {
     ]
   },
   "meta": {
-    "generated_at": "2026-05-04T09:29:26",
+    "generated_at": "2026-05-04T12:20:16",
     "ngo_total": 44,
     "agency_total": 21
   }
