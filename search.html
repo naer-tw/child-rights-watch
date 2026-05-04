@@ -49,17 +49,21 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
 
 <header>
   <h1><svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> 全平台搜尋</h1>
-  <p style="margin: 4px 0 0; font-size: 13px; color: #ccc;">14 議題 + 293 段落 + 25 倡議 + 17 NAP + 6 NHRC 指標 = 355 筆</p>
+  <p style="margin: 4px 0 0; font-size: 13px; color: #ccc;" id="hdr-stats">載入中…</p>
 </header>
 
 <div class="search-bar">
-  <input id="q" type="search" placeholder="關鍵字(如:剴剴、自殺、實驗教育、CRC2-CO31)" autofocus aria-label="搜尋關鍵字">
+  <input id="q" type="search" placeholder="關鍵字(如:剴剴、自殺、實驗教育、CRC2-CO31、勵馨、結論性意見)" autofocus aria-label="搜尋關鍵字">
   <div class="filter" role="group" aria-label="類型篩選">
     <button data-type="all" class="active">全部</button>
-    <button data-type="issue">議題卡片</button>
+    <button data-type="issue">議題卡</button>
     <button data-type="passage">政策段落</button>
-    <button data-type="advocacy">倡議檔案</button>
+    <button data-type="advocacy">AABE 倡議</button>
+    <button data-type="external_shadow">民間影子報告</button>
+    <button data-type="crc_official">CRC 官方文件</button>
     <button data-type="nap">NAP 行動</button>
+    <button data-type="law">法規</button>
+    <button data-type="law_amendment">修法</button>
     <button data-type="nhrc_indicator">NHRC 指標</button>
   </div>
 </div>
@@ -84,7 +88,15 @@ fetch('search-index.json')
   .then(r => r.json())
   .then(data => {
     INDEX = data;
-    statsEl.textContent = `已載入 ${data.items.length} 筆,版本 ${data.version}`;
+    statsEl.textContent = `已載入 ${data.items.length} 筆,版本 ${data.version} · 輸入關鍵字開始搜尋`;
+    // 更新 header 計數
+    const cnt = {};
+    data.items.forEach(it => cnt[it.type] = (cnt[it.type] || 0) + 1);
+    const labels = {issue:'議題', passage:'段落', advocacy:'倡議', external_shadow:'民間影子報告',
+                    crc_official:'CRC 官方文件', nap:'NAP', nhrc_indicator:'NHRC 指標',
+                    law:'法規', law_amendment:'修法'};
+    const parts = Object.entries(cnt).map(([t,n]) => `${n} ${labels[t]||t}`);
+    document.getElementById('hdr-stats').textContent = `${parts.join(' / ')} = 共 ${data.items.length} 筆`;
   })
   .catch(err => {
     statsEl.textContent = '索引載入失敗,請稍後再試:' + err.message;
@@ -116,18 +128,38 @@ function search() {
     resultsEl.innerHTML = '<div class="empty">沒有找到符合的結果。試試別的關鍵字?</div>';
     return;
   }
-  resultsEl.innerHTML = matches.slice(0, 100).map(it => {
-    const typeLabel = {issue: '<svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><line x1="12" y1="17" x2="12" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24z"/></svg> 議題', passage: '<svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> 段落', advocacy: '<svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg> 倡議', case: '<svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> 案例', nap: '<svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg> NAP', nhrc_indicator: '<svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><path d="M3 3v18h18"/><path d="M7 14l3-3 4 4 5-5"/></svg> NHRC 指標'}[it.type] || it.type;
-    const snippet = highlight(it.snippet || '', qInput.value.trim());
+  CURRENT_MATCHES = matches;
+  CURRENT_LIMIT = 50;
+  renderMatches();
+}
+
+let CURRENT_MATCHES = [];
+let CURRENT_LIMIT = 50;
+const TYPE_LABELS = {
+  issue: '議題卡', passage: '段落', advocacy: '倡議',
+  external_shadow: '民間影子報告', crc_official: 'CRC 官方文件',
+  nap: 'NAP', nhrc_indicator: 'NHRC 指標', law: '法規', law_amendment: '修法',
+};
+
+function renderMatches() {
+  const matches = CURRENT_MATCHES;
+  if (!matches.length) return;
+  const slice = matches.slice(0, CURRENT_LIMIT);
+  const q = qInput.value.trim();
+  resultsEl.innerHTML = slice.map(it => {
+    const typeLabel = TYPE_LABELS[it.type] || it.type;
+    const snippet = highlight(it.snippet || '', q);
     const url = it.url || '#';
     return `<div class="result type-${it.type}">
-      <h3><span class="type-badge">${typeLabel}</span><a href="${url}">${highlight(it.title, qInput.value.trim())}</a></h3>
+      <h3><span class="type-badge">${typeLabel}</span><a href="${url}">${highlight(it.title, q)}</a></h3>
       <p class="snippet">${snippet}</p>
-      ${it.tags && it.tags.length ? `<p class="tags">${it.tags.join(' ‧ ')}</p>` : ''}
+      ${it.tags && it.tags.length ? `<p class="tags">${it.tags.filter(Boolean).join(' ‧ ')}</p>` : ''}
     </div>`;
   }).join('');
-  if (matches.length > 100) {
-    resultsEl.innerHTML += `<div class="empty">尚有 ${matches.length - 100} 筆結果未顯示,請使用更精確的關鍵字</div>`;
+  if (matches.length > CURRENT_LIMIT) {
+    resultsEl.innerHTML += `<div class="empty">已顯示 ${CURRENT_LIMIT} / ${matches.length} 筆 — <button id="load-more" style="background:var(--brand,#B5371F);color:#fff;border:0;padding:6px 14px;border-radius:4px;cursor:pointer;font-family:inherit">載入更多 50 筆</button></div>`;
+    const btn = document.getElementById('load-more');
+    if (btn) btn.addEventListener('click', () => { CURRENT_LIMIT += 50; renderMatches(); });
   }
 }
 
