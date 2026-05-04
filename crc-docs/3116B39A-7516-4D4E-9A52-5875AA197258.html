@@ -56,6 +56,13 @@ footer { background:var(--bg-deep);color:rgba(255,255,255,0.75);padding:32px 24p
 .footer-inner { max-width:var(--max-w);margin:0 auto; }
 footer a { color:rgba(255,255,255,0.85); }
 .note-soft { font-size:12px;color:var(--text-muted);margin-top:8px; }
+.toc-box { background:var(--bg-alt);border:1px solid var(--border);border-radius:6px;padding:14px 18px;margin-bottom:24px; }
+.toc-box summary { cursor:pointer;font-weight:700;color:var(--bg-deep);font-family:var(--serif);font-size:15px; }
+.toc-list { list-style:none;padding-left:0;margin-top:12px;font-size:13px;line-height:1.85;max-height:400px;overflow-y:auto; }
+.toc-list li { padding:1px 0; }
+.toc-list a { color:var(--institutional);text-decoration:none; }
+.toc-list a:hover { color:var(--brand);text-decoration:underline; }
+.body-content h2[id], .body-content h3[id] { scroll-margin-top:80px; }
 </style>
 </head>
 <body>
@@ -82,8 +89,11 @@ footer a { color:rgba(255,255,255,0.85); }
   <a href="https://crc.sfaa.gov.tw/Uploadfile/Document/84_20260223091557_4740587.pdf" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>↓ 84_20260223091557_4740587.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/84_20260223091828_029363.pdf" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>↓ 84_20260223091828_029363.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/84_20260223092053_1290032.pdf" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>↓ 84_20260223092053_1290032.pdf</a>
 </div>
 
+<details class="toc-box" open><summary>📑 目錄(8 個章節)</summary>
+<ul class="toc-list"><li style="margin-left:0px"><a href="#file0">84_20260223091557_4740587.pdf</a></li><li style="margin-left:0px"><a href="#file1">84_20260223091828_029363.pdf</a></li><li style="margin-left:0px"><a href="#file2">84_20260223092053_1290032.pdf</a></li><li style="margin-left:14px"><a href="#file2_h1">壹、主席致詞：略</a></li><li style="margin-left:14px"><a href="#file2_h2">貳、主席說明議事規則：略</a></li><li style="margin-left:14px"><a href="#file2_h3">參、提案討論</a></li><li style="margin-left:14px"><a href="#file2_h4">肆、臨時動議</a></li><li style="margin-left:14px"><a href="#file2_h5">伍、散會。（下午5時40分）</a></li></ul></details>
+
 <div class="body-content">
-<h2>來源 PDF: 84_20260223091557_4740587.pdf</h2>
+<h2 id="file0">來源 PDF: 84_20260223091557_4740587.pdf</h2>
 
 
 <p>         114 年度兒童及少年大會</p>
@@ -1420,11 +1430,11 @@ footer a { color:rgba(255,255,255,0.85); }
 
 <p>!                      &quot;*!</p>
 
-<h2>來源 PDF: 84_20260223091828_029363.pdf</h2>
+<h2 id="file1">來源 PDF: 84_20260223091828_029363.pdf</h2>
 
 
 
-<h2>來源 PDF: 84_20260223092053_1290032.pdf</h2>
+<h2 id="file2">來源 PDF: 84_20260223092053_1290032.pdf</h2>
 
 
 <p>                   衛生福利部</p>
@@ -1434,9 +1444,9 @@ footer a { color:rgba(255,255,255,0.85); }
 <p>開會地點：本部301會議室</p>
 <p>主持人：呂政務次長建德、謝秉穎                  紀錄：張顥倫</p>
 <p>出、列席者：詳如簽到表</p>
-<p>壹、主席致詞：略</p>
-<p>貳、主席說明議事規則：略</p>
-<p>參、提案討論</p>
+<h3 id="file2_h1">壹、主席致詞：略</h3>
+<h3 id="file2_h2">貳、主席說明議事規則：略</h3>
+<h3 id="file2_h3">參、提案討論</h3>
 <p>第一案：建構校園友善的環境以及建立校園事件中更友善兒少之申訴管道</p>
 <p>兒少提問：</p>
 <p>(1) 1953反霸凌專線成效不彰，撥打專線後仍叫學生透過校內申訴管道。</p>
@@ -1681,7 +1691,7 @@ footer a { color:rgba(255,255,255,0.85); }
 <p>請教育部持續宣傳家庭教育的相關資訊。</p>
 
 <p>                     8</p>
-<p>肆、臨時動議</p>
+<h3 id="file2_h4">肆、臨時動議</h3>
 <p>第一案：兼顧校園管理與兒少權利：教師解聘草案修正之政策檢討</p>
 <p>提案內容：</p>
 <p>教育部於114年11月21日臺教授國部字第1146003848A 號預告《高級中等以下學校</p>
@@ -1733,7 +1743,7 @@ footer a { color:rgba(255,255,255,0.85); }
 <p>主席裁示：</p>
 <p>請衛福部持續努力，以友善兒少參與公共事務。</p>
 
-<p>伍、散會。（下午5時40分）</p>
+<h3 id="file2_h5">伍、散會。（下午5時40分）</h3>
 
 <p>                   10</p>
 

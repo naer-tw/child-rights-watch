@@ -1676,12 +1676,32 @@ footer .credit {
 
     <div class="section-header">
       <h2>文件資料庫</h2>
-      <span class="meta">三屆國家報告 / 結論性意見 / NAP / 民間影子報告 · 共 <b>142</b> 份</span>
+      <span class="meta">本平台 <b id="local-docs-count">─</b> 件 + CRC 官方 <b>255</b> 件</span>
     </div>
 
     <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: var(--space-3); max-width: 760px;">
       可按 <strong style="color: var(--brand)">提出單位</strong>(國教盟 / 台少盟 / 勵馨 / 家扶 / 人本 等)、屆別、條文、議題交叉篩選 — 看出每個民間團體的倡議與政府採納關係。
     </p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:12px;margin-bottom:var(--space-4)">
+      <a href="crc-official.html" style="display:flex;gap:14px;align-items:center;padding:14px 18px;background:var(--bg-deep);color:#fff;border-radius:6px;text-decoration:none;transition:all .15s">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--aabe-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>
+        <div>
+          <div style="font-family:var(--sans-en);font-size:11px;color:var(--aabe-gold);letter-spacing:0.06em;text-transform:uppercase">CRC OFFICIAL</div>
+          <div style="font-weight:600;font-size:14px;margin-top:2px">CRC 官方文件全集</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.7);margin-top:2px">255 件 / 512 PDF · 7 大區塊 · 全部已轉 markdown</div>
+        </div>
+      </a>
+      <a href="external-reports.html" style="display:flex;gap:14px;align-items:center;padding:14px 18px;background:var(--brand-soft);border:1px solid var(--brand);border-radius:6px;text-decoration:none;color:var(--text);transition:all .15s">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <div>
+          <div style="font-family:var(--sans-en);font-size:11px;color:var(--brand);letter-spacing:0.06em;text-transform:uppercase">CIVIL SOCIETY</div>
+          <div style="font-weight:600;font-size:14px;margin-top:2px">民間影子報告 corpus</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:2px">27 份(15 從 CRC 抓真實 PDF + AABE 補建 12)</div>
+        </div>
+      </a>
+    </div>
+
     <div style="background:var(--warning-soft);border:1px solid #E8C998;border-left:3px solid #C68822;border-radius:4px;padding:10px 14px;font-size:12.5px;color:#6B3416;line-height:1.55;margin-bottom:var(--space-4);max-width:760px">
       <strong>NGO 資料涵蓋度</strong>:平台 directory 收錄 <strong id="ngo-dir-total">─</strong> 個團體,目前已有實際倡議 / 影子報告資料的 <strong id="ngo-covered-cnt">─</strong> 個(下拉選單 ⓘ 標記者)。其餘團體之歷史立場 AABE 內部正陸續補建,選擇後可能無資料。
     </div>
@@ -4659,6 +4679,8 @@ window.DOC_DATA = {
     const showCnt = Math.max(0, Math.min(PAGE_SIZE, filtered.length - start));
     document.getElementById('doc-shown').textContent = showCnt;
     document.getElementById('doc-total').textContent = ALL.length;
+    const ldc = document.getElementById('local-docs-count');
+    if (ldc) ldc.textContent = ALL.length;
 
     // 已套用篩選描述
     const parts = [];

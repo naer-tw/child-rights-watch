@@ -54,6 +54,13 @@ footer { background:var(--bg-deep);color:rgba(255,255,255,0.75);padding:32px 24p
 .footer-inner { max-width:var(--max-w);margin:0 auto; }
 footer a { color:rgba(255,255,255,0.85); }
 .note-soft { font-size:12px;color:var(--text-muted);margin-top:8px; }
+.toc-box { background:var(--bg-alt);border:1px solid var(--border);border-radius:6px;padding:14px 18px;margin-bottom:24px; }
+.toc-box summary { cursor:pointer;font-weight:700;color:var(--bg-deep);font-family:var(--serif);font-size:15px; }
+.toc-list { list-style:none;padding-left:0;margin-top:12px;font-size:13px;line-height:1.85;max-height:400px;overflow-y:auto; }
+.toc-list li { padding:1px 0; }
+.toc-list a { color:var(--institutional);text-decoration:none; }
+.toc-list a:hover { color:var(--brand);text-decoration:underline; }
+.body-content h2[id], .body-content h3[id] { scroll-margin-top:80px; }
 </style>
 </head>
 <body>
@@ -80,8 +87,11 @@ footer a { color:rgba(255,255,255,0.85); }
   <a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20210525090727_9232559.pdf" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>↓ 34_20210525090727_9232559.pdf</a>
 </div>
 
+<details class="toc-box" open><summary>📑 目錄(5 個章節)</summary>
+<ul class="toc-list"><li style="margin-left:0px"><a href="#file0">34_20210525090727_9232559.pdf</a></li><li style="margin-left:14px"><a href="#file0_h1">2022.11</a></li><li style="margin-left:14px"><a href="#file0_h2">2021.07                 進行國際</a></li><li style="margin-left:14px"><a href="#file0_h3">2022.02         2022.04</a></li><li style="margin-left:14px"><a href="#file0_h4">2022.09                 管考結論性</a></li></ul></details>
+
 <div class="body-content">
-<h2>來源 PDF: 34_20210525090727_9232559.pdf</h2>
+<h2 id="file0">來源 PDF: 34_20210525090727_9232559.pdf</h2>
 
 
 <p>                  兒童權利公約第2次國家報告</p>
@@ -108,14 +118,14 @@ footer a { color:rgba(255,255,255,0.85); }
 <p>                       委員會                      秘書處</p>
 <p>     對撰寫機關進行教                                                細部流程</p>
 <p>     育訓練或說明會                         2021.05</p>
-<p>                                                             2022.11</p>
+<h3 id="file0_h1">2022.11</h3>
 <p>                             確認邀請委員名單</p>
-<p>                                     2021.07                 進行國際</p>
+<h3 id="file0_h2">2021.07                 進行國際</h3>
 <p>      撰擬所涉點次</p>
 <p>      國家報告內容                                                  審查</p>
 <p>                             辦理邀請委員作業</p>
 
-<p>                         2022.02         2022.04</p>
+<h3 id="file0_h3">2022.02         2022.04</h3>
 <p>     提交主辦機關                                                  委員撰擬結</p>
 <p>                                      民間團體、</p>
 <p>                        寄送國家報                                 論性意見</p>
@@ -129,7 +139,7 @@ footer a { color:rgba(255,255,255,0.85); }
 <p>階段      階段      階段</p>
 <p>                             政府回復問題清單</p>
 <p>                                                             建立落實及</p>
-<p>                                     2022.09                 管考結論性</p>
+<h3 id="file0_h4">2022.09                 管考結論性</h3>
 <p>由主辦    進行民                                                    意見機制</p>
 <p>機關初             進行確          民間團體提交問題</p>
 <p>       間意見</p>
