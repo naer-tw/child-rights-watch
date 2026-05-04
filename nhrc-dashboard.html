@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NHRC 監測指標 dashboard — 兒少人權監督平台</title>
+<meta name="description" content="國家人權委員會 (NHRC) 兒少相關監測指標,共 6 項">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+:root { --bg:#FAFAF7;--bg-alt:#F1EFEA;--bg-deep:#0E2238;--text:#1F1F1F;--text-muted:#5C5C5C;--brand:#B5371F;--brand-soft:#F4E1DC;--aabe-gold:#8B6F50;--success:#2D5F3E;--warning:#A03032;--border:#DDD8CD;--serif:"Noto Serif TC",Georgia,serif;--sans:"Noto Sans TC",-apple-system,sans-serif; }
+* { box-sizing:border-box;margin:0;padding:0; }
+body { font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--text);background:var(--bg); }
+a { color:var(--bg-deep); }
+a:hover { color:var(--brand); }
+.banner { background:var(--bg-deep);color:#fff;padding:10px 20px;font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;border-bottom:3px solid var(--brand); }
+.banner a { color:rgba(255,255,255,0.85);text-decoration:none; }
+.banner strong { color:#fff; }
+header { background:var(--bg-alt);padding:36px 24px;text-align:center;border-bottom:1px solid var(--border); }
+header .kicker { font-family:Inter,sans-serif;font-size:12px;font-weight:700;color:var(--brand);letter-spacing:0.12em;text-transform:uppercase; }
+header h1 { font-family:var(--serif);font-size:28px;color:var(--bg-deep);font-weight:900;margin:8px 0; }
+header p { color:var(--text-muted);font-size:14px;max-width:760px;margin:8px auto; }
+main { max-width:1200px;margin:0 auto;padding:32px 24px 80px; }
+.disclosure { background:var(--bg-alt);border-left:3px solid var(--aabe-gold);padding:14px 18px;border-radius:4px;font-size:12.5px;color:var(--text);margin-bottom:24px;line-height:1.6; }
+.indicator-grid { display:grid;grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));gap:16px; }
+.indicator-card { background:#fff;border:1px solid var(--border);border-radius:6px;padding:20px 22px;display:flex;flex-direction:column;gap:6px; }
+.indicator-card .ind-id { font-family:Inter,sans-serif;font-size:11px;color:var(--brand);font-weight:700;letter-spacing:0.06em; }
+.indicator-card h3 { font-family:var(--serif);font-size:17px;color:var(--bg-deep);font-weight:700;line-height:1.3; }
+.indicator-card .ind-stat { display:flex;align-items:baseline;gap:6px;margin:8px 0; }
+.indicator-card .ind-stat .num { font-family:Inter,sans-serif;font-size:28px;font-weight:700;color:var(--bg-deep);line-height:1; }
+.indicator-card .ind-stat .unit { font-size:13px;color:var(--text-muted); }
+.indicator-card .ind-meta { display:flex;justify-content:space-between;font-size:12px;font-family:Inter,sans-serif; }
+.indicator-card .trend { font-weight:700; }
+.indicator-card .ind-concern { background:var(--brand-soft);color:#8C2A18;padding:8px 12px;border-radius:4px;font-size:12.5px;line-height:1.5; }
+.indicator-card .ind-links { display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:12px; }
+.indicator-card .ind-tags { display:flex;gap:4px;flex-wrap:wrap;margin-top:4px; }
+.indicator-card .ind-source { font-size:11px;color:var(--text-muted);font-family:Inter,sans-serif;border-top:1px solid var(--border);padding-top:8px;margin-top:8px; }
+footer { text-align:center;padding:24px;color:var(--text-muted);font-size:12px;border-top:1px solid var(--border); }
+</style>
+</head>
+<body>
+<div class="banner">
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:8px">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8B6F50" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <strong>兒少人權監督平台</strong>
+  </a>
+  <span><a href="index.html">← 回首頁</a> · <a href="search.html">搜尋</a> · <a href="sitemap.html">網站地圖</a></span>
+</div>
+
+<header>
+  <p class="kicker">NHRC 監測指標 · DASHBOARD</p>
+  <h1>國家人權委員會 兒少監測指標</h1>
+  <p>NHRC 為依《監察法》設立之獨立人權機構。本頁列出 NHRC 監測之兒少權利相關指標,共 <strong>6 項</strong>(本平台已 ingest 樣本)。</p>
+</header>
+
+<main>
+  <div class="disclosure">
+    <strong>📋 資料說明</strong>:NHRC 完整監測指標含 239 項涵蓋多權利領域。本平台目前僅 ingest <strong>6 項</strong>兒少相關樣本(校園霸凌、青少年自殺、特教師生比、替代照顧等)。完整 PDF 等待 NHRC 開放下載後將自動補建(對應 monthly_maintenance 之 NHRC 抓取流程)。
+  </div>
+
+  <div class="indicator-grid">
+    
+        <div class="indicator-card">
+          <div class="ind-id">NHRC-239-042</div>
+          <h3>校園霸凌通報率</h3>
+          <p style="font-size:12px;color:var(--text-muted);font-family:Inter,sans-serif">Campus Bullying Reporting Rate</p>
+          <div class="ind-stat">
+            <span class="num">12.3</span>
+            <span class="unit">件/千人</span>
+          </div>
+          <div class="ind-meta">
+            <span class="trend" style="color:#5C5C5C">─ 穩定</span>
+            <span style="color:var(--text-muted)">2024</span>
+          </div>
+          
+          <div class="ind-links">
+            <span style="color:var(--text-muted);font-size:11px">議題:</span><a href="issues/PI-01.html" style="color:var(--brand);font-weight:600;text-decoration:none;font-size:11px">PI-01</a>
+          </div>
+          <div class="ind-tags"><span style="background:var(--bg-alt);padding:2px 7px;border-radius:3px;font-size:10.5px;color:var(--text-muted);font-family:Inter,sans-serif">CRC-19</span> <span style="background:var(--bg-alt);padding:2px 7px;border-radius:3px;font-size:10.5px;color:var(--text-muted);font-family:Inter,sans-serif">CRC-28</span></div>
+          <div class="ind-source">資料來源:教育部</div>
+        </div>
+        <div class="indicator-card">
+          <div class="ind-id">NHRC-239-043</div>
+          <h3>校園霸凌處置成立率</h3>
+          <p style="font-size:12px;color:var(--text-muted);font-family:Inter,sans-serif">Campus Bullying Sustained Rate</p>
+          <div class="ind-stat">
+            <span class="num">31.87%</span>
+            <span class="unit">%</span>
+          </div>
+          <div class="ind-meta">
+            <span class="trend" style="color:#A03032">↓ 惡化</span>
+            <span style="color:var(--text-muted)">2025-12</span>
+          </div>
+          <p class="ind-concern">⚠ NHRC 4641 件分析顯示 65% 未通報社政</p>
+          <div class="ind-links">
+            <span style="color:var(--text-muted);font-size:11px">議題:</span><a href="issues/PI-01.html" style="color:var(--brand);font-weight:600;text-decoration:none;font-size:11px">PI-01</a>
+          </div>
+          <div class="ind-tags"><span style="background:var(--bg-alt);padding:2px 7px;border-radius:3px;font-size:10.5px;color:var(--text-muted);font-family:Inter,sans-serif">CRC-19</span></div>
+          <div class="ind-source">資料來源:教育部</div>
+        </div>
+        <div class="indicator-card">
+          <div class="ind-id">NHRC-239-088</div>
+          <h3>15-24 歲女性自殺通報數</h3>
+          <p style="font-size:12px;color:var(--text-muted);font-family:Inter,sans-serif">Female Youth Suicide Notifications</p>
+          <div class="ind-stat">
+            <span class="num">33,964</span>
+            <span class="unit">人</span>
+          </div>
+          <div class="ind-meta">
+            <span class="trend" style="color:#A03032">↓ 惡化</span>
+            <span style="color:var(--text-muted)">2024</span>
+          </div>
+          <p class="ind-concern">⚠ 10 年累計增 142%</p>
+          <div class="ind-links">
+            <span style="color:var(--text-muted);font-size:11px">議題:</span><a href="issues/PI-02.html" style="color:var(--brand);font-weight:600;text-decoration:none;font-size:11px">PI-02</a>
+          </div>
+          <div class="ind-tags"><span style="background:var(--bg-alt);padding:2px 7px;border-radius:3px;font-size:10.5px;color:var(--text-muted);font-family:Inter,sans-serif">CRC-6</span> <span style="background:var(--bg-alt);padding:2px 7px;border-radius:3px;font-size:10.5px;color:var(--text-muted);font-family:Inter,sans-serif">CRC-24</span></div>
+          <div class="ind-source">資料來源:衛福部</div>
+        </div>
+        <div class="indicator-card">
+          <div class="ind-id">NHRC-239-115</div>
+          <h3>友善校園人權環境指標自評率</h3>
+          <p style="font-size:12px;color:var(--text-muted);font-family:Inter,sans-serif">─</p>
+          <div class="ind-stat">
+            <span class="num">未公開</span>
+            <span class="unit"></span>
+          </div>
+          <div class="ind-meta">
+            <span class="trend" style="color:#5C5C5C">─</span>
+            <span style="color:var(--text-muted)">2024</span>
+          </div>
+          <p class="ind-concern">⚠ NHRC 多次建請提供縣市層級資料,迄未見</p>
+          <div class="ind-links">
+            <span style="color:var(--text-muted);font-size:11px">議題:</span>—
+          </div>
+          <div class="ind-tags"></div>
+          <div class="ind-source">資料來源:教育部 / 地方政府</div>
+        </div>
+        <div class="indicator-card">
+          <div class="ind-id">NHRC-239-160</div>
+          <h3>兒少代表會議發言可追蹤性</h3>
+          <p style="font-size:12px;color:var(--text-muted);font-family:Inter,sans-serif">─</p>
+          <div class="ind-stat">
+            <span class="num">0%</span>
+            <span class="unit"></span>
+          </div>
+          <div class="ind-meta">
+            <span class="trend" style="color:#5C5C5C">─ 穩定</span>
+            <span style="color:var(--text-muted)">2025</span>
+          </div>
+          <p class="ind-concern">⚠ GC12 表意權實質落實,僅程序層面</p>
+          <div class="ind-links">
+            <span style="color:var(--text-muted);font-size:11px">議題:</span>—
+          </div>
+          <div class="ind-tags"></div>
+          <div class="ind-source">資料來源:行政院 / 各部會</div>
+        </div>
+        <div class="indicator-card">
+          <div class="ind-id">NHRC-239-205</div>
+          <h3>少年司法塗銷實務跨機關殘留</h3>
+          <p style="font-size:12px;color:var(--text-muted);font-family:Inter,sans-serif">─</p>
+          <div class="ind-stat">
+            <span class="num">存在</span>
+            <span class="unit"></span>
+          </div>
+          <div class="ind-meta">
+            <span class="trend" style="color:#5C5C5C">─</span>
+            <span style="color:var(--text-muted)">2025</span>
+          </div>
+          <p class="ind-concern">⚠ 對接本平台 PI-05 §民間觀察 4</p>
+          <div class="ind-links">
+            <span style="color:var(--text-muted);font-size:11px">議題:</span><a href="issues/PI-05.html" style="color:var(--brand);font-weight:600;text-decoration:none;font-size:11px">PI-05</a>
+          </div>
+          <div class="ind-tags"></div>
+          <div class="ind-source">資料來源:司法院 / 法務部</div>
+        </div>
+  </div>
+</main>
+
+<footer>
+  本平台由 <strong>國教行動聯盟(AABE)</strong> 製作維護 · CC BY 4.0 · 資料來源:NHRC + 各部會
+</footer>
+</body>
+</html>

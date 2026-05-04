@@ -1496,7 +1496,15 @@ footer .credit {
   </a>
   <a href="external-reports.html" class="nav-item">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-    民間影子報告(16)
+    民間影子報告(27)
+  </a>
+  <a href="nhrc-dashboard.html" class="nav-item">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l3-3 4 4 5-5"/></svg>
+    NHRC 監測指標
+  </a>
+  <a href="weekly-digest.html" class="nav-item">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    每週動態
   </a>
   <a href="crc-official.html" class="nav-item">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>
@@ -1565,45 +1573,104 @@ footer .credit {
   </div>
 </div>
 
-<!-- ━━━━━━━━━━━━━ HERO 報導 ━━━━━━━━━━━━━ -->
-<article class="hero">
-  <div class="hero-inner">
-    <p class="kicker">本週焦點 · 2026 年 5 月 3 日</p>
-
-    <h2>剴剴案兩年了 衛福部修法草案還補不上 6 大缺口</h2>
-
-    <p class="lead">
-      2026 年 4 月 21 日,衛福部同一天做兩件事:上線
-      <strong>CRC 第三次國家報告二稿</strong>(89,000 字),預告
-      <strong>《兒少權法》15 年來最大修正草案</strong>(118 條增至 165 條)。但
-      AABE 分析發現:草案有 <strong>6 大制度缺口、5 項零條款</strong>,且二稿全文
-      <strong>完全沒提剴剴案、兒福聯盟、保證人地位</strong> — 兩份文件,同部會、同一天,卻互不認識。
-    </p>
-
-    <div class="hero-stats" role="group" aria-label="關鍵數字">
-      <div class="hero-stat">
-        <span class="num">6/11</span>
-        <span class="lab">NAP 第一期未達成 / 方向錯誤(AABE 評估)</span>
-      </div>
-      <div class="hero-stat">
-        <span class="num">65%</span>
-        <span class="lab">NHRC 4,641 件師對生暴力未通報社政</span>
-      </div>
-      <div class="hero-stat">
-        <span class="num">+142%</span>
-        <span class="lab">15-24 歲女性自殺通報 10 年累計增幅</span>
-      </div>
-    </div>
-
-    <div class="hero-cta">
-      <a href="issues/PI-12.html" class="btn-primary">
-        深入閱讀:剴剴案六大缺口
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-      <a href="#workbench" class="btn-ghost">↓ 跳過敘事,進工作台</a>
-    </div>
-  </div>
+<!-- ━━━━━━━━━━━━━ HERO 報導(可輪換 4 焦點)━━━━━━━━━━━━━ -->
+<article class="hero" id="hero-rotator" aria-live="polite">
+  <div class="hero-inner" id="hero-content"></div>
 </article>
+
+<style>
+.hero-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: var(--space-3); border-bottom: 1px solid var(--border); padding-bottom: var(--space-3); }
+.hero-tab { background: transparent; border: 0; padding: 4px 12px; font-size: 12px; color: var(--text-muted); font-family: var(--sans); font-weight: 600; cursor: pointer; border-radius: 999px; border: 1px solid var(--border); }
+.hero-tab.active { background: var(--brand); color: #fff; border-color: var(--brand); }
+.hero-tab:hover:not(.active) { background: var(--bg-alt); }
+.hero-fade { animation: fadeIn .3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+</style>
+
+<script>
+window.HERO_STORIES = [
+  {
+    kicker: '本週焦點 · 替代照顧',
+    title: '剴剴案兩年了 衛福部修法草案還補不上 6 大缺口',
+    lead: '2026 年 4 月 21 日,衛福部同一天做兩件事:上線 <strong>CRC 第三次國家報告二稿</strong>(89,000 字),預告 <strong>《兒少權法》15 年來最大修正草案</strong>(118 條增至 165 條)。但 AABE 分析發現:草案有 <strong>6 大制度缺口、5 項零條款</strong>,且二稿全文 <strong>完全沒提剴剴案、兒福聯盟、保證人地位</strong> — 兩份文件,同部會、同一天,卻互不認識。',
+    stats: [
+      {num:'6/11', lab:'NAP 第一期未達成 / 方向錯誤(AABE 評估)'},
+      {num:'65%', lab:'NHRC 4,641 件師對生暴力未通報社政'},
+      {num:'+142%', lab:'15-24 歲女性自殺通報 10 年累計增幅'},
+    ],
+    cta: {href:'issues/PI-12.html', text:'深入閱讀:剴剴案六大缺口'},
+  },
+  {
+    kicker: '青少年心理健康',
+    title: '青少年自殺通報 10 年 +142% 政府卻仍以「個案」回應',
+    lead: '依衛福部資料,15-24 歲<strong>女性自殺通報</strong> 10 年累計增加 <strong>142%</strong>;<strong>男性增加 87%</strong>。同期 WISER 三級輔導<strong>專任輔導員</strong>覆蓋率僅 35% 學校,且校外諮商網絡(張老師、生命線、安心專線)與校內輔導未制度化整合。AABE 主張將社群媒體成癮 / 比較焦慮納入 SEL 課綱,並重啟青少年心理健康預算法定占比。',
+    stats: [
+      {num:'+142%', lab:'15-24 歲女性自殺通報增幅'},
+      {num:'17%', lab:'國高中生中度以上憂鬱情緒比率(董氏 2023)'},
+      {num:'35%', lab:'學校有專任輔導員之覆蓋率'},
+    ],
+    cta: {href:'issues/PI-02.html', text:'深入閱讀:青少年心理健康'},
+  },
+  {
+    kicker: '性平教育',
+    title: 'AABE 性教育十大破口 — 主張回歸健康教育主軸',
+    lead: 'AABE 與台灣性教育學會 <strong>2025 年 8 月</strong>聯合提出「<strong>全面性教育十大破口</strong>」:隱私風險、情慾導向取代技能、評量空白、與 108 課綱脫鉤、家長被排除。AABE 立場為<strong>性教育主軸應為健康教育</strong>(依 UNESCO「可依國情採行」),反對由性別運動團體將意識形態議題塞入校園。同期淋病通報 +7×、梅毒 +53× 凸顯性健康教育失靈。',
+    stats: [
+      {num:'+7×', lab:'青少年淋病通報增幅(10 年)'},
+      {num:'+53×', lab:'青少女梅毒通報增幅(10 年)'},
+      {num:'10', lab:'AABE × 性教育學會 識別之教學破口'},
+    ],
+    cta: {href:'issues/PI-08.html', text:'深入閱讀:性別平等教育'},
+  },
+  {
+    kicker: '少年司法',
+    title: '行政先行制度檢討 — 新北割頸案後司法院再啟少事法修正',
+    lead: '2025 新北割頸案後,司法院 2026 年再度啟動<strong>少事法修正草案</strong>。AABE 與民間司改會主張:<strong>行政先行</strong>(逃學逃家少年由社政接住)立意良善但實務銜接不足,<strong>個案 fall through gap</strong> 是制度性問題,非個別社工失職。2018-2022 行政先行少年再犯率 42%,需檢討配套並補強少年法庭專業化(法官 / 觀護人 / 律師訓練)。',
+    stats: [
+      {num:'42%', lab:'行政先行少年再犯率(2018-2022)'},
+      {num:'2', lab:'觸發案件:剴剴案 + 新北割頸案'},
+      {num:'CRC 37', lab:'兒少死刑禁止 / 司法處遇條款'},
+    ],
+    cta: {href:'issues/PI-05.html', text:'深入閱讀:少年司法與行政先行'},
+  },
+];
+
+(function() {
+  const stories = window.HERO_STORIES;
+  const wrap = document.getElementById('hero-content');
+  let idx = 0;
+
+  function render(i) {
+    const s = stories[i];
+    const tabs = stories.map((st, k) =>
+      `<button class="hero-tab ${k===i?'active':''}" data-i="${k}">${st.kicker.split(' · ')[1] || st.kicker}</button>`
+    ).join('');
+    wrap.innerHTML = `
+      <div class="hero-tabs" role="tablist">${tabs}</div>
+      <div class="hero-fade">
+        <p class="kicker">${s.kicker} · ${new Date().toLocaleDateString('zh-TW',{year:'numeric',month:'long',day:'numeric'})}</p>
+        <h2>${s.title}</h2>
+        <p class="lead">${s.lead}</p>
+        <div class="hero-stats" role="group" aria-label="關鍵數字">
+          ${s.stats.map(st => `
+            <div class="hero-stat"><span class="num">${st.num}</span><span class="lab">${st.lab}</span></div>
+          `).join('')}
+        </div>
+        <div class="hero-cta">
+          <a href="${s.cta.href}" class="btn-primary">${s.cta.text}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#workbench" class="btn-ghost">↓ 跳過敘事,進工作台</a>
+        </div>
+      </div>
+    `;
+    wrap.querySelectorAll('.hero-tab').forEach(b => b.addEventListener('click', () => {
+      idx = parseInt(b.dataset.i, 10); render(idx);
+    }));
+  }
+  render(0);
+})();
+</script>
 
 <!-- ━━━━━━━━━━━━━ Workbench ━━━━━━━━━━━━━ -->
 <section class="workbench" id="workbench">
