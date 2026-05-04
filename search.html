@@ -124,6 +124,10 @@ fetch('search-index.json')
                     law:'法規', law_amendment:'修法'};
     const parts = Object.entries(cnt).map(([t,n]) => `${n} ${labels[t]||t}`);
     document.getElementById('hdr-stats').textContent = `${parts.join(' / ')} = 共 ${data.items.length} 筆`;
+    // Auto-fill from ?q= URL param
+    const params = new URLSearchParams(location.search);
+    const initQ = params.get('q');
+    if (initQ) { qInput.value = initQ; search(); }
   })
   .catch(err => {
     statsEl.textContent = '索引載入失敗,請稍後再試:' + err.message;
