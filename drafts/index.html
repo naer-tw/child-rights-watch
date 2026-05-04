@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>內部工作底稿 — 兒少人權監督平台</title>
+<meta name="description" content="AABE 內部使用之倡議工作底稿目錄">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
+<meta name="robots" content="noindex">
+<style>
+:root {
+  --bg: #FAFAF7; --bg-alt: #F1EFEA; --bg-deep: #0E2238; --bg-deeper: #081728;
+  --text: #1F1F1F; --text-muted: #5C5C5C; --text-meta: #8A8A8A;
+  --institutional: #0E2238; --institutional-light: #44638A;
+  --brand: #B5371F; --brand-dark: #8C2A18; --brand-soft: #F4E1DC;
+  --warning: #A03032; --success: #2D5F3E;
+  --aabe-gold: #8B6F50;
+  --warning-soft: #F5EAD7; --border: #DDD8CD; --hairline: #E8E3D6;
+  --serif: "Noto Serif TC", "Source Han Serif TC", Georgia, serif;
+  --sans: "Noto Sans TC", "PingFang TC", -apple-system, sans-serif;
+  --sans-en: "Inter", "Noto Sans TC", -apple-system, sans-serif;
+  --max-w: 1200px; --content-w: 760px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--sans); font-size: 16px; line-height: 1.6; color: var(--text); background: var(--bg); }
+a { color: var(--institutional); text-decoration: none; }
+a:hover { color: var(--brand); }
+.masthead { border-bottom: 1px solid var(--border); background: rgba(250,250,247,0.94); padding: 18px 24px; position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px); }
+.masthead-inner { max-width: var(--max-w); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+.logo-row { display: flex; align-items: center; gap: 12px; }
+.logo-icon { width: 36px; height: 36px; background: var(--bg-deep); color: #fff; display: grid; place-items: center; border-radius: 6px; }
+.logo-row h1 { font-family: var(--serif); font-size: 17px; font-weight: 700; line-height: 1.2; }
+.logo-row p { font-size: 11px; color: var(--text-muted); font-family: var(--sans-en); letter-spacing: 0.04em; text-transform: uppercase; }
+.aabe-mark { background: var(--aabe-gold); color: #fff; padding: 5px 9px; border-radius: 4px; font-family: var(--sans-en); font-weight: 800; font-size: 13px; }
+.crumb { background: var(--bg-deep); color: rgba(255,255,255,0.85); padding: 12px 24px; font-size: 13px; }
+.crumb-inner { max-width: var(--max-w); margin: 0 auto; display: flex; gap: 8px; align-items: center; }
+.crumb a { color: rgba(255,255,255,0.85); }
+.crumb a:hover { color: var(--brand); }
+.crumb svg { color: rgba(255,255,255,0.4); }
+.crumb .active { color: #fff; font-weight: 600; }
+main { max-width: var(--max-w); margin: 0 auto; padding: 48px 24px; }
+.page-header { border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 32px; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px; }
+.page-header h2 { font-family: var(--serif); font-size: 26px; color: var(--bg-deep); font-weight: 700; }
+.page-header .meta { font-size: 13px; color: var(--text-muted); font-family: var(--sans-en); }
+.lead { font-size: 14px; color: var(--text-muted); line-height: 1.7; max-width: 760px; margin-bottom: 32px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.card { background: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 24px; transition: all .15s; display: block; }
+.card:hover { border-color: var(--brand); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(14,34,56,0.06); }
+.card .pi { font-family: var(--sans-en); font-size: 12px; font-weight: 700; color: var(--brand); letter-spacing: 0.06em; }
+.card h3 { font-family: var(--serif); font-size: 17px; font-weight: 700; color: var(--bg-deep); margin: 6px 0 8px; line-height: 1.35; }
+.card .summary { font-size: 13.5px; color: var(--text); line-height: 1.6; margin-bottom: 12px; }
+.card .stats { font-size: 11.5px; color: var(--text-muted); font-family: var(--sans-en); padding-top: 10px; border-top: 1px solid var(--hairline); }
+.tag { display: inline-block; padding: 2px 8px; font-size: 10.5px; font-weight: 600; border-radius: 3px; letter-spacing: 0.04em; margin-right: 4px; }
+.tag-高 { background: var(--warning-soft); color: var(--warning); }
+.tag-中 { background: rgba(198,136,34,0.15); color: #8C5A0E; }
+.tag-低 { background: var(--bg-alt); color: var(--text-muted); }
+footer { background: var(--bg-deep); color: rgba(255,255,255,0.75); padding: 32px 24px; margin-top: 64px; font-size: 12.5px; }
+footer-inner { max-width: var(--max-w); margin: 0 auto; }
+footer a { color: rgba(255,255,255,0.85); }
+</style>
+</head>
+<body>
+<script>
+if (typeof localStorage !== 'undefined' && localStorage.getItem('aabe-insider') !== 'yes') {
+  location.replace('../index.html?lock=drafts');
+}
+</script>
+
+<header class="masthead" role="banner">
+  <div class="masthead-inner">
+    <a href="../index.html" class="logo-row">
+      <span class="logo-icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </span>
+      <div>
+        <h1>兒少人權監督平台</h1>
+        <p>Child Rights Watch Taiwan</p>
+      </div>
+    </a>
+    <span class="aabe-mark">AABE</span>
+  </div>
+</header>
+
+<div class="crumb">
+  <div class="crumb-inner">
+    <a href="../index.html">首頁總覽</a>
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg>
+    <span class="active">內部工作區 › 工作底稿</span>
+  </div>
+</div>
+
+<main>
+
+<div style="background:var(--bg-deep);color:#fff;padding:24px;border-radius:8px;margin-bottom:32px">
+  <h2 style="font-family:var(--serif);font-size:20px;color:#fff;margin-bottom:8px">內部工作底稿(insider only)</h2>
+  <p style="color:rgba(255,255,255,0.85);font-size:13.5px;line-height:1.6">
+    AABE 內部成員可使用本區存放工作中的倡議草稿、會議紀錄、未脫敏案例分析、跨組織合作備忘錄。
+    本區內容不公開、不索引(<code style="color:#fbbf24">noindex</code>)。
+  </p>
+</div>
+
+<div class="page-header">
+  <h2>工作底稿目錄</h2>
+  <span class="meta">drafts · 0 件公開、由內部 commit / 不接 web</span>
+</div>
+
+<p class="lead">
+  本目錄目前無公開內容。AABE 內部底稿透過 git private branch 管理,需以下方式取得:
+</p>
+
+<div class="grid">
+  <div class="card">
+    <span class="pi">CHANNEL 1</span>
+    <h3>AABE 內部 Notion 工作站</h3>
+    <p class="summary">日常會議紀錄、倡議草稿、policy briefs 進行中版本</p>
+    <div class="stats">需 AABE Notion workspace 帳號</div>
+  </div>
+  <div class="card">
+    <span class="pi">CHANNEL 2</span>
+    <h3>主平台 git private repo</h3>
+    <p class="summary">兒少權監督平台主 repo(含未脫敏 case studies、internal review notes)</p>
+    <div class="stats">需 GitHub team access</div>
+  </div>
+  <div class="card">
+    <span class="pi">CHANNEL 3</span>
+    <h3>影子報告產生器</h3>
+    <p class="summary">5 步驟 wizard 生成內部草稿,localStorage 儲存於本機</p>
+    <div class="stats"><a href="../generator.html" style="color:var(--brand);font-weight:600">→ 開啟 generator.html</a></div>
+  </div>
+  <div class="card">
+    <span class="pi">CHANNEL 4</span>
+    <h3>倡議追蹤矩陣</h3>
+    <p class="summary">14 議題 × 倡議 / CO / NAP / 法規 對應追蹤</p>
+    <div class="stats"><a href="../matrix.html" style="color:var(--brand);font-weight:600">→ 開啟 matrix.html</a></div>
+  </div>
+</div>
+
+<div style="background:var(--warning-soft);border:1px solid #E8C998;border-left:3px solid #C68822;border-radius:4px;padding:12px 16px;font-size:12.5px;color:#6B3416;line-height:1.6;margin-top:32px">
+  <strong>提醒</strong>:真機密資料(個人資料、未公開倡議底稿、未脫敏案例)不應放本平台。前端閘門僅為「區別公開 / 內部介面」,並非加密保護。
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-inner" style="max-width:1200px;margin:0 auto">
+    <p>本平台由 <strong style="color:#fff">國家教育行動聯盟(AABE)</strong> 製作維護 · CC BY 4.0 · <a href="../index.html">回首頁</a></p>
+  </div>
+</footer>
+</body>
+</html>

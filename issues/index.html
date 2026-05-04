@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>14 議題卡片 — 兒少人權監督平台</title>
+<meta name="description" content="兒少權監督平台之 14 個 policy_issue 議題卡">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #FAFAF7; --bg-alt: #F1EFEA; --bg-deep: #0E2238; --bg-deeper: #081728;
+  --text: #1F1F1F; --text-muted: #5C5C5C; --text-meta: #8A8A8A;
+  --institutional: #0E2238; --institutional-light: #44638A;
+  --brand: #B5371F; --brand-dark: #8C2A18; --brand-soft: #F4E1DC;
+  --warning: #A03032; --success: #2D5F3E;
+  --aabe-gold: #8B6F50;
+  --warning-soft: #F5EAD7; --border: #DDD8CD; --hairline: #E8E3D6;
+  --serif: "Noto Serif TC", "Source Han Serif TC", Georgia, serif;
+  --sans: "Noto Sans TC", "PingFang TC", -apple-system, sans-serif;
+  --sans-en: "Inter", "Noto Sans TC", -apple-system, sans-serif;
+  --max-w: 1200px; --content-w: 760px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--sans); font-size: 16px; line-height: 1.6; color: var(--text); background: var(--bg); }
+a { color: var(--institutional); text-decoration: none; }
+a:hover { color: var(--brand); }
+.masthead { border-bottom: 1px solid var(--border); background: rgba(250,250,247,0.94); padding: 18px 24px; position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px); }
+.masthead-inner { max-width: var(--max-w); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+.logo-row { display: flex; align-items: center; gap: 12px; }
+.logo-icon { width: 36px; height: 36px; background: var(--bg-deep); color: #fff; display: grid; place-items: center; border-radius: 6px; }
+.logo-row h1 { font-family: var(--serif); font-size: 17px; font-weight: 700; line-height: 1.2; }
+.logo-row p { font-size: 11px; color: var(--text-muted); font-family: var(--sans-en); letter-spacing: 0.04em; text-transform: uppercase; }
+.aabe-mark { background: var(--aabe-gold); color: #fff; padding: 5px 9px; border-radius: 4px; font-family: var(--sans-en); font-weight: 800; font-size: 13px; }
+.crumb { background: var(--bg-deep); color: rgba(255,255,255,0.85); padding: 12px 24px; font-size: 13px; }
+.crumb-inner { max-width: var(--max-w); margin: 0 auto; display: flex; gap: 8px; align-items: center; }
+.crumb a { color: rgba(255,255,255,0.85); }
+.crumb a:hover { color: var(--brand); }
+.crumb svg { color: rgba(255,255,255,0.4); }
+.crumb .active { color: #fff; font-weight: 600; }
+main { max-width: var(--max-w); margin: 0 auto; padding: 48px 24px; }
+.page-header { border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 32px; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px; }
+.page-header h2 { font-family: var(--serif); font-size: 26px; color: var(--bg-deep); font-weight: 700; }
+.page-header .meta { font-size: 13px; color: var(--text-muted); font-family: var(--sans-en); }
+.lead { font-size: 14px; color: var(--text-muted); line-height: 1.7; max-width: 760px; margin-bottom: 32px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.card { background: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 24px; transition: all .15s; display: block; }
+.card:hover { border-color: var(--brand); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(14,34,56,0.06); }
+.card .pi { font-family: var(--sans-en); font-size: 12px; font-weight: 700; color: var(--brand); letter-spacing: 0.06em; }
+.card h3 { font-family: var(--serif); font-size: 17px; font-weight: 700; color: var(--bg-deep); margin: 6px 0 8px; line-height: 1.35; }
+.card .summary { font-size: 13.5px; color: var(--text); line-height: 1.6; margin-bottom: 12px; }
+.card .stats { font-size: 11.5px; color: var(--text-muted); font-family: var(--sans-en); padding-top: 10px; border-top: 1px solid var(--hairline); }
+.tag { display: inline-block; padding: 2px 8px; font-size: 10.5px; font-weight: 600; border-radius: 3px; letter-spacing: 0.04em; margin-right: 4px; }
+.tag-高 { background: var(--warning-soft); color: var(--warning); }
+.tag-中 { background: rgba(198,136,34,0.15); color: #8C5A0E; }
+.tag-低 { background: var(--bg-alt); color: var(--text-muted); }
+footer { background: var(--bg-deep); color: rgba(255,255,255,0.75); padding: 32px 24px; margin-top: 64px; font-size: 12.5px; }
+footer-inner { max-width: var(--max-w); margin: 0 auto; }
+footer a { color: rgba(255,255,255,0.85); }
+</style>
+</head>
+<body>
+<header class="masthead" role="banner">
+  <div class="masthead-inner">
+    <a href="../index.html" class="logo-row">
+      <span class="logo-icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </span>
+      <div>
+        <h1>兒少人權監督平台</h1>
+        <p>Child Rights Watch Taiwan</p>
+      </div>
+    </a>
+    <span class="aabe-mark">AABE</span>
+  </div>
+</header>
+
+<div class="crumb">
+  <div class="crumb-inner">
+    <a href="../index.html">首頁總覽</a>
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg>
+    <span class="active">14 議題</span>
+  </div>
+</div>
+
+<main>
+
+<div class="page-header">
+  <h2>14 議題卡片</h2>
+  <span class="meta">policy_issue · 14 個議題</span>
+</div>
+<p class="lead">
+  本平台監督之 14 個兒少權核心議題,涵蓋教育權、家庭照顧、性別平等、心理健康、司法保護等。
+  每張議題卡均連結:CRC 條文、CO 結論性意見、NAP 行動、法規修訂、AABE 倡議。
+</p>
+<div class="grid">
+      <a href="PI-01.html" class="card">
+        <span class="pi">PI-01 · CLUSTER E</span>
+        <h3>校園霸凌</h3>
+        <p class="summary">校安通報案件五年增 35%,但兒福聯盟 2024 年 N=16,346 調查指出近一年盛行率 10.2%(較 2023 年 15.1% 下降),其中 22.5% 受霸凌學生產生自傷意圖。**真正的失靈在處置端**:NHRC 對 4,641 件師對生暴力案件分析顯示,65% 未通報</p>
+        <div class="stats">
+          <span class="tag tag-高">嚴重度 高</span>
+          <span>持續追蹤</span> · 9 倡議 / 4 CO
+        </div>
+      </a>
+      <a href="PI-02.html" class="card">
+        <span class="pi">PI-02 · CLUSTER G</span>
+        <h3>青少年心理健康與自殺防治</h3>
+        <p class="summary">2024 年全國自殺死亡 4,062 人(較前年 +4.2%、女性 +6.9%),青少年族群數據在多項指標上續呈惡化。NAP 將「降低青少年自殺死亡人數」列為強化生命權保障議題,自評達成率 83.9%;但 [NHRC 監督報告(2025-07)](../sources/NHRC_</p>
+        <div class="stats">
+          <span class="tag tag-高">嚴重度 高</span>
+          <span>惡化</span> · 9 倡議 / 2 CO
+        </div>
+      </a>
+      <a href="PI-03.html" class="card">
+        <span class="pi">PI-03 · CLUSTER E</span>
+        <h3>體罰禁止(家庭與所有場域)</h3>
+        <p class="summary">校園體罰早已禁止,但**家庭體罰仍合法** — 民法第 1085 條「父母得於必要範圍內懲戒其子女」未修正。**CRC 委員會於第一次審查 CRC1-CO81 點名「校園禁止體罰之規定未獲徹底執行,亦未經妥適監督」,要求教育部採取必要措施;但 CRC2 全文 72 條無任何段落直</p>
+        <div class="stats">
+          <span class="tag tag-高">嚴重度 高</span>
+          <span>持續追蹤</span> · 2 倡議 / 2 CO
+        </div>
+      </a>
+      <a href="PI-04.html" class="card">
+        <span class="pi">PI-04 · CLUSTER G</span>
+        <h3>學生輔導體制(WISER 三級輔導 + 神經多樣性支持)</h3>
+        <p class="summary">教育部已推行 WISER-3.0 三級輔導模式(W 全校發展性、I 個別介入性、S 系統合作性、E 評估與績效、R 研究),但落地仍卡在三點:**員額補實率不足、跨領域人力(臨床心理、社工、精神科醫師)入校量能稀缺、輔導與學務權責拉扯**。教師荒進一步擠壓輔導時數。**神經多樣性</p>
+        <div class="stats">
+          <span class="tag tag-高">嚴重度 高</span>
+          <span>持續追蹤</span> · 7 倡議 / 4 CO
+        </div>
+      </a>
+      <a href="PI-05.html" class="card">
+        <span class="pi">PI-05 · CLUSTER I</span>
+        <h3>少年司法與行政先行</h3>
+        <p class="summary">少年事件處理法(L07)2019 大修後,曝險少年(舊「虞犯」)由「司法為先」改為**「行政先行」**,需先由地方政府少年輔導委員會處遇,效果不彰時方進入司法程序。**核心問題在量能與資源**:多數縣市少輔會人力嚴重不足、與學校/社政橫向協作機制散亂、過渡性教育措施(中介教育)學</p>
+        <div class="stats">
+          <span class="tag tag-高">嚴重度 高</span>
+          <span>持續追蹤</span> · 15 倡議 / 4 CO
+        </div>
+      </a>
+      <a href="PI-06.html" class="card">
+        <span class="pi">PI-06 · CLUSTER L</span>
+        <h3>兒少網路安全與新興物質</h3>
+        <p class="summary">GC25 已將兒少權利擴展至數位環境,但台灣的執行仍碎裂。**三條主戰線**:
+1. **新興菸品/毒品**:依托咪酯(喪屍煙彈)2025 年新北全年查獲 **2,740 件、佔毒品案件三成**(較 2024 下半年 133 件**暴增 20+ 倍**);電子煙、加熱菸、尼古丁袋</p>
+        <div class="stats">
+          <span class="tag tag-高">嚴重度 高</span>
+          <span>惡化</span> · 14 倡議 / 0 CO
+        </div>
+      </a>
+      <a href="PI-07.html" class="card">
+        <span class="pi">PI-07 · CLUSTER I</span>
+        <h3>性剝削防制</h3>
+        <p class="summary">兒少性剝削樣態高度數位化:NCII(未經同意之私密影像)、深度偽造、線上招募、跨境誘騙。OPSC(任擇議定書)已透過《兒少性剝削防制條例》(L08)內國法化,但執行端的核心問題在**檢警司獨立調查能量、被害人保護(避免二次傷害)、平台快速下架機制**。黃子佼案後法制有所補強,但服</p>
+        <div class="stats">
+          <span class="tag tag-高">嚴重度 高</span>
+          <span>持續追蹤</span> · 3 倡議 / 0 CO
+        </div>
+      </a>
+      <a href="PI-08.html" class="card">
+        <span class="pi">PI-08 · CLUSTER H</span>
+        <h3>性別平等教育</h3>
+        <p class="summary">性平法 2023 大修並自 **2024-03-08 施行**:擴大受規範對象(校長、教職員工、具指導關係之人員)、強化權勢關係認定、細緻化調查程序、加強通報義務,並與跟騷法、性侵害犯罪防治法等跨法銜接。但 2024 施行後出現**三大副作用**:**定義混淆、功能過載、程序膨脹</p>
+        <div class="stats">
+          <span class="tag tag-高">嚴重度 高</span>
+          <span>持續追蹤</span> · 10 倡議 / 3 CO
+        </div>
+      </a>
+      <a href="PI-09.html" class="card">
+        <span class="pi">PI-09 · CLUSTER H</span>
+        <h3>課業壓力、學習權與教育選擇權</h3>
+        <p class="summary">CRC 第 28、29、31 條同時保障受教育權、教育目標(全人發展)與休息/遊戲權。台灣的結構性矛盾:**升學競爭壓縮 31 條保障的休閒/遊戲時間;偏鄉與弱勢學生實質受教權與都會差距持續;實驗教育成為「逃離主流」的選擇,但對弱勢學生可近性低,並衍生階級化與隱性篩選問題**。1</p>
+        <div class="stats">
+          <span class="tag tag-高">嚴重度 高</span>
+          <span>持續追蹤</span> · 17 倡議 / 3 CO
+        </div>
+      </a>
+      <a href="PI-10.html" class="card">
+        <span class="pi">PI-10 · CLUSTER C</span>
+        <h3>兒少表意權與校園民主</h3>
+        <p class="summary">CRC 第 12 條表意權是公約四大指導原則之一,GC12 詳細指引落實作法。台灣現況:**校園民主形式化** — 學生會選舉、班會多為形式;**校規制定缺學生實質參與**;**司法與行政程序中兒少陳述機會與翻譯/協助不足**(交集 PI-05、PI-12);**輔導資料隱私顧慮</p>
+        <div class="stats">
+          <span class="tag tag-中">嚴重度 中</span>
+          <span>持續追蹤</span> · 3 倡議 / 0 CO
+        </div>
+      </a>
+      <a href="PI-11.html" class="card">
+        <span class="pi">PI-11 · CLUSTER F</span>
+        <h3>家庭功能與依 CRC 第 5 條的父母指導角色</h3>
+        <p class="summary">本議題是國教盟在台灣兒少權益生態中的**獨特定位** — 在以兒少為中心的監督架構中,凸顯「家長依 CRC 第 5 條(尊重父母按兒少 evolving capacities 提供適當指導)之角色」:CRC 第 5 條尊重父母在兒少能力發展中的指導角色、第 18 條共同養育責任、</p>
+        <div class="stats">
+          <span class="tag tag-中">嚴重度 中</span>
+          <span>持續追蹤</span> · 15 倡議 / 0 CO
+        </div>
+      </a>
+      <a href="PI-12.html" class="card">
+        <span class="pi">PI-12 · CLUSTER F</span>
+        <h3>替代照顧與機構安置(剴剴案後)</h3>
+        <p class="summary">剴剴案(2023-09 至 2023-12 期間,未滿 2 歲被害人於兒福聯盟出養前安置照顧期間遭保母長期凌虐致死)於 2026-04-16 一審宣判,兒福聯盟負責社工(一審判決)依刑法第 15 條不真正不作為犯理論,以**過失致人於死罪**判處有期徒刑 2 年。法院從三層論據認</p>
+        <div class="stats">
+          <span class="tag tag-高">嚴重度 高</span>
+          <span>持續追蹤</span> · 15 倡議 / 7 CO
+        </div>
+      </a>
+      <a href="PI-13.html" class="card">
+        <span class="pi">PI-13 · CLUSTER I</span>
+        <h3>移民、無國籍與失聯兒少</h3>
+        <p class="summary">台灣現行法制對「在台灣出生、卻無法取得身分證件之兒少」(無證移工子女、無國籍兒少、跨國婚姻未認領兒少、失聯移工子女)之保障,長期落在《入出國及移民法》《國籍法》《兒少權法》三法縫隙之中。CRC 第二次審查結論性意見第 25 點明確點名:**「外籍人士(尤其是有關無居留證的移工)在</p>
+        <div class="stats">
+          <span class="tag tag-高">嚴重度 高</span>
+          <span>持續追蹤</span> · 8 倡議 / 3 CO
+        </div>
+      </a>
+      <a href="PI-14.html" class="card">
+        <span class="pi">PI-14 · CLUSTER C</span>
+        <h3>LGBTQI+ 兒少</h3>
+        <p class="summary">**國教盟立場**(2026-04-26 確認):本議題在公共討論中高度政治化,**國教盟與多數家長團體之立場為審慎主義** — 未成年人之身分認同尚在發展中,涉及性別認同、未成年變性醫療、跨性別兒少之教育安排等議題,**應以健康教育、家長知情、跨專業審慎評估為核心**,**反對</p>
+        <div class="stats">
+          <span class="tag tag-高">嚴重度 高</span>
+          <span>持續追蹤</span> · 6 倡議 / 3 CO
+        </div>
+      </a>
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-inner" style="max-width:1200px;margin:0 auto">
+    <p>本平台由 <strong style="color:#fff">國家教育行動聯盟(AABE)</strong> 製作維護 · CC BY 4.0 · <a href="../index.html">回首頁</a></p>
+  </div>
+</footer>
+</body>
+</html>
