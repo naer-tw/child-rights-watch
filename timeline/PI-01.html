@@ -18,8 +18,8 @@
 <style>
 * { box-sizing: border-box; }
 body { font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
-       font-size: 15px; line-height: 1.6; color: #1a1a2e; margin: 0; background: #fff8f5; }
-header { background: #2C323C; color: #fff; padding: 24px; text-align: center; }
+       font-size: 15px; line-height: 1.6; color: #1F1F1F; margin: 0; background: #FAFAF7; }
+header { background: #0E2238; color: #fff; padding: 24px; text-align: center; }
 header h1 { margin: 0 0 6px; font-size: 22px; }
 header p { margin: 0; font-size: 13px; color: #ccc; }
 main { max-width: 980px; margin: 0 auto; padding: 24px 16px; }
@@ -27,29 +27,29 @@ main { max-width: 980px; margin: 0 auto; padding: 24px 16px; }
             display: flex; gap: 8px; flex-wrap: wrap; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
 .controls button { padding: 6px 14px; border: 1px solid #ccc; background: #fff;
                    border-radius: 18px; cursor: pointer; font-size: 13px; color: #555; }
-.controls button.active { background: #2C323C; color: #fff; border-color: #2C323C; }
+.controls button.active { background: #0E2238; color: #fff; border-color: #0E2238; }
 .summary { background: #fff; padding: 14px 18px; border-radius: 8px; margin-bottom: 16px;
-           font-size: 13.5px; color: #555; border-left: 4px solid #E8734A; }
+           font-size: 13.5px; color: #555; border-left: 4px solid #B5371F; }
 .timeline { position: relative; padding-left: 20px; }
 .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
                     width: 2px; background: #ddd; }
 .event { position: relative; margin-bottom: 14px; }
 .event::before { content: ''; position: absolute; left: -20px; top: 12px;
-                 width: 14px; height: 14px; border-radius: 50%; background: #E8734A;
-                 border: 3px solid #fff8f5; }
+                 width: 14px; height: 14px; border-radius: 50%; background: #B5371F;
+                 border: 3px solid #FAFAF7; }
 .event.tier-★★★::before { background: #b71c1c; width: 18px; height: 18px; left: -22px; }
 .event.tier-★★::before { background: #ef6c00; }
 .event.tier-★::before { background: #999; width: 10px; height: 10px; left: -18px; top: 14px; }
 .event-date { font-size: 12px; color: #888; margin-bottom: 2px; }
 .event-body { background: #fff; padding: 10px 14px; border-radius: 6px;
-              border-left: 3px solid #E8734A; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+              border-left: 3px solid #B5371F; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
 .event-header { display: flex; justify-content: space-between; align-items: center;
                 margin-bottom: 4px; }
 .actor { font-weight: 600; font-size: 13.5px; }
 .tier { font-size: 16px; font-weight: 700; }
-.event-content { font-size: 14px; color: #1a1a2e; line-height: 1.5; }
+.event-content { font-size: 14px; color: #1F1F1F; line-height: 1.5; }
 .event-meta { font-size: 11.5px; color: #888; margin-top: 4px; }
-.event-type { background: #f5f5f7; padding: 1px 8px; border-radius: 10px; }
+.event-type { background: #F1EFEA; padding: 1px 8px; border-radius: 10px; }
 .hidden { display: none; }
 footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
 @media (max-width: 600px) {
@@ -58,6 +58,20 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
 </style>
 </head>
 <body>
+<div style="background:#0E2238;color:#fff;padding:10px 20px;font-family:'Noto Sans TC',sans-serif;font-size:13px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;border-bottom:3px solid #B5371F">
+  <a href="../index.html" style="color:rgba(255,255,255,0.85);text-decoration:none;display:inline-flex;align-items:center;gap:8px">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8B6F50" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <strong style="color:#fff">兒少人權監督平台</strong>
+    <span style="color:rgba(255,255,255,0.5);font-family:Inter,sans-serif;font-size:11px;letter-spacing:0.06em;text-transform:uppercase">Child Rights Watch · AABE</span>
+  </a>
+  <span style="display:inline-flex;gap:14px;font-size:12.5px;flex-wrap:wrap">
+    <a href="../index.html" style="color:rgba(255,255,255,0.85);text-decoration:none">← 回首頁</a>
+    <a href="index.html" style="color:rgba(255,255,255,0.85);text-decoration:none">↑ 政策軌跡 index</a>
+    <a href="../search.html" style="color:rgba(255,255,255,0.85);text-decoration:none">全平台搜尋</a>
+    <a href="../crc-official.html" style="color:rgba(255,255,255,0.85);text-decoration:none">CRC 官方文件</a>
+    <a href="../external-reports.html" style="color:rgba(255,255,255,0.85);text-decoration:none">民間影子報告</a>
+  </span>
+</div>
 <a href="#main" style="position:absolute;left:-999px;" onfocus="this.style.left='12px';this.style.top='12px';">跳到主要內容</a>
 
 <header>
@@ -93,9 +107,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   <div class="timeline">
     <div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">待補</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">Gender Equity Education Reform Blueprint <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -132,9 +146,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="nap_action" data-tier="★">
   <div class="event-date">2026-12-31</div>
-  <div class="event-body" style="border-left-color:#2C323C;">
+  <div class="event-body" style="border-left-color:#0E2238;">
     <div class="event-header">
-      <span class="actor" style="color:#2C323C;">行政院主計總處</span>
+      <span class="actor" style="color:#0E2238;">行政院主計總處</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">[第 2 期 NAP] 強化人權保障體制:建立跨部會跨層級兒少預算公開儀表板 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -145,9 +159,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-05-14</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">衛福部兒少權法修法草案公聽會發言稿(2026-05-14 預定) <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -158,9 +172,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-05-04</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">場次 2 候選 A — 剴剴案六大缺口(口語逐點版,雙軸審查框架,Wave 49 範本) <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -171,9 +185,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-05-04</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">CRC 第三次國家報告第 2 輪民間審查場次 2 發言稿(5/4 上午,口語雙軸版) <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -184,9 +198,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-05-04</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">CRC 第三次國家報告第 2 輪民間審查場次 3 發言稿(5/4 下午,口語雙軸版) <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -197,9 +211,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-30</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">CRC 第三次國家報告第 2 輪民間審查場次 1 發言稿(4/30 上午,口語雙軸版) <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -210,9 +224,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-28</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">CRC 第三次國家報告第 2 輪民間審查會前提問書(雙軸口語版,Wave 49 重寫) <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -223,9 +237,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-24</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">推動「無菸品世代(Tobacco-Free Generation)」聲明 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -236,9 +250,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-24</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">台灣為何應推動「無菸品世代」全面禁絕新型菸品？ <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -249,9 +263,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-22</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">兒少權法 15 年大修為何仍補不上剴剴案六大制度缺口?(衛福部 2026-04-21 預告草案分析) <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -262,9 +276,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-22</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">兒少權法15年大修為何仍補不上剴剴案六大制度缺口？ <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -275,9 +289,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★★" data-type="govt_publication" data-tier="★★">
   <div class="event-date">2026-04-21</div>
-  <div class="event-body" style="border-left-color:#2C323C;">
+  <div class="event-body" style="border-left-color:#0E2238;">
     <div class="event-header">
-      <span class="actor" style="color:#2C323C;">衛福部</span>
+      <span class="actor" style="color:#0E2238;">衛福部</span>
       <span class="tier" style="color:#ef6c00;">★★</span>
     </div>
     <div class="event-content">CRC 第三次國家報告二稿上線(89,000 字)+ 同日預告兒少權法修正草案 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -288,9 +302,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-17(講解版日期)</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">WISER-3.0 學校三級輔導工作手冊(第三節) <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -301,9 +315,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-17</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">從保證人地位法理到五大修法工程:台灣兒少保護體系如何重建? <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -314,9 +328,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-17</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">從保證人地位法理到五大修法工程：台灣兒少保護體系如何重建？ <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -327,9 +341,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-17</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">剴剴案社工一審判刑後，台灣兒少保護制度該如何修補？ <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -340,9 +354,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-15</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">家長支持性平卻不滿意現行制度?全長聯指出三大教育缺口 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -353,9 +367,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-15</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">性平法不該無限擴張!國教盟三大修法主張守住教育本位 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -366,9 +380,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-15</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">家長支持性平卻不滿意現行制度？全長聯指出三大教育缺口 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -379,9 +393,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-15</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">性平法該不該無限擴張？國教盟三大修法主張守住教育本位 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -392,9 +406,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-14</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">司法院少事法部分條文修正草案諮詢會議 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -405,9 +419,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-13</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">立法院教育及文化委員會「實驗教育三法修法」公聽會 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -418,9 +432,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-12</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">台灣偏鄉公校為何大量轉型實驗教育? <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -431,9 +445,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-12</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">實驗教育如何保障弱勢學生權益? <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -444,9 +458,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-12</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">台灣實驗教育如何與國際模式相比? <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -457,9 +471,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-12</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">台灣偏鄉公校為何大量轉型實驗教育？ <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -470,9 +484,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-12</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">實驗教育如何保障弱勢學生權益？ <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -483,9 +497,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-12</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">台灣實驗教育如何與國際模式相比？ <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -496,9 +510,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-10</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">拜會新北社會局 — 神經多樣性生活導師制度推動 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -509,9 +523,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-10</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">民眾黨團「完善教師荒」公聽會 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -522,9 +536,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-03</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">台灣國民教育真的免費嗎？營養午餐與教科書補助的22縣市落差 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -535,9 +549,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-02</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">民眾黨團「完善少事法」公聽會 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -548,9 +562,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-02</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">校園唾液快篩只做初篩夠嗎？為何需要二層檢測機制？ <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -561,9 +575,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-02</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">臺灣未來帳戶4500億該怎麼花？國教盟提四大優化建議 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -574,9 +588,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-01</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">兒童消失危機：為什麼200億幽靈預算救不了台灣的新生兒？ <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -587,9 +601,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-01</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">政府少子化政策為何無效？八年4,484億元為何救不了台灣生育率？ <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -600,9 +614,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-04-01</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">少事法矯正教育、假釋追蹤與塗銷制度如何改革？ <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -613,9 +627,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-03-31</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">如何達成無菸城市 — 戶外設置吸菸區還是吸菸室? <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -626,9 +640,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-03-25</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">面對校園霸凌頻傳，我們還可以做什麼？——國教盟青年部：應強化校園保護機制三道防線 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -639,9 +653,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026-03-17</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">國教盟少事法修正建議書 — 過渡性教育措施 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -665,9 +679,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">campus-safety_2026-03-23-倡議成果追蹤 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -678,9 +692,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">campus-safety_2026-03-23-轉介教育條例 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -691,9 +705,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">child-health_2026-01-14-人工生殖法修法風險 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -704,9 +718,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">health_2026-01-13-無菸城市 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -717,9 +731,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">school-lunch_2026-01-09-免費營養午餐配套 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -730,9 +744,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2026</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">teacher-affairs_2026-01-23-校事會議修法 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -743,9 +757,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2025-12-24</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">少年重大暴力案件的量刑應如何建立透明基準？ <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -756,9 +770,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2025-12-16</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">校園菸毒與毒駕源頭相同　新興毒品快速變形　毒駕年增8倍 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -769,9 +783,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★★" data-type="law_amendment" data-tier="★★">
   <div class="event-date">2025-12-11</div>
-  <div class="event-body" style="border-left-color:#2C323C;">
+  <div class="event-body" style="border-left-color:#0E2238;">
     <div class="event-header">
-      <span class="actor" style="color:#2C323C;">行政院</span>
+      <span class="actor" style="color:#0E2238;">行政院</span>
       <span class="tier" style="color:#ef6c00;">★★</span>
     </div>
     <div class="event-content">兒家署組織法草案院會通過(三級機關 / 200 人 / 無跨部會勸告權) <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -782,9 +796,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2025-12-10</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">防制校園喪屍煙彈(依托咪酯)記者會 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -795,9 +809,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2025-12-08</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">8742名青少年票選第三名：遇到性騷擾該怎麼辦？——國教盟呼籲補上保護課 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -808,9 +822,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2025-12-06</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">「生育·養育·教育—兒童成長需求總體檢」論壇 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -821,9 +835,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2025-12-05</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">青少年自殺通報九年增加3.3倍、佔比倍增 <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -834,9 +848,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★" data-type="advocacy" data-tier="★">
   <div class="event-date">2025-07-11</div>
-  <div class="event-body" style="border-left-color:#E8734A;">
+  <div class="event-body" style="border-left-color:#B5371F;">
     <div class="event-header">
-      <span class="actor" style="color:#E8734A;">AABE 國教行動聯盟</span>
+      <span class="actor" style="color:#B5371F;">AABE 國教行動聯盟</span>
       <span class="tier" style="color:#999;">★</span>
     </div>
     <div class="event-content">2025 台灣兒童全面性教育現況調查報告(學會回應版) <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -860,9 +874,9 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   </div>
 </div><div class="event tier-★★" data-type="govt_publication" data-tier="★★">
   <div class="event-date">2025-04-30</div>
-  <div class="event-body" style="border-left-color:#2C323C;">
+  <div class="event-body" style="border-left-color:#0E2238;">
     <div class="event-header">
-      <span class="actor" style="color:#2C323C;">行政院</span>
+      <span class="actor" style="color:#0E2238;">行政院</span>
       <span class="tier" style="color:#ef6c00;">★★</span>
     </div>
     <div class="event-content">首部 NAP 2022-2024 成果總結報告(自評 83.9%) <span style='color:#888;font-size:11px;'>(跨議題)</span></div>
@@ -3238,5 +3252,22 @@ document.querySelectorAll('[data-filter-type]').forEach(b => {
   });
 });
 </script>
+
+<style>
+.tl-prev-next { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 32px auto 0; max-width: 980px; padding: 0 16px; }
+.tl-prev-next .pn-link { background: #fff; border: 1px solid #DDD8CD; border-radius: 6px; padding: 14px 18px; text-decoration: none; color: #1F1F1F; transition: all .15s; }
+.tl-prev-next .pn-link:hover { border-color: #B5371F; transform: translateY(-1px); }
+.tl-prev-next .pn-dir { font-family: Inter,sans-serif; font-size: 11px; color: #B5371F; font-weight: 700; letter-spacing: 0.06em; }
+.tl-prev-next .pn-pi { font-family: Inter,sans-serif; font-size: 13px; color: #5C5C5C; margin: 4px 0; }
+.tl-prev-next .pn-title { font-family: 'Noto Serif TC',serif; font-size: 15px; color: #0E2238; font-weight: 700; }
+@media (max-width:600px) { .tl-prev-next { grid-template-columns: 1fr; } }
+</style>
+<nav class="tl-prev-next" aria-label="議題分頁"><span></span><a href="PI-02.html" class="pn-link" style="text-align:right"><div class="pn-dir">下一個議題軌跡 →</div><div class="pn-pi">PI-02</div><div class="pn-title">青少年心理健康與自殺防治</div></a></nav>
+<div style="max-width:980px;margin:24px auto 48px;padding:0 16px;text-align:center;font-size:13px">
+  <strong style="color:#0E2238">看本議題其他面向:</strong>
+  <a href="../issues/PI-01.html" style="color:#B5371F;font-weight:600;text-decoration:none;margin:0 6px">議題卡</a> ·
+  <a href="../chain.html#PI-01" style="color:#B5371F;font-weight:600;text-decoration:none;margin:0 6px">鏈式查詢</a> ·
+  <a href="../search.html?q=PI-01" style="color:#B5371F;font-weight:600;text-decoration:none;margin:0 6px">全平台搜尋</a>
+</div>
 </body>
 </html>

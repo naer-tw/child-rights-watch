@@ -20,23 +20,23 @@
 <style>
 * { box-sizing: border-box; }
 body { font-family: "PingFang TC", "Noto Sans TC", sans-serif; max-width: 980px;
-        margin: 0 auto; padding: 24px 16px; background: #fff8f5; color: #1a1a2e;
+        margin: 0 auto; padding: 24px 16px; background: #FAFAF7; color: #1F1F1F;
         font-size: 15px; line-height: 1.6; }
-header { background: #2C323C; color: #fff; padding: 24px; margin: -24px -16px 24px;
+header { background: #0E2238; color: #fff; padding: 24px; margin: -24px -16px 24px;
          border-radius: 0 0 8px 8px; }
 header h1 { margin: 0 0 4px; font-size: 22px; }
 header p { margin: 0; font-size: 13px; color: #ccc; }
 .meta { background: #fff; padding: 14px 18px; border-radius: 8px; margin-bottom: 20px;
         border-left: 4px solid #6a1b9a; font-size: 13.5px; }
-.meta strong { color: #2C323C; }
-h2 { font-size: 18px; color: #2C323C; margin-top: 28px; padding-bottom: 6px; border-bottom: 1px solid #ddd; }
+.meta strong { color: #0E2238; }
+h2 { font-size: 18px; color: #0E2238; margin-top: 28px; padding-bottom: 6px; border-bottom: 1px solid #ddd; }
 .amendments-timeline { position: relative; padding-left: 22px; margin: 14px 0; }
 .amendments-timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
                                width: 2px; background: #b71c1c; }
 .amend { position: relative; margin-bottom: 14px; }
 .amend::before { content: ''; position: absolute; left: -22px; top: 8px;
                  width: 14px; height: 14px; border-radius: 50%; background: #b71c1c;
-                 border: 3px solid #fff8f5; }
+                 border: 3px solid #FAFAF7; }
 .amend-date { font-size: 12px; color: #888; margin-bottom: 2px; }
 .amend-body { background: #fff; padding: 10px 14px; border-radius: 6px;
               border-left: 3px solid #b71c1c; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
@@ -48,17 +48,31 @@ h2 { font-size: 18px; color: #2C323C; margin-top: 28px; padding-bottom: 6px; bor
 .art-header { display: flex; justify-content: space-between; margin-bottom: 4px; }
 .art-no { font-weight: 700; color: #1976d2; }
 .art-chapter { font-size: 12px; color: #888; }
-.art-text { font-size: 14px; color: #1a1a2e; line-height: 1.5; }
-.art-summary { background: #f5f5f7; padding: 6px 10px; margin-top: 6px; border-radius: 3px;
+.art-text { font-size: 14px; color: #1F1F1F; line-height: 1.5; }
+.art-summary { background: #F1EFEA; padding: 6px 10px; margin-top: 6px; border-radius: 3px;
                font-size: 12.5px; color: #555; }
 .child-friendly { background: #fffaf3; padding: 6px 10px; margin-top: 6px;
-                   border-left: 2px solid #E8734A; font-size: 12.5px; }
+                   border-left: 2px solid #B5371F; font-size: 12.5px; }
 .note { background: #fff3cd; padding: 10px 14px; border-radius: 6px; font-size: 13px;
         border-left: 4px solid #f0ad4e; margin: 12px 0; }
 footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
 </style>
 </head>
 <body>
+<div style="background:#0E2238;color:#fff;padding:10px 20px;font-family:'Noto Sans TC',sans-serif;font-size:13px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;border-bottom:3px solid #B5371F">
+  <a href="../index.html" style="color:rgba(255,255,255,0.85);text-decoration:none;display:inline-flex;align-items:center;gap:8px">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8B6F50" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <strong style="color:#fff">兒少人權監督平台</strong>
+    <span style="color:rgba(255,255,255,0.5);font-family:Inter,sans-serif;font-size:11px;letter-spacing:0.06em;text-transform:uppercase">Child Rights Watch · AABE</span>
+  </a>
+  <span style="display:inline-flex;gap:14px;font-size:12.5px;flex-wrap:wrap">
+    <a href="../index.html" style="color:rgba(255,255,255,0.85);text-decoration:none">← 回首頁</a>
+    <a href="index.html" style="color:rgba(255,255,255,0.85);text-decoration:none">↑ 法規索引</a>
+    <a href="../search.html" style="color:rgba(255,255,255,0.85);text-decoration:none">全平台搜尋</a>
+    <a href="../crc-official.html" style="color:rgba(255,255,255,0.85);text-decoration:none">CRC 官方文件</a>
+    <a href="../external-reports.html" style="color:rgba(255,255,255,0.85);text-decoration:none">民間影子報告</a>
+  </span>
+</div>
 <header>
   <h1>L09 個人資料保護法</h1>
   <p>主管:個資保護委員會(籌設中)/各目的事業主管機關 · 最近修法:待補 · 修法 3 次(0 次事件驅動)</p>
@@ -115,5 +129,16 @@ footer { text-align: center; padding: 24px; font-size: 13px; color: #555; }
   <a href="../timeline/" style="color:#555;">政策軌跡</a> ·
   <a href="../search.html" style="color:#555;">搜尋</a>
 </footer>
+
+<style>
+.l-prev-next { display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:980px;margin:32px auto;padding:0 16px; }
+.l-prev-next .pn { background:#fff;border:1px solid #DDD8CD;border-radius:6px;padding:14px 18px;text-decoration:none;color:#1F1F1F;transition:all .15s; }
+.l-prev-next .pn:hover { border-color:#B5371F;transform:translateY(-1px); }
+.l-prev-next .d { font-family:Inter,sans-serif;font-size:11px;color:#B5371F;font-weight:700;letter-spacing:0.06em; }
+.l-prev-next .i { font-family:Inter,sans-serif;font-size:13px;color:#5C5C5C;margin:4px 0; }
+.l-prev-next .t { font-family:'Noto Serif TC',serif;font-size:15px;color:#0E2238;font-weight:700; }
+@media (max-width:600px) { .l-prev-next { grid-template-columns:1fr; } }
+</style>
+<nav class="l-prev-next"><a href="L08.html" class="pn"><div class="d">← 上一部法規</div><div class="i">L08</div><div class="t">兒童及少年性剝削防制條例</div></a><a href="L10.html" class="pn" style="text-align:right"><div class="d">下一部法規 →</div><div class="i">L10</div><div class="t">自殺防治法</div></a></nav>
 </body>
 </html>
