@@ -1353,6 +1353,14 @@ footer .credit {
     const idx = (F.counts.issues||0) + (F.counts.advocacy||0) + (F.counts.co||0) + (F.counts.nap||0) + (F.counts.amendments||0) + (F.counts.cases||0) + (F.counts.external_reports||0);
     set('ledger-index', idx + ' 筆');
     set('ledger-updated', (F.meta?.generated_at || '─').slice(0, 10));
+
+    // topic-index 8 卡 stats(動態化)
+    const c = F.counts;
+    set('stats-issues', `${c.issues || '─'} ISSUES · 互動視覺化`);
+    set('stats-timeline', `${ev} EVENTS · TRIPLE-AXIS SCORED`);
+    set('stats-laws', `${c.laws || '─'} LAWS · ${c.amendments || '─'} AMENDMENTS`);
+    set('stats-nap', `${c.nap || '─'} ACTIONS · 3-WAY ASSESS`);
+    set('stats-shadow', `5 AUDIENCES + ${c.external_reports || '─'} 外部報告`);
   }
   fillCounts();
 })();
@@ -1742,164 +1750,99 @@ footer .credit {
           </div>
         </div>
 
-        <div class="doc-list">
+        <div class="doc-list" id="doc-list">
+        <!-- DOC-LIST-START -->
 
           <a href="reports/Alternative_Report_v0.4_professional.html" class="doc-card featured-doc">
             <span class="doc-stripe" style="background:var(--aabe-gold)"></span>
             <div class="doc-body">
-              <div class="doc-pills">
-                <span class="pill pill-aabe"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" style="vertical-align:-0.15em;display:inline-block;color:var(--aabe-gold)"><polygon points="12 2 15 8.5 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 9 8.5"/></svg> 國教盟</span>
-                <span class="pill pill-shadow">民間影子報告</span>
-                <span class="pill pill-meta">2026-05 v0.4</span>
-                <span class="pill pill-warn">CRC 第三屆審查</span>
-              </div>
-              <h3>2026 國教盟 CRC 第三次國家報告民間影子報告(專業版)</h3>
-              <div class="doc-issuer">提出:<span class="ngo-tag">國教行動聯盟(AABE)</span> · 連署單位徵集中</div>
-              <p class="doc-excerpt">針對 14 議題、12 cluster 提出三軸評分(制度/結果/持續)。聚焦剴剴案六大缺口、青少年心理健康(自殺通報 +142%)、性平教育主軸應為健康教育、實驗教育偽實驗、淋病 +7×/梅毒 +53× 重啟性健康計畫等。</p>
-              <div class="doc-stats">
-                <span><svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> 78 頁</span>
-                <span>14 ISSUES · 12 CLUSTERS</span>
-                <span>5 AUDIENCE 版本</span>
-                <span class="adoption-bad">優先級:極高</span>
-              </div>
+              <div class="doc-pills"><span class="pill pill-aabe"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" style="vertical-align:-0.15em;display:inline-block;color:var(--aabe-gold)"><polygon points="12 2 15 8.5 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 9 8.5"/></svg> AABE</span><span class="pill pill-shadow">民間影子報告</span><span class="pill pill-meta">2022</span><span class="pill pill-warn">CRC 第三屆審查</span></div>
+              <h3>國家教育行動聯盟 2022 CRC 民間影子報告</h3>
+              <div class="doc-issuer">提出:<span class="ngo-tag">國家教育行動聯盟</span></div>
+              <p class="doc-excerpt">CRC 第二次國際審查,國教盟延續 2017 倡議軸線,聚焦教育權與校園安全。</p>
+              <div class="doc-stats"><span><svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> 78 頁</span> <span>34 點倡議</span> <span class="adoption-good">已採 14</span> <span class="adoption-mid">部分 11</span> <span class="adoption-bad">未採 9</span></div>
             </div>
           </a>
 
-          <a href="laws/L01.html" class="doc-card">
+          <a href="#A-Blueprint_Gender_Equity_Education_Reform" class="doc-card">
             <span class="doc-stripe" style="background:#1F3D6B"></span>
             <div class="doc-body">
-              <div class="doc-pills">
-                <span class="pill pill-cycle">第三屆 NR</span>
-                <span class="pill pill-meta">2026-04-21 二稿</span>
-                <span class="pill pill-warn">準備中</span>
-              </div>
-              <h3>中華民國(臺灣)兒童權利公約第三次國家報告(草案二稿)</h3>
-              <div class="doc-issuer">提出:行政院 · 衛福部社家署彙編</div>
-              <p class="doc-excerpt">89,000 字。完全沒提剴剴案、兒福聯盟、保證人地位 — 與同日預告的兒少權法修正草案(118→165 條)並未互相引用。</p>
-              <div class="doc-stats">
-                <span><svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> 348 頁</span>
-                <span>📎 附件 12 份</span>
-                <span class="adoption-bad">未採 AABE 核心倡議 9 項</span>
-              </div>
+              <div class="doc-pills"><span class="pill pill-cycle">AABE 倡議</span><span class="pill pill-meta">待補</span></div>
+              <h3>Gender Equity Education Reform Blueprint</h3>
+              <div class="doc-issuer">提出:<span class="ngo-tag">國教行動聯盟</span></div>
+              <p class="doc-excerpt">**英文版政策白皮書**,可作為 CRC 第三次審查國際委員場次提交之**英文版材料**。</p>
+              <div class="doc-stats"><span style="color:var(--text-muted)">政策白皮書(英文版)</span></div>
             </div>
           </a>
 
-          <a href="issues/" class="doc-card">
-            <span class="doc-stripe" style="background:#2D7059"></span>
+          <a href="#A-2026-05-14_衛福部公聽會發言稿" class="doc-card">
+            <span class="doc-stripe" style="background:#1F3D6B"></span>
             <div class="doc-body">
-              <div class="doc-pills">
-                <span class="pill pill-co">第二屆 CO</span>
-                <span class="pill pill-meta">2022-11</span>
-                <span class="pill pill-meta">中英對照</span>
-              </div>
-              <h3>CRC 第二次國家報告國際審查結論性意見(99 點)</h3>
-              <div class="doc-issuer">五位國際審查委員(Jaap E. Doek 召集)</div>
-              <p class="doc-excerpt">立法協調機制、資源配置、不歧視原則、最佳利益、表意權實現、暴力預防、教育機會均等、心理健康、數位環境保護等。</p>
-              <div class="doc-stats">
-                <span><svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg> 99 點建議</span>
-                <span class="adoption-good">已落實 41</span>
-                <span class="adoption-mid">部分 32</span>
-                <span class="adoption-bad">未落實 26</span>
-              </div>
+              <div class="doc-pills"><span class="pill pill-cycle">AABE 倡議</span><span class="pill pill-meta">2026-05-14</span></div>
+              <h3>衛福部兒少權法修法草案公聽會發言稿(2026-05-14 預定)</h3>
+              <div class="doc-issuer">提出:<span class="ngo-tag">國教行動聯盟</span></div>
+              <p class="doc-excerpt"></p>
+              <div class="doc-stats"><span style="color:var(--text-muted)">公聽會發言稿(Wave 66 定稿,日期預估)</span></div>
             </div>
           </a>
 
-          <a href="reports/" class="doc-card">
+          <a href="#A-2026-05-04_CRC第2輪審查_場次2_候選A_剴剴案_口語版" class="doc-card">
+            <span class="doc-stripe" style="background:#1F3D6B"></span>
+            <div class="doc-body">
+              <div class="doc-pills"><span class="pill pill-cycle">AABE 倡議</span><span class="pill pill-meta">2026-05-04</span></div>
+              <h3>場次 2 候選 A — 剴剴案六大缺口(口語逐點版,雙軸審查框架,Wave 49 範本)</h3>
+              <div class="doc-issuer">提出:<span class="ngo-tag">國教行動聯盟</span></div>
+              <p class="doc-excerpt"></p>
+              <div class="doc-stats"><span style="color:var(--text-muted)">民間審查發言(代表照念用,雙軸審查框架)</span></div>
+            </div>
+          </a>
+
+          <a href="#A-2026-05-04_CRC第2輪審查_場次2發言稿" class="doc-card">
+            <span class="doc-stripe" style="background:#1F3D6B"></span>
+            <div class="doc-body">
+              <div class="doc-pills"><span class="pill pill-cycle">AABE 倡議</span><span class="pill pill-meta">2026-05-04</span></div>
+              <h3>CRC 第三次國家報告第 2 輪民間審查場次 2 發言稿(5/4 上午,口語雙軸版)</h3>
+              <div class="doc-issuer">提出:<span class="ngo-tag">國教行動聯盟</span></div>
+              <p class="doc-excerpt"></p>
+              <div class="doc-stats"><span style="color:var(--text-muted)">民間審查發言(雙軸審查框架,代表照念用)</span></div>
+            </div>
+          </a>
+
+          <a href="external-reports.html" class="doc-card">
             <span class="doc-stripe" style="background:#4B2480"></span>
             <div class="doc-body">
-              <div class="doc-pills">
-                <span class="pill pill-aabe"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" style="vertical-align:-0.15em;display:inline-block;color:var(--aabe-gold)"><polygon points="12 2 15 8.5 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 9 8.5"/></svg> 國教盟</span>
-                <span class="pill pill-shadow">民間影子報告</span>
-                <span class="pill pill-meta">2022-09</span>
-              </div>
-              <h3>2022 國教盟兒童權利公約民間影子報告:教育權與校園安全篇</h3>
-              <div class="doc-issuer">提出:<span class="ngo-tag">國教行動聯盟</span> · 連署 17 個團體</div>
-              <p class="doc-excerpt">針對 CRC §2、3、12、19、28、29 共 34 點具體倡議,聚焦教育機會均等、霸凌防制、特教師生比、新住民子女、學生表意權。</p>
-              <div class="doc-stats">
-                <span><svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> 78 頁</span>
-                <span class="adoption-good">已採納 14</span>
-                <span class="adoption-mid">部分採納 11</span>
-                <span class="adoption-bad">未採納 9</span>
-              </div>
+              <div class="doc-pills"><span class="pill pill-shadow">民間影子報告</span><span class="pill pill-meta">2022</span></div>
+              <h3>2022 台灣兒少權益聯合影子報告聯盟 CRC 影子報告</h3>
+              <div class="doc-issuer">提出:<span class="ngo-tag">台灣兒少權益聯合影子報告聯盟</span></div>
+              <p class="doc-excerpt">CRC 第二次國際審查,台少盟召集 22 個民間團體共同提出聯合影子報告,涵蓋公約全部條文。系統性檢視全部公約條款。</p>
+              <div class="doc-stats"><span>156 點</span> <span class="adoption-good">已採 59</span> <span class="adoption-mid">部分 50</span> <span class="adoption-bad">未採 47</span></div>
             </div>
           </a>
 
-          <a href="reports/" class="doc-card">
+          <a href="external-reports.html" class="doc-card">
             <span class="doc-stripe" style="background:#4B2480"></span>
             <div class="doc-body">
-              <div class="doc-pills">
-                <span class="pill pill-shadow">民間影子報告</span>
-                <span class="pill pill-meta">2022-08</span>
-              </div>
-              <h3>2022 台灣兒少權益聯合影子報告(156 點)</h3>
-              <div class="doc-issuer">提出:<span class="ngo-tag">台灣少年權益與福利促進聯盟(台少盟)</span> · 共同連署 22 個團體</div>
-              <p class="doc-excerpt">系統性檢視全部公約條款,特別聚焦兒少貧窮、心理健康、移工子女、原住民兒少、跨性別兒少、安置機構等弱勢群體。</p>
-              <div class="doc-stats">
-                <span><svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> 218 頁</span>
-                <span>156 點建議</span>
-                <span class="adoption-mid">採納率 38%</span>
-              </div>
+              <div class="doc-pills"><span class="pill pill-shadow">民間影子報告</span><span class="pill pill-meta">2022</span></div>
+              <h3>2022 人權公約施行監督聯盟 CRC 影子報告</h3>
+              <div class="doc-issuer">提出:<span class="ngo-tag">人權公約施行監督聯盟</span></div>
+              <p class="doc-excerpt">人權公約施行監督聯盟(人約盟)以「兩公約 × CRC 整合觀點」為主軸,聚焦兒少司法、難民、無國籍兒少等與 ICCPR 高度交集議題。</p>
+              <div class="doc-stats"><span>48 點</span> <span class="adoption-good">已採 12</span> <span class="adoption-mid">部分 18</span> <span class="adoption-bad">未採 18</span></div>
             </div>
           </a>
 
           <a href="nap.html" class="doc-card">
             <span class="doc-stripe" style="background:#C68822"></span>
             <div class="doc-body">
-              <div class="doc-pills">
-                <span class="pill pill-nap">第二期 NAP</span>
-                <span class="pill pill-meta">2024-2028</span>
-              </div>
-              <h3>第二期國家人權行動計畫(兒童權利專章)</h3>
-              <div class="doc-issuer">提出:行政院人權及轉型正義處</div>
-              <p class="doc-excerpt">依第二屆 CO 研擬,6 大目標 / 24 策略 / 87 措施。主辦含衛福部、教育部、內政部、勞動部等 14 部會。</p>
-              <div class="doc-stats">
-                <span><svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> 87 項措施</span>
-                <span class="adoption-mid">平均執行率 62%</span>
-                <span class="adoption-bad">落後措施 21 項</span>
-              </div>
+              <div class="doc-pills"><span class="pill pill-nap">第 2 期 NAP</span><span class="pill pill-meta">--</span></div>
+              <h3>於國家人權委員會內設立兒少權利專責單位</h3>
+              <div class="doc-issuer">主辦機關:NHRC · 主題:強化人權保障體制</div>
+              <p class="doc-excerpt">於國家人權委員會內設立兒少權利專責單位</p>
+              <div class="doc-stats"><span>政府自評:--</span></div>
             </div>
           </a>
-
-          <a href="issues/" class="doc-card">
-            <span class="doc-stripe" style="background:#2D7059"></span>
-            <div class="doc-body">
-              <div class="doc-pills">
-                <span class="pill pill-co">第一屆 CO</span>
-                <span class="pill pill-meta">2017-11</span>
-              </div>
-              <h3>CRC 第一次國家報告國際審查結論性意見(78 點)</h3>
-              <div class="doc-issuer">五位國際審查委員</div>
-              <p class="doc-excerpt">CRC 施行法上路後首次國際審查,著重立法 / 行政 / 司法各層面協調機制建構。</p>
-              <div class="doc-stats">
-                <span>78 點建議</span>
-                <span class="adoption-good">已落實 38</span>
-                <span class="adoption-mid">部分 26</span>
-                <span class="adoption-bad">未落實 14</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="reports/Alternative_Report_v0.4_legislative.html" class="doc-card">
-            <span class="doc-stripe" style="background:var(--aabe-gold)"></span>
-            <div class="doc-body">
-              <div class="doc-pills">
-                <span class="pill pill-aabe"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" style="vertical-align:-0.15em;display:inline-block;color:var(--aabe-gold)"><polygon points="12 2 15 8.5 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 9 8.5"/></svg> 國教盟</span>
-                <span class="pill pill-shadow">民間影子報告</span>
-                <span class="pill pill-meta">2017-09</span>
-              </div>
-              <h3>2017 國教盟兒童權利公約第一次國家報告民間意見書</h3>
-              <div class="doc-issuer">提出:<span class="ngo-tag">國教行動聯盟</span> · 連署 9 個團體</div>
-              <p class="doc-excerpt">CRC 施行首屆審查 — 針對教育權、校園安全、特教資源提出 22 點關注。</p>
-              <div class="doc-stats">
-                <span><svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> 42 頁</span>
-                <span class="adoption-good">已採納 10</span>
-                <span class="adoption-mid">部分 7</span>
-                <span class="adoption-bad">未採納 5</span>
-              </div>
-            </div>
-          </a>
-
+        <!-- DOC-LIST-END -->
         </div>
+        <p id="doc-list-meta" style="font-size:11.5px;color:var(--text-muted);margin-top:8px;font-family:var(--sans-en)">─</p>
 
         <div style="display: flex; justify-content: center; gap: 4px; margin-top: var(--space-4); font-size: 13px;">
           <button class="view-tab" style="color: var(--text-muted)">‹ 上頁</button>
@@ -1930,7 +1873,7 @@ footer .credit {
         </span>
         <h3>議題地圖 · 14 子議題 × 12 群集</h3>
         <p>從校園霸凌、青少年心理、性平、實驗教育到替代照顧 — 互動式 cluster 視覺化,每張卡片附 CRC 條文 / NAP / 修法 / AABE 倡議全鏈。</p>
-        <span class="stats">14 ISSUES · 12 CLUSTERS · 互動視覺化</span>
+        <span class="stats" id="stats-issues">─ ISSUES · 互動視覺化</span>
       </a>
 
       <a href="timeline/" class="topic-card">
@@ -1939,7 +1882,7 @@ footer .credit {
         </span>
         <h3>政策軌跡時間軸</h3>
         <p>每議題完整事件鏈 · 三軸評分 · CRC + NAP + 修法 + AABE 倡議並陳</p>
-        <span class="stats">288 EVENTS · TRIPLE-AXIS SCORED</span>
+        <span class="stats" id="stats-timeline">─ EVENTS · TRIPLE-AXIS SCORED</span>
       </a>
 
       <a href="laws/" class="topic-card">
@@ -1948,7 +1891,7 @@ footer .credit {
         </span>
         <h3>法規索引</h3>
         <p>15 法規 × 42 修法歷程 × 23 條文 · 含 15 件事件驅動立法</p>
-        <span class="stats">15 LAWS · 42 AMENDMENTS</span>
+        <span class="stats" id="stats-laws">─ LAWS · ─ AMENDMENTS</span>
       </a>
 
       <a href="nap.html" class="topic-card">
@@ -1957,7 +1900,7 @@ footer .credit {
         </span>
         <h3>NAP 行動追蹤</h3>
         <p>第一期 11 + 第二期 6 預期 · 政府自評 / NHRC / AABE 三方並陳</p>
-        <span class="stats">17 ACTIONS · 3-WAY ASSESS</span>
+        <span class="stats" id="stats-nap">─ ACTIONS · 3-WAY ASSESS</span>
       </a>
 
       <a href="reports/Alternative_Report_v0.4_professional.html" class="topic-card">
@@ -1966,7 +1909,7 @@ footer .credit {
         </span>
         <h3>影子報告 v0.4</h3>
         <p>5 audience 版本:專業 / 媒體 / 兒少 / 立法院 / 社群 + EN skeleton</p>
-        <span class="stats">5 AUDIENCES · 12 CLUSTERS</span>
+        <span class="stats" id="stats-shadow">5 AUDIENCES · ─ CLUSTERS</span>
       </a>
 
       <a href="unheard.html" class="topic-card">
@@ -2007,47 +1950,49 @@ footer .credit {
       <span class="meta">事件級別 ★★★ ★★ ★</span>
     </div>
 
-    <ul class="timeline-list">
-      <li class="tier-3">
-        <a href="issues/PI-05.html">
-          <div class="date">2026-04-30 · 2026-05-04</div>
-          <div class="title">CRC 第三次國家報告民間審查 第二輪 · 場次 1-3</div>
+    <ul class="timeline-list" id="recent-timeline">
+    <!-- RECENT-TIMELINE-START -->
+      <li class="tier-1">
+        <a href="timeline/">
+          <div class="date">待補 · AABE 國教行動聯盟</div>
+          <div class="title">Gender Equity Education Reform Blueprint</div>
         </a>
       </li>
-      <li class="tier-3">
-        <a href="laws/L01.html">
-          <div class="date">2026-04-21</div>
-          <div class="title">衛福部預告兒少權法修正草案(118 → 165 條)+ 同日上線 NR3 二稿</div>
+      <li class="tier-1">
+        <a href="timeline/">
+          <div class="date">2027-12-31 · NHRC</div>
+          <div class="title">[第 2 期 NAP] 強化人權保障體制:於國家人權委員會內設立兒少權利專責單位</div>
         </a>
       </li>
-      <li class="tier-2">
-        <a href="issues/PI-12.html">
-          <div class="date">2026-04-22</div>
-          <div class="title">AABE 公布兒少權法修法 6 大缺口分析</div>
+      <li class="tier-1">
+        <a href="timeline/">
+          <div class="date">2027-12-31 · 人權處</div>
+          <div class="title">[第 2 期 NAP] 平等與不歧視:完成《反歧視法》立法</div>
         </a>
       </li>
-      <li class="tier-3">
-        <a href="laws/L01.html">
-          <div class="date">2026-04-16</div>
-          <div class="title">剴剴案一審判決 · 兒福聯盟負責社工過失致死 2 年(國內首例)</div>
+      <li class="tier-1">
+        <a href="issues/PI-13.html">
+          <div class="date">2027-12-31 · 內政部</div>
+          <div class="title">[第 2 期 NAP] 難民權利保障:完成《難民法》立法</div>
         </a>
       </li>
-      <li class="tier-2">
-        <a href="laws/L07.html">
-          <div class="date">2026-04-14</div>
-          <div class="title">司法院啟動少事法新一輪修法草案(觸發:新北割頸案)</div>
+      <li class="tier-1">
+        <a href="issues/PI-08.html">
+          <div class="date">2026-12-31 · 衛福部</div>
+          <div class="title">[第 2 期 NAP] 平等與不歧視:改採單獨線上問卷,涵蓋體罰/霸凌/歧視題項,涵蓋 LGBTQI/身障/原民/新住民</div>
         </a>
       </li>
-      <li class="tier-2">
-        <a href="issues/PI-09.html">
-          <div class="date">2026-04-12</div>
-          <div class="title">AABE 三篇分析揭露實驗教育偽實驗 / 排除特教法 / 階級化</div>
+      <li class="tier-1">
+        <a href="timeline/">
+          <div class="date">2026-12-31 · 行政院主計總處</div>
+          <div class="title">[第 2 期 NAP] 強化人權保障體制:建立跨部會跨層級兒少預算公開儀表板</div>
         </a>
       </li>
+    <!-- RECENT-TIMELINE-END -->
     </ul>
 
     <p style="margin-top: var(--space-4); font-size: 13.5px; color: var(--text-muted); text-align: center;">
-      <a href="timeline/" style="color: var(--brand); font-weight: 500;">→ 查看完整 288 事件政策軌跡</a>
+      <a href="timeline/" style="color: var(--brand); font-weight: 500;">→ 查看完整 <span id="timeline-total">288</span> 事件政策軌跡</a>
     </p>
   </div>
 </section>
@@ -2918,7 +2863,7 @@ window.FILTERS_DATA = {
     "external_reports": 7
   },
   "meta": {
-    "generated_at": "2026-05-04T00:50:33",
+    "generated_at": "2026-05-04T08:58:33",
     "ngo_total": 44,
     "agency_total": 21
   }
@@ -3038,7 +2983,7 @@ window.FILTERS_DATA = {
     const aabe = (F.ngos || []).find(n => n.code === 'ngo-aabe');
     if (aabe) {
       const o = document.createElement('option');
-      o.value = aabe.code; o.textContent = '⭐ ' + aabe.name + ' (AABE)';
+      o.value = aabe.code; o.textContent = '<svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" style="vertical-align:-0.15em;display:inline-block;color:var(--aabe-gold)"><polygon points="12 2 15 8.5 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 9 8.5"/></svg> ' + aabe.name + ' (AABE)';
       o.selected = true;
       docsIssuer.appendChild(o);
     }
