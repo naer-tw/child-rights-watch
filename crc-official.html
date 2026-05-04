@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRC 官方文件 — 兒少人權監督平台</title>
+<meta name="description" content="從 crc.sfaa.gov.tw 彙整之 CRC 官方文件索引(國家報告 / 結論性意見 / 問題清單 / 民間團體目錄)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#FAFAF7; --bg-alt:#F1EFEA; --bg-deep:#0E2238; --bg-deeper:#081728;
+  --text:#1F1F1F; --text-muted:#5C5C5C; --text-meta:#8A8A8A;
+  --institutional:#0E2238; --institutional-light:#44638A;
+  --brand:#B5371F; --brand-dark:#8C2A18; --brand-soft:#F4E1DC;
+  --warning:#A03032; --success:#2D5F3E;
+  --aabe-gold:#8B6F50;
+  --warning-soft:#F5EAD7; --border:#DDD8CD; --hairline:#E8E3D6;
+  --serif:"Noto Serif TC","Source Han Serif TC",Georgia,serif;
+  --sans:"Noto Sans TC","PingFang TC",-apple-system,sans-serif;
+  --sans-en:"Inter","Noto Sans TC",-apple-system,sans-serif;
+  --max-w:1200px;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:var(--sans); font-size:16px; line-height:1.7; color:var(--text); background:var(--bg); }
+a { color:var(--institutional); }
+a:hover { color:var(--brand); }
+.masthead { border-bottom:1px solid var(--border); padding:18px 24px; position:sticky; top:0; z-index:50; backdrop-filter:blur(8px); background:rgba(250,250,247,0.94); }
+.masthead-inner { max-width:var(--max-w); margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
+.logo-row { display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text); }
+.logo-icon { width:36px; height:36px; background:var(--bg-deep); color:#fff; display:grid; place-items:center; border-radius:6px; }
+.logo-row h1 { font-family:var(--serif); font-size:17px; font-weight:700; line-height:1.2; }
+.logo-row p { font-size:11px; color:var(--text-muted); font-family:var(--sans-en); letter-spacing:0.04em; text-transform:uppercase; }
+.aabe-mark { background:var(--aabe-gold); color:#fff; padding:5px 9px; border-radius:4px; font-family:var(--sans-en); font-weight:800; font-size:13px; }
+.crumb { background:var(--bg-deep); color:rgba(255,255,255,0.85); padding:12px 24px; font-size:13px; }
+.crumb-inner { max-width:var(--max-w); margin:0 auto; display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.crumb a { color:rgba(255,255,255,0.85); text-decoration:none; }
+.crumb .active { color:#fff; font-weight:600; }
+main { max-width:var(--max-w); margin:0 auto; padding:48px 24px 80px; }
+.kicker { font-family:var(--sans-en); font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--brand); margin-bottom:16px; }
+.kicker::before { content:''; display:inline-block; width:32px; height:2px; background:var(--brand); vertical-align:middle; margin-right:8px; }
+h2.title { font-family:var(--serif); font-size:30px; line-height:1.25; color:var(--bg-deep); margin-bottom:16px; font-weight:900; }
+.lead { font-size:15px; color:var(--text-muted); line-height:1.7; max-width:760px; margin-bottom:32px; }
+.disclosure { background:var(--warning-soft); border:1px solid #E8C998; border-left:3px solid #C68822; border-radius:4px; padding:14px 18px; font-size:13px; color:#6B3416; line-height:1.6; margin-bottom:32px; max-width:860px; }
+.section-folder { margin-bottom:48px; }
+.section-folder h3 { font-family:var(--serif); font-size:21px; color:var(--bg-deep); margin-bottom:6px; padding-bottom:8px; border-bottom:2px solid var(--brand); display:inline-block; }
+.section-folder .meta { font-size:13px; color:var(--text-muted); margin-bottom:18px; }
+.doc-row {
+  background:#fff; border:1px solid var(--border); border-radius:6px;
+  padding:14px 18px; margin-bottom:8px;
+  display:flex; gap:14px; align-items:flex-start;
+  transition:all .15s;
+}
+.doc-row:hover { border-color:var(--brand); }
+.doc-row .ic {
+  width:36px; height:36px; flex-shrink:0;
+  background:var(--bg-deep); color:#fff;
+  display:grid; place-items:center;
+  border-radius:6px;
+  font-family:var(--sans-en); font-size:14px; font-weight:700;
+}
+.doc-row .body { flex:1; min-width:0; }
+.doc-row .label { font-weight:600; color:var(--bg-deep); margin-bottom:4px; }
+.doc-row .sub { font-size:12px; color:var(--text-muted); margin-bottom:6px; font-family:var(--sans-en); }
+.doc-row .files { display:flex; flex-wrap:wrap; gap:6px; }
+.doc-row .files a {
+  font-size:12px; padding:3px 9px; border-radius:3px;
+  background:var(--brand-soft); color:var(--brand-dark);
+  text-decoration:none; font-weight:600;
+  font-family:var(--sans-en);
+}
+.doc-row .files a:hover { background:var(--brand); color:#fff; }
+.tabs { display:flex; gap:4px; margin-bottom:28px; border-bottom:1px solid var(--border); flex-wrap:wrap; }
+.tabs button {
+  background:transparent; border:0; padding:10px 16px;
+  font-size:13.5px; color:var(--text-muted); font-weight:600;
+  border-bottom:2px solid transparent; margin-bottom:-1px;
+  cursor:pointer; font-family:inherit;
+}
+.tabs button:hover { color:var(--text); }
+.tabs button.active { color:var(--brand); border-bottom-color:var(--brand); }
+.ngo-grid {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:10px;
+}
+.ngo-card {
+  background:#fff; border:1px solid var(--border); border-radius:5px;
+  padding:12px 16px; font-size:13.5px;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.ngo-card a { color:var(--brand); font-weight:600; text-decoration:none; font-size:11.5px; font-family:var(--sans-en); }
+.tab-content { display:none; }
+.tab-content.active { display:block; }
+footer { background:var(--bg-deep); color:rgba(255,255,255,0.75); padding:32px 24px; margin-top:64px; font-size:12.5px; }
+.footer-inner { max-width:var(--max-w); margin:0 auto; }
+footer a { color:rgba(255,255,255,0.85); }
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-inner">
+    <a href="index.html" class="logo-row">
+      <span class="logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+      <div><h1>兒少人權監督平台</h1><p>Child Rights Watch Taiwan</p></div>
+    </a>
+    <span class="aabe-mark">AABE</span>
+  </div>
+</header>
+<div class="crumb"><div class="crumb-inner"><a href="index.html">首頁總覽</a><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg><span class="active">CRC 官方文件</span></div></div>
+<main>
+
+<p class="kicker">官方資料來源</p>
+<h2 class="title">CRC 官方文件彙整</h2>
+<p class="lead">
+  從 <a href="https://crc.sfaa.gov.tw" target="_blank" rel="noopener">crc.sfaa.gov.tw</a>(CRC 聯合國兒童權利公約資訊網)抓取之官方文件索引,
+  涵蓋首次 / 第二次 / 第三次國家報告之全部公開檔案,合計 <strong>46 件文件、110 個 PDF</strong>。
+</p>
+
+<div class="disclosure">
+  <strong>說明</strong>:本頁僅為「索引彙整」— 所有 PDF 連結均指向 CRC 官網原始 URL,本平台不另行 host。
+  CRC 官網所列「民間團體」目錄(41 個)是 NGO 組織說明頁,非各 NGO 之影子報告檔案。
+  <strong>歷屆民間影子報告需從各 NGO 自家網站取得</strong>,本平台「<a href="external-reports.html" style="color:var(--brand);font-weight:600">民間影子報告 corpus</a>」收錄者為 AABE 內部彙整摘要,原始 PDF 連結待 AABE 內部逐一索取補建。
+</div>
+
+<div class="tabs" role="tablist">
+  <button class="tab-btn active" data-tab="t1" role="tab">國家報告(政府版)</button>
+  <button class="tab-btn" data-tab="t2" role="tab">民間團體目錄(41)</button>
+</div>
+
+<div class="tab-content active" id="t1">
+<div class="section-folder">
+<h3>第 1 次國家報告</h3>
+<p class="meta">資料來源:CRC 官網 folder 115_首次國家報告</p>
+<div class="doc-row">
+  <span class="ic">1</span>
+  <div class="body">
+    <div class="label">中華民國兒童權利公約首次國家報告暨國際審查流程圖</div>
+    <div class="sub">流程圖</div>
+    <div class="files"><span style="color:var(--text-muted);font-size:12px">無附件</span></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">1</span>
+  <div class="body">
+    <div class="label">首次國家報告中文版</div>
+    <div class="sub">國家報告</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/666-國家報告中文版-本文.pdf" target="_blank" rel="noopener">↓ 本文.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/667-國家報告中文版-附件.pdf" target="_blank" rel="noopener">↓ 附件.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">1</span>
+  <div class="body">
+    <div class="label">首次國家報告英文版; Implementation of the Convention on the Rights of the Child-Initial Report(ROC)</div>
+    <div class="sub">國家報告</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/463-國家報告英文版-本文(Initial_Report).pdf" target="_blank" rel="noopener">↓ 本文(Initial_Report).pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/464-國家報告英文版-附件(Initial_Report-Attachment).pdf" target="_blank" rel="noopener">↓ Attachment).pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">1</span>
+  <div class="body">
+    <div class="label">首次國家報告無障礙版</div>
+    <div class="sub">國家報告</div>
+    <div class="files"><span style="color:var(--text-muted);font-size:12px">無附件</span></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">1</span>
+  <div class="body">
+    <div class="label">首次國家報告實錄</div>
+    <div class="sub">國家報告</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/4741-CRC首次國家報告實錄.pdf" target="_blank" rel="noopener">↓ CRC首次國家報告實錄.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">1</span>
+  <div class="body">
+    <div class="label">首次國家報告英文版; Implementation of the Convention on the Rights of the Child-Initial Report(ROC)</div>
+    <div class="sub">國內審查會議</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/1178-國家報告英文版-本文(Initial_Report).pdf" target="_blank" rel="noopener">↓ 本文(Initial_Report).pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/1179-國家報告英文版-附件(Initial_Report-Attachment).pdf" target="_blank" rel="noopener">↓ Attachment).pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">1</span>
+  <div class="body">
+    <div class="label">首次國家報告定稿</div>
+    <div class="sub">國內審查會議</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/622-國家報告中文版-本文.pdf" target="_blank" rel="noopener">↓ 本文.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/623-國家報告中文版-附件.pdf" target="_blank" rel="noopener">↓ 附件.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">1</span>
+  <div class="body">
+    <div class="label">首次國家報告第四稿</div>
+    <div class="sub">國內審查會議</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/605-國家報告第四稿(總論至第8章).pdf" target="_blank" rel="noopener">↓ 國家報告第四稿(總論至第8章).pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/606-國家報告第四稿-附件(總論至第8章).pdf" target="_blank" rel="noopener">↓ 附件(總論至第8章).pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">1</span>
+  <div class="body">
+    <div class="label">首次國家報告第三稿及定稿會議</div>
+    <div class="sub">國內審查會議</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/600-國家報告第四稿(總論至第8章).pdf" target="_blank" rel="noopener">↓ 國家報告第四稿(總論至第8章).pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/601-國家報告第四稿-附件(總論至第8章).pdf" target="_blank" rel="noopener">↓ 附件(總論至第8章).pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/611-第5場會議記錄(1050824下午-第7章).pdf" target="_blank" rel="noopener">↓ 第7章).pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/612-第6場會議紀錄(1050830上午-第8章第297點至第316點).pdf" target="_blank" rel="noopener">↓ 第8章第297點至第316點).pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/614-第2場會議紀錄(1050822上午-第4章).pdf" target="_blank" rel="noopener">↓ 第4章).pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">1</span>
+  <div class="body">
+    <div class="label">首次國家報告第二稿及第二輪審查會議</div>
+    <div class="sub">國內審查會議</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/561-第3場會議紀錄(1050629下午-第4章).pdf" target="_blank" rel="noopener">↓ 第4章).pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/562-第2場會議紀錄(1050629上午-第3章).pdf" target="_blank" rel="noopener">↓ 第3章).pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/563-第4場會議紀錄(1050701上午-第5章).pdf" target="_blank" rel="noopener">↓ 第5章).pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/564-第5場會議紀錄(1050701下午-第6章).pdf" target="_blank" rel="noopener">↓ 第6章).pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/565-第7場會議紀錄(1050707上午-第8章).pdf" target="_blank" rel="noopener">↓ 第8章).pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">1</span>
+  <div class="body">
+    <div class="label">首次國家報告第一稿及第一輪審查會議</div>
+    <div class="sub">國內審查會議</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/550-第6場會議紀錄(1050412上午-第四章C141-F171).pdf" target="_blank" rel="noopener">↓ F171).pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/551-第2場會議紀錄(1050321上午-第一章11-37).pdf" target="_blank" rel="noopener">↓ 37).pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/552-第5場會議紀錄(1050401下午-第三章C100-第四章C140).pdf" target="_blank" rel="noopener">↓ 第四章C140).pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/553-第8場會議紀錄(1050415上午-第五章E216-G240).pdf" target="_blank" rel="noopener">↓ G240).pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/554-第7場會議紀錄(1050412下午-第四章G172-第五章D215).pdf" target="_blank" rel="noopener">↓ 第五章D215).pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">1</span>
+  <div class="body">
+    <div class="label">非政府組織報告提交說明</div>
+    <div class="sub">NGO報告</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/4929-EN_GuidetoCRCReportingCycle_ChildRightsConnect_2014.pdf" target="_blank" rel="noopener">↓ EN_GuidetoCRCReportingCycle_ChildRightsC</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">1</span>
+  <div class="body">
+    <div class="label">兒童權利公約首次國家報告-兒少報告提交說明</div>
+    <div class="sub">兒少報告</div>
+    <div class="files"><span style="color:var(--text-muted);font-size:12px">無附件</span></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">1</span>
+  <div class="body">
+    <div class="label">國際審查問題清單及回復</div>
+    <div class="sub">問題清單及回復</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20210426150646_1145248.pdf" target="_blank" rel="noopener">↓ 34_20210426150646_1145248.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">1</span>
+  <div class="body">
+    <div class="label">國際審查流程圖</div>
+    <div class="sub">國際審查</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20210426141214_0203971.pdf" target="_blank" rel="noopener">↓ 34_20210426141214_0203971.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">1</span>
+  <div class="body">
+    <div class="label">非政府組織會議</div>
+    <div class="sub">國際審查</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/37_20220210152931_6362606.pdf" target="_blank" rel="noopener">↓ 37_20220210152931_6362606.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/37_20220210153317_0941912.pdf" target="_blank" rel="noopener">↓ 37_20220210153317_0941912.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/37_20220210153331_7232781.pdf" target="_blank" rel="noopener">↓ 37_20220210153331_7232781.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">1</span>
+  <div class="body">
+    <div class="label">懶人包</div>
+    <div class="sub">國際審查</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/4967-國際審查懶人包.pdf" target="_blank" rel="noopener">↓ 國際審查懶人包.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">1</span>
+  <div class="body">
+    <div class="label">籌備諮詢會議紀錄(Consultation Meetings)</div>
+    <div class="sub">國際審查</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/1183-兒童權利公約首次國家報告國際審查諮詢會議-第4次會議紀錄(1050729).pdf" target="_blank" rel="noopener">↓ 第4次會議紀錄(1050729).pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/1184-兒童權利公約首次國家報告國際審查諮詢會議-第3次會議紀錄(1050623).pdf" target="_blank" rel="noopener">↓ 第3次會議紀錄(1050623).pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/1185-兒童權利公約首次國家報告國際審查諮詢會議-第2次會議紀錄(1050512).pdf" target="_blank" rel="noopener">↓ 第2次會議紀錄(1050512).pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/1186-兒童權利公約首次國家報告國際審查諮詢會議-第1次會議紀錄(1050408).pdf" target="_blank" rel="noopener">↓ 第1次會議紀錄(1050408).pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/1187-兒童權利公約首次國家報告國際審查諮詢會議-第5次會議紀錄(1050923).pdf" target="_blank" rel="noopener">↓ 第5次會議紀錄(1050923).pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">1</span>
+  <div class="body">
+    <div class="label">首次國家報告國際審查會議議程(Agenda)</div>
+    <div class="sub">國際審查</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/37_20220210152254_0685165.pdf" target="_blank" rel="noopener">↓ 37_20220210152254_0685165.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">1</span>
+  <div class="body">
+    <div class="label">會議實錄</div>
+    <div class="sub">國際審查</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/4744-CRC首次國報告審查會議實錄.pdf" target="_blank" rel="noopener">↓ CRC首次國報告審查會議實錄.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">1</span>
+  <div class="body">
+    <div class="label">首次國家報告及國際審查會議紀實短片</div>
+    <div class="sub">國際審查</div>
+    <div class="files"><span style="color:var(--text-muted);font-size:12px">無附件</span></div>
+  </div>
+</div>
+</div>
+<div class="section-folder">
+<h3>第 2 次國家報告</h3>
+<p class="meta">資料來源:CRC 官網 folder 117_第二次國家報告</p>
+<div class="doc-row">
+  <span class="ic">2</span>
+  <div class="body">
+    <div class="label">基礎課程─CRC基本概念</div>
+    <div class="sub">訓練教材</div>
+    <div class="files"><span style="color:var(--text-muted);font-size:12px">無附件</span></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">2</span>
+  <div class="body">
+    <div class="label">進階課程─國家報告撰擬教材</div>
+    <div class="sub">訓練教材</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20210609170228_4840038.pdf" target="_blank" rel="noopener">↓ 34_20210609170228_4840038.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">2</span>
+  <div class="body">
+    <div class="label">第2次國家報告作業流程</div>
+    <div class="sub">作業流程</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/1_20210202173409_0521448.pdf" target="_blank" rel="noopener">↓ 1_20210202173409_0521448.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">2</span>
+  <div class="body">
+    <div class="label">第2次國家報告二稿及第二輪審查書面意見</div>
+    <div class="sub">國內審查會議</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/36_20211006081832_9901961.pdf" target="_blank" rel="noopener">↓ 36_20211006081832_9901961.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/36_20211006081850_5065627.pdf" target="_blank" rel="noopener">↓ 36_20211006081850_5065627.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/36_20211006082325_6668447.pdf" target="_blank" rel="noopener">↓ 36_20211006082325_6668447.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/36_20211006082343_1043123.pdf" target="_blank" rel="noopener">↓ 36_20211006082343_1043123.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/37_20211021115223_5727616.pdf" target="_blank" rel="noopener">↓ 37_20211021115223_5727616.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">2</span>
+  <div class="body">
+    <div class="label">第2次國家報告初稿及第一輪審查會議</div>
+    <div class="sub">國內審查會議</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/1_20210310160326_5286012.pdf" target="_blank" rel="noopener">↓ 1_20210310160326_5286012.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/1_20210310160345_7960241.pdf" target="_blank" rel="noopener">↓ 1_20210310160345_7960241.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20210421152519_2024225.pdf" target="_blank" rel="noopener">↓ 34_20210421152519_2024225.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20210421152555_2949909.pdf" target="_blank" rel="noopener">↓ 34_20210421152555_2949909.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20210421181037_984344.pdf" target="_blank" rel="noopener">↓ 34_20210421181037_984344.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">2</span>
+  <div class="body">
+    <div class="label">第2次國家報告中文版</div>
+    <div class="sub">國家報告</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20220107091350_8240915.pdf" target="_blank" rel="noopener">↓ 34_20220107091350_8240915.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20220107091427_4399156.pdf" target="_blank" rel="noopener">↓ 34_20220107091427_4399156.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20220720094457_8792978.pdf" target="_blank" rel="noopener">↓ 34_20220720094457_8792978.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20221111105142_9956896.pdf" target="_blank" rel="noopener">↓ 34_20221111105142_9956896.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">2</span>
+  <div class="body">
+    <div class="label">第2次國家報告英文版 Implementation of the Convention on the Rights of the Child-Second Report(ROC)</div>
+    <div class="sub">國家報告</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20220426151248_5167733.pdf" target="_blank" rel="noopener">↓ 34_20220426151248_5167733.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20220426151427_9307524.pdf" target="_blank" rel="noopener">↓ 34_20220426151427_9307524.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20220426151747_297158.pdf" target="_blank" rel="noopener">↓ 34_20220426151747_297158.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">2</span>
+  <div class="body">
+    <div class="label">第2次國家報告無障礙版</div>
+    <div class="sub">國家報告</div>
+    <div class="files"><span style="color:var(--text-muted);font-size:12px">無附件</span></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">2</span>
+  <div class="body">
+    <div class="label">NHRC報告</div>
+    <div class="sub">NGO報告與NHRC報告</div>
+    <div class="files"><span style="color:var(--text-muted);font-size:12px">無附件</span></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">2</span>
+  <div class="body">
+    <div class="label">NGO報告與NHRI報告提交說明</div>
+    <div class="sub">NGO報告與NHRC報告</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/37_20220301141216_2131109.pdf" target="_blank" rel="noopener">↓ 37_20220301141216_2131109.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">2</span>
+  <div class="body">
+    <div class="label">兒少報告提交說明</div>
+    <div class="sub">兒少報告</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/37_20220304085421_1535652.pdf" target="_blank" rel="noopener">↓ 37_20220304085421_1535652.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">2</span>
+  <div class="body">
+    <div class="label">問題清單政府回應</div>
+    <div class="sub">問題清單及回復</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20221103170801_2529337.pdf" target="_blank" rel="noopener">↓ 34_20221103170801_2529337.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">2</span>
+  <div class="body">
+    <div class="label">問題清單</div>
+    <div class="sub">問題清單及回復</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20220804093021_4774923.pdf" target="_blank" rel="noopener">↓ 34_20220804093021_4774923.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20221013180812_5549472.pdf" target="_blank" rel="noopener">↓ 34_20221013180812_5549472.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">2</span>
+  <div class="body">
+    <div class="label">流程圖</div>
+    <div class="sub">國際審查</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20210525090727_9232559.pdf" target="_blank" rel="noopener">↓ 34_20210525090727_9232559.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">2</span>
+  <div class="body">
+    <div class="label">籌備諮詢會議紀錄</div>
+    <div class="sub">國際審查</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20210525090630_5985741.pdf" target="_blank" rel="noopener">↓ 34_20210525090630_5985741.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20220419100629_2899006.pdf" target="_blank" rel="noopener">↓ 34_20220419100629_2899006.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">2</span>
+  <div class="body">
+    <div class="label">兒少及非政府組織（NGO）與會相關訊息及注意事項</div>
+    <div class="sub">國際審查</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20221103171521_3087184.pdf" target="_blank" rel="noopener">↓ 34_20221103171521_3087184.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">2</span>
+  <div class="body">
+    <div class="label">政府機關與會相關訊息及注意事項</div>
+    <div class="sub">國際審查</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20221103171625_74347.pdf" target="_blank" rel="noopener">↓ 34_20221103171625_74347.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">2</span>
+  <div class="body">
+    <div class="label">會議實錄</div>
+    <div class="sub">國際審查</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/35_20230620083735_9593369.pdf" target="_blank" rel="noopener">↓ 35_20230620083735_9593369.pdf</a></div>
+  </div>
+</div>
+</div>
+<div class="section-folder">
+<h3>第 3 次國家報告</h3>
+<p class="meta">資料來源:CRC 官網 folder 498_第三次國家報告</p>
+<div class="doc-row">
+  <span class="ic">3</span>
+  <div class="body">
+    <div class="label">作業流程</div>
+    <div class="sub">作業流程</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20250709111755_1750051.pdf" target="_blank" rel="noopener">↓ 34_20250709111755_1750051.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">3</span>
+  <div class="body">
+    <div class="label">撰寫教材</div>
+    <div class="sub">撰寫教材</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20250715173408_9337044.pdf" target="_blank" rel="noopener">↓ 34_20250715173408_9337044.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20250715173419_0148706.pdf" target="_blank" rel="noopener">↓ 34_20250715173419_0148706.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20250715173435_3047738.pdf" target="_blank" rel="noopener">↓ 34_20250715173435_3047738.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">3</span>
+  <div class="body">
+    <div class="label">兒童權利公約（CRC）第三次國家報告初稿</div>
+    <div class="sub">國內審查會議</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20260114135549_0336071.pdf" target="_blank" rel="noopener">↓ 34_20260114135549_0336071.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20260114172534_53469.pdf" target="_blank" rel="noopener">↓ 34_20260114172534_53469.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">3</span>
+  <div class="body">
+    <div class="label">兒童權利公約（CRC）第三次國家報告第1輪民間審查會議資訊及書面意見格式</div>
+    <div class="sub">國內審查會議</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/80_20260109124020_4529509.pdf" target="_blank" rel="noopener">↓ 80_20260109124020_4529509.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/84_20260127125859_7975511.pdf" target="_blank" rel="noopener">↓ 84_20260127125859_7975511.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/84_20260127125939_284195.docx" target="_blank" rel="noopener" style="background:var(--bg-alt);color:var(--text-muted)">↓ 84_20260127125939_284195.docx (Word)</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">3</span>
+  <div class="body">
+    <div class="label">兒童權利公約（CRC）第三次國家報告第1輪民間審查會議紀錄</div>
+    <div class="sub">國內審查會議</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/113_20260317170940_2971055.pdf" target="_blank" rel="noopener">↓ 113_20260317170940_2971055.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/113_20260330175631_2547562.pdf" target="_blank" rel="noopener">↓ 113_20260330175631_2547562.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20260311163452_6410374.pdf" target="_blank" rel="noopener">↓ 34_20260311163452_6410374.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/80_20260318111616_0954997.pdf" target="_blank" rel="noopener">↓ 80_20260318111616_0954997.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/80_20260325103212_4235574.pdf" target="_blank" rel="noopener">↓ 80_20260325103212_4235574.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">3</span>
+  <div class="body">
+    <div class="label">兒童權利公約（CRC）第三次國家報告二稿</div>
+    <div class="sub">國內審查會議</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20260421151908_5601431.pdf" target="_blank" rel="noopener">↓ 34_20260421151908_5601431.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20260421151924_1572129.pdf" target="_blank" rel="noopener">↓ 34_20260421151924_1572129.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20260421151950_2750927.pdf" target="_blank" rel="noopener">↓ 34_20260421151950_2750927.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20260421152010_9045051.pdf" target="_blank" rel="noopener">↓ 34_20260421152010_9045051.pdf</a></div>
+  </div>
+</div>
+<div class="doc-row">
+  <span class="ic">3</span>
+  <div class="body">
+    <div class="label">兒童權利公約（CRC）第三次國家報告第2輪民間審查會議資訊及書面意見格式</div>
+    <div class="sub">國內審查會議</div>
+    <div class="files"><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20260429183931_640075.pdf" target="_blank" rel="noopener">↓ 34_20260429183931_640075.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/80_20260416160059_7137403.pdf" target="_blank" rel="noopener">↓ 80_20260416160059_7137403.pdf</a><a href="https://crc.sfaa.gov.tw/Uploadfile/Document/34_20260429183948_3896099.docx" target="_blank" rel="noopener" style="background:var(--bg-alt);color:var(--text-muted)">↓ 34_20260429183948_3896099.docx (Word)</a></div>
+  </div>
+</div>
+</div>
+</div>
+<div class="tab-content" id="t2"><div class="ngo-grid">
+<div class="ngo-card"><span>財團法人勵馨社會福利事業基金會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=E25990BE-D9F8-47AC-8DCE-6355209E9DCE" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>社團法人台灣少年權益與福利促進聯盟</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=FCA51802-57F3-44A7-97FE-0E66D1EB5A64" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>財團法人台灣兒童暨家庭扶助基金會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=BB4887E2-5A7A-4D67-B8DB-18A60BDE071B" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>財團法人台灣世界展望會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=B49A6916-813C-4A21-93DD-AC7B7CEE672E" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>財團法人中華民國兒童福利聯盟基金會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=37F8E830-3DE0-4580-B4B9-A490F1BB393B" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>財團法人天主教善牧社會福利基金會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=2DEFED15-81A4-41D5-8EC7-2113A9163607" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>臺灣兒童發展早期療育協會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=EDF88F3D-4E57-43A0-8597-82C9E52EDF56" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>財團法人靖娟兒童兒全文教基金會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=EAE2448A-C09D-43AD-B5C3-097AEF02D0DB" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>財團法人全國認證基金會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=C9EDA836-630D-45E1-982D-33A971DA6344" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>台灣急診醫學會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=B7E6A9FE-E476-4C5A-88C7-5D9257E9BFB8" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>現代婦女基金會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=88366631-760B-4754-8C9C-AE92F12C0263" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>中華兒少愛滋關懷防治協會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=67C9AC71-58C8-4EFC-9335-F25006D6A6D3" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>中華民國智障者家長總會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=0CDE3973-7AF8-43E4-976A-43717339F35F" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>台灣青少年醫學暨保健學會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=755F3D54-9ADD-44CE-BBB4-1B81E69F1FF7" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>人權公約施行監督聯盟</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=AA1F64CD-BDE9-414E-A45F-56B98C568299" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>財團法人國際單親兒童文教基金會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=8625F446-EAD4-4109-BE48-C674531AE9B7" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>財團法人陳綢阿嬤社會福利基金會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=E79CF74F-B385-4EBD-8814-5BAD0F7E3017" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>台灣性別不明關懷協會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=0123FE38-D614-4490-AAFA-09C033D7DDEE" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>社團法人中華飛揚關懷協會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=BDF1C7BF-2073-467C-98C9-13A3877B9A5F" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>中華民國兒童權益促進協會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=C39BB0A3-1342-4EF6-9BA5-249E11BA8A2F" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>全國家長會長聯盟</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=4F411EE3-48A5-4CBF-82C7-DB0B2DB576FB" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>台灣性別人權維護促進協會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=56C39FA5-7AFD-408F-BEBC-960F76083029" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>工具青年陣線</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=11DD39F6-21D5-4021-9C92-931D1C742A65" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>社團法人中華民國更生少年關懷協會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=969AC20B-E308-43D1-8E19-95CE24C77B5E" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>原住民族青年陣線</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=10FD3162-DE5C-463A-9358-01F1BE0BBA45" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>台灣人權促進會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=4795003A-138E-4395-8383-FE26734BE1A4" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>社團法人中華育幼機構兒童關懷協會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=8B510ACC-FA3D-4388-A81E-E8AECFA0B2B5" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>台灣原住民族政策協會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=67D954C4-090F-415B-BE43-477533FA2060" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>台灣全國媽媽護家護兒聯盟</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=927F567A-C47D-42FF-85E9-D65B2783B6F2" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>台灣展翅協會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=70B1ED64-3CA4-4828-B74A-F4D27A4CC5ED" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>社團法人中華民國觀護協會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=7A783E51-CEC1-4ADB-A92B-AF09AC425193" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>社團法人台灣伴侶權益推動聯盟</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=9D7674F5-1FD2-4C0F-9557-3AD3DB9FC90E" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>社團法人台灣關愛之家協會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=EB6DADFE-1654-40ED-A5B2-959D038EC778" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>社團法人臺南市家長關懷兒少教育協會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=D94B8743-F0E6-4E9F-8A1D-AA070FE4C8CA" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>花蓮縣谷若思全人關懷協會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=102902AF-2450-4B49-91E5-7471794ABCCE" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>財團法人台灣關愛基金會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=5B5B6498-A128-403F-A388-4959CFBA6EFA" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>財團法人至善社會福利基金會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=CDA6DF3C-FB22-4008-8D1C-5639EE5639E4" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>國立臺灣大學中國信託慈善基金會兒少暨家庭研究中心</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=787A04B8-7DA3-4D46-9E53-BCE55520AE74" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>婦女救援基金會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=31986E14-3504-44B6-B060-C3CC6A076368" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>財團法人董氏基金會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=59663FDA-3DCB-44E7-9409-90FC80681FCE" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+<div class="ngo-card"><span>環境品質文教基金會</span><a href="https://crc.sfaa.gov.tw/Document/Detail?documentId=EF7AB21A-4E89-4FF4-99C9-E79635AE8144" target="_blank" rel="noopener">CRC 介紹頁 →</a></div>
+</div>
+<p style="margin-top:24px;font-size:13px;color:var(--text-muted)">本目錄為 CRC 官網列出之 41 個民間團體組織說明頁。各 NGO 之歷屆影子報告需從該 NGO 自家網站取得,CRC 官網不直接 host。</p>
+</div>
+
+<p style="font-size:12px;color:var(--text-muted);margin-top:48px;text-align:center;font-family:var(--sans-en)">
+  Last fetched: 2026-05-04 14:16:46 · Source: <a href="https://crc.sfaa.gov.tw" target="_blank" rel="noopener">https://crc.sfaa.gov.tw</a>
+</p>
+
+<script>
+document.querySelectorAll('.tab-btn').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById(b.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</main>
+<footer>
+  <div class="footer-inner">
+    <p>本平台由 <strong style="color:#fff">國教行動聯盟(AABE)</strong> 製作維護 · CC BY 4.0 · 資料來源 <a href="https://crc.sfaa.gov.tw" target="_blank" rel="noopener">CRC 兒童權利公約資訊網</a></p>
+  </div>
+</footer>
+</body>
+</html>
