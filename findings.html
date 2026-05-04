@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>平台關鍵發現 — 兒少人權監督平台</title>
+<meta name="description" content="基於 754 筆全文索引、441 CRC 官方 PDF 之關鍵發現:議題負荷 / NGO 活躍度 / 採納率最低之主張 / 惡化趨勢">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+:root { --bg:#FAFAF7;--bg-alt:#F1EFEA;--bg-deep:#0E2238;--text:#1F1F1F;--text-muted:#5C5C5C;--brand:#B5371F;--brand-soft:#F4E1DC;--aabe-gold:#8B6F50;--success:#2D5F3E;--warning:#A03032;--border:#DDD8CD;--hairline:#E8E3D6;--serif:"Noto Serif TC",Georgia,serif;--sans:"Noto Sans TC",-apple-system,sans-serif; }
+* { box-sizing:border-box;margin:0;padding:0; }
+body { font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--text);background:var(--bg); }
+a { color:var(--bg-deep);text-decoration:none; }
+.banner { background:var(--bg-deep);color:#fff;padding:10px 20px;font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;border-bottom:3px solid var(--brand); }
+.banner a { color:rgba(255,255,255,0.85); }
+.banner strong { color:#fff; }
+header { background:var(--bg-alt);padding:36px 24px;text-align:center;border-bottom:1px solid var(--border); }
+header .kicker { font-family:Inter,sans-serif;font-size:12px;font-weight:700;color:var(--brand);letter-spacing:0.12em;text-transform:uppercase; }
+header h1 { font-family:var(--serif);font-size:30px;color:var(--bg-deep);font-weight:900;margin:8px 0; }
+header p { color:var(--text-muted);font-size:14px;max-width:760px;margin:8px auto; }
+main { max-width:1200px;margin:0 auto;padding:32px 24px 80px; }
+.platform-stats { display:grid;grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));gap:12px;margin-bottom:32px; }
+.stat-card { background:#fff;border:1px solid var(--border);border-radius:6px;padding:18px;text-align:center; }
+.stat-card .num { font-family:Inter,sans-serif;font-size:28px;font-weight:900;color:var(--bg-deep); }
+.stat-card .lab { font-size:12px;color:var(--text-muted);margin-top:3px; }
+section.finding-section { background:#fff;border:1px solid var(--border);border-radius:6px;padding:28px 32px;margin-bottom:18px; }
+section.finding-section h2 { font-family:var(--serif);font-size:21px;color:var(--bg-deep);font-weight:700;border-bottom:2px solid var(--brand);padding-bottom:8px;margin-bottom:16px; }
+section.finding-section .desc { font-size:13px;color:var(--text-muted);margin-bottom:16px; }
+.finding-grid { display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:12px; }
+.finding-card { background:var(--bg-alt);border:1px solid var(--border);border-left:4px solid var(--brand);border-radius:6px;padding:16px 18px;display:flex;flex-direction:column;gap:6px;transition:all .15s; }
+.finding-card:hover { background:#fff;transform:translateY(-1px); }
+.fc-rank { font-family:Inter,sans-serif;font-size:11px;font-weight:800;color:var(--brand);letter-spacing:0.06em; }
+.finding-card h3 { font-family:var(--serif);font-size:16px;color:var(--bg-deep);font-weight:700; }
+.fc-stats { display:flex;gap:12px;font-size:11.5px;color:var(--text-muted);font-family:Inter,sans-serif; }
+.fc-tags { display:flex;gap:6px;font-size:10.5px; }
+.fc-tags .tag-高 { background:rgba(160,48,50,0.12);color:var(--warning);padding:2px 7px;border-radius:3px;font-weight:600; }
+.fc-tags .tag-中 { background:rgba(198,136,34,0.15);color:#8C5A0E;padding:2px 7px;border-radius:3px;font-weight:600; }
+.fc-tags .cluster { background:var(--bg-deep);color:#fff;padding:2px 7px;border-radius:3px;font-family:Inter,sans-serif; }
+
+.ngo-row { display:grid;grid-template-columns:120px 1fr 50px;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--hairline); }
+.ngo-name { font-weight:600;color:var(--bg-deep); }
+.ngo-bar { background:var(--bg-alt);height:14px;border-radius:7px;overflow:hidden; }
+.ngo-fill { background:linear-gradient(90deg,var(--brand) 0%,var(--brand-dark) 100%);height:100%; }
+.ngo-cnt { font-family:Inter,sans-serif;font-weight:700;color:var(--brand);text-align:right; }
+
+.esr-row { background:var(--bg-alt);border:1px solid var(--border);border-left:4px solid var(--warning);border-radius:6px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:8px; }
+.esr-name { font-weight:600;color:var(--bg-deep); }
+.esr-rate { font-family:Inter,sans-serif;font-size:14px; }
+.esr-rate strong { color:var(--warning);font-size:20px;font-weight:900; }
+.esr-meta { font-size:12px;color:var(--text-muted);font-family:Inter,sans-serif; }
+
+.nhrc-row { background:var(--bg-alt);border:1px solid var(--border);border-radius:6px;padding:14px 18px;margin-bottom:8px; }
+.nhrc-head { display:flex;justify-content:space-between;align-items:center;margin-bottom:6px; }
+.trend-down { color:var(--warning);font-family:Inter,sans-serif;font-size:13px;font-weight:700; }
+.nhrc-stat { font-family:Inter,sans-serif;font-size:18px;font-weight:700;color:var(--bg-deep); }
+.nhrc-stat .unit { font-size:13px;color:var(--text-muted);font-weight:400; }
+.nhrc-concern { background:var(--brand-soft);color:#8C2A18;padding:8px 12px;border-radius:4px;font-size:12.5px;margin-top:8px; }
+
+footer { text-align:center;padding:24px;color:var(--text-muted);font-size:12px;border-top:1px solid var(--border); }
+</style>
+</head>
+<body>
+<div class="banner">
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:8px">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8B6F50" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <strong>兒少人權監督平台</strong>
+  </a>
+  <span><a href="index.html">← 回首頁</a> · <a href="map.html">議題地圖</a> · <a href="search.html">搜尋</a> · <a href="sitemap.html">網站地圖</a></span>
+</div>
+
+<header>
+  <p class="kicker">平台關鍵發現 · INSIGHTS</p>
+  <h1>跨資料找出的關鍵發現</h1>
+  <p>基於本平台 754 筆全文索引、441 CRC 官方 PDF、27 民間影子報告,跨表計算之關鍵發現。倡議者寫稿、立委助理排質詢、媒體找報導角度時可直接從這裡切入。</p>
+</header>
+
+<main>
+  <section class="finding-section">
+    <h2>📊 平台規模(自我揭露)</h2>
+    <div class="platform-stats">
+      <div class="stat-card"><div class="num">14</div><div class="lab">議題 PI</div></div>
+      <div class="stat-card"><div class="num">30</div><div class="lab">CRC 條文</div></div>
+      <div class="stat-card"><div class="num">170</div><div class="lab">結論性意見</div></div>
+      <div class="stat-card"><div class="num">17</div><div class="lab">NAP 行動</div></div>
+      <div class="stat-card"><div class="num">15</div><div class="lab">法規</div></div>
+      <div class="stat-card"><div class="num">42</div><div class="lab">修法事件</div></div>
+      <div class="stat-card"><div class="num">81</div><div class="lab">倡議檔</div></div>
+      <div class="stat-card"><div class="num">27</div><div class="lab">民間影子報告</div></div>
+      <div class="stat-card"><div class="num">255</div><div class="lab">CRC 官方文件</div></div>
+    </div>
+  </section>
+
+  <section class="finding-section">
+    <h2>🔥 議題負荷度 Top 6</h2>
+    <p class="desc">倡議數 + CO 對應 + 法規數 三者加總,反映該議題之資源投入與爭議度。</p>
+    <div class="finding-grid">
+        <a href="issues/PI-12.html" class="finding-card">
+          <div class="fc-rank">PI-12</div>
+          <h3>替代照顧與機構安置(剴剴案後)</h3>
+          <div class="fc-stats">
+            <span>📋 15 倡議</span>
+            <span>📜 7 CO</span>
+            <span>⚖️ 2 法規</span>
+          </div>
+          <div class="fc-tags">
+            <span class="tag-高">嚴重度 高</span>
+            <span class="cluster">F</span>
+          </div>
+        </a>
+        <a href="issues/PI-09.html" class="finding-card">
+          <div class="fc-rank">PI-09</div>
+          <h3>課業壓力、學習權與教育選擇權</h3>
+          <div class="fc-stats">
+            <span>📋 17 倡議</span>
+            <span>📜 3 CO</span>
+            <span>⚖️ 3 法規</span>
+          </div>
+          <div class="fc-tags">
+            <span class="tag-高">嚴重度 高</span>
+            <span class="cluster">H</span>
+          </div>
+        </a>
+        <a href="issues/PI-05.html" class="finding-card">
+          <div class="fc-rank">PI-05</div>
+          <h3>少年司法與行政先行</h3>
+          <div class="fc-stats">
+            <span>📋 15 倡議</span>
+            <span>📜 4 CO</span>
+            <span>⚖️ 1 法規</span>
+          </div>
+          <div class="fc-tags">
+            <span class="tag-高">嚴重度 高</span>
+            <span class="cluster">I</span>
+          </div>
+        </a>
+        <a href="issues/PI-01.html" class="finding-card">
+          <div class="fc-rank">PI-01</div>
+          <h3>校園霸凌</h3>
+          <div class="fc-stats">
+            <span>📋 9 倡議</span>
+            <span>📜 4 CO</span>
+            <span>⚖️ 4 法規</span>
+          </div>
+          <div class="fc-tags">
+            <span class="tag-高">嚴重度 高</span>
+            <span class="cluster">E</span>
+          </div>
+        </a>
+        <a href="issues/PI-06.html" class="finding-card">
+          <div class="fc-rank">PI-06</div>
+          <h3>兒少網路安全與新興物質</h3>
+          <div class="fc-stats">
+            <span>📋 14 倡議</span>
+            <span>📜 0 CO</span>
+            <span>⚖️ 3 法規</span>
+          </div>
+          <div class="fc-tags">
+            <span class="tag-高">嚴重度 高</span>
+            <span class="cluster">L</span>
+          </div>
+        </a>
+        <a href="issues/PI-11.html" class="finding-card">
+          <div class="fc-rank">PI-11</div>
+          <h3>家庭功能與依 CRC 第 5 條的父母指導角色</h3>
+          <div class="fc-stats">
+            <span>📋 15 倡議</span>
+            <span>📜 0 CO</span>
+            <span>⚖️ 1 法規</span>
+          </div>
+          <div class="fc-tags">
+            <span class="tag-中">嚴重度 中</span>
+            <span class="cluster">F</span>
+          </div>
+        </a></div>
+  </section>
+
+  <section class="finding-section">
+    <h2>👥 NGO 倡議活躍度排行 Top 12</h2>
+    <p class="desc">本平台 advocacy_action 中各 NGO 之記錄數量(AABE 自家為主,其他 NGO 為平台補建記錄)。</p>
+    
+        <div class="ngo-row">
+          <span class="ngo-name">AABE</span>
+          <div class="ngo-bar"><div class="ngo-fill" style="width:100%"></div></div>
+          <span class="ngo-cnt">52</span>
+        </div>
+        <div class="ngo-row">
+          <span class="ngo-name">馬偕兒童健康</span>
+          <div class="ngo-bar"><div class="ngo-fill" style="width:2%"></div></div>
+          <span class="ngo-cnt">1</span>
+        </div>
+        <div class="ngo-row">
+          <span class="ngo-name">關愛</span>
+          <div class="ngo-bar"><div class="ngo-fill" style="width:2%"></div></div>
+          <span class="ngo-cnt">1</span>
+        </div>
+        <div class="ngo-row">
+          <span class="ngo-name">董氏</span>
+          <div class="ngo-bar"><div class="ngo-fill" style="width:2%"></div></div>
+          <span class="ngo-cnt">1</span>
+        </div>
+        <div class="ngo-row">
+          <span class="ngo-name">現代婦女</span>
+          <div class="ngo-bar"><div class="ngo-fill" style="width:2%"></div></div>
+          <span class="ngo-cnt">1</span>
+        </div>
+        <div class="ngo-row">
+          <span class="ngo-name">民間司改會</span>
+          <div class="ngo-bar"><div class="ngo-fill" style="width:2%"></div></div>
+          <span class="ngo-cnt">1</span>
+        </div>
+        <div class="ngo-row">
+          <span class="ngo-name">教改總會</span>
+          <div class="ngo-bar"><div class="ngo-fill" style="width:2%"></div></div>
+          <span class="ngo-cnt">1</span>
+        </div>
+        <div class="ngo-row">
+          <span class="ngo-name">振鐸</span>
+          <div class="ngo-bar"><div class="ngo-fill" style="width:2%"></div></div>
+          <span class="ngo-cnt">1</span>
+        </div>
+        <div class="ngo-row">
+          <span class="ngo-name">心路</span>
+          <div class="ngo-bar"><div class="ngo-fill" style="width:2%"></div></div>
+          <span class="ngo-cnt">1</span>
+        </div>
+        <div class="ngo-row">
+          <span class="ngo-name">張老師</span>
+          <div class="ngo-bar"><div class="ngo-fill" style="width:2%"></div></div>
+          <span class="ngo-cnt">1</span>
+        </div>
+        <div class="ngo-row">
+          <span class="ngo-name">廢死聯盟</span>
+          <div class="ngo-bar"><div class="ngo-fill" style="width:2%"></div></div>
+          <span class="ngo-cnt">1</span>
+        </div>
+        <div class="ngo-row">
+          <span class="ngo-name">展翅</span>
+          <div class="ngo-bar"><div class="ngo-fill" style="width:2%"></div></div>
+          <span class="ngo-cnt">1</span>
+        </div>
+  </section>
+
+  <section class="finding-section">
+    <h2>⚠ 採納率最低之民間影子報告 Top 6</h2>
+    <p class="desc">未採納率高者代表該 NGO 之主張未被政府採納,可作為 CRC 第三輪審查之 advocacy 重點。</p>
+    
+        <a href="external-reports/ESR-2022-JRF.html" class="esr-row">
+          <div class="esr-name">2022 民間司法改革基金會</div>
+          <div class="esr-rate"><strong>43%</strong> 未採納</div>
+          <div class="esr-meta">14 點 · 已採 3 / 部分 5 / 未採 6</div>
+        </a>
+        <a href="external-reports/ESR-2022-HOTLINE.html" class="esr-row">
+          <div class="esr-name">2022 台灣同志諮詢熱線協會</div>
+          <div class="esr-rate"><strong>42%</strong> 未採納</div>
+          <div class="esr-meta">12 點 · 已採 3 / 部分 4 / 未採 5</div>
+        </a>
+        <a href="external-reports/ESR-2017-SHANMU.html" class="esr-row">
+          <div class="esr-name">2017 善牧基金會</div>
+          <div class="esr-rate"><strong>40%</strong> 未採納</div>
+          <div class="esr-meta">10 點 · 已採 3 / 部分 3 / 未採 4</div>
+        </a>
+        <a href="external-reports/ESR-2022-COVENANTSWATCH.html" class="esr-row">
+          <div class="esr-name">2022 人權公約施行監督聯盟</div>
+          <div class="esr-rate"><strong>38%</strong> 未採納</div>
+          <div class="esr-meta">48 點 · 已採 12 / 部分 18 / 未採 18</div>
+        </a>
+        <a href="external-reports/ESR-2022-GOH.html" class="esr-row">
+          <div class="esr-name">2022 勵馨基金會</div>
+          <div class="esr-rate"><strong>38%</strong> 未採納</div>
+          <div class="esr-meta">16 點 · 已採 4 / 部分 6 / 未採 6</div>
+        </a>
+        <a href="external-reports/ESR-2022-ECPAT.html" class="esr-row">
+          <div class="esr-name">2022 台灣展翅協會 (ECPAT Taiwan)</div>
+          <div class="esr-rate"><strong>38%</strong> 未採納</div>
+          <div class="esr-meta">16 點 · 已採 4 / 部分 6 / 未採 6</div>
+        </a>
+  </section>
+
+  <section class="finding-section">
+    <h2>📉 NHRC 監測:正在惡化之指標</h2>
+    <p class="desc">NHRC 監測指標中標記為 worsening(惡化中)者。這些是政府本應改善卻反向發展之領域。</p>
+    
+        <div class="nhrc-row">
+          <div class="nhrc-head">
+            <strong>校園霸凌處置成立率</strong>
+            <span class="trend-down">↓ 惡化</span>
+          </div>
+          <div class="nhrc-stat">31.87% <span class="unit">%</span> · 2025-12</div>
+          <div class="nhrc-concern">⚠ NHRC 4641 件分析顯示 65% 未通報社政</div>
+        </div>
+        <div class="nhrc-row">
+          <div class="nhrc-head">
+            <strong>15-24 歲女性自殺通報數</strong>
+            <span class="trend-down">↓ 惡化</span>
+          </div>
+          <div class="nhrc-stat">33,964 <span class="unit">人</span> · 2024</div>
+          <div class="nhrc-concern">⚠ 10 年累計增 142%</div>
+        </div>
+  </section>
+</main>
+
+<footer>
+  本平台由 <strong>國教行動聯盟(AABE)</strong> 製作維護 · CC BY 4.0 · 自動於 monthly_maintenance step 11.7 重建
+</footer>
+</body>
+</html>
