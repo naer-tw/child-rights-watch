@@ -5599,13 +5599,12 @@ window.FILTERS_DATA = {
     all.textContent = `所有單位(${(F.ngos || []).length} 團體中 ${coveredSet.size} 已收資料)`;
     docsIssuer.appendChild(all);
 
-    // AABE 釘最上(featured)
+    // AABE 釘最上(featured)— 不預設 selected,讓使用者主動選擇
     const aabe = (F.ngos || []).find(n => n.code === 'ngo-aabe');
     if (aabe) {
       const o = document.createElement('option');
       o.value = aabe.code;
       o.textContent = '★ ' + aabe.name + ' (AABE) ⓘ';
-      o.selected = true;
       docsIssuer.appendChild(o);
     }
 
@@ -5677,114 +5676,7 @@ function applyFilters() {
   location.href = 'search.html' + (params.toString() ? '?' + params : '');
 }
 
-/* ============================================================
-   docs-section 篩選 sidebar — client-side filter
-   點 checkbox / 議題 tag / 提出單位 select → toggle doc-card 顯示
-   ============================================================ */
-(function() {
-  const docList = document.getElementById('doc-list');
-  if (!docList) return;
-
-  function applyDocsFilter() {
-    const cards = docList.querySelectorAll('.doc-card');
-    // 收集每個 filter 維度之 selected values
-    const cycleSet = new Set();
-    const typeSet = new Set();
-    const statusSet = new Set();
-    document.querySelectorAll('.docs-flt:checked').forEach(c => {
-      const k = c.dataset.fk; const v = c.dataset.fv;
-      if (k === 'cycle') cycleSet.add(v);
-      else if (k === 'type') typeSet.add(v);
-      else if (k === 'status') statusSet.add(v);
-    });
-    // 議題 tag
-    const activeTag = document.querySelector('.docs-flt-tag.active');
-    const tagPI = activeTag ? activeTag.dataset.pi : '';
-    // 提出單位
-    const issuerSel = document.getElementById('docs-issuer-select');
-    const issuerVal = issuerSel ? issuerSel.value : '';
-    // 找到對應的 NGO short(從 FILTERS_DATA)
-    let issuerName = '';
-    if (issuerVal && window.FILTERS_DATA) {
-      const ngo = (window.FILTERS_DATA.ngos || []).find(n => n.code === issuerVal);
-      if (ngo) issuerName = ngo.short || ngo.name;
-    }
-
-    let visible = 0;
-    cards.forEach(card => {
-      const dCycle = card.dataset.cycle || '';
-      const dType = card.dataset.type || '';
-      const dStatus = card.dataset.status || '';
-      const dIssuer = card.dataset.issuer || '';
-      const dTopic = card.dataset.topic || '';
-
-      let show = true;
-      // cycle:0 表示 NAP / 跨屆,永遠顯示(若有勾任一)
-      if (cycleSet.size && dCycle !== '0' && !cycleSet.has(dCycle)) show = false;
-      if (typeSet.size && !typeSet.has(dType)) show = false;
-      if (statusSet.size && !statusSet.has(dStatus)) show = false;
-      if (tagPI && !dTopic.includes(tagPI) && !dTopic.includes(({
-        'PI-12':'替代照顧','PI-01':'校園霸凌','PI-04':'特殊教育','PI-02':'心理健康',
-        'PI-08':'性別平等','PI-06':'數位','PI-10':'表意','PI-05':'司法',
-      })[tagPI] || '')) show = false;
-      if (issuerName && dIssuer !== issuerName && dIssuer !== 'AABE') {
-        // 若選 NGO,只顯示該 NGO 的;AABE 自家的若選 NGO != AABE 也排除
-        if (issuerName !== 'AABE' && dIssuer !== issuerName) show = false;
-      }
-      if (issuerVal === 'ngo-aabe' && dIssuer !== 'AABE') show = false;
-
-      card.style.display = show ? '' : 'none';
-      if (show) visible++;
-    });
-
-    // 更新 toolbar 之顯示筆數
-    const cnt = document.querySelector('.docs-toolbar .count-info b');
-    if (cnt) cnt.textContent = visible;
-    // 若全部被過濾掉,顯示提示
-    let empty = document.getElementById('doc-list-empty');
-    if (!empty) {
-      empty = document.createElement('div');
-      empty.id = 'doc-list-empty';
-      empty.style.cssText = 'padding:32px;text-align:center;color:var(--text-muted);background:var(--bg-alt);border-radius:6px;font-size:14px';
-      docList.appendChild(empty);
-    }
-    empty.textContent = visible === 0 ? '無符合條件的文件 — 請調整左側篩選條件' : '';
-    empty.style.display = visible === 0 ? 'block' : 'none';
-  }
-
-  // 綁所有 docs-flt checkbox
-  document.querySelectorAll('.docs-flt').forEach(c => {
-    c.addEventListener('change', applyDocsFilter);
-  });
-  // 議題 tag 點擊 toggle(單選)
-  document.querySelectorAll('.docs-flt-tag').forEach(t => {
-    t.addEventListener('click', () => {
-      document.querySelectorAll('.docs-flt-tag').forEach(x => x.classList.remove('active'));
-      t.classList.add('active');
-      applyDocsFilter();
-    });
-  });
-  // 預設「全部」為 active
-  const allTag = document.querySelector('.docs-flt-tag[data-pi=""]');
-  if (allTag) allTag.classList.add('active');
-  // 提出單位 select
-  const issuerSel = document.getElementById('docs-issuer-select');
-  if (issuerSel) issuerSel.addEventListener('change', applyDocsFilter);
-  // 公約條文 input(模糊搜尋 — 暫時 noop)
-  // 清除按鈕
-  const clearBtn = document.getElementById('docs-filter-clear');
-  if (clearBtn) {
-    clearBtn.addEventListener('click', () => {
-      document.querySelectorAll('.docs-flt').forEach(c => c.checked = true);
-      document.querySelectorAll('.docs-flt-tag').forEach(t => t.classList.remove('active'));
-      if (allTag) allTag.classList.add('active');
-      if (issuerSel) issuerSel.value = '';
-      applyDocsFilter();
-    });
-  }
-  // 初次套用
-  setTimeout(applyDocsFilter, 50);
-})();
+/* Wave 92 fix: 移除重複的 filter IIFE — 由 4244 的 docFilters 統一處理 */
 </script>
 
 </body>
