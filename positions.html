@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AABE 14 議題政策立場索引 — 兒少人權監督平台</title>
+<meta name="description" content="AABE 國教行動聯盟在 14 個兒少人權議題上的政策立場、訴求、論辯張力,以及民間夥伴 chorus 與採納狀況。">
+<meta property="og:title" content="AABE 14 議題政策立場索引">
+<meta property="og:description" content="一頁看懂國教行動聯盟在 14 個 CRC 兒少人權議題上的具體訴求與民間夥伴。">
+<meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630'%3E%3Crect width='1200' height='630' fill='%230E2238'/%3E%3Cpath fill='%238B6F50' d='M600 200l-80 30v100c0 80 80 110 80 110s80-30 80-110V230L600 200z'/%3E%3Ctext x='600' y='480' fill='%23FAFAF7' font-family='Noto Serif TC,serif' font-size='52' font-weight='900' text-anchor='middle'%3EAABE 14 議題立場%3C/text%3E%3Ctext x='600' y='540' fill='%23B5371F' font-family='Inter,sans-serif' font-size='28' font-weight='700' text-anchor='middle' letter-spacing='4'%3ECHILD RIGHTS WATCH TAIWAN · AABE%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#FAFAF7; --bg-soft:#F1EFEA; --bg-deep:#0E2238;
+  --brand:#B5371F; --gold:#8B6F50;
+  --text:#1F1F1F; --muted:#5A5A5A; --line:#E5E1D8;
+}
+*{box-sizing:border-box}
+body { font-family:"Noto Sans TC","PingFang TC",sans-serif; margin:0;
+        background:var(--bg); color:var(--text); line-height:1.6 }
+a { color:var(--brand); text-decoration:none }
+a:hover { text-decoration:underline }
+.skip { position:absolute;left:-9999px }
+.skip:focus { left:8px;top:8px;background:#fff;padding:6px 10px;border:2px solid var(--brand);z-index:99 }
+.topbar { background:var(--bg-deep); color:#fff; padding:10px 20px; font-size:13px;
+          display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;
+          border-bottom:3px solid var(--brand) }
+.topbar a { color:rgba(255,255,255,0.85) }
+.topbar a:hover { color:#fff }
+.topbar .brand { display:inline-flex; align-items:center; gap:8px }
+.topbar .brand strong { color:#fff; font-family:"Noto Serif TC",serif }
+.topbar .brand small { color:rgba(255,255,255,0.5); font-family:Inter,sans-serif; font-size:11px;
+                       letter-spacing:.06em; text-transform:uppercase; margin-left:4px }
+.topbar nav { display:inline-flex; gap:14px; font-size:12.5px; flex-wrap:wrap }
+.wrap { max-width:1180px; margin:0 auto; padding:32px 20px }
+
+.hero { background:linear-gradient(135deg,#fff 0%,var(--bg-soft) 100%);
+        padding:32px; border-radius:12px; border-left:5px solid var(--brand);
+        margin-bottom:24px }
+.hero h1 { font-family:"Noto Serif TC",serif; font-size:30px; margin:0 0 12px; color:var(--bg-deep) }
+.hero .lede { font-size:15.5px; color:var(--muted); margin:0 0 18px; max-width:760px }
+.hero-stats { display:flex; gap:18px; flex-wrap:wrap; margin-top:14px }
+.hero-stat { background:#fff; padding:12px 18px; border-radius:8px;
+              border:1px solid var(--line); min-width:140px }
+.hero-stat .n { font-family:Inter,sans-serif; font-size:24px; font-weight:700; color:var(--brand) }
+.hero-stat .l { font-size:12.5px; color:var(--muted) }
+
+.pi-nav { background:#fff; border:1px solid var(--line); border-radius:8px;
+           padding:12px 16px; margin-bottom:24px; position:sticky; top:0; z-index:10 }
+.pi-nav h3 { margin:0 0 8px; font-size:13px; color:var(--muted); font-weight:600 }
+.pi-nav-pills { display:flex; flex-wrap:wrap; gap:6px }
+.nav-pill { font-size:12px; padding:4px 10px; background:var(--bg-soft); border-radius:14px;
+             color:var(--bg-deep); border:1px solid var(--line); transition:all .15s }
+.nav-pill:hover { background:var(--brand); color:#fff; text-decoration:none }
+
+.pi-position { background:#fff; border:1px solid var(--line); border-radius:10px;
+                margin-bottom:22px; overflow:hidden;
+                scroll-margin-top:90px }
+.pi-head { background:linear-gradient(180deg,#fff 0%,var(--bg-soft) 100%);
+            padding:18px 24px; border-bottom:1px solid var(--line) }
+.pi-code { display:inline-block; font-family:Inter,sans-serif; font-size:11px;
+            color:#fff; background:var(--brand); padding:2px 10px; border-radius:10px;
+            letter-spacing:.06em; font-weight:600 }
+.pi-name { font-family:"Noto Serif TC",serif; font-size:22px; margin:6px 0 4px;
+            color:var(--bg-deep); display:inline-block; margin-left:12px }
+.pi-meta { font-size:12.5px; color:var(--muted); margin-top:4px }
+.pi-meta-status { font-family:Inter,sans-serif }
+
+.pi-body { display:grid; grid-template-columns:1.3fr 1fr; gap:24px; padding:22px 24px }
+.pi-body h3 { font-family:"Noto Serif TC",serif; font-size:14.5px; color:var(--brand);
+               margin:14px 0 6px; letter-spacing:.02em }
+.pi-body h3:first-child { margin-top:0 }
+.stance-core { font-size:15px; line-height:1.65; margin:0 0 6px;
+                padding:10px 14px; background:#fff8f5;
+                border-left:3px solid var(--brand); border-radius:0 4px 4px 0 }
+.stance-demands { margin:6px 0 6px 18px; padding:0; font-size:13.5px; line-height:1.65 }
+.stance-demands li { margin-bottom:4px }
+.stance-tension { font-size:13.5px; color:var(--text);
+                  background:var(--bg-soft); padding:10px 14px; border-radius:6px;
+                  border-left:3px solid var(--gold); margin:0 }
+
+.partner-list { list-style:none; margin:0; padding:0; max-height:380px; overflow-y:auto;
+                 border:1px solid var(--line); border-radius:6px }
+.partner { padding:9px 12px; font-size:12.5px; border-bottom:1px solid var(--bg-soft);
+            display:grid; grid-template-columns:80px 70px 1fr; gap:6px; align-items:start;
+            line-height:1.4 }
+.partner:last-child { border-bottom:0 }
+.partner-status { font-weight:600; font-family:Inter,sans-serif; font-size:11.5px }
+.partner-date { font-family:Inter,sans-serif; font-size:11px; color:var(--muted) }
+.partner-title { color:var(--text) }
+.partner-empty { padding:12px; text-align:center; color:var(--muted); font-size:13px }
+.partner-more { padding:9px 12px; font-size:12px; color:var(--muted); text-align:center;
+                 background:var(--bg-soft) }
+
+.pi-foot { padding:14px 24px; border-top:1px solid var(--line); background:var(--bg-soft);
+           display:flex; gap:8px; flex-wrap:wrap }
+.btn { font-size:13px; padding:6px 14px; background:#fff; color:var(--bg-deep);
+        border:1px solid var(--line); border-radius:5px; transition:all .15s }
+.btn:hover { background:var(--brand); color:#fff; border-color:var(--brand); text-decoration:none }
+.btn-soft { background:transparent; color:var(--muted); border-color:transparent }
+
+@media (max-width:760px) {
+  .hero { padding:22px }
+  .hero h1 { font-size:24px }
+  .pi-body { grid-template-columns:1fr }
+  .pi-name { display:block; margin-left:0 }
+  .partner { grid-template-columns:1fr; gap:2px }
+}
+
+footer.foot { background:var(--bg-deep); color:rgba(255,255,255,0.75); padding:24px 20px;
+                margin-top:48px; font-size:13px; text-align:center }
+footer.foot a { color:rgba(255,255,255,0.85) }
+
+@media print {
+  .topbar, .pi-nav, .pi-foot, footer.foot { display:none }
+  .pi-position { break-inside:avoid; page-break-inside:avoid }
+  body { background:#fff }
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">跳至主要內容</a>
+<div class="topbar">
+  <a class="brand" href="index.html">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8B6F50" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <strong>兒少人權監督平台</strong>
+    <small>Child Rights Watch · AABE</small>
+  </a>
+  <nav aria-label="平台導覽">
+    <a href="index.html">← 回首頁</a>
+    <a href="search.html">全平台搜尋</a>
+    <a href="map.html">議題地圖</a>
+    <a href="timeline/index.html">政策軌跡</a>
+    <a href="findings.html">關鍵發現</a>
+    <a href="crc-articles.html">CRC 條文索引</a>
+  </nav>
+</div>
+
+<main id="main" class="wrap">
+  <section class="hero">
+    <h1>AABE 14 議題政策立場索引</h1>
+    <p class="lede">這頁是一張「立場地圖」。<strong>國教行動聯盟(AABE)</strong>在 14 個 CRC 兒少人權議題上,主張什麼?訴求什麼?哪些已被採納、哪些被擱置?同議題的民間夥伴怎麼共鳴?——一頁看懂,適合倡議者快速調用。</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="n">14</div><div class="l">議題立場</div></div>
+      <div class="hero-stat"><div class="n">60</div><div class="l">具實質主張倡議</div></div>
+      <div class="hero-stat"><div class="n">25</div><div class="l">已 / 部分採納</div></div>
+      <div class="hero-stat"><div class="n">30</div><div class="l">民間夥伴政策建議書</div></div>
+    </div>
+  </section>
+
+  <nav class="pi-nav" aria-label="議題快速跳轉">
+    <h3>跳至議題</h3>
+    <div class="pi-nav-pills">
+      <a href="#PI-01" class="nav-pill">PI-01 校園霸凌</a><a href="#PI-02" class="nav-pill">PI-02 青少年心理健康</a><a href="#PI-03" class="nav-pill">PI-03 體罰禁止</a><a href="#PI-04" class="nav-pill">PI-04 學生輔導體制</a><a href="#PI-05" class="nav-pill">PI-05 少年司法行政先行</a><a href="#PI-06" class="nav-pill">PI-06 兒少網路安全</a><a href="#PI-07" class="nav-pill">PI-07 性剝削防制</a><a href="#PI-08" class="nav-pill">PI-08 性別平等教育</a><a href="#PI-09" class="nav-pill">PI-09 課業壓力與學習權</a><a href="#PI-10" class="nav-pill">PI-10 兒少表意與校園民主</a><a href="#PI-11" class="nav-pill">PI-11 家庭功能政策</a><a href="#PI-12" class="nav-pill">PI-12 替代照顧與機構安置</a><a href="#PI-13" class="nav-pill">PI-13 移民無國籍與失聯兒少</a><a href="#PI-14" class="nav-pill">PI-14 LGBTQI+ 兒少</a>
+    </div>
+  </nav>
+
+  <article class="pi-position" id="PI-01" data-pi="PI-01">
+  <header class="pi-head">
+    <span class="pi-code">PI-01</span>
+    <h2 class="pi-name">校園霸凌</h2>
+    <div class="pi-meta">
+      <span>3 倡議行動</span> ·
+      <span>3 民間夥伴</span> ·
+      <span class="pi-meta-status">採納:0 / 部分:1 / 未:0</span>
+    </div>
+  </header>
+
+  <div class="pi-body">
+    <div class="pi-stance">
+      <h3>AABE 主立場</h3>
+      <p class="stance-core">霸凌防制 ≠ 加害人懲戒主義 — 須建立校園關係修復(Restorative Practice)+ 心理健康早期介入。</p>
+      <h3>具體訴求</h3>
+      <ul class="stance-demands"><li>重大校事第三方獨立調查制(防學校自查自究)</li>
+<li>霸凌通報數據公開,以防學校壓案</li>
+<li>受害學生轉學費用減免、加害學生輔導追蹤</li></ul>
+      <h3>論辯張力</h3>
+      <p class="stance-tension">教育部主張「校長有權處置」 vs 民間主張「外部監督機制」</p>
+    </div>
+
+    <div class="pi-partners">
+      <h3>民間夥伴 chorus</h3>
+      <ul class="partner-list"><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-22</span><span class="partner-title">兒少權法15年大修為何仍補不上剴剴案六大制度缺口？</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-03-25</span><span class="partner-title">面對校園霸凌頻傳，我們還可以做什麼？——國教盟青年部：應強化校園保護機制三道防線</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2023-11-20</span><span class="partner-title">全教總 教師對學生暴力減量策略(NHRC 4641 件)</span></li></ul>
+    </div>
+  </div>
+
+  <footer class="pi-foot">
+    <a href="issues/PI-01.html" class="btn">議題詳情 →</a>
+    <a href="timeline/PI-01.html" class="btn">政策軌跡 →</a>
+    <a href="crc-articles.html#PI-01" class="btn btn-soft">CRC 條文對應</a>
+  </footer>
+</article>
+<article class="pi-position" id="PI-02" data-pi="PI-02">
+  <header class="pi-head">
+    <span class="pi-code">PI-02</span>
+    <h2 class="pi-name">青少年心理健康</h2>
+    <div class="pi-meta">
+      <span>7 倡議行動</span> ·
+      <span>7 民間夥伴</span> ·
+      <span class="pi-meta-status">採納:0 / 部分:5 / 未:1</span>
+    </div>
+  </header>
+
+  <div class="pi-body">
+    <div class="pi-stance">
+      <h3>AABE 主立場</h3>
+      <p class="stance-core">心理健康普及化 — 校園輔導員 1:25 比 + 校外社區網絡(避免單打獨鬥)。</p>
+      <h3>具體訴求</h3>
+      <ul class="stance-demands"><li>輔導教師員額再加 30%</li>
+<li>高中以下校園心理諮商納入健保(降低家庭負擔)</li>
+<li>建立校園自殺死亡事件第三方調查</li></ul>
+      <h3>論辯張力</h3>
+      <p class="stance-tension">衛福部主張「心理健康司新設」就足夠 vs 民間主張「教育、衛生跨部會直送學生」</p>
+    </div>
+
+    <div class="pi-partners">
+      <h3>民間夥伴 chorus</h3>
+      <ul class="partner-list"><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2025-12-05</span><span class="partner-title">青少年自殺通報九年增加3.3倍、佔比倍增</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2024-04-25</span><span class="partner-title">兒少權利公約聯盟 兒少權法修法 22 團體聯合建議</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2024-03-25</span><span class="partner-title">張老師基金會 青少年諮商可近性與校外網絡</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2024-02-26</span><span class="partner-title">董氏基金會 青少年心理健康與社群媒體素養</span></li><li class="partner"><span class="partner-status" style="color:#c62828">✗ 未採納</span><span class="partner-date">2024-02-19</span><span class="partner-title">教改總會 補習班規模化與兒少學習壓力</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2023-11-12</span><span class="partner-title">馬偕兒童健康基金會 兒童預防保健政策更新</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2023-06-20</span><span class="partner-title">台灣關愛基金會 HIV 兒少非歧視教育</span></li></ul>
+    </div>
+  </div>
+
+  <footer class="pi-foot">
+    <a href="issues/PI-02.html" class="btn">議題詳情 →</a>
+    <a href="timeline/PI-02.html" class="btn">政策軌跡 →</a>
+    <a href="crc-articles.html#PI-02" class="btn btn-soft">CRC 條文對應</a>
+  </footer>
+</article>
+<article class="pi-position" id="PI-03" data-pi="PI-03">
+  <header class="pi-head">
+    <span class="pi-code">PI-03</span>
+    <h2 class="pi-name">體罰禁止</h2>
+    <div class="pi-meta">
+      <span>2 倡議行動</span> ·
+      <span>2 民間夥伴</span> ·
+      <span class="pi-meta-status">採納:0 / 部分:2 / 未:0</span>
+    </div>
+  </header>
+
+  <div class="pi-body">
+    <div class="pi-stance">
+      <h3>AABE 主立場</h3>
+      <p class="stance-core">禁止家內體罰立法 — 民法 1085 修正,呼應 CRC 2017、2022 兩次結論性意見。</p>
+      <h3>具體訴求</h3>
+      <ul class="stance-demands"><li>民法第 1085 條「懲戒權」修正</li>
+<li>家庭內體罰行為清單化、宣導三年期</li>
+<li>訓練社工對「合理管教」與「體罰」的辨識</li></ul>
+      <h3>論辯張力</h3>
+      <p class="stance-tension">立法院反對者主張「家長權威」vs 民間主張「兒童身體完整性 = 基本人權」</p>
+    </div>
+
+    <div class="pi-partners">
+      <h3>民間夥伴 chorus</h3>
+      <ul class="partner-list"><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2023-11-20</span><span class="partner-title">全教總 教師對學生暴力減量策略(NHRC 4641 件)</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2022-11-15</span><span class="partner-title">人本基金會 30 年體罰禁止運動 — CRC 第二輪政策建議</span></li></ul>
+    </div>
+  </div>
+
+  <footer class="pi-foot">
+    <a href="issues/PI-03.html" class="btn">議題詳情 →</a>
+    <a href="timeline/PI-03.html" class="btn">政策軌跡 →</a>
+    <a href="crc-articles.html#PI-03" class="btn btn-soft">CRC 條文對應</a>
+  </footer>
+</article>
+<article class="pi-position" id="PI-04" data-pi="PI-04">
+  <header class="pi-head">
+    <span class="pi-code">PI-04</span>
+    <h2 class="pi-name">學生輔導體制</h2>
+    <div class="pi-meta">
+      <span>3 倡議行動</span> ·
+      <span>3 民間夥伴</span> ·
+      <span class="pi-meta-status">採納:0 / 部分:2 / 未:0</span>
+    </div>
+  </header>
+
+  <div class="pi-body">
+    <div class="pi-stance">
+      <h3>AABE 主立場</h3>
+      <p class="stance-core">學輔三級制 + 學校社工/心理師合理員額,改善剴剴案後曝險早期辨識。</p>
+      <h3>具體訴求</h3>
+      <ul class="stance-demands"><li>高中以下每校至少一位專任輔導教師、一位學校社工/心理師</li>
+<li>輔諮中心預算佔教育部本部預算 ≥ 0.5%</li>
+<li>輔諮資料(校園轉介、家內危機個案)獨立資安</li></ul>
+      <h3>論辯張力</h3>
+      <p class="stance-tension">教育部主張「縣市政府配置」 vs 民間主張「中央保證最低員額」</p>
+    </div>
+
+    <div class="pi-partners">
+      <h3>民間夥伴 chorus</h3>
+      <ul class="partner-list"><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-17(講解版日期)</span><span class="partner-title">WISER-3.0 學校三級輔導工作手冊(第三節)</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2024-03-25</span><span class="partner-title">張老師基金會 青少年諮商可近性與校外網絡</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2023-08-18</span><span class="partner-title">心路基金會 身障兒少融合教育師訓擴充</span></li></ul>
+    </div>
+  </div>
+
+  <footer class="pi-foot">
+    <a href="issues/PI-04.html" class="btn">議題詳情 →</a>
+    <a href="timeline/PI-04.html" class="btn">政策軌跡 →</a>
+    <a href="crc-articles.html#PI-04" class="btn btn-soft">CRC 條文對應</a>
+  </footer>
+</article>
+<article class="pi-position" id="PI-05" data-pi="PI-05">
+  <header class="pi-head">
+    <span class="pi-code">PI-05</span>
+    <h2 class="pi-name">少年司法行政先行</h2>
+    <div class="pi-meta">
+      <span>7 倡議行動</span> ·
+      <span>7 民間夥伴</span> ·
+      <span class="pi-meta-status">採納:0 / 部分:2 / 未:1</span>
+    </div>
+  </header>
+
+  <div class="pi-body">
+    <div class="pi-stance">
+      <h3>AABE 主立場</h3>
+      <p class="stance-core">少事法行政先行制度 — 過渡性教育學位嚴重不足,須立《國民轉介教育條例》填補空白。</p>
+      <h3>具體訴求</h3>
+      <ul class="stance-demands"><li>《國民轉介教育條例》立法,填補曝險少年離開正規學校 → 矯正學校之間的教育空白</li>
+<li>曝險少年諮詢輔導 6 個月成效定期公開</li>
+<li>少年事件處理法、兒少權法、家事事件法三法整合家事少年委員會</li></ul>
+      <h3>論辯張力</h3>
+      <p class="stance-tension">司法院主張「行政先行已上路」 vs 民間主張「過渡學位不足、輔導資源外包品質參差」</p>
+    </div>
+
+    <div class="pi-partners">
+      <h3>民間夥伴 chorus</h3>
+      <ul class="partner-list"><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-22</span><span class="partner-title">兒少權法15年大修為何仍補不上剴剴案六大制度缺口？</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-01</span><span class="partner-title">少事法矯正教育、假釋追蹤與塗銷制度如何改革？</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-03-17</span><span class="partner-title">國教盟少事法修正建議書 — 過渡性教育措施</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2025-12-24</span><span class="partner-title">少年重大暴力案件的量刑應如何建立透明基準？</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2024-04-30</span><span class="partner-title">人權公約施行監督聯盟 CRC × ICCPR × CEDAW 交叉檢視</span></li><li class="partner"><span class="partner-status" style="color:#c62828">✗ 未採納</span><span class="partner-date">2024-03-15</span><span class="partner-title">廢死聯盟 兒少死刑禁止入法倡議</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2023-09-22</span><span class="partner-title">民間司改會 少事法行政先行制度檢討</span></li></ul>
+    </div>
+  </div>
+
+  <footer class="pi-foot">
+    <a href="issues/PI-05.html" class="btn">議題詳情 →</a>
+    <a href="timeline/PI-05.html" class="btn">政策軌跡 →</a>
+    <a href="crc-articles.html#PI-05" class="btn btn-soft">CRC 條文對應</a>
+  </footer>
+</article>
+<article class="pi-position" id="PI-06" data-pi="PI-06">
+  <header class="pi-head">
+    <span class="pi-code">PI-06</span>
+    <h2 class="pi-name">兒少網路安全</h2>
+    <div class="pi-meta">
+      <span>8 倡議行動</span> ·
+      <span>8 民間夥伴</span> ·
+      <span class="pi-meta-status">採納:1 / 部分:3 / 未:0</span>
+    </div>
+  </header>
+
+  <div class="pi-body">
+    <div class="pi-stance">
+      <h3>AABE 主立場</h3>
+      <p class="stance-core">禁絕加味菸與電子煙、依托咪酯入二級毒品 — 給校方法源依據查扣。</p>
+      <h3>具體訴求</h3>
+      <ul class="stance-demands"><li>全面禁止加味菸品</li>
+<li>修法賦予教育人員查扣電子煙載具之法源依據</li>
+<li>校園菸防教育扣連董氏基金會「無菸品世代」大架構</li></ul>
+      <h3>論辯張力</h3>
+      <p class="stance-tension">經濟部、財政部主張「成癮性產品稅收依存」 vs 民間主張「兒少健康優先」</p>
+    </div>
+
+    <div class="pi-partners">
+      <h3>民間夥伴 chorus</h3>
+      <ul class="partner-list"><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-24</span><span class="partner-title">台灣為何應推動「無菸品世代」全面禁絕新型菸品？</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-02</span><span class="partner-title">校園唾液快篩只做初篩夠嗎？為何需要二層檢測機制？</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2025-12-16</span><span class="partner-title">校園菸毒與毒駕源頭相同　新興毒品快速變形　毒駕年增8倍</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2025-12-10</span><span class="partner-title">防制校園喪屍煙彈(依托咪酯)記者會</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2024-03-30</span><span class="partner-title">台灣展翅(ECPAT)AI 生成兒少性剝削影像入罪倡議</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2024-02-26</span><span class="partner-title">董氏基金會 青少年心理健康與社群媒體素養</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2023-11-12</span><span class="partner-title">馬偕兒童健康基金會 兒童預防保健政策更新</span></li><li class="partner"><span class="partner-status" style="color:#2e7d32">✓ 已採納</span><span class="partner-date">2023-06-10</span><span class="partner-title">勵馨基金會數位性暴力防制法草案建議</span></li></ul>
+    </div>
+  </div>
+
+  <footer class="pi-foot">
+    <a href="issues/PI-06.html" class="btn">議題詳情 →</a>
+    <a href="timeline/PI-06.html" class="btn">政策軌跡 →</a>
+    <a href="crc-articles.html#PI-06" class="btn btn-soft">CRC 條文對應</a>
+  </footer>
+</article>
+<article class="pi-position" id="PI-07" data-pi="PI-07">
+  <header class="pi-head">
+    <span class="pi-code">PI-07</span>
+    <h2 class="pi-name">性剝削防制</h2>
+    <div class="pi-meta">
+      <span>3 倡議行動</span> ·
+      <span>3 民間夥伴</span> ·
+      <span class="pi-meta-status">採納:1 / 部分:2 / 未:0</span>
+    </div>
+  </header>
+
+  <div class="pi-body">
+    <div class="pi-stance">
+      <h3>AABE 主立場</h3>
+      <p class="stance-core">AI 生成兒少性剝削影像入罪 — 與展翅(ECPAT)合作推動兒少性剝削防制條例修法。</p>
+      <h3>具體訴求</h3>
+      <ul class="stance-demands"><li>AI 生成兒少性剝削影像之處罰要件清楚化</li>
+<li>下架 SOP 跨境(LINE / IG / Discord)機制</li>
+<li>受害兒少身份保密與隱私權再強化</li></ul>
+      <h3>論辯張力</h3>
+      <p class="stance-tension">司法部主張「現行刑法可用」 vs 民間主張「AI 生成挑戰原條文要件」</p>
+    </div>
+
+    <div class="pi-partners">
+      <h3>民間夥伴 chorus</h3>
+      <ul class="partner-list"><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2024-05-12</span><span class="partner-title">婦女救援基金會 兒少性侵案件友善偵查程序</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2024-03-30</span><span class="partner-title">台灣展翅(ECPAT)AI 生成兒少性剝削影像入罪倡議</span></li><li class="partner"><span class="partner-status" style="color:#2e7d32">✓ 已採納</span><span class="partner-date">2023-06-10</span><span class="partner-title">勵馨基金會數位性暴力防制法草案建議</span></li></ul>
+    </div>
+  </div>
+
+  <footer class="pi-foot">
+    <a href="issues/PI-07.html" class="btn">議題詳情 →</a>
+    <a href="timeline/PI-07.html" class="btn">政策軌跡 →</a>
+    <a href="crc-articles.html#PI-07" class="btn btn-soft">CRC 條文對應</a>
+  </footer>
+</article>
+<article class="pi-position" id="PI-08" data-pi="PI-08">
+  <header class="pi-head">
+    <span class="pi-code">PI-08</span>
+    <h2 class="pi-name">性別平等教育</h2>
+    <div class="pi-meta">
+      <span>9 倡議行動</span> ·
+      <span>9 民間夥伴</span> ·
+      <span class="pi-meta-status">採納:0 / 部分:3 / 未:0</span>
+    </div>
+  </header>
+
+  <div class="pi-body">
+    <div class="pi-stance">
+      <h3>AABE 主立場</h3>
+      <p class="stance-core">性平教育課綱守護 — 反對課綱下修「身體性自主」、「家庭多元樣態」段落。</p>
+      <h3>具體訴求</h3>
+      <ul class="stance-demands"><li>課綱「身體性自主」、「多元家庭」、「青少年友善偵查」段落不下修</li>
+<li>性平教育師資修課時數 + 認證制</li>
+<li>校園性平案件第三方調查率公開</li></ul>
+      <h3>論辯張力</h3>
+      <p class="stance-tension">保守家長團體主張「家長知情權優先」 vs 民間主張「學生主體權利」</p>
+    </div>
+
+    <div class="pi-partners">
+      <h3>民間夥伴 chorus</h3>
+      <ul class="partner-list"><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">待補</span><span class="partner-title">Gender Equity Education Reform Blueprint</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-15</span><span class="partner-title">家長支持性平卻不滿意現行制度?全長聯指出三大教育缺口</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-15</span><span class="partner-title">家長支持性平卻不滿意現行制度？全長聯指出三大教育缺口</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-15</span><span class="partner-title">性平法該不該無限擴張？國教盟三大修法主張守住教育本位</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2025-12-08</span><span class="partner-title">8742名青少年票選第三名：遇到性騷擾該怎麼辦？——國教盟呼籲補上保護課</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2025-07-11</span><span class="partner-title">2025 台灣兒童全面性教育現況調查報告(學會回應版)</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2024-01-25</span><span class="partner-title">全家盟 家長在兒少權法決策之代表性</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2023-09-22</span><span class="partner-title">婦女新知基金會 性別平等教育課綱守護</span></li><li class="partner-more">…另 1 件,<a href="issues/PI-08.html">見議題詳情</a></li></ul>
+    </div>
+  </div>
+
+  <footer class="pi-foot">
+    <a href="issues/PI-08.html" class="btn">議題詳情 →</a>
+    <a href="timeline/PI-08.html" class="btn">政策軌跡 →</a>
+    <a href="crc-articles.html#PI-08" class="btn btn-soft">CRC 條文對應</a>
+  </footer>
+</article>
+<article class="pi-position" id="PI-09" data-pi="PI-09">
+  <header class="pi-head">
+    <span class="pi-code">PI-09</span>
+    <h2 class="pi-name">課業壓力與學習權</h2>
+    <div class="pi-meta">
+      <span>12 倡議行動</span> ·
+      <span>12 民間夥伴</span> ·
+      <span class="pi-meta-status">採納:0 / 部分:3 / 未:1</span>
+    </div>
+  </header>
+
+  <div class="pi-body">
+    <div class="pi-stance">
+      <h3>AABE 主立場</h3>
+      <p class="stance-core">補習班規模化、實驗教育偽實驗 — 兩者皆增加兒少課業壓力,須立法規範。</p>
+      <h3>具體訴求</h3>
+      <ul class="stance-demands"><li>補習班規模化規範(連鎖補習班 ≥ 5 家須申報)</li>
+<li>實驗教育「偽實驗」(只是規避體制)獨立評鑑</li>
+<li>高中以下作業時數上限指引</li></ul>
+      <h3>論辯張力</h3>
+      <p class="stance-tension">教育部主張「家長選擇權」 vs 民間主張「兒少健康發展優先」</p>
+    </div>
+
+    <div class="pi-partners">
+      <h3>民間夥伴 chorus</h3>
+      <ul class="partner-list"><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-12</span><span class="partner-title">台灣偏鄉公校為何大量轉型實驗教育?</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-12</span><span class="partner-title">實驗教育如何保障弱勢學生權益?</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-12</span><span class="partner-title">台灣實驗教育如何與國際模式相比?</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-12</span><span class="partner-title">台灣偏鄉公校為何大量轉型實驗教育？</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-12</span><span class="partner-title">實驗教育如何保障弱勢學生權益？</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-12</span><span class="partner-title">台灣實驗教育如何與國際模式相比？</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-03</span><span class="partner-title">台灣國民教育真的免費嗎？營養午餐與教科書補助的22縣市落差</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2025-12-06</span><span class="partner-title">「生育·養育·教育—兒童成長需求總體檢」論壇</span></li><li class="partner-more">…另 4 件,<a href="issues/PI-09.html">見議題詳情</a></li></ul>
+    </div>
+  </div>
+
+  <footer class="pi-foot">
+    <a href="issues/PI-09.html" class="btn">議題詳情 →</a>
+    <a href="timeline/PI-09.html" class="btn">政策軌跡 →</a>
+    <a href="crc-articles.html#PI-09" class="btn btn-soft">CRC 條文對應</a>
+  </footer>
+</article>
+<article class="pi-position" id="PI-10" data-pi="PI-10">
+  <header class="pi-head">
+    <span class="pi-code">PI-10</span>
+    <h2 class="pi-name">兒少表意與校園民主</h2>
+    <div class="pi-meta">
+      <span>2 倡議行動</span> ·
+      <span>2 民間夥伴</span> ·
+      <span class="pi-meta-status">採納:0 / 部分:1 / 未:0</span>
+    </div>
+  </header>
+
+  <div class="pi-body">
+    <div class="pi-stance">
+      <h3>AABE 主立場</h3>
+      <p class="stance-core">校園民主 = 兒少參與權 — 學生會代表納入校長遴選、校規修訂須學生公聽。</p>
+      <h3>具體訴求</h3>
+      <ul class="stance-demands"><li>全國中學生會代表參與校長遴選機制</li>
+<li>校規修訂須學生公聽,廢除過時校規(髮禁、襪禁等)</li>
+<li>兒少表意 12 歲以下友善管道</li></ul>
+      <h3>論辯張力</h3>
+      <p class="stance-tension">教育部主張「行政效率」 vs 民間主張「公約 §12 表意權」</p>
+    </div>
+
+    <div class="pi-partners">
+      <h3>民間夥伴 chorus</h3>
+      <ul class="partner-list"><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2025-12-06</span><span class="partner-title">「生育·養育·教育—兒童成長需求總體檢」論壇</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2023-11-05</span><span class="partner-title">台權會 兒少集會結社與隱私權專題</span></li></ul>
+    </div>
+  </div>
+
+  <footer class="pi-foot">
+    <a href="issues/PI-10.html" class="btn">議題詳情 →</a>
+    <a href="timeline/PI-10.html" class="btn">政策軌跡 →</a>
+    <a href="crc-articles.html#PI-10" class="btn btn-soft">CRC 條文對應</a>
+  </footer>
+</article>
+<article class="pi-position" id="PI-11" data-pi="PI-11">
+  <header class="pi-head">
+    <span class="pi-code">PI-11</span>
+    <h2 class="pi-name">家庭功能政策</h2>
+    <div class="pi-meta">
+      <span>11 倡議行動</span> ·
+      <span>11 民間夥伴</span> ·
+      <span class="pi-meta-status">採納:0 / 部分:5 / 未:1</span>
+    </div>
+  </header>
+
+  <div class="pi-body">
+    <div class="pi-stance">
+      <h3>AABE 主立場</h3>
+      <p class="stance-core">家庭功能 ≠ 家庭責任主義 — 國家應做為「最後安全網」,而非把責任推回家庭。</p>
+      <h3>具體訴求</h3>
+      <ul class="stance-demands"><li>高風險家庭分級定義精準化(避免社工負擔過重 + 高風險家庭被迴避)</li>
+<li>家庭功能評估系統科學化</li>
+<li>經濟弱勢家庭兒少支持(隔代教養、新住民家庭、貧窮家庭)</li></ul>
+      <h3>論辯張力</h3>
+      <p class="stance-tension">保守派主張「家庭優先」 vs 民間主張「兒少在家庭內也是獨立權利主體」</p>
+    </div>
+
+    <div class="pi-partners">
+      <h3>民間夥伴 chorus</h3>
+      <ul class="partner-list"><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-22</span><span class="partner-title">兒少權法15年大修為何仍補不上剴剴案六大制度缺口？</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-02</span><span class="partner-title">臺灣未來帳戶4500億該怎麼花？國教盟提四大優化建議</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-01</span><span class="partner-title">兒童消失危機：為什麼200億幽靈預算救不了台灣的新生兒？</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-01</span><span class="partner-title">政府少子化政策為何無效？八年4,484億元為何救不了台灣生育率？</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2025-12-06</span><span class="partner-title">「生育·養育·教育—兒童成長需求總體檢」論壇</span></li><li class="partner"><span class="partner-status" style="color:#c62828">✗ 未採納</span><span class="partner-date">2024-05-08</span><span class="partner-title">勵友中心 安置兒少自立生活轉銜</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2024-04-25</span><span class="partner-title">兒少權利公約聯盟 兒少權法修法 22 團體聯合建議</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2024-01-25</span><span class="partner-title">全家盟 家長在兒少權法決策之代表性</span></li><li class="partner-more">…另 3 件,<a href="issues/PI-11.html">見議題詳情</a></li></ul>
+    </div>
+  </div>
+
+  <footer class="pi-foot">
+    <a href="issues/PI-11.html" class="btn">議題詳情 →</a>
+    <a href="timeline/PI-11.html" class="btn">政策軌跡 →</a>
+    <a href="crc-articles.html#PI-11" class="btn btn-soft">CRC 條文對應</a>
+  </footer>
+</article>
+<article class="pi-position" id="PI-12" data-pi="PI-12">
+  <header class="pi-head">
+    <span class="pi-code">PI-12</span>
+    <h2 class="pi-name">替代照顧與機構安置</h2>
+    <div class="pi-meta">
+      <span>10 倡議行動</span> ·
+      <span>10 民間夥伴</span> ·
+      <span class="pi-meta-status">採納:0 / 部分:5 / 未:1</span>
+    </div>
+  </header>
+
+  <div class="pi-body">
+    <div class="pi-stance">
+      <h3>AABE 主立場</h3>
+      <p class="stance-core">剴剴案六大缺口 — 替代照顧、寄養家庭、機構安置、收出養全鏈條改革。</p>
+      <h3>具體訴求</h3>
+      <ul class="stance-demands"><li>寄養家庭數擴增至每縣市 ≥ 100 戶(現多縣市嚴重不足)</li>
+<li>兒少安置機構評鑑公開、第三方查核</li>
+<li>收出養程序全程透明化、心理評估強化</li></ul>
+      <h3>論辯張力</h3>
+      <p class="stance-tension">衛福部主張「兒少權法 15 年大修已補」 vs 民間主張「制度補齊但配套人力、預算未到位」</p>
+    </div>
+
+    <div class="pi-partners">
+      <h3>民間夥伴 chorus</h3>
+      <ul class="partner-list"><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-22</span><span class="partner-title">兒少權法15年大修為何仍補不上剴剴案六大制度缺口？</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-17</span><span class="partner-title">從保證人地位法理到五大修法工程:台灣兒少保護體系如何重建?</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-17</span><span class="partner-title">從保證人地位法理到五大修法工程：台灣兒少保護體系如何重建？</span></li><li class="partner"><span class="partner-status" style="color:#666">○ 待回應</span><span class="partner-date">2026-04-17</span><span class="partner-title">剴剴案社工一審判刑後，台灣兒少保護制度該如何修補？</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2024-05-12</span><span class="partner-title">婦女救援基金會 兒少性侵案件友善偵查程序</span></li><li class="partner"><span class="partner-status" style="color:#c62828">✗ 未採納</span><span class="partner-date">2024-05-08</span><span class="partner-title">勵友中心 安置兒少自立生活轉銜</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2024-04-25</span><span class="partner-title">兒少權利公約聯盟 兒少權法修法 22 團體聯合建議</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2024-04-22</span><span class="partner-title">兒福聯盟 剴剴案後兒少保護網重建建議</span></li><li class="partner-more">…另 2 件,<a href="issues/PI-12.html">見議題詳情</a></li></ul>
+    </div>
+  </div>
+
+  <footer class="pi-foot">
+    <a href="issues/PI-12.html" class="btn">議題詳情 →</a>
+    <a href="timeline/PI-12.html" class="btn">政策軌跡 →</a>
+    <a href="crc-articles.html#PI-12" class="btn btn-soft">CRC 條文對應</a>
+  </footer>
+</article>
+<article class="pi-position" id="PI-13" data-pi="PI-13">
+  <header class="pi-head">
+    <span class="pi-code">PI-13</span>
+    <h2 class="pi-name">移民無國籍與失聯兒少</h2>
+    <div class="pi-meta">
+      <span>4 倡議行動</span> ·
+      <span>4 民間夥伴</span> ·
+      <span class="pi-meta-status">採納:0 / 部分:3 / 未:1</span>
+    </div>
+  </header>
+
+  <div class="pi-body">
+    <div class="pi-stance">
+      <h3>AABE 主立場</h3>
+      <p class="stance-core">移工子女、無國籍兒少、失聯移工兒少 — 教育權、健康權、身分權須跨部會整合。</p>
+      <h3>具體訴求</h3>
+      <ul class="stance-demands"><li>失聯移工兒少不得拒絕入學</li>
+<li>無國籍兒少臨時身分證件機制</li>
+<li>移工子女中文學習過渡機制</li></ul>
+      <h3>論辯張力</h3>
+      <p class="stance-tension">勞動部主張「移工權益優先處理」 vs 民間主張「兒少身分先於父母身分」</p>
+    </div>
+
+    <div class="pi-partners">
+      <h3>民間夥伴 chorus</h3>
+      <ul class="partner-list"><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2024-04-30</span><span class="partner-title">人權公約施行監督聯盟 CRC × ICCPR × CEDAW 交叉檢視</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2024-01-20</span><span class="partner-title">世界展望會台灣 弱勢兒少社區照顧網絡</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2023-08-15</span><span class="partner-title">原住民族青年陣線 原住民兒少語言文化權保障</span></li><li class="partner"><span class="partner-status" style="color:#c62828">✗ 未採納</span><span class="partner-date">2023-05-18</span><span class="partner-title">TIWA 移工子女教育權與居留身分</span></li></ul>
+    </div>
+  </div>
+
+  <footer class="pi-foot">
+    <a href="issues/PI-13.html" class="btn">議題詳情 →</a>
+    <a href="timeline/PI-13.html" class="btn">政策軌跡 →</a>
+    <a href="crc-articles.html#PI-13" class="btn btn-soft">CRC 條文對應</a>
+  </footer>
+</article>
+<article class="pi-position" id="PI-14" data-pi="PI-14">
+  <header class="pi-head">
+    <span class="pi-code">PI-14</span>
+    <h2 class="pi-name">LGBTQI+ 兒少</h2>
+    <div class="pi-meta">
+      <span>3 倡議行動</span> ·
+      <span>3 民間夥伴</span> ·
+      <span class="pi-meta-status">採納:0 / 部分:3 / 未:0</span>
+    </div>
+  </header>
+
+  <div class="pi-body">
+    <div class="pi-stance">
+      <h3>AABE 主立場</h3>
+      <p class="stance-core">LGBTQI+ 兒少校園支持系統 — 反對課綱下修、強化校園諮商可近性。</p>
+      <h3>具體訴求</h3>
+      <ul class="stance-demands"><li>校園 LGBTQI+ 友善諮商管道(避免被告知家長)</li>
+<li>性平教育課綱「多元性別」段落不下修</li>
+<li>跨性別兒少更名、衛生與運動環境友善</li></ul>
+      <h3>論辯張力</h3>
+      <p class="stance-tension">保守團體主張「家長知情權」 vs 民間主張「LGBTQI+ 兒少身心安全 + 同志熱線等諮商保密原則」</p>
+    </div>
+
+    <div class="pi-partners">
+      <h3>民間夥伴 chorus</h3>
+      <ul class="partner-list"><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2024-04-30</span><span class="partner-title">人權公約施行監督聯盟 CRC × ICCPR × CEDAW 交叉檢視</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2023-06-20</span><span class="partner-title">台灣關愛基金會 HIV 兒少非歧視教育</span></li><li class="partner"><span class="partner-status" style="color:#f57c00">◐ 部分採納</span><span class="partner-date">2022-08-30</span><span class="partner-title">同志熱線 LGBTQI+ 兒少校園支持系統倡議</span></li></ul>
+    </div>
+  </div>
+
+  <footer class="pi-foot">
+    <a href="issues/PI-14.html" class="btn">議題詳情 →</a>
+    <a href="timeline/PI-14.html" class="btn">政策軌跡 →</a>
+    <a href="crc-articles.html#PI-14" class="btn btn-soft">CRC 條文對應</a>
+  </footer>
+</article>
+</main>
+
+<footer class="foot">
+  <p>兒少人權監督平台(Child Rights Watch · AABE 國教行動聯盟)</p>
+  <p>本頁立場由 AABE 政策室統整,可隨議題進展更新。<a href="index.html">回首頁</a> · <a href="findings.html">關鍵發現</a> · <a href="timeline/index.html">政策軌跡</a></p>
+</footer>
+</body>
+</html>
