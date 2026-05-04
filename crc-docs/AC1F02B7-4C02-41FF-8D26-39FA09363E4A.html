@@ -62,6 +62,34 @@ footer a { color:rgba(255,255,255,0.85); }
 .toc-list a:hover { color:var(--brand);text-decoration:underline; }
 .body-content h2[id], .body-content h3[id] { scroll-margin-top:80px; }
 </style>
+
+<style media="print">
+/* Wave 135 print-friendly */
+nav, .v2-prev-next, .tl-prev-next, .l-prev-next, .v2-related, .v2-toc,
+.r-audience-switcher, .toc-box, .pdf-strip,
+[class*="banner"], div[style*="background:#0E2238"],
+.masthead, .ledger-ribbon, .role-selector, .side-nav,
+header.masthead, footer, .crumb, .login-modal, .matrix-pagehead,
+.pi-nav-section, .topic-index, .recent, .contact-section, .docs-section,
+.workbench, .chain-demo, .insider-banner, .mobile-toggle,
+.lang-switch, .search-bar, #login-modal, .role-buttons,
+.cta-strip, .pagination, #pagination, .docs-toolbar,
+.section-tabs, .matrix-tabs, .filter, .filter-bar, .toolbar,
+.sidebar, .docs-sidebar, button { display: none !important; }
+body { background: #fff !important; color: #000 !important; font-size: 11pt !important; max-width: none !important; padding: 0 !important; margin: 0 !important; }
+main, .v2-content, .crc-section, .body-content { max-width: none !important; padding: 0 !important; margin: 0 !important; box-shadow: none !important; border: 0 !important; }
+.v2-page-wrap { display: block !important; padding: 0 !important; }
+h1, h2, h3, h4 { color: #000 !important; page-break-after: avoid; }
+table { page-break-inside: avoid; }
+a { color: #000 !important; text-decoration: none !important; }
+a[href^="http"]::after, a[href^="https"]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #555; }
+@page { margin: 2cm; }
+.v2-pi-header { background: #fff !important; color: #000 !important; padding: 0 !important; margin: 0 0 16pt !important; border-bottom: 2pt solid #000; }
+.v2-pi-header h1 { color: #000 !important; }
+.v2-pi-header .v2-kicker { color: #000 !important; }
+.v2-pi-header .chip { border: 1px solid #000; background: #fff !important; color: #000 !important; padding: 1pt 4pt; }
+blockquote { border-left: 2pt solid #000 !important; background: #fff !important; padding: 4pt 8pt !important; }
+</style>
 </head>
 <body>
 <header class="masthead"><div class="masthead-inner">
