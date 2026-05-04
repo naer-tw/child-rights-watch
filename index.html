@@ -1688,32 +1688,31 @@ footer .credit {
       <aside class="docs-sidebar" aria-label="篩選條件">
         <div class="docs-sidebar-header">
           <span>篩選條件</span>
-          <button class="clear" type="button" onclick="this.closest('.docs-sidebar').querySelectorAll('input').forEach(i=>{if(i.type==='checkbox')i.checked=false;else i.value=''})">清除</button>
+          <button class="clear" type="button" id="docs-filter-clear">清除</button>
         </div>
 
         <h4>屆別</h4>
-        <label class="filter-row"><input type="checkbox" checked> 第一屆 (2017)</label>
-        <label class="filter-row"><input type="checkbox" checked> 第二屆 (2022)</label>
-        <label class="filter-row"><input type="checkbox" checked> 第三屆 (2025-26)</label>
+        <label class="filter-row"><input type="checkbox" class="docs-flt" data-fk="cycle" data-fv="1" checked> 第一次審查 (2017)</label>
+        <label class="filter-row"><input type="checkbox" class="docs-flt" data-fk="cycle" data-fv="2" checked> 第二次審查 (2022)</label>
+        <label class="filter-row"><input type="checkbox" class="docs-flt" data-fk="cycle" data-fv="3" checked> 第三次審查 (2026,進行中)</label>
 
         <h4>文件類型</h4>
-        <label class="filter-row"><input type="checkbox" checked><span class="swatch" style="background:#1F3D6B"></span>國家報告 (NR)<span class="count">3</span></label>
-        <label class="filter-row"><input type="checkbox" checked><span class="swatch" style="background:#2D7059"></span>結論性意見 (CO)<span class="count">3</span></label>
-        <label class="filter-row"><input type="checkbox" checked><span class="swatch" style="background:#C68822"></span>人權行動計畫 (NAP)<span class="count">2</span></label>
-        <label class="filter-row"><input type="checkbox" checked><span class="swatch" style="background:#4B2480"></span>民間影子報告<span class="count">42</span></label>
-        <label class="filter-row"><input type="checkbox"><span class="swatch" style="background:#EF4444"></span>議題前問題清單 (LOI)<span class="count">6</span></label>
-        <label class="filter-row"><input type="checkbox"><span class="swatch" style="background:#475569"></span>政府書面回應<span class="count">8</span></label>
+        <label class="filter-row"><input type="checkbox" class="docs-flt" data-fk="type" data-fv="shadow" checked><span class="swatch" style="background:#4B2480"></span>民間影子報告<span class="count" id="cnt-shadow">─</span></label>
+        <label class="filter-row"><input type="checkbox" class="docs-flt" data-fk="type" data-fv="advocacy" checked><span class="swatch" style="background:#1F3D6B"></span>AABE 倡議<span class="count" id="cnt-advocacy">─</span></label>
+        <label class="filter-row"><input type="checkbox" class="docs-flt" data-fk="type" data-fv="nap" checked><span class="swatch" style="background:#C68822"></span>NAP 行動<span class="count" id="cnt-nap">─</span></label>
+        <label class="filter-row"><input type="checkbox" class="docs-flt" data-fk="type" data-fv="co"><span class="swatch" style="background:#2D7059"></span>結論性意見<span class="count" id="cnt-co">─</span></label>
 
-        <h4>議題分類</h4>
+        <h4>議題分類(點選切換)</h4>
         <div class="filter-tag-row">
-          <span class="filter-tag active">替代照顧</span>
-          <span class="filter-tag">校園霸凌</span>
-          <span class="filter-tag">特殊教育</span>
-          <span class="filter-tag">心理健康</span>
-          <span class="filter-tag">性別平等</span>
-          <span class="filter-tag">數位權利</span>
-          <span class="filter-tag">表意權</span>
-          <span class="filter-tag">司法保護</span>
+          <span class="filter-tag docs-flt-tag" data-pi="">全部</span>
+          <span class="filter-tag docs-flt-tag" data-pi="PI-12">替代照顧</span>
+          <span class="filter-tag docs-flt-tag" data-pi="PI-01">校園霸凌</span>
+          <span class="filter-tag docs-flt-tag" data-pi="PI-04">特殊教育</span>
+          <span class="filter-tag docs-flt-tag" data-pi="PI-02">心理健康</span>
+          <span class="filter-tag docs-flt-tag" data-pi="PI-08">性別平等</span>
+          <span class="filter-tag docs-flt-tag" data-pi="PI-06">數位權利</span>
+          <span class="filter-tag docs-flt-tag" data-pi="PI-10">表意權</span>
+          <span class="filter-tag docs-flt-tag" data-pi="PI-05">司法保護</span>
         </div>
 
         <h4>提出單位(<span id="ngo-cnt">─</span>)</h4>
@@ -1725,13 +1724,13 @@ footer .credit {
           可看出該團體的倡議在歷屆 CO / NAP / NR 的採納路徑
         </p>
 
-        <h4>公約條文</h4>
-        <input type="text" class="filter-input" placeholder="例如:第 20 條(替代照顧)">
-
         <h4>採納狀態</h4>
-        <label class="filter-row"><input type="checkbox"><span class="swatch" style="background:var(--success)"></span>已採納</label>
-        <label class="filter-row"><input type="checkbox"><span class="swatch" style="background:#C68822"></span>部分採納</label>
-        <label class="filter-row"><input type="checkbox" checked><span class="swatch" style="background:var(--warning)"></span>未採納(優先)</label>
+        <label class="filter-row"><input type="checkbox" class="docs-flt" data-fk="status" data-fv="adopted" checked><span class="swatch" style="background:var(--success)"></span>已採納</label>
+        <label class="filter-row"><input type="checkbox" class="docs-flt" data-fk="status" data-fv="partially_adopted" checked><span class="swatch" style="background:#C68822"></span>部分採納</label>
+        <label class="filter-row"><input type="checkbox" class="docs-flt" data-fk="status" data-fv="not_adopted" checked><span class="swatch" style="background:var(--warning)"></span>未採納</label>
+        <label class="filter-row"><input type="checkbox" class="docs-flt" data-fk="status" data-fv="archived" checked><span class="swatch" style="background:var(--text-muted)"></span>歷史檔案</label>
+        <label class="filter-row"><input type="checkbox" class="docs-flt" data-fk="status" data-fv="draft" checked><span class="swatch" style="background:var(--brand)"></span>草稿</label>
+        <label class="filter-row"><input type="checkbox" class="docs-flt" data-fk="status" data-fv="pending" checked><span class="swatch" style="background:var(--institutional-light)"></span>追蹤中</label>
       </aside>
 
       <!-- 文件清單 -->
@@ -1756,89 +1755,89 @@ footer .credit {
         <div class="doc-list" id="doc-list">
         <!-- DOC-LIST-START -->
 
-          <a href="reports/Alternative_Report_v0.4_professional.html" class="doc-card featured-doc">
+          <a href="external-reports.html" class="doc-card featured-doc" data-issuer="AABE" data-cycle="2" data-year="2022" data-type="shadow" data-status="archived" data-topic="教育權,校園安全">
             <span class="doc-stripe" style="background:var(--aabe-gold)"></span>
             <div class="doc-body">
-              <div class="doc-pills"><span class="pill pill-aabe">⭐ AABE</span><span class="pill pill-shadow">民間影子報告</span><span class="pill pill-meta">2022</span><span class="pill pill-warn">CRC 第三屆審查</span></div>
-              <h3>國家教育行動聯盟 2022 CRC 民間影子報告</h3>
-              <div class="doc-issuer">提出:<span class="ngo-tag">國家教育行動聯盟</span></div>
+              <div class="doc-pills"><span class="pill pill-aabe">★ AABE 主導</span><span class="pill pill-shadow">民間影子報告</span><span class="pill pill-meta">2022 年 · CRC 第二次審查</span></div>
+              <h3>2022 國教行動聯盟 CRC 第 2 次國家報告民間影子報告</h3>
+              <div class="doc-issuer">提出:<span class="ngo-tag">國教行動聯盟(AABE)</span></div>
               <p class="doc-excerpt">CRC 第二次國際審查,國教盟延續 2017 倡議軸線,聚焦教育權與校園安全。</p>
-              <div class="doc-stats"><span>📄 78 頁</span> <span>34 點倡議</span> <span class="adoption-good">已採 14</span> <span class="adoption-mid">部分 11</span> <span class="adoption-bad">未採 9</span></div>
+              <div class="doc-stats"><span>78 頁 / 34 點倡議</span> <span class="adoption-good">已採 14</span> <span class="adoption-mid">部分 11</span> <span class="adoption-bad">未採 9</span> <span>採納率 73.5%</span></div>
             </div>
           </a>
 
-          <a href="#A-Blueprint_Gender_Equity_Education_Reform" class="doc-card">
+          <a href="reports/Alternative_Report_v0.4_professional.html" class="doc-card" data-issuer="AABE" data-cycle="3" data-year="2026" data-type="shadow" data-status="draft" data-topic="14 議題">
+            <span class="doc-stripe" style="background:var(--brand)"></span>
+            <div class="doc-body">
+              <div class="doc-pills"><span class="pill pill-aabe">★ AABE 主導</span><span class="pill pill-shadow">民間影子報告 v0.4 草稿</span><span class="pill pill-meta">2026 年 · CRC 第三次審查(進行中)</span><span class="pill pill-warn">草稿</span></div>
+              <h3>AABE CRC 第三次國家報告民間影子報告 v0.4(專業版)</h3>
+              <div class="doc-issuer">提出:<span class="ngo-tag">國教行動聯盟(AABE)</span> · 連署單位徵集中</div>
+              <p class="doc-excerpt">針對 14 議題、12 cluster 提出三軸評分(制度 / 結果 / 持續)。聚焦剴剴案六大缺口、青少年心理健康(自殺通報 +142%)、性平教育主軸應為健康教育、實驗教育偽實驗、淋病 +7×/梅毒 +53× 重啟性健康計畫等。</p>
+              <div class="doc-stats"><span>14 議題 · 12 cluster · 5 audience 版本</span> <span class="adoption-bad">優先級:極高</span></div>
+            </div>
+          </a>
+
+          <a href="index.html#A-Blueprint_Gender_Equity_Education_Reform" class="doc-card" data-issuer="AABE" data-cycle="3" data-year="2026" data-type="advocacy" data-status="pending" data-topic="政策白皮書(英文版)">
             <span class="doc-stripe" style="background:#1F3D6B"></span>
             <div class="doc-body">
-              <div class="doc-pills"><span class="pill pill-cycle">AABE 倡議</span><span class="pill pill-meta">待補</span></div>
+              <div class="doc-pills"><span class="pill pill-aabe">★ AABE</span><span class="pill pill-cycle">AABE 倡議</span><span class="pill pill-meta">待補</span></div>
               <h3>Gender Equity Education Reform Blueprint</h3>
-              <div class="doc-issuer">提出:<span class="ngo-tag">國教行動聯盟</span></div>
+              <div class="doc-issuer">提出:<span class="ngo-tag">國教行動聯盟(AABE)</span></div>
               <p class="doc-excerpt">**英文版政策白皮書**,可作為 CRC 第三次審查國際委員場次提交之**英文版材料**。</p>
-              <div class="doc-stats"><span style="color:var(--text-muted)">政策白皮書(英文版)</span></div>
+              <div class="doc-stats"><span style="color:var(--text-muted)">政策白皮書(英文版)</span> <span>狀態:追蹤中</span></div>
             </div>
           </a>
 
-          <a href="#A-2026-05-14_衛福部公聽會發言稿" class="doc-card">
+          <a href="index.html#A-2026-05-14_衛福部公聽會發言稿" class="doc-card" data-issuer="AABE" data-cycle="3" data-year="2026" data-type="advocacy" data-status="pending" data-topic="公聽會發言稿(Wave 66 定稿,日期預估)">
             <span class="doc-stripe" style="background:#1F3D6B"></span>
             <div class="doc-body">
-              <div class="doc-pills"><span class="pill pill-cycle">AABE 倡議</span><span class="pill pill-meta">2026-05-14</span></div>
+              <div class="doc-pills"><span class="pill pill-aabe">★ AABE</span><span class="pill pill-cycle">AABE 倡議</span><span class="pill pill-meta">2026-05-14</span></div>
               <h3>衛福部兒少權法修法草案公聽會發言稿(2026-05-14 預定)</h3>
-              <div class="doc-issuer">提出:<span class="ngo-tag">國教行動聯盟</span></div>
-              <p class="doc-excerpt"></p>
-              <div class="doc-stats"><span style="color:var(--text-muted)">公聽會發言稿(Wave 66 定稿,日期預估)</span></div>
+              <div class="doc-issuer">提出:<span class="ngo-tag">國教行動聯盟(AABE)</span></div>
+              <p class="doc-excerpt">—</p>
+              <div class="doc-stats"><span style="color:var(--text-muted)">公聽會發言稿(Wave 66 定稿,日期預估)</span> <span>狀態:追蹤中</span></div>
             </div>
           </a>
 
-          <a href="#A-2026-05-04_CRC第2輪審查_場次2_候選A_剴剴案_口語版" class="doc-card">
+          <a href="index.html#A-2026-05-04_CRC第2輪審查_場次2_候選A_剴剴案_口語版" class="doc-card" data-issuer="AABE" data-cycle="3" data-year="2026" data-type="advocacy" data-status="pending" data-topic="民間審查發言(代表照念用,雙軸審查框架)">
             <span class="doc-stripe" style="background:#1F3D6B"></span>
             <div class="doc-body">
-              <div class="doc-pills"><span class="pill pill-cycle">AABE 倡議</span><span class="pill pill-meta">2026-05-04</span></div>
+              <div class="doc-pills"><span class="pill pill-aabe">★ AABE</span><span class="pill pill-cycle">AABE 倡議</span><span class="pill pill-meta">2026-05-04</span></div>
               <h3>場次 2 候選 A — 剴剴案六大缺口(口語逐點版,雙軸審查框架,Wave 49 範本)</h3>
-              <div class="doc-issuer">提出:<span class="ngo-tag">國教行動聯盟</span></div>
-              <p class="doc-excerpt"></p>
-              <div class="doc-stats"><span style="color:var(--text-muted)">民間審查發言(代表照念用,雙軸審查框架)</span></div>
+              <div class="doc-issuer">提出:<span class="ngo-tag">國教行動聯盟(AABE)</span></div>
+              <p class="doc-excerpt">—</p>
+              <div class="doc-stats"><span style="color:var(--text-muted)">民間審查發言(代表照念用,雙軸審查框架)</span> <span>狀態:追蹤中</span></div>
             </div>
           </a>
 
-          <a href="#A-2026-05-04_CRC第2輪審查_場次2發言稿" class="doc-card">
-            <span class="doc-stripe" style="background:#1F3D6B"></span>
-            <div class="doc-body">
-              <div class="doc-pills"><span class="pill pill-cycle">AABE 倡議</span><span class="pill pill-meta">2026-05-04</span></div>
-              <h3>CRC 第三次國家報告第 2 輪民間審查場次 2 發言稿(5/4 上午,口語雙軸版)</h3>
-              <div class="doc-issuer">提出:<span class="ngo-tag">國教行動聯盟</span></div>
-              <p class="doc-excerpt"></p>
-              <div class="doc-stats"><span style="color:var(--text-muted)">民間審查發言(雙軸審查框架,代表照念用)</span></div>
-            </div>
-          </a>
-
-          <a href="external-reports.html" class="doc-card">
+          <a href="external-reports.html" class="doc-card" data-issuer="兒少權利公約聯盟 (CRRC)" data-cycle="2" data-year="2022" data-type="shadow" data-status="archived" data-topic="">
             <span class="doc-stripe" style="background:#4B2480"></span>
             <div class="doc-body">
-              <div class="doc-pills"><span class="pill pill-shadow">民間影子報告</span><span class="pill pill-meta">2022</span></div>
-              <h3>2022 台灣兒少權益聯合影子報告聯盟 CRC 影子報告</h3>
+              <div class="doc-pills"><span class="pill pill-shadow">民間影子報告(其他 NGO)</span><span class="pill pill-meta">2022 年 · CRC 第二次審查</span></div>
+              <h3>2022 台灣兒少權益聯合影子報告聯盟 CRC 第 2 次國家報告民間影子報告</h3>
               <div class="doc-issuer">提出:<span class="ngo-tag">台灣兒少權益聯合影子報告聯盟</span></div>
               <p class="doc-excerpt">CRC 第二次國際審查,台少盟召集 22 個民間團體共同提出聯合影子報告,涵蓋公約全部條文。系統性檢視全部公約條款。</p>
-              <div class="doc-stats"><span>156 點</span> <span class="adoption-good">已採 59</span> <span class="adoption-mid">部分 50</span> <span class="adoption-bad">未採 47</span></div>
+              <div class="doc-stats"><span>156 點倡議</span> <span class="adoption-good">已採 59</span> <span class="adoption-mid">部分 50</span> <span class="adoption-bad">未採 47</span> <span>採納率 69.9%</span></div>
             </div>
           </a>
 
-          <a href="external-reports.html" class="doc-card">
+          <a href="external-reports.html" class="doc-card" data-issuer="人約盟" data-cycle="2" data-year="2022" data-type="shadow" data-status="archived" data-topic="">
             <span class="doc-stripe" style="background:#4B2480"></span>
             <div class="doc-body">
-              <div class="doc-pills"><span class="pill pill-shadow">民間影子報告</span><span class="pill pill-meta">2022</span></div>
-              <h3>2022 人權公約施行監督聯盟 CRC 影子報告</h3>
+              <div class="doc-pills"><span class="pill pill-shadow">民間影子報告(其他 NGO)</span><span class="pill pill-meta">2022 年 · CRC 第二次審查</span></div>
+              <h3>2022 人權公約施行監督聯盟 CRC 第 2 次國家報告民間影子報告</h3>
               <div class="doc-issuer">提出:<span class="ngo-tag">人權公約施行監督聯盟</span></div>
               <p class="doc-excerpt">人權公約施行監督聯盟(人約盟)以「兩公約 × CRC 整合觀點」為主軸,聚焦兒少司法、難民、無國籍兒少等與 ICCPR 高度交集議題。</p>
-              <div class="doc-stats"><span>48 點</span> <span class="adoption-good">已採 12</span> <span class="adoption-mid">部分 18</span> <span class="adoption-bad">未採 18</span></div>
+              <div class="doc-stats"><span>48 點倡議</span> <span class="adoption-good">已採 12</span> <span class="adoption-mid">部分 18</span> <span class="adoption-bad">未採 18</span> <span>採納率 62.5%</span></div>
             </div>
           </a>
 
-          <a href="nap.html" class="doc-card">
+          <a href="nap.html" class="doc-card" data-issuer="NHRC" data-cycle="0" data-year="0" data-type="nap" data-status="--" data-topic="強化人權保障體制">
             <span class="doc-stripe" style="background:#C68822"></span>
             <div class="doc-body">
-              <div class="doc-pills"><span class="pill pill-nap">第 2 期 NAP</span><span class="pill pill-meta">--</span></div>
-              <h3>於國家人權委員會內設立兒少權利專責單位</h3>
-              <div class="doc-issuer">主辦機關:NHRC · 主題:強化人權保障體制</div>
+              <div class="doc-pills"><span class="pill pill-nap">NAP 第 2 期</span><span class="pill pill-meta">政府自評:--</span></div>
+              <h3>國家人權行動計畫 · 強化人權保障體制 · 行動 NAP2-01-NHRC-專責單位</h3>
+              <div class="doc-issuer">主辦機關:<span class="ngo-tag">NHRC</span></div>
               <p class="doc-excerpt">於國家人權委員會內設立兒少權利專責單位</p>
               <div class="doc-stats"><span>政府自評:--</span></div>
             </div>
@@ -2312,7 +2311,7 @@ window.FILTERS_DATA = {
   "ngos": [
     {
       "code": "ngo-aabe",
-      "name": "國家教育行動聯盟",
+      "name": "國教行動聯盟",
       "short": "AABE",
       "role": "lead",
       "topics": "教育權 / 校園安全 / 性平教育"
@@ -2909,7 +2908,7 @@ window.FILTERS_DATA = {
     ]
   },
   "meta": {
-    "generated_at": "2026-05-04T09:15:13",
+    "generated_at": "2026-05-04T09:29:26",
     "ngo_total": 44,
     "agency_total": 21
   }
@@ -3115,6 +3114,115 @@ function applyFilters() {
   if (type) params.set('type', type);
   location.href = 'search.html' + (params.toString() ? '?' + params : '');
 }
+
+/* ============================================================
+   docs-section 篩選 sidebar — client-side filter
+   點 checkbox / 議題 tag / 提出單位 select → toggle doc-card 顯示
+   ============================================================ */
+(function() {
+  const docList = document.getElementById('doc-list');
+  if (!docList) return;
+
+  function applyDocsFilter() {
+    const cards = docList.querySelectorAll('.doc-card');
+    // 收集每個 filter 維度之 selected values
+    const cycleSet = new Set();
+    const typeSet = new Set();
+    const statusSet = new Set();
+    document.querySelectorAll('.docs-flt:checked').forEach(c => {
+      const k = c.dataset.fk; const v = c.dataset.fv;
+      if (k === 'cycle') cycleSet.add(v);
+      else if (k === 'type') typeSet.add(v);
+      else if (k === 'status') statusSet.add(v);
+    });
+    // 議題 tag
+    const activeTag = document.querySelector('.docs-flt-tag.active');
+    const tagPI = activeTag ? activeTag.dataset.pi : '';
+    // 提出單位
+    const issuerSel = document.getElementById('docs-issuer-select');
+    const issuerVal = issuerSel ? issuerSel.value : '';
+    // 找到對應的 NGO short(從 FILTERS_DATA)
+    let issuerName = '';
+    if (issuerVal && window.FILTERS_DATA) {
+      const ngo = (window.FILTERS_DATA.ngos || []).find(n => n.code === issuerVal);
+      if (ngo) issuerName = ngo.short || ngo.name;
+    }
+
+    let visible = 0;
+    cards.forEach(card => {
+      const dCycle = card.dataset.cycle || '';
+      const dType = card.dataset.type || '';
+      const dStatus = card.dataset.status || '';
+      const dIssuer = card.dataset.issuer || '';
+      const dTopic = card.dataset.topic || '';
+
+      let show = true;
+      // cycle:0 表示 NAP / 跨屆,永遠顯示(若有勾任一)
+      if (cycleSet.size && dCycle !== '0' && !cycleSet.has(dCycle)) show = false;
+      if (typeSet.size && !typeSet.has(dType)) show = false;
+      if (statusSet.size && !statusSet.has(dStatus)) show = false;
+      if (tagPI && !dTopic.includes(tagPI) && !dTopic.includes(({
+        'PI-12':'替代照顧','PI-01':'校園霸凌','PI-04':'特殊教育','PI-02':'心理健康',
+        'PI-08':'性別平等','PI-06':'數位','PI-10':'表意','PI-05':'司法',
+      })[tagPI] || '')) show = false;
+      if (issuerName && dIssuer !== issuerName && dIssuer !== 'AABE') {
+        // 若選 NGO,只顯示該 NGO 的;AABE 自家的若選 NGO != AABE 也排除
+        if (issuerName !== 'AABE' && dIssuer !== issuerName) show = false;
+      }
+      if (issuerVal === 'ngo-aabe' && dIssuer !== 'AABE') show = false;
+
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+
+    // 更新 toolbar 之顯示筆數
+    const cnt = document.querySelector('.docs-toolbar .count-info b');
+    if (cnt) cnt.textContent = visible;
+    // 若全部被過濾掉,顯示提示
+    let empty = document.getElementById('doc-list-empty');
+    if (!empty) {
+      empty = document.createElement('div');
+      empty.id = 'doc-list-empty';
+      empty.style.cssText = 'padding:32px;text-align:center;color:var(--text-muted);background:var(--bg-alt);border-radius:6px;font-size:14px';
+      docList.appendChild(empty);
+    }
+    empty.textContent = visible === 0 ? '無符合條件的文件 — 請調整左側篩選條件' : '';
+    empty.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  // 綁所有 docs-flt checkbox
+  document.querySelectorAll('.docs-flt').forEach(c => {
+    c.addEventListener('change', applyDocsFilter);
+  });
+  // 議題 tag 點擊 toggle(單選)
+  document.querySelectorAll('.docs-flt-tag').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.docs-flt-tag').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      applyDocsFilter();
+    });
+  });
+  // 預設「全部」為 active
+  const allTag = document.querySelector('.docs-flt-tag[data-pi=""]');
+  if (allTag) allTag.classList.add('active');
+  // 提出單位 select
+  const issuerSel = document.getElementById('docs-issuer-select');
+  if (issuerSel) issuerSel.addEventListener('change', applyDocsFilter);
+  // 公約條文 input(模糊搜尋 — 暫時 noop)
+  // 清除按鈕
+  const clearBtn = document.getElementById('docs-filter-clear');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      document.querySelectorAll('.docs-flt').forEach(c => c.checked = true);
+      document.querySelectorAll('.docs-flt-tag').forEach(t => t.classList.remove('active'));
+      if (allTag) allTag.classList.add('active');
+      if (issuerSel) issuerSel.value = '';
+      applyDocsFilter();
+    });
+  }
+  // 初次套用
+  setTimeout(applyDocsFilter, 50);
+})();
 </script>
 
 </body>

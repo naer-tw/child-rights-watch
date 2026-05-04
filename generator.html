@@ -3019,10 +3019,10 @@ window.MATRIX_DATA = {
 
     let draft = `# 影子報告草稿 — ${audienceLabel}\n\n`;
     draft += `**草擬日期**:${today}\n`;
-    draft += `**提出單位**:國家教育行動聯盟(AABE)\n`;
+    draft += `**提出單位**:國教行動聯盟(AABE)\n`;
     draft += `**涵蓋議題**:${issueRefs}\n`;
     draft += `**版本**:v0.1 草稿(產生器自動產出,需人工審稿)\n\n`;
-    draft += `---\n\n## 一、概述\n\n本報告依據兒童權利公約第 44 條第 6 項由國家教育行動聯盟(以下簡稱 AABE)提出,針對中華民國(臺灣)第三次國家報告所未充分檢討之以下議題提供補充與質疑:${issueRefs},供國際審查委員會審查參考。\n\n`;
+    draft += `---\n\n## 一、概述\n\n本報告依據兒童權利公約第 44 條第 6 項由國教行動聯盟(以下簡稱 AABE)提出,針對中華民國(臺灣)第三次國家報告所未充分檢討之以下議題提供補充與質疑:${issueRefs},供國際審查委員會審查參考。\n\n`;
 
     state.evidences.forEach((e, i) => {
       const arts = (PI_ARTICLES[e.issue] || []).join('、');
