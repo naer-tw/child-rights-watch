@@ -1675,9 +1675,12 @@ footer .credit {
       <span class="meta">三屆國家報告 / 結論性意見 / NAP / 民間影子報告 · 共 <b>142</b> 份</span>
     </div>
 
-    <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: var(--space-4); max-width: 760px;">
+    <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: var(--space-3); max-width: 760px;">
       可按 <strong style="color: var(--brand)">提出單位</strong>(國教盟 / 台少盟 / 勵馨 / 家扶 / 人本 等)、屆別、條文、議題交叉篩選 — 看出每個民間團體的倡議與政府採納關係。
     </p>
+    <div style="background:var(--warning-soft);border:1px solid #E8C998;border-left:3px solid #C68822;border-radius:4px;padding:10px 14px;font-size:12.5px;color:#6B3416;line-height:1.55;margin-bottom:var(--space-4);max-width:760px">
+      <strong>NGO 資料涵蓋度</strong>:平台 directory 收錄 <strong id="ngo-dir-total">─</strong> 個團體,目前已有實際倡議 / 影子報告資料的 <strong id="ngo-covered-cnt">─</strong> 個(下拉選單 ⓘ 標記者)。其餘團體之歷史立場 AABE 內部正陸續補建,選擇後可能無資料。
+    </div>
 
     <div class="docs-grid">
 
@@ -1756,11 +1759,11 @@ footer .credit {
           <a href="reports/Alternative_Report_v0.4_professional.html" class="doc-card featured-doc">
             <span class="doc-stripe" style="background:var(--aabe-gold)"></span>
             <div class="doc-body">
-              <div class="doc-pills"><span class="pill pill-aabe"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" style="vertical-align:-0.15em;display:inline-block;color:var(--aabe-gold)"><polygon points="12 2 15 8.5 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 9 8.5"/></svg> AABE</span><span class="pill pill-shadow">民間影子報告</span><span class="pill pill-meta">2022</span><span class="pill pill-warn">CRC 第三屆審查</span></div>
+              <div class="doc-pills"><span class="pill pill-aabe">⭐ AABE</span><span class="pill pill-shadow">民間影子報告</span><span class="pill pill-meta">2022</span><span class="pill pill-warn">CRC 第三屆審查</span></div>
               <h3>國家教育行動聯盟 2022 CRC 民間影子報告</h3>
               <div class="doc-issuer">提出:<span class="ngo-tag">國家教育行動聯盟</span></div>
               <p class="doc-excerpt">CRC 第二次國際審查,國教盟延續 2017 倡議軸線,聚焦教育權與校園安全。</p>
-              <div class="doc-stats"><span><svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.15em;display:inline-block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> 78 頁</span> <span>34 點倡議</span> <span class="adoption-good">已採 14</span> <span class="adoption-mid">部分 11</span> <span class="adoption-bad">未採 9</span></div>
+              <div class="doc-stats"><span>📄 78 頁</span> <span>34 點倡議</span> <span class="adoption-good">已採 14</span> <span class="adoption-mid">部分 11</span> <span class="adoption-bad">未採 9</span></div>
             </div>
           </a>
 
@@ -2771,6 +2774,10 @@ window.FILTERS_DATA = {
       "n": 30
     },
     {
+      "action_type": "民間政策建議書(由 AABE 平台補建記錄)",
+      "n": 12
+    },
+    {
       "action_type": "民間審查發言(雙軸審查框架,代表照念用)",
       "n": 3
     },
@@ -2850,7 +2857,10 @@ window.FILTERS_DATA = {
   "years": [
     "待補",
     "2026",
-    "2025"
+    "2025",
+    "2024",
+    "2023",
+    "2022"
   ],
   "counts": {
     "issues": 14,
@@ -2858,12 +2868,32 @@ window.FILTERS_DATA = {
     "nap": 17,
     "laws": 15,
     "amendments": 42,
-    "advocacy": 52,
+    "advocacy": 64,
     "cases": 4,
-    "external_reports": 7
+    "external_reports": 12,
+    "ngos_covered": 17,
+    "ngos_covered_list": [
+      "AABE",
+      "TIWA",
+      "世展會",
+      "人本",
+      "人約盟",
+      "伊甸",
+      "兒少權利公約聯盟 (CRRC)",
+      "兒福聯盟",
+      "勵馨",
+      "台少盟",
+      "台權會",
+      "同志熱線",
+      "家扶",
+      "廢死聯盟",
+      "心路",
+      "民間司改會",
+      "董氏"
+    ]
   },
   "meta": {
-    "generated_at": "2026-05-04T08:58:33",
+    "generated_at": "2026-05-04T09:05:53",
     "ngo_total": 44,
     "agency_total": 21
   }
@@ -2971,19 +3001,33 @@ window.FILTERS_DATA = {
     if (cnt) cnt.textContent = docTypes.length + (F.action_types || []).length;
   }
 
+  // ── NGO 涵蓋度(已有資料的 NGO 加 ⓘ 標記)
+  const coveredSet = new Set((F.counts && F.counts.ngos_covered_list) || []);
+  function ngoCovered(n) {
+    return coveredSet.has(n.short) || coveredSet.has(n.name) || (n.code === 'ngo-aabe');
+  }
+
+  // 填頂部 disclaimer 數字
+  const dirTotal = $('ngo-dir-total');
+  const covCnt = $('ngo-covered-cnt');
+  if (dirTotal) dirTotal.textContent = (F.ngos || []).length;
+  if (covCnt) covCnt.textContent = coveredSet.size;
+
   // ── 文件資料庫 sidebar 之「提出單位」(8 → 完整 NGO + 政府)
   const docsIssuer = $('docs-issuer-select');
   if (docsIssuer) {
     docsIssuer.innerHTML = '';
     const all = document.createElement('option');
-    all.value = ''; all.textContent = '所有單位';
+    all.value = '';
+    all.textContent = `所有單位(${(F.ngos || []).length} 團體中 ${coveredSet.size} 已收資料)`;
     docsIssuer.appendChild(all);
 
     // AABE 釘最上(featured)
     const aabe = (F.ngos || []).find(n => n.code === 'ngo-aabe');
     if (aabe) {
       const o = document.createElement('option');
-      o.value = aabe.code; o.textContent = '<svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" style="vertical-align:-0.15em;display:inline-block;color:var(--aabe-gold)"><polygon points="12 2 15 8.5 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 9 8.5"/></svg> ' + aabe.name + ' (AABE)';
+      o.value = aabe.code;
+      o.textContent = '★ ' + aabe.name + ' (AABE) ⓘ';
       o.selected = true;
       docsIssuer.appendChild(o);
     }
@@ -3013,7 +3057,7 @@ window.FILTERS_DATA = {
       list.forEach(n => {
         const o = document.createElement('option');
         o.value = n.code;
-        o.textContent = n.short || n.name;
+        o.textContent = (n.short || n.name) + (ngoCovered(n) ? ' ⓘ' : '');
         og.appendChild(o);
       });
       docsIssuer.appendChild(og);
