@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>使用手冊 — 兒少人權監督平台</title>
+<meta name="description" content="兒少人權監督平台使用手冊:6 個倡議者常見場景、16 個模塊功能說明、進階技巧、FAQ。">
+<meta property="og:title" content="使用手冊 — 兒少人權監督平台">
+<meta property="og:description" content="從「我要做什麼」開始 — 場景速查 + 模塊一覽 + 進階技巧。">
+<meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630'%3E%3Crect width='1200' height='630' fill='%230E2238'/%3E%3Ctext x='600' y='320' fill='%23FAFAF7' font-family='Noto Serif TC,serif' font-size='72' font-weight='900' text-anchor='middle'%3E使用手冊%3C/text%3E%3Ctext x='600' y='400' fill='%23B5371F' font-family='Noto Serif TC,serif' font-size='34' text-anchor='middle'%3E16 模塊 · 6 場景 · 倡議者必備%3C/text%3E%3Ctext x='600' y='480' fill='%238B6F50' font-family='Inter,sans-serif' font-size='22' font-weight='700' text-anchor='middle' letter-spacing='4'%3ECHILD RIGHTS WATCH · AABE%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="mobile-fixes.css?v4">
+<style>
+:root {
+  --bg:#FAFAF7; --bg-soft:#F1EFEA; --bg-deep:#0E2238;
+  --brand:#B5371F; --brand-soft:#fff8f5; --gold:#8B6F50;
+  --text:#1F1F1F; --muted:#5A5A5A; --line:#E5E1D8;
+  --success:#2D5F3E; --warning:#A03032;
+}
+*{box-sizing:border-box}
+body { font-family:"Noto Sans TC","PingFang TC",sans-serif; margin:0;
+       background:var(--bg); color:var(--text); line-height:1.7 }
+a { color:var(--brand); text-decoration:none }
+a:hover { text-decoration:underline }
+.skip { position:absolute;left:-9999px }
+.skip:focus { left:8px;top:8px;background:#fff;padding:6px 10px;border:2px solid var(--brand);z-index:99 }
+
+.topbar { background:var(--bg-deep); color:#fff; padding:10px 20px; font-size:13px;
+         display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;
+         border-bottom:3px solid var(--brand) }
+.topbar a { color:rgba(255,255,255,0.85) }
+.topbar a:hover { color:#fff }
+.topbar .brand { display:inline-flex; align-items:center; gap:8px }
+.topbar .brand strong { color:#fff; font-family:"Noto Serif TC",serif }
+.topbar .brand small { color:rgba(255,255,255,0.5); font-family:Inter,sans-serif; font-size:11px;
+                       letter-spacing:.06em; text-transform:uppercase; margin-left:4px }
+.topbar nav { display:inline-flex; gap:14px; font-size:12.5px; flex-wrap:wrap }
+.wrap { max-width:1080px; margin:0 auto; padding:32px 20px 80px }
+
+/* HERO */
+.hero { background:linear-gradient(135deg,#fff 0%,var(--bg-soft) 100%);
+       padding:36px 32px; border-radius:14px; border-left:5px solid var(--brand);
+       margin-bottom:28px }
+.hero .kicker { font-family:Inter,sans-serif; font-size:12px; font-weight:700;
+                color:var(--gold); letter-spacing:.1em; text-transform:uppercase }
+.hero h1 { font-family:"Noto Serif TC",serif; font-size:34px; margin:6px 0 14px;
+           color:var(--bg-deep); font-weight:900; line-height:1.2 }
+.hero p { font-size:16px; color:var(--text); max-width:720px; margin:0 0 12px }
+.hero .quick-bar { display:flex; gap:10px; flex-wrap:wrap; margin-top:18px }
+.hero .quick-bar a { background:var(--bg-deep); color:#fff; padding:9px 18px; border-radius:6px;
+                     font-size:13.5px; font-weight:600 }
+.hero .quick-bar a:hover { background:var(--brand); text-decoration:none }
+.hero .quick-bar a.alt { background:#fff; color:var(--bg-deep); border:1px solid var(--line) }
+
+/* 段落 */
+section { margin:36px 0 }
+section h2 { font-family:"Noto Serif TC",serif; font-size:24px; color:var(--bg-deep);
+             margin:0 0 6px; font-weight:900; display:flex; align-items:center; gap:10px }
+section h2 .h-num { font-family:Inter,sans-serif; font-size:14px; color:var(--gold);
+                    background:#fff; border:1px solid var(--gold); padding:3px 10px;
+                    border-radius:12px; letter-spacing:.06em }
+section .lede { font-size:14.5px; color:var(--muted); margin:0 0 18px; max-width:720px }
+
+/* 場景卡 */
+.scenario-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+                 gap:14px }
+.scenario { background:#fff; border:1px solid var(--line); border-top:4px solid var(--brand);
+            border-radius:10px; padding:20px 22px; transition:all .15s }
+.scenario:hover { transform:translateY(-2px); box-shadow:0 8px 18px rgba(0,0,0,0.08) }
+.scenario .sc-icon { font-size:28px; margin-bottom:6px; line-height:1 }
+.scenario h3 { font-family:"Noto Serif TC",serif; font-size:18px; margin:4px 0 8px;
+               color:var(--bg-deep); font-weight:700 }
+.scenario .sc-time { font-family:Inter,sans-serif; font-size:11.5px; color:var(--gold);
+                    font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+                    margin-bottom:8px }
+.scenario p { font-size:13.5px; color:var(--text); line-height:1.6; margin:0 0 12px }
+.scenario .sc-steps { font-size:13px; color:var(--muted); margin:0; padding-left:18px }
+.scenario .sc-steps li { margin-bottom:3px }
+.scenario .sc-link { display:inline-block; margin-top:12px; font-size:13px; color:var(--brand);
+                    font-weight:600 }
+
+/* 模塊卡 */
+.module-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+               gap:14px }
+.module { background:#fff; border:1px solid var(--line); border-radius:8px;
+         padding:18px 20px; transition:all .15s; display:flex; flex-direction:column; gap:6px }
+.module:hover { transform:translateY(-2px); box-shadow:0 6px 14px rgba(0,0,0,0.07) }
+.module.priority { border-top:4px solid var(--brand) }
+.module.tool { border-top:4px solid var(--gold) }
+.module.research { border-top:4px solid var(--bg-deep) }
+.module-head { display:flex; justify-content:space-between; align-items:flex-start; gap:8px }
+.module-name { font-family:"Noto Serif TC",serif; font-size:16.5px; font-weight:700;
+              color:var(--bg-deep); line-height:1.3 }
+.module-tag { font-family:Inter,sans-serif; font-size:10px; font-weight:700;
+             letter-spacing:.06em; padding:2px 7px; border-radius:8px; flex-shrink:0;
+             text-transform:uppercase }
+.module-tag.must { background:var(--brand); color:#fff }
+.module-tag.tool { background:var(--gold); color:#fff }
+.module-tag.research { background:var(--bg-deep); color:#fff }
+.module-tag.tool-internal { background:#5C2A7E; color:#fff }
+.module-desc { font-size:13.5px; color:var(--text); line-height:1.55 }
+.module-when { font-size:12.5px; color:var(--muted); padding:8px 10px;
+              background:var(--bg-soft); border-radius:5px; line-height:1.5 }
+.module-when strong { color:var(--bg-deep) }
+.module-link { font-size:13px; color:var(--brand); font-weight:600; margin-top:auto }
+
+/* 表格 */
+.compact-table { width:100%; border-collapse:collapse; font-size:13.5px; background:#fff;
+                 border-radius:8px; overflow:hidden; border:1px solid var(--line) }
+.compact-table th { background:var(--bg-soft); padding:10px 12px; text-align:left;
+                    font-weight:700; color:var(--bg-deep); border-bottom:1px solid var(--line) }
+.compact-table td { padding:10px 12px; border-bottom:1px solid var(--bg-soft) }
+.compact-table tr:last-child td { border-bottom:0 }
+.compact-table code { background:var(--bg-soft); padding:1px 6px; border-radius:3px;
+                      font-family:Inter,monospace; font-size:12px }
+
+/* FAQ */
+.faq { background:#fff; border:1px solid var(--line); border-radius:8px;
+       padding:6px 18px; margin-bottom:8px }
+.faq summary { cursor:pointer; font-weight:600; padding:12px 0; color:var(--bg-deep);
+              font-size:14.5px }
+.faq summary:hover { color:var(--brand) }
+.faq[open] summary { border-bottom:1px solid var(--line); margin-bottom:8px;
+                    color:var(--brand) }
+.faq p { font-size:13.5px; color:var(--text); line-height:1.65; margin:8px 0 14px }
+.faq ul { font-size:13.5px; padding-left:20px }
+.faq code { background:var(--bg-soft); padding:1px 6px; border-radius:3px;
+           font-family:Inter,monospace; font-size:12px }
+
+/* 進階小卡 */
+.tip-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px }
+.tip { background:linear-gradient(135deg,#fff 0%,var(--bg-soft) 100%);
+      border-left:3px solid var(--gold); padding:14px 16px; border-radius:0 6px 6px 0;
+      font-size:13px; line-height:1.6 }
+.tip strong { color:var(--bg-deep); display:block; margin-bottom:4px;
+              font-family:"Noto Serif TC",serif; font-size:14px }
+.tip code { background:#fff; padding:1px 5px; border-radius:3px;
+           font-family:Inter,monospace; font-size:12px; border:1px solid var(--line) }
+
+/* footer */
+footer.foot { background:var(--bg-deep); color:rgba(255,255,255,0.75); padding:28px 20px;
+              margin-top:48px; font-size:13px; text-align:center }
+footer.foot a { color:rgba(255,255,255,0.85) }
+
+@media (max-width: 760px) {
+  .hero { padding:24px 22px }
+  .hero h1 { font-size:25px }
+  .hero p { font-size:14.5px }
+  section h2 { font-size:20px }
+  .scenario, .module { padding:16px 18px }
+  .compact-table { font-size:12.5px }
+  .compact-table th, .compact-table td { padding:8px 10px }
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">跳至主要內容</a>
+
+<div class="topbar">
+  <a class="brand" href="index.html">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8B6F50" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <strong>兒少人權監督平台</strong>
+    <small>Child Rights Watch · AABE</small>
+  </a>
+  <nav>
+    <a href="index.html">← 回首頁</a>
+    <a href="briefs/index.html">★ 倡議者快查卡</a>
+    <a href="positions.html">14 議題立場</a>
+    <a href="search.html">全平台搜尋</a>
+  </nav>
+</div>
+
+<main id="main" class="wrap">
+  <section class="hero">
+    <div class="kicker">USER GUIDE · 使用手冊</div>
+    <h1>第一次來?從你「要做什麼」開始</h1>
+    <p>本平台不是給你慢慢讀完的資料庫,而是讓你在 <strong>2 分鐘內找到你需要的東西</strong> 的工具箱。
+    底下分三層:① 你常見的 6 個倡議任務,② 16 個模塊每個是做什麼的,③ 進階技巧與 FAQ。</p>
+    <div class="quick-bar">
+      <a href="#scenarios">先看 6 個常見場景 →</a>
+      <a href="#modules" class="alt">看完整模塊清單</a>
+      <a href="#faq" class="alt">常見問題</a>
+    </div>
+  </section>
+
+  <!-- 6 個常見場景 -->
+  <section id="scenarios">
+    <h2><span class="h-num">PART 1</span>6 個常見倡議任務,推薦這樣用</h2>
+    <p class="lede">每個情境寫的是「現實中你正在做什麼 → 平台幫你 30 秒搞定哪一步」。從這六張卡開始,大概可以涵蓋 80% 的日常。</p>
+
+    <div class="scenario-grid">
+
+      <article class="scenario">
+        <div class="sc-icon">📋</div>
+        <div class="sc-time">2 分鐘 · 拜會前</div>
+        <h3>立委辦公室拜會 / 助理 brief</h3>
+        <p>明天要見 OO 立委助理,談「兒少權法修法」。需要在路上 5 分鐘掌握:AABE 主立場、3 個必引數據、最強 ASK。</p>
+        <ol class="sc-steps">
+          <li>打開 <strong>倡議者快查卡</strong>,點對應議題(例 PI-12 替代照顧)</li>
+          <li>截圖或按「🖨 列印 / 存 PDF」帶在身上</li>
+          <li>記住 1 句立場 + 3 個 ASK = 結束</li>
+        </ol>
+        <a class="sc-link" href="briefs/index.html">→ 開啟倡議者快查卡</a>
+      </article>
+
+      <article class="scenario">
+        <div class="sc-icon">🎤</div>
+        <div class="sc-time">30 秒 · 媒體採訪</div>
+        <h3>記者突然來電要 quote</h3>
+        <p>記者問:「你們對 OO 議題立場是什麼?有沒有可引用的數據?」需要立刻找到一句可登報的 quote。</p>
+        <ol class="sc-steps">
+          <li>開 <strong>全平台搜尋</strong>,輸入記者問的關鍵字(例:剴剴、體罰、自殺)</li>
+          <li>看「議題卡」+「AABE 倡議」結果</li>
+          <li>從快查卡的「3 個可引述名言」直接念給記者</li>
+        </ol>
+        <a class="sc-link" href="search.html">→ 全平台搜尋</a>
+      </article>
+
+      <article class="scenario">
+        <div class="sc-icon">🏛</div>
+        <div class="sc-time">5 分鐘 · 公聽會</div>
+        <h3>公聽會 5 分鐘發言</h3>
+        <p>立法院明天公聽會排你發言 5 分鐘。需要結構:現況 → 證據 → AABE 主張 → ASK,還要有對方論點的回應準備。</p>
+        <ol class="sc-steps">
+          <li>開 <strong>議題立場頁</strong> 找對應 PI 的「論辯張力」</li>
+          <li>用 <strong>快查卡</strong> 的「對方論點 vs 我方回應」做防守</li>
+          <li>到 <strong>政策軌跡</strong> 找最近的政府行動 / 案件 timeline</li>
+        </ol>
+        <a class="sc-link" href="positions.html">→ 14 議題立場</a>
+      </article>
+
+      <article class="scenario">
+        <div class="sc-icon">📰</div>
+        <div class="sc-time">30 分鐘 · 寫稿</div>
+        <h3>寫新聞稿 / 政策建議書</h3>
+        <p>要產出一份 800 字新聞稿或 3 頁政策建議書,需要 ≥ 3 個來源(政府/學術/國際)、CRC 條文對應、AABE 歷史立場。</p>
+        <ol class="sc-steps">
+          <li>用 <strong>CRC 條文反向索引</strong> 確認對應條號</li>
+          <li>用 <strong>關鍵發現</strong> 抓平台級數據(議題負荷 / 採納率 / 惡化趨勢)</li>
+          <li>用 <strong>民間影子報告</strong> 補 NGO 觀點</li>
+          <li>引用就用 <strong>快查卡</strong> 的 quotable</li>
+        </ol>
+        <a class="sc-link" href="findings.html">→ 平台關鍵發現</a>
+      </article>
+
+      <article class="scenario">
+        <div class="sc-icon">🎓</div>
+        <div class="sc-time">1 小時 · 議題研究</div>
+        <h3>研究員 / 學生做議題研究</h3>
+        <p>第一次接觸 OO 兒少議題,需要從零開始:這議題在台灣怎麼回事?CRC 怎麼說?歷年政策怎麼走?</p>
+        <ol class="sc-steps">
+          <li>從 <strong>議題地圖</strong> 找對應 PI</li>
+          <li>進 <strong>議題詳情頁</strong> 讀完整 10 章節(成人版+兒少版)</li>
+          <li>用 <strong>政策軌跡</strong> 看 1984-2027 重大事件 timeline</li>
+          <li>跨週期比較看 CRC 1/2/3 屆審查進度</li>
+        </ol>
+        <a class="sc-link" href="map.html">→ 議題地圖</a>
+      </article>
+
+      <article class="scenario">
+        <div class="sc-icon">🌐</div>
+        <div class="sc-time">2 分鐘 · 國際對接</div>
+        <h3>國際審查 / 跨平台分析</h3>
+        <p>要寫雙語 Alternative Report,或要看 CRC × CRPD × CEDAW 在 OO 議題上的交叉觀點。</p>
+        <ol class="sc-steps">
+          <li>用 <strong>三公約共構搜尋</strong>(右上角 🌐 按鈕)做跨公約查詢</li>
+          <li>從 <strong>影子報告</strong> 取 5 audience 版本(專業/媒體/兒少/立法/社會)</li>
+          <li>到 <strong>跨週期比較</strong> 看屆別進度</li>
+        </ol>
+        <a class="sc-link" href="cross-platform-search.html">→ 三公約搜尋</a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- 模塊清單 -->
+  <section id="modules">
+    <h2><span class="h-num">PART 2</span>16 個模塊各做什麼?</h2>
+    <p class="lede">紅頂 = 倡議者必用,金頂 = 內部工作工具,深藍頂 = 研究分析。每張卡告訴你「是什麼 / 何時用 / 點哪裡」。</p>
+
+    <div class="module-grid">
+
+      <article class="module priority">
+        <div class="module-head">
+          <div class="module-name">★ 倡議者快查卡</div>
+          <span class="module-tag must">必用</span>
+        </div>
+        <div class="module-desc">14 議題各一張 A4 1-pager,含 AABE 立場 + 3 必引數據 + 3 可引名言 + 對話劇本 + 3 秒 ASK。</div>
+        <div class="module-when"><strong>何時用?</strong> 進立委辦公室、媒體採訪、公聽會發言、街頭倡議。可列印或存 PDF 隨身。</div>
+        <a class="module-link" href="briefs/index.html">→ 開啟 14 卡 index</a>
+      </article>
+
+      <article class="module priority">
+        <div class="module-head">
+          <div class="module-name">14 議題立場索引</div>
+          <span class="module-tag must">必用</span>
+        </div>
+        <div class="module-desc">一頁看懂 AABE 在 14 個 CRC 兒少議題上的核心立場、訴求、論辯張力、民間夥伴 chorus。</div>
+        <div class="module-when"><strong>何時用?</strong> 想確認「我們在這議題究竟主張什麼」、論辯時找對方論點對策、新聞稿引述官方立場。</div>
+        <a class="module-link" href="positions.html">→ 開啟立場索引</a>
+      </article>
+
+      <article class="module priority">
+        <div class="module-head">
+          <div class="module-name">議題詳情頁(14 本)</div>
+          <span class="module-tag must">必用</span>
+        </div>
+        <div class="module-desc">每個 PI 一頁深度檔:議題摘要(成人+兒少版)/ CRC 對應 / 政府回應 / 民間觀察 / 案例 / 政策建議 / 國際比較。</div>
+        <div class="module-when"><strong>何時用?</strong> 第一次接觸這議題、寫研究報告需要全貌、要查 CRC 條文對應與五大修法工程進度。</div>
+        <a class="module-link" href="map.html">→ 從議題地圖進入</a>
+      </article>
+
+      <article class="module priority">
+        <div class="module-head">
+          <div class="module-name">政策軌跡時間軸</div>
+          <span class="module-tag must">必用</span>
+        </div>
+        <div class="module-desc">316 事件五方並陳:CRC 結論性意見、政府 NAP、AABE 倡議、立法修法、重大案件。可依議題、類型、年份、關鍵字篩選。</div>
+        <div class="module-when"><strong>何時用?</strong> 要整理「這議題十年怎麼走的」、想看政府最近做了什麼、找特定年份重大事件。</div>
+        <a class="module-link" href="timeline/index.html">→ 開啟時間軸</a>
+      </article>
+
+      <article class="module priority">
+        <div class="module-head">
+          <div class="module-name">全平台搜尋</div>
+          <span class="module-tag must">必用</span>
+        </div>
+        <div class="module-desc">跨 9 種類型 / 70054 筆索引(議題、CRC 條文、CO、影子報告、官方文件、NAP、NHRC、法規、修法、69597 全文段落)。</div>
+        <div class="module-when"><strong>何時用?</strong> 不確定資料在哪頁、記者突然問特定關鍵字(剴剴 / 自殺 / 體罰)、要找文件中某句話。</div>
+        <a class="module-link" href="search.html">→ 開啟搜尋</a>
+      </article>
+
+      <article class="module priority">
+        <div class="module-head">
+          <div class="module-name">平台關鍵發現</div>
+          <span class="module-tag must">必用</span>
+        </div>
+        <div class="module-desc">基於全平台 754 索引、441 PDF、27 影子報告之關鍵洞察:議題負荷 Top 6 / NGO 活躍度 / 採納率最低 / 惡化趨勢。</div>
+        <div class="module-when"><strong>何時用?</strong> 寫稿要有獨家數據、被問「平台到底發現什麼」、做媒體 release 需要平台級洞察。</div>
+        <a class="module-link" href="findings.html">→ 開啟關鍵發現</a>
+      </article>
+
+      <article class="module priority">
+        <div class="module-head">
+          <div class="module-name">CRC 條文反向索引</div>
+          <span class="module-tag must">必用</span>
+        </div>
+        <div class="module-desc">30 條 CRC 條文 → 對應到本平台議題、結論性意見、民間影子報告。從條號切入找資料。</div>
+        <div class="module-when"><strong>何時用?</strong> 引用條文時要確認條號、寫 Alternative Report 要對齊 CRC 條文順序、查特定條文台灣現況。</div>
+        <a class="module-link" href="crc-articles.html">→ 開啟條文索引</a>
+      </article>
+
+      <article class="module priority">
+        <div class="module-head">
+          <div class="module-name">議題地圖</div>
+          <span class="module-tag must">必用</span>
+        </div>
+        <div class="module-desc">14 PI 視覺化地圖,依 CRC cluster 分為 9 大群(一般原則 / 暴力 / 健康 / 教育 / 司法 / 數位...)。</div>
+        <div class="module-when"><strong>何時用?</strong> 第一次來想全覽、要找跨議題關聯、做議題分類匯整。</div>
+        <a class="module-link" href="map.html">→ 開啟議題地圖</a>
+      </article>
+
+      <article class="module research">
+        <div class="module-head">
+          <div class="module-name">CRC 官方文件</div>
+          <span class="module-tag research">研究</span>
+        </div>
+        <div class="module-desc">110 份 CRC 官方 PDF + 1:1 markdown 轉檔,涵蓋國家報告、結論性意見、問題清單、議題討論。</div>
+        <div class="module-when"><strong>何時用?</strong> 要直接讀政府原文、查特定段落引用出處、寫學術研究需要原始 PDF。</div>
+        <a class="module-link" href="crc-official.html">→ 官方文件清單</a>
+      </article>
+
+      <article class="module research">
+        <div class="module-head">
+          <div class="module-name">民間影子報告</div>
+          <span class="module-tag research">研究</span>
+        </div>
+        <div class="module-desc">27 份民間 NGO 影子報告(15 份 CRC 官方蒐集 + 12 份 AABE 平台補建),涵蓋 28 個 NGO 觀點。</div>
+        <div class="module-when"><strong>何時用?</strong> 要看其他 NGO 怎麼說同議題、做交叉比較、找 NGO 夥伴聯名連署。</div>
+        <a class="module-link" href="external-reports.html">→ 影子報告清單</a>
+      </article>
+
+      <article class="module research">
+        <div class="module-head">
+          <div class="module-name">NHRC 監測指標</div>
+          <span class="module-tag research">研究</span>
+        </div>
+        <div class="module-desc">6 個國家人權委員會兒少監測指標儀表板,含趨勢符號(↑改善 / ─穩定 / ↓惡化)。</div>
+        <div class="module-when"><strong>何時用?</strong> 要找官方統計數據、寫稿引用 NHRC、判斷議題是否惡化中。</div>
+        <a class="module-link" href="nhrc-dashboard.html">→ NHRC 儀表板</a>
+      </article>
+
+      <article class="module research">
+        <div class="module-head">
+          <div class="module-name">NAP 追蹤</div>
+          <span class="module-tag research">研究</span>
+        </div>
+        <div class="module-desc">人權國家行動計畫(NAP)兩期追蹤,含 AABE 對每項行動的執行進度評估。</div>
+        <div class="module-when"><strong>何時用?</strong> 要批評政府承諾未做到、看哪些 CRC 結論性意見已被列入 NAP、追蹤期程。</div>
+        <a class="module-link" href="nap.html">→ NAP 追蹤</a>
+      </article>
+
+      <article class="module research">
+        <div class="module-head">
+          <div class="module-name">15 法規</div>
+          <span class="module-tag research">研究</span>
+        </div>
+        <div class="module-desc">與兒少人權直接相關 15 個法規(兒少權法、少事法、家事法、性平法、保護令法...)+ 42 修法歷程。</div>
+        <div class="module-when"><strong>何時用?</strong> 要查條文最新修法狀況、寫修法建議書、引用法規條號。</div>
+        <a class="module-link" href="laws/index.html">→ 法規清單</a>
+      </article>
+
+      <article class="module research">
+        <div class="module-head">
+          <div class="module-name">每週動態</div>
+          <span class="module-tag research">研究</span>
+        </div>
+        <div class="module-desc">本週新增之 advocacy / timeline / NAP 變動摘要,可訂閱 markdown 版。</div>
+        <div class="module-when"><strong>何時用?</strong> 每週一上班看上週發生什麼、做組織內部 weekly digest、追蹤政府最新動向。</div>
+        <a class="module-link" href="weekly-digest.html">→ 每週動態</a>
+      </article>
+
+      <article class="module research">
+        <div class="module-head">
+          <div class="module-name">跨週期比較</div>
+          <span class="module-tag research">研究</span>
+        </div>
+        <div class="module-desc">CRC 1/2/3 屆審查屆別比較、NAP 第 1/2 期比較、議題進展軌跡。</div>
+        <div class="module-when"><strong>何時用?</strong> 要回答「政府 5 年來究竟有沒有進步」、寫年度報告、做學術比較。</div>
+        <a class="module-link" href="compare.html">→ 跨週期比較</a>
+      </article>
+
+      <article class="module tool">
+        <div class="module-head">
+          <div class="module-name">鏈式查詢</div>
+          <span class="module-tag tool">工具</span>
+        </div>
+        <div class="module-desc">14 PI 完整資料鏈展開:倡議 → CRC → CO → NAP → 法規 → 評估,六層串連。</div>
+        <div class="module-when"><strong>何時用?</strong> 要做完整資料證據鏈展示、寫深度報告、培訓新進倡議者議題全貌。</div>
+        <a class="module-link" href="chain.html">→ 鏈式查詢</a>
+      </article>
+
+      <article class="module tool tool-internal" style="border-top-color:#5C2A7E">
+        <div class="module-head">
+          <div class="module-name">倡議追蹤矩陣</div>
+          <span class="module-tag tool-internal">內部</span>
+        </div>
+        <div class="module-desc">內部工作區:管理 81 件 advocacy 之採納狀態、回應期限、跟進負責人。</div>
+        <div class="module-when"><strong>何時用?</strong> AABE 內部追蹤倡議成果、定期 review、產製季報。<em>(需登入 AABE 自家人帳號)</em></div>
+        <a class="module-link" href="matrix.html">→ 倡議追蹤矩陣</a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- 進階技巧 -->
+  <section id="tips">
+    <h2><span class="h-num">PART 3</span>進階技巧</h2>
+    <p class="lede">給用過幾次後的進階用戶。</p>
+
+    <div class="tip-grid">
+      <div class="tip"><strong>🔍 URL 直接帶搜尋</strong>
+        在搜尋網址加 <code>?q=關鍵字</code>,可直接 deep link 搜尋結果,例:<code>/search.html?q=剴剴</code>。
+      </div>
+      <div class="tip"><strong>🖨 列印 PDF</strong>
+        快查卡 / 議題詳情 / 立場頁都有 print CSS,Cmd+P 直接存 A4 PDF,排版自動最佳化。
+      </div>
+      <div class="tip"><strong>📅 時間軸快速跳年</strong>
+        政策軌跡時間軸的年份直方圖可<strong>點選</strong>跳到該年事件流。Hover 看實際事件數。
+      </div>
+      <div class="tip"><strong>🔗 跨平台連結</strong>
+        每個議題詳情頁底部有「跨平台延伸」6 連結:鏈式查詢、政策軌跡、影子報告、CRC 官方、跨週期比較、全平台搜尋。
+      </div>
+      <div class="tip"><strong>📊 全文段落搜尋</strong>
+        全平台搜尋預設只搜核心索引(454 筆),要搜 69597 筆全文段落請<strong>勾選</strong>「同時搜尋全文段落」(首次載入 ~10 秒)。
+      </div>
+      <div class="tip"><strong>🌐 三公約共構</strong>
+        右上角 🌐 三公約搜尋可跨 CRC + CRPD + CEDAW 三平台查詢同關鍵字。
+      </div>
+      <div class="tip"><strong>🔐 AABE 自家人</strong>
+        首頁右上「AABE 自家人」,帳號 <code>AABE</code> 密碼 <code>1234</code>。登入後可見內部工作區(矩陣 / 影子報告產生器 / 倡議工作底稿)。
+      </div>
+      <div class="tip"><strong>📱 手機友善</strong>
+        全平台已優化手機版面(Wave 155),可直接用 Safari / Chrome 瀏覽。立委辦公室拜會時手機開議題詳情頁。
+      </div>
+    </div>
+  </section>
+
+  <!-- 場景應用範例 -->
+  <section>
+    <h2><span class="h-num">PART 4</span>場景應用範例</h2>
+    <p class="lede">舉三個真實情境,逐步示範模塊組合。</p>
+
+    <table class="compact-table">
+      <thead>
+        <tr>
+          <th style="width:25%">情境</th>
+          <th>步驟組合</th>
+          <th style="width:18%">用時</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>情境 A:剴剴案兩年了,要寫媒體 release 批衛福部草案不足</strong></td>
+          <td>
+            ① <a href="briefs/PI-12.html">快查卡 PI-12</a> 拿 AABE 立場 + 3 個 ASK<br>
+            ② <a href="findings.html">關鍵發現</a> 找平台級數據(議題負荷 / 惡化趨勢)<br>
+            ③ <a href="timeline/PI-12.html">PI-12 政策軌跡</a> 抓最近 3 件政府行動 + 民間倡議<br>
+            ④ <a href="external-reports.html">影子報告</a> 補兒福聯盟 NGO 觀點<br>
+            ⑤ 引用 NHRC「替代照顧寄養家庭數」資料源
+          </td>
+          <td>30 分鐘</td>
+        </tr>
+        <tr>
+          <td><strong>情境 B:立法院公聽會發言,反對性平課綱下修</strong></td>
+          <td>
+            ① <a href="briefs/PI-08.html">快查卡 PI-08</a> 列印帶身上(對方論點 vs 我方回應)<br>
+            ② <a href="positions.html#PI-08">立場頁 PI-08</a> 看具體訴求 3 條<br>
+            ③ <a href="crc-articles.html">CRC 條文索引</a> 對齊條 28 / 29(教育權)<br>
+            ④ <a href="search.html?q=性平">搜尋「性平」</a> 找最新民間倡議 quote
+          </td>
+          <td>5 分鐘</td>
+        </tr>
+        <tr>
+          <td><strong>情境 C:研究生第一次接觸「兒少網路安全」議題</strong></td>
+          <td>
+            ① <a href="map.html">議題地圖</a> 找到 PI-06<br>
+            ② <a href="issues/PI-06.html">PI-06 議題詳情</a> 讀完整 10 章節(成人版+兒少版)<br>
+            ③ <a href="timeline/PI-06.html">PI-06 政策軌跡</a> 看歷年事件<br>
+            ④ <a href="crc-official.html">CRC 官方文件</a> 找原始 PDF<br>
+            ⑤ 用「鏈式查詢」展開倡議 → CRC → CO → NAP → 法規 → 評估完整鏈
+          </td>
+          <td>1 小時</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <h2><span class="h-num">PART 5</span>常見問題 FAQ</h2>
+
+    <details class="faq">
+      <summary>Q1. 我可以直接引用平台內容嗎?授權怎麼算?</summary>
+      <p>本平台採 <strong>CC BY 4.0</strong> 授權,引用請標示來源「國教行動聯盟兒少人權監督平台」與取得日期。AABE 立場頁、快查卡、findings 都可直接引用;CRC 官方文件 PDF 屬政府公開文件,引用請註明出處頁碼。</p>
+    </details>
+
+    <details class="faq">
+      <summary>Q2. 平台多久更新一次?資料新鮮嗎?</summary>
+      <p>平台採每月維護(<code>monthly_maintenance.sh</code> 自動跑),包含:</p>
+      <ul>
+        <li>每月 1 號:政府網站 SSL+cookie+stable hash 監測,發現變更自動入庫</li>
+        <li>NAAES 政策站新文章自動抓取</li>
+        <li>每月底:全部 SQLite 重建 + 14 PI 頁 + 政策軌跡 + 立場 + 快查卡同步</li>
+      </ul>
+      <p>每頁右下角的「最後更新」日期是該頁實際生成日期。</p>
+    </details>
+
+    <details class="faq">
+      <summary>Q3. 平台 SQLite 資料庫可以下載嗎?</summary>
+      <p>可以,<code>data/crw.db</code> 是公開檔。包含 14 主要表(policy_issue / advocacy_action / concluding_observation / nap_action / domestic_law / law_amendment / crc_article / external_shadow_report / nhrc_indicator / issue_timeline / aabe_position 等)+ 7 關聯表。建議用 <code>DB Browser for SQLite</code> 開啟。</p>
+    </details>
+
+    <details class="faq">
+      <summary>Q4. 我發現資料錯了 / 想補充,怎麼辦?</summary>
+      <p>歡迎 email AABE 平台維護組,或在我們的 GitHub repo 開 issue。社區協作的具體流程:</p>
+      <ul>
+        <li><strong>事實錯誤</strong>:附證據連結直接 email,我們會在下一次月維護更新</li>
+        <li><strong>新增倡議行動</strong>:NGO 團體發了新政策建議書 → 寄 markdown 或 PDF + JSON metadata,可進 advocacy_action 表</li>
+        <li><strong>議題範圍補充</strong>:大型結構性增補需經 AABE 政策室評估</li>
+      </ul>
+    </details>
+
+    <details class="faq">
+      <summary>Q5. 為什麼有些頁顯示「需登入(AABE 自家人)」?</summary>
+      <p>本平台分兩層:<strong>公開內容</strong>(任何人可瀏覽)和 <strong>AABE 內部工作區</strong>(需登入)。內部區包含倡議追蹤矩陣、影子報告產生器、倡議工作底稿、內部自審等,因為是 AABE 政策室之工作中文件,品質尚未到對外公開水準。登入帳號 <code>AABE</code> / 密碼 <code>1234</code>(可在瀏覽器儲存)。</p>
+    </details>
+
+    <details class="faq">
+      <summary>Q6. 能用手機看嗎?</summary>
+      <p>可以。Wave 155 後全平台已 mobile responsive 優化,375 px 至 1280 px 各尺寸均可瀏覽。立委辦公室拜會、媒體採訪、街頭倡議建議直接用手機開「倡議者快查卡」對應 PI 頁,標題、3 必引數據、3 可引名言、3 秒 ASK 全部完整顯示。</p>
+    </details>
+
+    <details class="faq">
+      <summary>Q7. 影子報告 5 個版本(專業 / 媒體 / 兒少 / 立法 / 社會)有什麼差別?</summary>
+      <p>同一份證據材料,針對 5 種不同讀者寫不同版本:</p>
+      <ul>
+        <li><strong>專業版</strong>:給律師、研究員、CRC 委員 — 完整論證 + 引註</li>
+        <li><strong>媒體版</strong>:給記者 — 重點化、quotable、含圖表</li>
+        <li><strong>兒少版</strong>:給 12 歲以下小朋友 — 用故事與比喻</li>
+        <li><strong>立法版</strong>:給立委 — 直指修法工程 + ASK</li>
+        <li><strong>社會版</strong>:一般大眾 — 平實口語</li>
+      </ul>
+      <p>每月維護自動產出 5 版,在 <code>shadow_report/build/</code> 目錄。</p>
+    </details>
+
+    <details class="faq">
+      <summary>Q8. CRC × CRPD × CEDAW 三公約共構是什麼?</summary>
+      <p>AABE 同時維護三個監督平台:本平台(CRC)、CRPD 監督平台(身障)、CEDAW 監督平台(婦女)。三公約有大量交叉議題(身障兒少、女性兒少、LGBTQI+ 等)。「三公約共構搜尋」(右上 🌐 按鈕)可跨三平台同時查詢關鍵字,適合做交叉議題分析或寫雙語綜合報告。</p>
+    </details>
+
+    <details class="faq">
+      <summary>Q9. 我想引用平台某個段落,怎麼找正確的引用格式?</summary>
+      <p>建議引用格式範例:</p>
+      <ul>
+        <li><strong>議題卡</strong>:國教行動聯盟兒少人權監督平台,「PI-12 替代照顧與機構安置(剴剴案後)」,2026-05-06。<code>https://naer-tw.github.io/child-rights-watch/issues/PI-12.html</code></li>
+        <li><strong>AABE 立場</strong>:國教行動聯盟,「PI-12 政策立場」,引自《兒少人權監督平台 14 議題立場索引》(aabe_position 表),2026-05-06。</li>
+        <li><strong>CRC 結論性意見</strong>:CRC 委員會,《結論性意見 第 2 屆審查》第 36 段(CRC2-CO36),2022。</li>
+      </ul>
+    </details>
+
+  </section>
+
+</main>
+
+<footer class="foot">
+  <p>兒少人權監督平台(Child Rights Watch · AABE 國教行動聯盟)</p>
+  <p>本手冊涵蓋 16 模塊 · 6 場景 · 9 FAQ。有問題?<a href="index.html">回首頁找聯絡方式</a> · 或<a href="search.html">直接搜尋</a></p>
+  <p style="font-size:11.5px;opacity:0.7;margin-top:14px">CC BY 4.0 · 本平台採 Wave 156 文件版本 · 2026-05-06 更新</p>
+</footer>
+</body>
+</html>
