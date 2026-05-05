@@ -1,0 +1,196 @@
+/* mobile-fixes.css — Wave 155
+ * 全平台共用 mobile responsive 修補。所有 _public/*.html 透過 viewport meta + 此檔載入。
+ *
+ * 修補目標:
+ * 1. 字體尺度在窄屏不會縮太小、長條中文不擠
+ * 2. 多欄 grid / flex 在 < 600px 強制單欄
+ * 3. 過寬內容(table / pre / 圖片)允許橫向捲動但不破版
+ * 4. PI-XX issue 頁的 v2-page-wrap、briefs 的 brief-header、首頁的 hero banner 各別微調
+ * 5. 觸控目標 ≥ 40×40px
+ */
+
+/* === Layer 1:全域修補(任意螢幕) === */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { overflow-x: hidden; }  /* 防止整頁橫捲 */
+img, video, iframe { max-width: 100%; height: auto; }
+table { max-width: 100%; }
+
+/* CSS Grid / Flex 預設 min-content 會撐開 track,在窄螢幕造成溢出 — 強制最小 0 */
+.app-shell, .v2-page-wrap, .pi-body, .section-2, .hero, main { min-width: 0 !important; }
+.app-shell > *, .v2-page-wrap > *, .pi-body > *, .section-2 > *, .hero > *, main > * {
+  min-width: 0 !important; max-width: 100% !important;
+}
+
+/* 強制 app-shell 的 grid track 不能比 viewport 寬 */
+@media (max-width: 1100px) {
+  .app-shell { grid-template-columns: minmax(0, 1fr) !important; overflow-x: hidden; }
+  .app-shell > main { width: 100% !important; max-width: 100% !important; }
+}
+
+/* 大表格在窄螢幕橫捲不破版 */
+.table-scroll, .v2-content table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+pre { overflow-x: auto; max-width: 100%; }
+
+/* === Layer 2:< 760px(平板/大手機) === */
+@media (max-width: 760px) {
+  /* 字級略微下調 */
+  body { font-size: 15px; line-height: 1.65; }
+  h1 { font-size: 24px !important; line-height: 1.25 !important; }
+  h2 { font-size: 19px !important; }
+  h3 { font-size: 16px !important; }
+
+  /* 觸控目標 */
+  .topbar a, .topbar nav a, button, .nav-pill, .filter-grp button, .filter button {
+    min-height: 36px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  /* 通用 wrap padding 收斂 */
+  .wrap { padding: 18px 14px !important; }
+
+  /* hero 縮 */
+  .hero { padding: 18px 16px !important; }
+
+  /* 多欄 grid → 單欄 */
+  .pi-grid, .ms-list, .brief-grid, .pi-body, .section-2, .section-4,
+  .v2-related-grid, .stats-grid, .pi-nav-pills,
+  .hero, .hero-stats, .stats-row {
+    grid-template-columns: 1fr !important;
+    flex-direction: column !important;
+  }
+  .hero-stats { display: flex !important; gap: 10px !important; }
+  .hero-stats .hero-stat, .stats-row .stat-box { width: 100%; min-width: 0; }
+
+  /* topbar:brand 縮、nav 換行 */
+  .topbar { padding: 8px 14px; gap: 6px; }
+  .topbar .brand small { display: none; }  /* hide CHILD RIGHTS WATCH AABE 副標 */
+  .topbar nav { gap: 10px; font-size: 12px; }
+}
+
+/* === Layer 3:< 480px(小手機) === */
+@media (max-width: 480px) {
+  body { font-size: 14.5px; }
+  h1 { font-size: 22px !important; }
+  h2 { font-size: 17.5px !important; }
+
+  /* topbar nav 收成 wrap 但縮間距 */
+  .topbar nav { gap: 6px; font-size: 11.5px; }
+  .topbar nav a { padding: 2px 4px; }
+
+  /* hero 標題不要太大 */
+  .hero h1 { font-size: 22px !important; }
+  .hero .lede { font-size: 14px !important; }
+
+  /* 卡片內距收 */
+  .pi-card, .brief-card, .pi-position { padding: 14px 16px !important; }
+  .pi-name, .card-name, .data-value { font-size: 16.5px !important; line-height: 1.3 !important; }
+
+  /* 表格字級下降 */
+  table, .v2-content table { font-size: 12.5px !important; }
+  td, th { padding: 6px 8px !important; }
+}
+
+/* === Layer 4:特定頁面修補 === */
+
+/* issues/PI-XX.html v2 wrap:< 760px 時 toc 縮折(可點開)+ 內容字級調整 */
+@media (max-width: 760px) {
+  .v2-page-wrap {
+    grid-template-columns: 1fr !important;
+    padding: 14px 12px 60px !important;
+    gap: 12px !important;
+  }
+  .v2-page-wrap > .v2-toc {
+    position: static !important;
+    max-height: none !important;
+    padding: 12px 14px !important;
+  }
+  .v2-toc h4 { font-size: 13px !important; margin-bottom: 6px !important; }
+  .v2-toc ul { font-size: 13.5px !important; line-height: 1.7 !important;
+               max-height: 180px; overflow-y: auto; }  /* 太長時局部捲動,不擠走主內容 */
+  .v2-content { padding: 18px 16px !important; }
+  .v2-pi-header { padding: 16px 18px !important; }
+  .v2-pi-header h1 { font-size: 21px !important; line-height: 1.25 !important; }
+  .v2-pi-header .v2-chips { gap: 5px !important; }
+  .v2-pi-header .chip { font-size: 10.5px !important; padding: 3px 7px !important; }
+  .v2-content h2 { font-size: 17px !important; }
+  .v2-content table { font-size: 12.5px !important; }
+}
+
+/* briefs/PI-XX.html brief 卡片:header 在窄屏垂直堆疊 + 縮短 brief-tagline */
+@media (max-width: 760px) {
+  .brief { padding: 18px 16px !important; margin: 12px 8px !important; }
+  .brief-header { flex-direction: column !important; align-items: stretch !important; gap: 10px !important; }
+  .brief-actions { justify-content: flex-end; flex-wrap: wrap; }
+  .brief-title { font-size: 22px !important; line-height: 1.2 !important; }
+  .brief-tagline { font-size: 12px !important; }
+  .section-1 { padding: 14px 16px !important; }
+  .section-1 .core { font-size: 16px !important; line-height: 1.55 !important; }
+  .demands-list li { font-size: 13.5px !important; padding-left: 32px !important; }
+  .demands-list li::before { width: 22px !important; height: 22px !important; font-size: 12px !important; }
+  .quote-text { font-size: 13.5px !important; }
+  .data-value { font-size: 16px !important; line-height: 1.3 !important; }
+}
+
+/* timeline 主索引:.flow-item 在窄屏改 inline 顯示日期 + 議題 */
+@media (max-width: 760px) {
+  .flow-item { grid-template-columns: 1fr !important; gap: 4px !important; padding: 10px 12px !important; }
+  .flow-date { display: inline-block; margin-right: 8px; }
+  .flow-issue { display: inline-block; }
+  .flow-tag { font-size: 10.5px !important; }
+  .yr-chart { height: 90px !important; }
+  .yr-bar { min-width: 12px !important; }
+
+  .filter-grp { width: 100%; }
+  .filter-grp input[type="search"], .filter-grp select { width: 100%; min-width: 0 !important; }
+}
+
+/* positions.html pi-position card 在窄屏垂直堆疊 */
+@media (max-width: 760px) {
+  .pi-position .pi-body { grid-template-columns: 1fr !important; gap: 14px !important; padding: 16px 18px !important; }
+  .pi-position .pi-head { padding: 14px 18px !important; }
+  .pi-position .pi-name { display: block !important; margin-left: 0 !important; font-size: 19px !important; }
+  .partner { grid-template-columns: 1fr !important; gap: 2px !important; padding: 8px 12px !important; }
+  .partner-status, .partner-date { display: inline-block; margin-right: 6px; }
+  .pi-foot { padding: 12px 18px !important; }
+}
+
+/* 首頁(_public/index.html)hero banner 等多區塊 — 防止溢出 */
+@media (max-width: 760px) {
+  /* hero 區塊一律允許折行 */
+  body > * { max-width: 100%; }
+  /* 避免長條 hero 跨平台 banner 在小螢幕被切 */
+  [class*="cross-platform"] { font-size: 12.5px; line-height: 1.55; }
+  /* 議題快查 chip 條 */
+  .filter, .filters { flex-wrap: wrap; gap: 6px; }
+  .filter button { font-size: 12px; padding: 6px 10px; }
+}
+
+/* search.html 篩選 chip 條 + header 重排 */
+@media (max-width: 760px) {
+  .filter button { white-space: nowrap; }
+  .search-bar { padding: 12px 14px !important; }
+  .search-bar input[type="search"] { font-size: 15px !important; padding: 10px 12px !important; }
+
+  /* search.html 上方 header 在窄屏改 wrap + h1 不過大 */
+  body > header { padding: 12px 14px !important; }
+  .header-inner { gap: 8px !important; flex-wrap: wrap !important; }
+  .header-inner h1 { font-size: 18px !important; flex: none !important; width: auto !important; }
+  .header-inner svg.logo, .header-inner .aabe-mark, .header-inner a.back,
+  .header-inner > a { white-space: nowrap; font-size: 12.5px !important; }
+
+  /* search 篩選 chip checkbox 區 */
+  .search-bar > div[style*="padding"] { font-size: 11.5px; line-height: 1.5; }
+  .search-bar label { flex-wrap: wrap; }
+}
+
+/* 列印不影響 mobile 修補 */
+@media print {
+  body { overflow-x: visible; }
+}
