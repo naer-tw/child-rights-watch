@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>倡議者快查卡 14 議題 — 兒少人權監督平台</title>
+<meta name="description" content="14 議題 1-pager 快查卡:AABE 立場 + 必引數據 + 可引名言 + 對話劇本 + 3 秒 ask。A4 print-friendly,適合立委辦公室、媒體採訪、公聽會 5 分鐘發言。">
+<meta property="og:title" content="倡議者 14 議題快查卡">
+<meta property="og:description" content="一張 A4 帶你進立委辦公室 / 媒體採訪 / 公聽會發言。">
+<meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630'%3E%3Crect width='1200' height='630' fill='%230E2238'/%3E%3Ctext x='600' y='320' fill='%23FAFAF7' font-family='Noto Serif TC,serif' font-size='62' font-weight='900' text-anchor='middle'%3E倡議者快查卡%3C/text%3E%3Ctext x='600' y='400' fill='%23B5371F' font-family='Noto Serif TC,serif' font-size='34' text-anchor='middle'%3E14 議題 · 1-PAGER · A4 PRINT%3C/text%3E%3Ctext x='600' y='480' fill='%238B6F50' font-family='Inter,sans-serif' font-size='22' font-weight='700' text-anchor='middle' letter-spacing='4'%3ECHILD RIGHTS WATCH · AABE%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#FAFAF7; --bg-soft:#F1EFEA; --bg-deep:#0E2238;
+  --brand:#B5371F; --gold:#8B6F50;
+  --text:#1F1F1F; --muted:#5A5A5A; --line:#E5E1D8;
+}
+*{box-sizing:border-box}
+body { font-family:"Noto Sans TC","PingFang TC",sans-serif; margin:0;
+        background:var(--bg); color:var(--text); line-height:1.6 }
+a { color:var(--brand); text-decoration:none }
+.skip { position:absolute;left:-9999px }
+.skip:focus { left:8px;top:8px;background:#fff;padding:6px 10px;border:2px solid var(--brand);z-index:99 }
+.topbar { background:var(--bg-deep); color:#fff; padding:10px 20px; font-size:13px;
+          display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;
+          border-bottom:3px solid var(--brand) }
+.topbar a { color:rgba(255,255,255,0.85) }
+.topbar a:hover { color:#fff }
+.topbar .brand { display:inline-flex; align-items:center; gap:8px }
+.topbar .brand strong { color:#fff; font-family:"Noto Serif TC",serif }
+.topbar nav { display:inline-flex; gap:14px; font-size:12.5px; flex-wrap:wrap }
+.wrap { max-width:1180px; margin:0 auto; padding:32px 20px }
+
+.hero { background:linear-gradient(135deg,#fff 0%,var(--bg-soft) 100%);
+        padding:32px; border-radius:12px; border-left:5px solid var(--brand);
+        margin-bottom:24px }
+.hero h1 { font-family:"Noto Serif TC",serif; font-size:32px; margin:0 0 12px;
+            color:var(--bg-deep); font-weight:900 }
+.hero .lede { font-size:15.5px; color:var(--muted); margin:0 0 14px; max-width:780px; line-height:1.7 }
+.hero .use-cases { display:flex; gap:14px; flex-wrap:wrap; margin-top:16px }
+.use-case { background:#fff; padding:10px 16px; border-radius:6px; border:1px solid var(--line);
+             font-size:13px; line-height:1.4 }
+.use-case strong { color:var(--bg-deep); display:block; font-size:13.5px; margin-bottom:2px }
+.use-case span { color:var(--muted); font-size:12px }
+
+.brief-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+               gap:14px }
+.brief-card { background:#fff; padding:20px 22px; border-radius:10px;
+               border:1px solid var(--line); border-top:4px solid var(--brand);
+               color:var(--text); transition:all .15s; display:flex; flex-direction:column;
+               gap:6px; position:relative; overflow:hidden }
+.brief-card:hover { transform:translateY(-3px); box-shadow:0 8px 18px rgba(0,0,0,0.08);
+                     text-decoration:none; border-top-color:var(--gold) }
+.card-code { font-family:Inter,sans-serif; font-size:11px; color:var(--gold);
+              letter-spacing:.08em; font-weight:700 }
+.card-name { font-family:"Noto Serif TC",serif; font-size:19px; font-weight:700;
+              color:var(--bg-deep); line-height:1.25 }
+.card-core { font-size:13px; color:var(--text); line-height:1.55; margin-top:4px;
+              padding:8px 10px; background:var(--bg-soft); border-radius:4px;
+              border-left:3px solid var(--gold) }
+.card-stat { font-size:12.5px; color:var(--text); margin-top:4px }
+.card-stat strong { color:var(--brand); font-family:Inter,sans-serif }
+.card-meta { display:flex; justify-content:space-between; align-items:center;
+              margin-top:auto; padding-top:10px; font-size:11.5px;
+              border-top:1px dashed var(--line) }
+.card-adoption { color:var(--muted); font-family:Inter,sans-serif }
+.card-cta { color:var(--brand); font-weight:600 }
+
+footer.foot { background:var(--bg-deep); color:rgba(255,255,255,0.75); padding:24px 20px;
+                margin-top:48px; font-size:13px; text-align:center }
+footer.foot a { color:rgba(255,255,255,0.85) }
+</style>
+</head>
+<body>
+<a href="#main" class="skip">跳至主要內容</a>
+<div class="topbar">
+  <a class="brand" href="../index.html">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8B6F50" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <strong>兒少人權監督平台</strong>
+  </a>
+  <nav>
+    <a href="../index.html">← 回首頁</a>
+    <a href="../positions.html">14 議題立場</a>
+    <a href="../findings.html">關鍵發現</a>
+    <a href="../timeline/index.html">政策軌跡</a>
+    <a href="../search.html">全平台搜尋</a>
+  </nav>
+</div>
+
+<main id="main" class="wrap">
+  <section class="hero">
+    <h1>倡議者 14 議題快查卡</h1>
+    <p class="lede">A4 列印一張紙,帶你進立委辦公室、媒體採訪、公聽會 5 分鐘發言。每張卡片包括:<strong>AABE 一句話立場</strong>、<strong>3 個必引數據點</strong>、<strong>3 個可引述名言</strong>、<strong>對話劇本</strong>、<strong>3 秒 ASK</strong>。</p>
+    <div class="use-cases">
+      <div class="use-case"><strong>📋 立委辦公室</strong><span>2 分鐘 elevator pitch</span></div>
+      <div class="use-case"><strong>🎤 媒體採訪</strong><span>30 秒 quote 來源</span></div>
+      <div class="use-case"><strong>🏛 公聽會</strong><span>5 分鐘發言素材</span></div>
+      <div class="use-case"><strong>📢 街頭倡議</strong><span>30 秒對話準備</span></div>
+      <div class="use-case"><strong>📰 記者會</strong><span>新聞稿背景資料</span></div>
+    </div>
+  </section>
+
+  <div class="brief-grid">
+    <a href="PI-01.html" class="brief-card"><div class="card-code">PI-01</div><div class="card-name">校園霸凌</div><div class="card-core">霸凌防制 ≠ 加害人懲戒主義 — 須建立校園關係修復(Restorative Practice)+ 心理健康早期介入。</div><div class="card-stat"><span style="color:#666">─</span> 校園霸凌通報率: <strong>12.3</strong></div><div class="card-meta"><span class="card-adoption">採納 0/1/1</span><span class="card-cta">→ 開啟快查卡</span></div></a><a href="PI-02.html" class="brief-card"><div class="card-code">PI-02</div><div class="card-name">青少年心理健康</div><div class="card-core">心理健康普及化 — 校園輔導員 1:25 比 + 校外社區網絡(避免單打獨鬥)。</div><div class="card-stat"><span style="color:#c62828">↓</span> 15-24 歲女性自殺通報數: <strong>33,964</strong></div><div class="card-meta"><span class="card-adoption">採納 0/5/1</span><span class="card-cta">→ 開啟快查卡</span></div></a><a href="PI-03.html" class="brief-card"><div class="card-code">PI-03</div><div class="card-name">體罰禁止</div><div class="card-core">禁止家內體罰立法 — 民法 1085 修正,呼應 CRC 2017、2022 兩次結論性意見。</div><div class="card-meta"><span class="card-adoption">採納 0/2/0</span><span class="card-cta">→ 開啟快查卡</span></div></a><a href="PI-04.html" class="brief-card"><div class="card-code">PI-04</div><div class="card-name">學生輔導體制</div><div class="card-core">學輔三級制 + 學校社工/心理師合理員額,改善剴剴案後曝險早期辨識。</div><div class="card-meta"><span class="card-adoption">採納 0/2/0</span><span class="card-cta">→ 開啟快查卡</span></div></a><a href="PI-05.html" class="brief-card"><div class="card-code">PI-05</div><div class="card-name">少年司法行政先行</div><div class="card-core">少事法行政先行制度 — 過渡性教育學位嚴重不足,須立《國民轉介教育條例》填補空白。</div><div class="card-stat"><span style="color:#666">○</span> 少年司法塗銷實務跨機關殘留: <strong>存在</strong></div><div class="card-meta"><span class="card-adoption">採納 0/2/2</span><span class="card-cta">→ 開啟快查卡</span></div></a><a href="PI-06.html" class="brief-card"><div class="card-code">PI-06</div><div class="card-name">兒少網路安全</div><div class="card-core">禁絕加味菸與電子煙、依托咪酯入二級毒品 — 給校方法源依據查扣。</div><div class="card-meta"><span class="card-adoption">採納 1/3/0</span><span class="card-cta">→ 開啟快查卡</span></div></a><a href="PI-07.html" class="brief-card"><div class="card-code">PI-07</div><div class="card-name">性剝削防制</div><div class="card-core">AI 生成兒少性剝削影像入罪 — 與展翅(ECPAT)合作推動兒少性剝削防制條例修法。</div><div class="card-meta"><span class="card-adoption">採納 1/2/0</span><span class="card-cta">→ 開啟快查卡</span></div></a><a href="PI-08.html" class="brief-card"><div class="card-code">PI-08</div><div class="card-name">性別平等教育</div><div class="card-core">性平教育課綱守護 — 反對課綱下修「身體性自主」、「家庭多元樣態」段落。</div><div class="card-meta"><span class="card-adoption">採納 0/3/0</span><span class="card-cta">→ 開啟快查卡</span></div></a><a href="PI-09.html" class="brief-card"><div class="card-code">PI-09</div><div class="card-name">課業壓力與學習權</div><div class="card-core">補習班規模化、實驗教育偽實驗 — 兩者皆增加兒少課業壓力,須立法規範。</div><div class="card-meta"><span class="card-adoption">採納 0/3/1</span><span class="card-cta">→ 開啟快查卡</span></div></a><a href="PI-10.html" class="brief-card"><div class="card-code">PI-10</div><div class="card-name">兒少表意與校園民主</div><div class="card-core">校園民主 = 兒少參與權 — 學生會代表納入校長遴選、校規修訂須學生公聽。</div><div class="card-meta"><span class="card-adoption">採納 0/1/0</span><span class="card-cta">→ 開啟快查卡</span></div></a><a href="PI-11.html" class="brief-card"><div class="card-code">PI-11</div><div class="card-name">家庭功能政策</div><div class="card-core">家庭功能 ≠ 家庭責任主義 — 國家應做為「最後安全網」,而非把責任推回家庭。</div><div class="card-meta"><span class="card-adoption">採納 0/5/2</span><span class="card-cta">→ 開啟快查卡</span></div></a><a href="PI-12.html" class="brief-card"><div class="card-code">PI-12</div><div class="card-name">替代照顧與機構安置</div><div class="card-core">剴剴案六大缺口 — 替代照顧、寄養家庭、機構安置、收出養全鏈條改革。</div><div class="card-meta"><span class="card-adoption">採納 0/5/2</span><span class="card-cta">→ 開啟快查卡</span></div></a><a href="PI-13.html" class="brief-card"><div class="card-code">PI-13</div><div class="card-name">移民無國籍與失聯兒少</div><div class="card-core">移工子女、無國籍兒少、失聯移工兒少 — 教育權、健康權、身分權須跨部會整合。</div><div class="card-meta"><span class="card-adoption">採納 0/3/1</span><span class="card-cta">→ 開啟快查卡</span></div></a><a href="PI-14.html" class="brief-card"><div class="card-code">PI-14</div><div class="card-name">LGBTQI+ 兒少</div><div class="card-core">LGBTQI+ 兒少校園支持系統 — 反對課綱下修、強化校園諮商可近性。</div><div class="card-meta"><span class="card-adoption">採納 0/3/0</span><span class="card-cta">→ 開啟快查卡</span></div></a>
+  </div>
+</main>
+
+<footer class="foot">
+  <p>兒少人權監督平台(Child Rights Watch · AABE 國教行動聯盟)</p>
+  <p>每張卡都可 🖨 列印或存 PDF。資料即時來自 SQLite,每月維護更新。</p>
+</footer>
+</body>
+</html>

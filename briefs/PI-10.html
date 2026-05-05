@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PI-10 兒少表意與校園民主 — 倡議者快查卡 — 兒少人權監督平台</title>
+<meta name="description" content="PI-10 兒少表意與校園民主 議題之倡議者 1-pager 快查卡:AABE 立場 + 3 個必引數據 + 3 個可引名言 + 對話劇本 + 3 秒 ask。">
+<meta property="og:title" content="PI-10 兒少表意與校園民主 — 倡議者快查卡">
+<meta property="og:description" content="A4 print-friendly 1-pager 政策對話速查">
+<meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630'%3E%3Crect width='1200' height='630' fill='%230E2238'/%3E%3Ctext x='600' y='320' fill='%23FAFAF7' font-family='Noto Serif TC,serif' font-size='80' font-weight='900' text-anchor='middle'%3EPI-10%3C/text%3E%3Ctext x='600' y='400' fill='%23B5371F' font-family='Noto Serif TC,serif' font-size='40' font-weight='700' text-anchor='middle'%3E兒少表意與校園民主%3C/text%3E%3Ctext x='600' y='480' fill='%23FAFAF7' font-family='Noto Serif TC,serif' font-size='28' text-anchor='middle'%3E倡議者快查卡%3C/text%3E%3Ctext x='600' y='540' fill='%238B6F50' font-family='Inter,sans-serif' font-size='20' font-weight='700' text-anchor='middle' letter-spacing='4'%3ECHILD RIGHTS WATCH · AABE%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#FAFAF7; --bg-soft:#F1EFEA; --bg-deep:#0E2238;
+  --brand:#B5371F; --gold:#8B6F50;
+  --text:#1F1F1F; --muted:#5A5A5A; --line:#E5E1D8;
+}
+*{box-sizing:border-box}
+body { font-family:"Noto Sans TC","PingFang TC",sans-serif; margin:0;
+        background:var(--bg-soft); color:var(--text); line-height:1.55 }
+a { color:var(--brand); text-decoration:none }
+a:hover { text-decoration:underline }
+.skip { position:absolute;left:-9999px }
+.skip:focus { left:8px;top:8px;background:#fff;padding:6px 10px;border:2px solid var(--brand);z-index:99 }
+
+.topbar { background:var(--bg-deep); color:#fff; padding:10px 20px; font-size:13px;
+          display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;
+          border-bottom:3px solid var(--brand) }
+.topbar a { color:rgba(255,255,255,0.85) }
+.topbar a:hover { color:#fff }
+.topbar .brand { display:inline-flex; align-items:center; gap:8px }
+.topbar .brand strong { color:#fff; font-family:"Noto Serif TC",serif }
+.topbar nav { display:inline-flex; gap:14px; font-size:12.5px; flex-wrap:wrap }
+
+/* A4 simulated card */
+.brief { max-width:880px; margin:24px auto; background:#fff;
+          padding:32px 40px; border-radius:8px; border:1px solid var(--line);
+          box-shadow:0 4px 24px rgba(0,0,0,0.08); position:relative }
+
+.brief-header { display:flex; align-items:flex-start; justify-content:space-between;
+                 padding-bottom:16px; border-bottom:3px solid var(--brand);
+                 margin-bottom:18px; gap:16px }
+.brief-header-left { flex:1 }
+.brief-code { font-family:Inter,sans-serif; font-size:13px; color:var(--gold);
+               letter-spacing:.08em; font-weight:600 }
+.brief-title { font-family:"Noto Serif TC",serif; font-size:30px; margin:2px 0 8px;
+                color:var(--bg-deep); font-weight:900; line-height:1.2 }
+.brief-tagline { font-size:13px; color:var(--muted); font-weight:600; letter-spacing:.05em }
+.brief-actions { display:flex; gap:8px; flex-shrink:0 }
+.brief-actions button, .brief-actions a {
+  font-size:12px; padding:6px 12px; background:var(--bg-soft); border:1px solid var(--line);
+  color:var(--bg-deep); border-radius:4px; font-family:inherit; cursor:pointer
+}
+.brief-actions button:hover, .brief-actions a:hover {
+  background:var(--brand); color:#fff; border-color:var(--brand); text-decoration:none
+}
+
+.section-1 { background:linear-gradient(135deg,#fff8f5 0%,#fff 100%);
+              padding:18px 22px; border-left:5px solid var(--brand); border-radius:0 6px 6px 0;
+              margin-bottom:18px }
+.section-1 .label { font-family:Inter,sans-serif; font-size:11px; color:var(--brand);
+                     letter-spacing:.1em; font-weight:700; margin-bottom:4px }
+.section-1 .core { font-family:"Noto Serif TC",serif; font-size:18.5px; line-height:1.55;
+                    font-weight:500; color:var(--text); margin:0 }
+
+.section-2 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:18px }
+.data-point { background:var(--bg-soft); padding:12px 14px; border-radius:6px;
+               border-top:3px solid var(--gold) }
+.data-point.empty { color:var(--muted); font-size:12px; text-align:center; padding:18px;
+                      border-top-color:var(--line) }
+.data-label { font-family:Inter,sans-serif; font-size:10.5px; color:var(--muted);
+               letter-spacing:.08em; font-weight:600; text-transform:uppercase }
+.data-value { font-family:"Noto Serif TC",serif; font-size:18px; font-weight:700;
+               color:var(--bg-deep); margin:3px 0; line-height:1.3 }
+.data-unit { font-size:13px; font-weight:400; color:var(--muted) }
+.data-trend { font-size:11.5px; font-weight:600; margin-bottom:3px }
+.data-name { font-size:11.5px; color:var(--text); line-height:1.4 }
+.data-source { font-size:10.5px; color:var(--muted); margin-top:3px }
+
+.section-3 { margin-bottom:18px }
+.section-h { font-family:"Noto Serif TC",serif; font-size:14.5px; font-weight:700;
+             color:var(--brand); margin:0 0 8px; display:flex; align-items:center; gap:8px }
+.section-h::before { content:""; width:18px; height:2px; background:var(--brand) }
+.quote-list { list-style:none; margin:0; padding:0 }
+.quote-item { background:#fff; border-left:3px solid var(--gold); padding:8px 14px;
+               margin-bottom:6px; border-radius:0 4px 4px 0; border-right:1px solid var(--bg-soft);
+               border-top:1px solid var(--bg-soft); border-bottom:1px solid var(--bg-soft) }
+.quote-text { font-size:14px; line-height:1.5; color:var(--text); font-style:italic;
+               font-family:"Noto Serif TC",serif }
+.quote-meta { font-size:11px; color:var(--muted); margin-top:3px }
+.quote-date { font-family:Inter,sans-serif }
+.quote-empty { color:var(--muted); font-size:13px; padding:8px }
+
+.section-4 { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px;
+              background:var(--bg-soft); padding:14px 16px; border-radius:6px }
+.dialogue-side { font-size:13px; line-height:1.55 }
+.dialogue-side .label { font-family:Inter,sans-serif; font-size:11px; font-weight:700;
+                         text-transform:uppercase; letter-spacing:.08em; margin-bottom:4px }
+.dialogue-opposing .label { color:#9c4221 }
+.dialogue-our .label { color:#2e7d32 }
+.dialogue-text { color:var(--text) }
+
+.section-5 { background:var(--bg-deep); color:#fff; padding:16px 20px; border-radius:6px;
+              margin-bottom:18px }
+.section-5 .section-h { color:#fff }
+.section-5 .section-h::before { background:#fff }
+.demands-list { margin:0; padding:0; list-style:none; counter-reset:dem }
+.demands-list li { font-size:14px; line-height:1.5; padding:6px 0; padding-left:36px;
+                    position:relative; color:rgba(255,255,255,0.95) }
+.demands-list li::before { counter-increment:dem; content:counter(dem);
+                            position:absolute; left:0; top:6px;
+                            width:24px; height:24px; background:var(--brand); color:#fff;
+                            border-radius:50%; display:flex; align-items:center;
+                            justify-content:center; font-family:Inter,sans-serif;
+                            font-size:13px; font-weight:700 }
+.demands-list li strong { color:#fff }
+
+.brief-footer { display:flex; justify-content:space-between; align-items:center;
+                 border-top:1px solid var(--line); padding-top:14px; margin-top:18px;
+                 font-size:11.5px; color:var(--muted); flex-wrap:wrap; gap:10px }
+.brief-links a { color:var(--brand); margin:0 4px }
+.brief-watermark { font-family:Inter,sans-serif; font-weight:700; letter-spacing:.06em;
+                    color:var(--gold) }
+
+@media (max-width:760px) {
+  .brief { padding:22px; margin:12px }
+  .brief-title { font-size:24px }
+  .section-2 { grid-template-columns:1fr }
+  .section-4 { grid-template-columns:1fr }
+}
+
+@media print {
+  body { background:#fff }
+  .topbar, .brief-actions { display:none !important }
+  .brief { box-shadow:none; margin:0; padding:18mm 16mm; max-width:none;
+            border-radius:0; border:0 }
+  .section-2 { grid-template-columns:1fr 1fr 1fr }
+  @page { size: A4 portrait; margin: 12mm }
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">跳至主要內容</a>
+<div class="topbar">
+  <a class="brand" href="../index.html">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8B6F50" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <strong>兒少人權監督平台</strong>
+  </a>
+  <nav>
+    <a href="index.html">← 14 議題快查卡 index</a>
+    <a href="../positions.html">14 議題立場</a>
+    <a href="../issues/PI-10.html">議題詳情</a>
+    <a href="../timeline/PI-10.html">政策軌跡</a>
+  </nav>
+</div>
+
+<main id="main">
+  <article class="brief">
+    <header class="brief-header">
+      <div class="brief-header-left">
+        <div class="brief-code">PI-10 · 倡議者快查卡 ADVOCACY BRIEF</div>
+        <h1 class="brief-title">兒少表意與校園民主</h1>
+        <div class="brief-tagline">A4 PRINT · 5 分鐘對話 · 立委辦公室、媒體採訪、公聽會發言</div>
+      </div>
+      <div class="brief-actions">
+        <button onclick="window.print()">🖨 列印 / 存 PDF</button>
+        <a href="../positions.html#PI-10">完整立場 →</a>
+      </div>
+    </header>
+
+    <div class="section-1">
+      <div class="label">AABE 一句話立場</div>
+      <p class="core">校園民主 = 兒少參與權 — 學生會代表納入校長遴選、校規修訂須學生公聽。</p>
+    </div>
+
+    <h2 class="section-h" style="margin-top:18px">3 個必引數據點</h2>
+    <div class="section-2">
+      <div class="data-point"><div class="data-label">最近重大事件</div><div class="data-value">★★</div><div class="data-trend">環境部 (2024-12-31)</div><div class="data-name">「[第 1 期 NAP] 氣候變遷與人權:透過多元管道徵詢兒少意見…」</div><div class="data-source">資料來源:政策軌跡 issue_timeline</div></div>
+      <div class="data-point"><div class="data-label">最新民間政策建議</div><div class="data-value" style="font-size:14px">「生育·養育·教育—兒童成長需求總體檢」論壇</div><div class="data-trend">2025-12-06 · 政策分析(GEO 文章)</div><div class="data-source">本議題尚無 CRC 結論性意見直接對應 — 引用民間政策建議書</div></div>
+      <div class="data-point"><div class="data-label">民間政策建議採納</div><div class="data-value"><span style="color:#2e7d32">0</span> 採納 / <span style="color:#f57c00">1</span> 部分 / <span style="color:#c62828">0</span> 未</div><div class="data-trend">共 3 件政策建議</div></div>
+    </div>
+
+    <section class="section-3">
+      <h2 class="section-h">3 個可引述名言(政策對話 / 媒體 quote)</h2>
+      <ul class="quote-list">
+        <li class="quote-item"><div class="quote-text">「2025年12月6日論壇，四大組織聯合舉辦，探討台灣兒童成長困境與政策整合。涵蓋少子化、新生兒死亡率、青少年自殺、3C過曝、社會情緒學習等議題，提出跨部會整合建議。」</div><div class="quote-meta">— 「生育·養育·教育—兒童成長需求總體檢」論壇 <span class="quote-date">(2025-12-06)</span></div></li>
+      </ul>
+    </section>
+
+    <section class="section-4">
+      <div class="dialogue-side dialogue-opposing">
+        <div class="label">▲ 對方常用論點</div>
+        <div class="dialogue-text">教育部主張「行政效率」</div>
+      </div>
+      <div class="dialogue-side dialogue-our">
+        <div class="label">▼ 我方回應</div>
+        <div class="dialogue-text">民間主張「公約 §12 表意權」</div>
+      </div>
+    </section>
+
+    <section class="section-5">
+      <h2 class="section-h">3 秒 ASK — 立法 / 行政 / 預算 三軸具體訴求</h2>
+      <ol class="demands-list">
+        <li><strong>訴求 1.</strong> 全國中學生會代表參與校長遴選機制</li>
+<li><strong>訴求 2.</strong> 校規修訂須學生公聽,廢除過時校規(髮禁、襪禁等)</li>
+<li><strong>訴求 3.</strong> 兒少表意 12 歲以下友善管道</li>
+      </ol>
+    </section>
+
+    <footer class="brief-footer">
+      <div class="brief-links">
+        延伸:
+        <a href="../issues/PI-10.html">議題詳情</a>
+        ·
+        <a href="../timeline/PI-10.html">政策軌跡</a>
+        ·
+        <a href="../crc-articles.html#PI-10">CRC 條文</a>
+        ·
+        <a href="../external-reports.html">影子報告</a>
+      </div>
+      <div class="brief-watermark">CHILD RIGHTS WATCH · AABE 國教行動聯盟</div>
+    </footer>
+  </article>
+</main>
+
+</body>
+</html>
