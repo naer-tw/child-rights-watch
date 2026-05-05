@@ -88,7 +88,7 @@ footer { text-align: center; padding: 24px; font-size: 12px; color: var(--text-m
   <div class="filter" role="group" aria-label="類型篩選">
     <button data-type="all" class="active">全部</button>
     <button data-type="issue">議題卡</button>
-    <button data-type="passage">政策段落</button>
+    <button data-type="passage" id="btn-passage">政策段落 <span style="font-size:11px;opacity:.7">(需點開)</span></button>
     <button data-type="advocacy">AABE 倡議</button>
     <button data-type="external_shadow">民間影子報告</button>
     <button data-type="crc_official">CRC 官方文件</button>
@@ -96,6 +96,12 @@ footer { text-align: center; padding: 24px; font-size: 12px; color: var(--text-m
     <button data-type="law">法規</button>
     <button data-type="law_amendment">修法</button>
     <button data-type="nhrc_indicator">NHRC 指標</button>
+  </div>
+  <div style="padding:8px 0 0;font-size:12px;color:#888;">
+    <label style="cursor:pointer;display:inline-flex;align-items:center;gap:6px">
+      <input type="checkbox" id="load-passages"> 同時搜尋全文段落(<span id="passage-count">…</span>,首次載入需要 ~10 秒)
+    </label>
+    <span id="passage-status" style="margin-left:10px;color:#1F3D6B"></span>
   </div>
 </div>
 
@@ -115,19 +121,24 @@ const qInput = document.getElementById('q');
 const statsEl = document.getElementById('stats');
 const resultsEl = document.getElementById('results');
 
+// Wave 148:核心索引(440 筆 / 670KB)即時載入,passages chunks 由 toggle 觸發
+let PASSAGES_LOADED = false;
+let PASSAGES_LOADING = null;
+
 fetch('search-index.json')
   .then(r => r.json())
   .then(data => {
     INDEX = data;
-    statsEl.textContent = `已載入 ${data.items.length} 筆,版本 ${data.version} · 輸入關鍵字開始搜尋`;
-    // 更新 header 計數
-    const cnt = {};
-    data.items.forEach(it => cnt[it.type] = (cnt[it.type] || 0) + 1);
     const labels = {issue:'議題', passage:'段落', advocacy:'倡議', external_shadow:'民間影子報告',
                     crc_official:'CRC 官方文件', nap:'NAP', nhrc_indicator:'NHRC 指標',
                     law:'法規', law_amendment:'修法'};
+    const cnt = {};
+    data.items.forEach(it => cnt[it.type] = (cnt[it.type] || 0) + 1);
     const parts = Object.entries(cnt).map(([t,n]) => `${n} ${labels[t]||t}`);
-    document.getElementById('hdr-stats').textContent = `${parts.join(' / ')} = 共 ${data.items.length} 筆`;
+    parts.push(`${data.passage_total} 段落(延遲載入)`);
+    document.getElementById('hdr-stats').textContent = `${parts.join(' / ')} = 共 ${data.items.length + data.passage_total} 筆`;
+    document.getElementById('passage-count').textContent = data.passage_total.toLocaleString() + ' 段落';
+    statsEl.textContent = `已載入 ${data.items.length} 筆核心索引,版本 ${data.version} · 輸入關鍵字開始搜尋`;
     // Auto-fill from ?q= URL param
     const params = new URLSearchParams(location.search);
     const initQ = params.get('q');
@@ -136,6 +147,53 @@ fetch('search-index.json')
   .catch(err => {
     statsEl.textContent = '索引載入失敗,請稍後再試:' + err.message;
   });
+
+function loadPassages() {
+  if (PASSAGES_LOADED) return Promise.resolve();
+  if (PASSAGES_LOADING) return PASSAGES_LOADING;
+  const total = INDEX.passage_chunks;
+  const statusEl = document.getElementById('passage-status');
+  statusEl.textContent = `正在載入 ${total} 個段落 chunk…`;
+  PASSAGES_LOADING = Promise.all(
+    Array.from({length: total}, (_, i) =>
+      fetch(`search-passages/chunk-${String(i).padStart(2,'0')}.json`).then(r => r.json())
+    )
+  ).then(chunks => {
+    let added = 0;
+    chunks.forEach(c => {
+      c.items.forEach(p => {
+        p.search_text = (p.search_text || '').replace(/\s+/g,' ').slice(0,600);
+        INDEX.items.push(p);
+        added++;
+      });
+    });
+    PASSAGES_LOADED = true;
+    PASSAGES_LOADING = null;
+    statusEl.textContent = `✓ 已載入 ${added.toLocaleString()} 段落`;
+    return added;
+  }).catch(err => {
+    statusEl.textContent = '段落載入失敗:' + err.message;
+    PASSAGES_LOADING = null;
+    throw err;
+  });
+  return PASSAGES_LOADING;
+}
+
+document.getElementById('load-passages').addEventListener('change', e => {
+  if (e.target.checked) {
+    loadPassages().then(() => search());
+  } else {
+    document.getElementById('passage-status').textContent = '(段落已載入,刷新頁面可釋放)';
+  }
+});
+
+// 點「政策段落」按鈕也自動觸發載入
+document.getElementById('btn-passage').addEventListener('click', () => {
+  if (!PASSAGES_LOADED) {
+    document.getElementById('load-passages').checked = true;
+    loadPassages().then(() => search());
+  }
+});
 
 function escapeRegex(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');

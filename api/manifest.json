@@ -1,0 +1,9 @@
+{
+  "platform": "child-rights-watch",
+  "version": "2026-05-05",
+  "endpoints": {
+    "crc_frequency": "api/crc_frequency.json",
+    "cross_platform_search": "api/cross_platform_search.json"
+  },
+  "note": "本平台 API 為 GitHub Pages 靜態 JSON。其他平台(CRPD/CEDAW/兩公約)的 API 請見各自 repo。"
+}
