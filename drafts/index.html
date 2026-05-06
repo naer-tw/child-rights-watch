@@ -63,6 +63,7 @@ footer a { color: rgba(255,255,255,0.85); }
 <link rel="stylesheet" href="../mobile-fixes.css?v4">
 </head>
 <body>
+<a href="#main" class="skip-link" style="position:absolute;left:-9999px;top:0;background:#1F1F1F;color:#fff;padding:8px 12px;text-decoration:none;font-weight:700;z-index:9999;" onfocus="this.style.left='8px';this.style.top='8px';" onblur="this.style.left='-9999px';">跳到主要內容</a>
 <script>
 if (typeof localStorage !== 'undefined' && localStorage.getItem('aabe-insider') !== 'yes') {
   location.replace('../index.html?lock=drafts');
@@ -92,7 +93,7 @@ if (typeof localStorage !== 'undefined' && localStorage.getItem('aabe-insider') 
   </div>
 </div>
 
-<main>
+<main id="main">
 
 <div style="background:var(--bg-deep);color:#fff;padding:24px;border-radius:8px;margin-bottom:32px">
   <h2 style="font-family:var(--serif);font-size:20px;color:#fff;margin-bottom:8px">內部工作底稿(insider only)</h2>
