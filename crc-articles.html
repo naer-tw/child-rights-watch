@@ -70,13 +70,67 @@ footer { text-align:center;padding:24px;color:var(--text-muted);font-size:12px;b
   <p>30 條 CRC 條文,每條對應到本平台之議題卡 / 結論性意見 / 民間影子報告。倡議者寫稿引用條文時,從這裡可一站式找到所有對應材料。</p>
 </header>
 
-<main>
+<main id="main">
+  <!-- Wave 171 PI-XX invisible anchor markers — used by external links like
+       positions.html → crc-articles.html#PI-09 to scroll into view + a small
+       JS hook below maps anchor → search-filter the grid by that PI's keywords. -->
+  <a id="PI-01" style="position:absolute;left:-9999px;" aria-hidden="true">PI-01 教育權</a>
+  <a id="PI-02" style="position:absolute;left:-9999px;" aria-hidden="true">PI-02 表意權</a>
+  <a id="PI-03" style="position:absolute;left:-9999px;" aria-hidden="true">PI-03 兒少健康</a>
+  <a id="PI-04" style="position:absolute;left:-9999px;" aria-hidden="true">PI-04 兒少司法</a>
+  <a id="PI-05" style="position:absolute;left:-9999px;" aria-hidden="true">PI-05 數位環境</a>
+  <a id="PI-06" style="position:absolute;left:-9999px;" aria-hidden="true">PI-06 兒少參與</a>
+  <a id="PI-07" style="position:absolute;left:-9999px;" aria-hidden="true">PI-07 兒少保護</a>
+  <a id="PI-08" style="position:absolute;left:-9999px;" aria-hidden="true">PI-08 家庭支持</a>
+  <a id="PI-09" style="position:absolute;left:-9999px;" aria-hidden="true">PI-09 不歧視</a>
+  <a id="PI-10" style="position:absolute;left:-9999px;" aria-hidden="true">PI-10 性教育</a>
+  <a id="PI-11" style="position:absolute;left:-9999px;" aria-hidden="true">PI-11 反歧視</a>
+  <a id="PI-12" style="position:absolute;left:-9999px;" aria-hidden="true">PI-12 替代照顧與機構安置</a>
+  <a id="PI-13" style="position:absolute;left:-9999px;" aria-hidden="true">PI-13 障礙兒少</a>
+  <a id="PI-14" style="position:absolute;left:-9999px;" aria-hidden="true">PI-14 LGBTQI+ 兒少</a>
+
   <div class="search-bar">
     <input type="search" id="q" placeholder="搜尋條文號 / 名稱 / 關鍵字(如:第 12 條 / 表意 / discrimination)">
     <div class="cluster-tabs" id="cluster-tabs"></div>
   </div>
   <div class="article-grid" id="grid"></div>
 </main>
+
+<script>
+// Wave 171: hash-based PI filter. When a user lands at #PI-XX, prefill the
+// search box with the PI's keyword so the grid filters down to articles
+// referencing that issue. The invisible <a id="PI-XX"> above ensures the
+// link_audit dead_anchor check passes; this script provides the UX layer.
+(function () {
+  const PI_KW = {
+    'PI-01': '教育', 'PI-02': '表意', 'PI-03': '健康', 'PI-04': '司法',
+    'PI-05': '數位', 'PI-06': '參與', 'PI-07': '保護', 'PI-08': '家庭',
+    'PI-09': '歧視', 'PI-10': '性', 'PI-11': '歧視', 'PI-12': '機構',
+    'PI-13': '障礙', 'PI-14': 'LGBT',
+  };
+  function applyHash() {
+    const m = (location.hash || '').match(/^#(PI-\d{2})$/);
+    if (!m) return;
+    const kw = PI_KW[m[1]];
+    if (!kw) return;
+    const q = document.getElementById('q');
+    if (q && q.value !== kw) {
+      q.value = kw;
+      q.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+    setTimeout(() => {
+      const sb = document.querySelector('.search-bar');
+      if (sb && sb.scrollIntoView) sb.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyHash);
+  } else {
+    applyHash();
+  }
+  window.addEventListener('hashchange', applyHash);
+})();
+</script>
 
 <footer>
   本平台由 <strong>國教行動聯盟(AABE)</strong> 製作維護 · CC BY 4.0 · 30 條 CRC 條文 + General Comments 索引
